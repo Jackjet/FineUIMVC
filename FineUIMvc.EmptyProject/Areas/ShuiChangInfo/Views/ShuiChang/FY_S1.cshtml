@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "FY_S1";
+}
+@section head {
+    <title>富源水厂</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+   @* <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>*@
+    <link href="~/res/css/radialindicator.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/res/fy_shuichang/s1/css/fy_s1Style.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+  
+}
+
+@section body {
+    <input type="hidden" id="scId" data-sid="@ViewBag.ShuiChangID" />
+    <div class="mainWrap">
+    <div class="block-box clearfix" data-boxnum="0">
+        <div class="schematic-box">
+            <div class="block-header">原理流程图</div>
+            <div class="title-box clearfix">
+                <div class="header-title">水箱液位示意图</div>
+                <div class="acquisitionTime">采集时间<span>2017-08-09</span></div>
+            </div>
+            <div class="waterBoxImg-box  waterBox1">
+                <div class="img-box">
+                    <div class="alarmText highAlarm hide">液位高位报警</div>
+                    <div class="alarmText lowAlarm hide">液位低位报警</div>
+                    <div class="waterHeight"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="chartLog-box">
+            <div class="block-header chart-header clearfix">
+                <span class="titleText">液位实时曲线图</span>
+                <div class="searchBox hide" >
+                    <input class="startTime" id="startTime1" placeholder="开始时间" />
+                    <span>--</span>
+                    <input class="endTime" id="endTime1" placeholder="结束时间" />
+                    <span class="searchBtn">搜索</span>
+                </div>
+            </div>
+            <div class="title-box clearfix">
+                <div class="chartIcos"></div>
+                <div class="chartIcos"></div>
+                <div class="chartIcos active"></div>
+            </div>
+            <div class="chartBlock-box">
+                <div class="tabContent logBox hide">
+                    <div class="table-box">
+                        <div class="table1_wrap">
+                            <table class="myTable table1">
+                                <thead>
+                                    <tr>
+                                        <th class="hide"></th>
+                                        <th>低位报警</th>
+                                        <th>高位报警</th>
+                                        <th>水箱液位(m)</th>
+                                        <th>采集时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table2_wrap">
+                            <table class="myTable table2">
+                                <thead>
+                                    <tr>
+                                        <th class="hide"></th>
+                                        <th>低位报警</th>
+                                        <th>高位报警</th>
+                                        <th>水箱液位(m)</th>
+                                        <th>采集时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page_wrap">
+                        <div class="page_box">
+                            <a class="firstPage" href="#">&lt;&lt;</a>
+                            <a class="prevPage" href="#">&lt;</a><a class="currentPage" href="#">1</a><a href="#">/</a><a class="totalPage" href="#">100</a><a class="nextPage" href="#">&gt;</a><a class="lastPage" href="#">&gt;&gt;</a>
+                            <span>每页</span><a class="pageSize" href="#">10</a><input type="text" class="editPageIndex" /><span>条，共</span><a class="totalNum" href="#">12222</a><span>条</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabContent historyChartBox hide"></div>
+                <div class="tabContent realChartBox"></div>
+            </div>
+        </div>
+    </div>
+    <div class="block-box clearfix" data-boxnum="1" style="display:none">
+        <div class="schematic-box">
+            <div class="block-header">原理流程图</div>
+            <div class="title-box clearfix">
+                <div class="header-title">水箱液位示意图</div>
+                <div class="acquisitionTime">采集时间<span>2017-08-09</span></div>
+            </div>
+            <div class="waterBoxImg-box  waterBox2">
+                <div class="alarmText highAlarm hide">液位高位报警</div>
+                <div class="alarmText lowAlarm hide">液位低位报警</div>
+                <div class="waterHeight"></div>
+            </div>
+        </div>
+        <div class="chartLog-box">
+            <div class="block-header chart-header clearfix">
+                液位实时曲线图
+                <div class="searchBox hide">
+                    <input class="startTime" id="startTime2" placeholder="开始时间" />
+                    <span>--</span>
+                    <input class="endTime" id="endTime2" placeholder="结束时间" />
+                    <span class="searchBtn">搜索</span>
+                </div>
+            </div>
+            <div class="title-box clearfix">
+                <div class="chartIcos"></div>
+                <div class="chartIcos"></div>
+                <div class="chartIcos active"></div>
+            </div>
+            <div class="chartBlock-box">
+                <div class="tabContent logBox hide">
+                    <div class="table-box">
+                        <div class="table1_wrap">
+                            <table class="myTable table1">
+                                <thead>
+                                    <tr>
+                                        <th class="hide"></th>
+                                        <th>低位报警</th>
+                                        <th>高位报警</th>
+                                        <th>水箱液位(m)</th>
+                                        <th>采集时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table2_wrap">
+                            <table class="myTable table2">
+                                <thead>
+                                    <tr>
+                                        <th class="hide"></th>
+                                        <th>低位报警</th>
+                                        <th>高位报警</th>
+                                        <th>水箱液位(m)</th>
+                                        <th>采集时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                    <tr><td class="hide"></td><td>11</td><td>22</td><td>33</td><td>44</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page_wrap">
+                        <div class="page_box">
+                            <a class="firstPage" href="#">&lt;&lt;</a>
+                            <a class="prevPage" href="#">&lt;</a><a class="currentPage" href="#">1</a><a href="#">/</a><a class="totalPage" href="#">100</a><a class="nextPage" href="#">&gt;</a><a class="lastPage" href="#">&gt;&gt;</a>
+                            <span>每页</span><a class="pageSize" href="#">10</a><input type="text" class="editPageIndex" /><span>条，共</span><a class="totalNum" href="#">12222</a><span>条</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabContent historyChartBox hide"></div>
+                <div class="tabContent realChartBox active"></div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@section script {
+
+<script src="~/res/layer/layer.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/laydate.js"></script>
+<script src="~/res/js/echarts.min.js"></script>
+ @*<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>*@
+
+<script src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+<script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+    <script src="~/res/fy_shuichang/s1/js/fy_s1.js"></script>
+ }

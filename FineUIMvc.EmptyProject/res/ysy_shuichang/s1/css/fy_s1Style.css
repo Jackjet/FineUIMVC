@@ -1,0 +1,288 @@
+.hide {
+  display: none;
+}
+body {
+  font-size: 12px;
+}
+.mainWrap {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 40px 10px 10px 70px;
+}
+.block-box {
+  margin-bottom: 10px;
+}
+.schematic-box {
+  width: 100%;
+  float: left;
+  margin-right: 18px;
+}
+.chartLog-box {
+  float: left;
+  width: 100%;
+}
+.hide {
+  display: none;
+}
+.block-header {
+  font-size: 14px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  color: #438eb9;
+  text-indent: 26px;
+  background: url(../img/ico1.png) no-repeat 0px center;
+}
+.chart-header {
+  background: url(../img/chartIco.png) no-repeat 0px center;
+}
+.chart-header .searchBox {
+  float: right;
+  height: 100%;
+  margin-right: 5px;
+}
+.chart-header .searchBox input {
+  display: block;
+  float: left;
+  height: 28px;
+  width: 126px;
+  border: 1px solid #e5e5e5;
+  text-indent: 5px;
+  font-size: 12px;
+}
+.chart-header .searchBox span {
+  display: block;
+  float: left;
+  height: 28px;
+  line-height: 28px;
+  text-indent: 0px;
+  padding: 0 6px;
+  font-size: 12px;
+}
+.chart-header .searchBox span.searchBtn {
+  color: #ffffff;
+  background-color: #438eb9;
+  font-size: 12px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.chart-header .searchBox span.searchBtn:hover {
+  background-color: #539ec9;
+}
+.title-box {
+  height: 32px;
+  border: 1px solid #e5e5e5;
+  border-top: 2px solid #438eb9;
+  font-size: 12px;
+  color: #676767;
+  background-color: #f5f5f5;
+}
+.title-box .header-title {
+  float: left;
+  padding: 6px 18px;
+}
+.title-box .acquisitionTime {
+  float: right;
+  padding: 6px 18px;
+}
+.title-box .chartIcos {
+  float: right;
+  height: 32px;
+  width: 30px;
+  background: url(../img/chartIcos.png) no-repeat -70px -35px;
+}
+.title-box .chartIcos:hover,
+.title-box .chartIcos.active {
+  background: url(../img/chartIcos.png) no-repeat -70px 5px;
+}
+.title-box .chartIcos:nth-child(2) {
+  background-position: -35px -35px;
+}
+.title-box .chartIcos:nth-child(2):hover,
+.title-box .chartIcos:nth-child(2).active {
+  background-position: -35px 5px;
+}
+.title-box .chartIcos:nth-child(3) {
+  background-position: 0px -34px;
+}
+.title-box .chartIcos:nth-child(3):hover,
+.title-box .chartIcos:nth-child(3).active {
+  background-position: 0px 6px;
+}
+.waterBoxImg-box,
+.chartBlock-box {
+  position: relative;
+  height: 280px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+.waterBoxImg-box .img-box,
+.chartBlock-box .img-box {
+  height: 100%;
+  width: 560px;
+  margin: 0 auto;
+  position: relative;
+}
+.waterBoxImg-box .img-box .alarmText,
+.chartBlock-box .img-box .alarmText {
+  width: 162px;
+  height: 28px;
+  line-height: 28px;
+  color: #ff0000;
+  position: absolute;
+  background: url(../img/alarmBg.png) no-repeat 0px 0px;
+  background-size: cover;
+}
+.waterBoxImg-box .img-box .alarmText.highAlarm,
+.chartBlock-box .img-box .alarmText.highAlarm {
+  top: 37px;
+  left: 50%;
+  margin-left: 100px;
+  text-indent: 62px;
+}
+.waterBoxImg-box .img-box .alarmText.lowAlarm,
+.chartBlock-box .img-box .alarmText.lowAlarm {
+  top: 202px;
+  left: 50%;
+  margin-left: -262px;
+  text-indent: 62px;
+}
+.waterBoxImg-box .img-box .waterHeight,
+.chartBlock-box .img-box .waterHeight {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px;
+  width: 100%;
+  text-align: center;
+  text-indent: -26px;
+  position: absolute;
+  top: 172px;
+}
+.waterBoxImg-box .tabContent,
+.chartBlock-box .tabContent {
+  height: 100%;
+}
+.waterBox1 .img-box {
+  background: url(../img/waterBox2.png) no-repeat center center;
+}
+.waterBox2 .img-box {
+  background: url(../img/waterBox1.png) no-repeat center center;
+}
+.table1_wrap {
+  width: 100%;
+  height: 34px;
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+}
+.myTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 200px;
+}
+.table1 {
+  position: relative;
+}
+.table2 {
+  width: 100%;
+}
+.table2_wrap {
+  height: 230px;
+  width: 100%;
+  background-color: #fff;
+  overflow: auto!important;
+}
+.myTable tr {
+  width: 100%;
+  height: 34px;
+}
+.myTable th {
+  /*padding-left: 5px;*/
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  color: #676767;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  text-align: center;
+  min-width: 60px;
+}
+.myTable td {
+  text-align: center;
+  border-bottom: 1px dashed #e8e8e8;
+  background-color: #fff;
+  color: #676767;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  /*padding-left: 3px;*/
+  min-width: 60px;
+}
+.myTable td.status i {
+  display: inline-block;
+  width: 16px;
+  height: 34px;
+  vertical-align: middle;
+  background: url(../img/onOffAlarmIco.png) no-repeat;
+}
+td.status i.status_1 {
+  background-position: -1px 8px;
+}
+td.status i.status_0 {
+  background-position: -1px -40px;
+}
+td.status i.status_2 {
+  background-position: -1px -100px;
+}
+.myTable tr.active td {
+  background-color: #e0f4ff;
+}
+.myTable tr:hover td {
+  background-color: #e0f4ff;
+}
+.page_wrap {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 44px;
+  position: absolute;
+  bottom: 0px;
+}
+.page_box {
+  float: right;
+  margin-top: 10px;
+  padding-right: 16px;
+}
+.page_box span {
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+.page_box a {
+  display: inline-block;
+  color: #8f9092;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  text-align: center;
+  padding: 4px;
+  font-weight: bold;
+}
+.page_box a:hover {
+  color: #438eb9;
+}
+.page_box span {
+  color: #8f9092;
+}
+.page_box #lastPage {
+  margin-right: 20px;
+}
+.page_box #currentPage,
+.page_box #pageSize,
+.page_box #totalNum {
+  color: #438eb9;
+}
+.editPageIndex {
+  width: 20px;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  display: none;
+}

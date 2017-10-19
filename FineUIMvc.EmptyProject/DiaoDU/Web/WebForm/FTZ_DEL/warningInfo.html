@@ -1,0 +1,482 @@
+﻿  <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<title>上海自贸区泵房远程监控系统</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/warningInfo.css" />
+        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+        <link rel="stylesheet" href="css/jquery.cxcalendar.css">
+		<!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.min.js"></script>
+        <script src="js/jquery.mousewheel.js"></script>
+        <script src="js/jquery.mCustomScrollbar.js"></script>
+        <!--<script src="js/jquery.cxcalendar.min.js"></script>-->
+        <script src="js/jquery.cxcalendar.js"></script>
+        <script src="js/jquery.cxcalendar.languages.js"></script>	
+		<script type="text/javascript" src="js/index.js" ></script>
+	</head>
+<body>
+    <div class="warningInfo">
+        <div class="wHeader">
+            <span class="headerLeft"></span>
+            <span class="wSearchBtn">搜 索</span>
+            <span class="wSearch">
+                <i></i>
+                <input class="wSearchText" type="text" value="" placeholder="请输入设备名称" />
+            </span>
+            <span class="wTime">
+                <input class="startEndTime startTime" id="startTime" type="text" value="" placeholder="开始时间" />
+                <span class="to">- -</span>
+                <input class="startEndTime endTime" type="text" value=""  placeholder="结束时间" />
+            </span>
+
+        </div>
+        <div class="rhContent">
+            <span class="realTimeText rhText">及时报警</span>
+            <span class="historyText rhText">历史报警</span>
+        </div>
+        <div class="wMain">
+            <div class="realTime">
+                <!--<div class="realTimeText">及时报警</div>-->
+                <ul class="realTimeList">
+                </ul>
+                <!--<i class="wIcon3"></i>-->
+            </div>
+            <div class="history">
+                <!--<div class="historyNav">
+                    <span>泵房名称</span>
+                    <span>报警信息</span>
+                    <span>报警时间</span>
+
+                </div>					-->
+                <table>
+                    <tr>
+                        <th>设备名称</th>
+                        <th>报警信息</th>
+                        <th>报警时间</th>
+                    </tr>
+                    <tbody class="tableBody">
+                        
+                    </tbody>
+
+
+                </table>
+                <div class="exchangePage">
+                    <!--<span>条</span>
+                    <a>500</a>
+                    <span>条，共</span>
+                    <a>10</a>
+                    <span>每页</span>
+
+                    <i class="finallyPage"></i>
+                    <i class="nextPage"></i>
+                    <span class="totalPages">/89</span>
+                    <a class="currentPage">12</a>
+                    <i class="firstPage"></i>
+                    <i class="prevlPage"></i>-->
+                    <div class="changePageMain">
+                        <i class="firstPage"></i>
+                        <i class="prevlPage"></i>
+                        <a class="currentPage">12</a>
+                        <span>/</span>
+                        <span class="totalPages">89</span>
+                        <i class="nextPage"></i>
+                        <i class="finallyPage"></i>
+                        <span>每页</span>
+                        <a class="pageSize">10</a>
+                        <span>条，共</span>
+                        <a class="total">500</a>
+                        <span>条</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            //通过搜索 获得
+            /*(function () {
+                $('.wSearchBtn').click(function () {
+                    searchOnoff = true;
+                    hisSearch();
+                });
+                function hisSearch() {
+                    var $fromTime = $.trim($('.startTime').html());
+                    var $endTime = $.trim($('.endTime').html());
+                    var $wSearchText = $.trim($('.wSearchText').val());
+                    if ($wSearchText == '') {
+                        alert('请输入设备ID！');
+                        return;
+                    }
+                    $.ajax({
+                        url: '../../Service/T_AlarmHistoryService.ashx?method=search',
+                        data: {
+                            'pageIndex': $currentPage-1,
+                            'pageSize': $pageSize,
+                            'FPumpID': $wSearchText,
+                            'begDateTime': $fromTime,
+                            'endDateTime': $endTime
+
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            var data = JSON.parse(data);
+                            $('.tableBody').empty();
+                            $.each(data.data, function (i, v) {
+                                $('.tableBody').append(
+                                    '<tr>\
+                                <td class="pumpName">'+ v.FKey + '</td>\
+                                <td class="pumpInfo">' + v.FContent + '</td>\
+                                <td class="alarmTime">' + v.FCreateDate + '</td>\
+                            </tr>'
+                                );
+                            });
+
+
+
+                        },
+                        error: function (data) {
+                            alert('错误：' + data.responseText);
+                        }
+                    });
+                };
+            })();
+
+            // right pagenation
+            (function () {
+                //初始化
+                var searchOnoff = false;
+                $('.currentPage').html(1);
+                var $currentPage = $('.currentPage').html();
+                var $pageSize = 10;
+                $('.pageSize').html($pageSize);
+                var $totalPages = 30;
+                $('.totalPages').html($totalPages);
+                $('.total').html(100);
+
+
+                // 默认get history
+                function getHistory() {
+                    $currentPage = $('.currentPage').html();
+                    $.ajax({
+                        url: '../../Service/T_AlarmHistoryService.ashx?method=search',
+                        data: {
+                            'pageIndex': $currentPage-1,
+                            'pageSize': $pageSize
+                        },
+                        success: function (data) {
+                            alert(data);
+                            alert($currentPage);
+                            var data = JSON.parse(data);
+                            $('.total').html(data.total);
+                            $('.totalPages').html(Math.ceil($('.total').html() / $pageSize));
+                            $('.tableBody').empty();
+                            $.each(data.data, function (i, v) {
+                                $('.tableBody').append(
+                                    '<tr>\
+                                <td class="pumpName">'+ v.FKey + '</td>\
+                                <td class="pumpInfo">' + v.FContent + '</td>\
+                                <td class="alarmTime">' + v.FCreateDate + '</td>\
+                            </tr>'
+                                );
+                            });
+                        },
+                        error: function (data) {
+                            alert('错误：' + data.responseText);
+                        }
+                    });
+                };
+                getHistory();
+
+                $('.changePageMain .prevlPage').click(function () {
+                    prevClick(getHistory);
+                });
+                function prevClick(obj) {
+                    if ($('.currentPage').html() == 1) {
+                        alert('已经是第一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, va) {
+                        return --va;
+                    });
+                    obj();
+                };
+
+                $('.changePageMain .nextPage').click(function () {
+                    if ($('.currentPage').html() == $('.totalPages').html()) {
+                        alert('已经是最后一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, va) {
+                        return ++va;
+                    });
+                    getHistory();
+                });
+
+                $('.changePageMain .firstPage').click(function () {
+                    if ($('.currentPage').html() == 1) {
+                        alert('已经是第一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, va) {
+                        va = 1;
+                        return va;
+                    });
+                    getHistory();
+                });
+
+                $('.changePageMain .finallyPage').click(function () {
+                    if ($('.currentPage').html() == $('.totalPages').html()) {
+                        alert('已经是最后一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, va) {
+                        va = $('.totalPages').html();
+                        return va;
+                    });
+                    getHistory();
+                });
+            })();
+            */
+            //简化 搜索历史
+            (function () {
+                //初始化
+                $('.currentPage').html(1);
+                var $currentPage = $('.currentPage').html();
+                var $pageSize = 10;
+                $('.pageSize').html($pageSize);
+                var $totalPages = 30;
+                $('.totalPages').html($totalPages);
+                $('.total').html(100);
+                var $fromTime = null;
+                var $endTime =null;
+                var $wSearchText = null;
+                var $fKey = null;
+                var $fPumpID = null;
+
+                //左侧点击 进行的搜索 
+                $('.realTimeList').delegate('.nameClick', 'click', function () {
+                    //alert($(this).attr('title'));
+                    //$('.wSearchText').val($(this).attr('title'));
+                    $fPumpID = $(this).attr('title');
+                    $('.wSearchBtn').trigger('click');
+                   
+                });
+
+                //点击左侧 报警内容s
+                $('.realTimeList').delegate('.keyClick', 'click', function () {
+                    //$('.wSearchText').val($(this).parent(".warnInfo").prev(".pumpName").find(".nameClick").attr('title'));
+                    //console.log($('.wSearchText').val());
+                    $fPumpID = $(this).parent(".warnInfo").prev(".pumpName").find(".nameClick").attr('title')
+                    $fKey=$(this).attr("title");
+                    $('.wSearchBtn').trigger('click');
+                });
+            
+                //enter键触发搜索
+                $('.wSearchText').keydown(
+                            function (event) {
+                                if (event.keyCode == 13) {
+                                    $('.wSearchBtn').click();
+                                }
+                            }
+                       );
+                $('.wSearchBtn').click(function () {
+                    
+                     $fromTime = $.trim($('.startTime').val());
+                     $endTime = $.trim($('.endTime').val());
+                     $wSearchText = $.trim($('.wSearchText').val());
+                     $currentPage=$('.currentPage').html(1);
+                    //if (($wSearchText == '') && ($fromTime == '') && ($endTime == '')&&($fPumpID==null)&&($fKey==null)) {
+                    //    $currentPage = $('.currentPage').html();
+                    //   // alert($wSearchText);
+                    //   // alert($fromTime);
+                    //   // alert($endTime);
+                    //   // alert('1234');
+                    //} else {
+                    //        $('.currentPage').html(1);
+                    //}
+                   
+                   // console.log($currentPage);
+                    getHistory();
+                });
+                // 默认get history
+                function getHistory() {
+                    $currentPage = $('.currentPage').html();
+                    $.ajax({
+                        url: '../../Service/T_AlarmHistoryService.ashx?method=search',
+                        data: {
+                            'pageIndex': $currentPage - 1,
+                            'pageSize': $pageSize,
+                            'FPumpID':$fPumpID,
+                            'FName':$wSearchText,
+                            'begDateTime': $fromTime,
+                            'endDateTime': $endTime,
+                            'FKey':$fKey
+                        },
+                        complete: function () {
+                            $fKey = null;
+                            $fPumpID = null;
+                        },
+                        success: function (data) {
+                            //alert(data);
+                            //alert($currentPage);
+                            var data = JSON.parse(data);
+                            $('.total').html(data.total);
+                            if (!data.total) {
+                                $('.currentPage').html(0);
+                                // alert('暂无数据！');
+                            }
+                            $('.totalPages').html(Math.ceil($('.total').html() / $pageSize));
+                            $('.tableBody').empty();
+                            $.each(data.data, function (i, v) {
+                                // v.FCreateDate = v.FCreateDate.replace(/T/, ' ');
+                                v.FCreateDate=(v.FCreateDate ? v.FCreateDate.replace(/T/, ' ') : null);
+                                $('.tableBody').append(
+                                    '<tr>\
+                                <td class="pumpName">'+ v.FName + '</td>\
+                                <td class="pumpInfo">' + v.FContent + '</td>\
+                                <td class="alarmTime">' + v.FCreateDate + '</td>\
+                            </tr>'
+                                );
+                            });
+                        },
+                        error: function (data) {
+                            //alert('错误：' + data.responseText);
+                            console.log('历史报警查询错误：' + data.responseText)
+                            return;
+                        }
+                    });
+                };
+                getHistory();
+                $('.changePageMain .prevlPage').click(function () {
+                    if ($('.currentPage').html() == 1) {
+                        alert('已经是第一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, v) {
+                        return --v;
+                    });
+                    getHistory();
+                });
+                
+
+                $('.changePageMain .nextPage').click(function () {
+                    if ($('.currentPage').html() == $('.totalPages').html()) {
+                        alert('已经是最后一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, v) {
+                        return ++v;
+                    });
+                    getHistory();
+                });
+
+                $('.changePageMain .firstPage').click(function () {
+                    if ($('.currentPage').html() == 1) {
+                        alert('已经是第一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, v) {
+                        v = 1;
+                        return v;
+                    });
+                    getHistory();
+                });
+
+                $('.changePageMain .finallyPage').click(function () {
+                    if ($('.currentPage').html() == $('.totalPages').html()) {
+                        alert('已经是最后一页了');
+                        return;
+                    }
+                    $('.currentPage').html(function (i, v) {
+                        v = $('.totalPages').html();
+                        return v;
+                    });
+                    getHistory();
+                });
+            })();
+            // alert  left list
+            (function () {
+                $('.history').ready(function () {
+                    $.ajax({
+                        url: '../../Service/T_AlarmService.ashx?method=searchall',
+                        success: function (data) {
+                            $('.realTimeList').empty();
+                            var data = JSON.parse(data);
+                            $.each(data.data, function (i, v) {
+                                v.FAlarmDate = v.FAlarmDate.replace(/T/, ' ');
+                                $('.realTimeList').append('<li><div class="wContent"><span class="pumpName"><a class="nameClick" title="' + v.FPumpID + '" href="javascript:void(0)">' + v.FName + '</a></span><span class="warnInfo"><a class="keyClick" title="' + v.FKey + '"href="javascript:void(0)">' + v.FContent + '</a></span><span class="warnTime">' + v.FAlarmDate + '</span></div><div class="border"></div></li>');
+                            });
+
+                        },
+                        error: function (data) {
+                            // alert('错误：' + data.responseText);
+                            return 
+                        }
+                    });
+                });
+            })();
+
+
+            $(".realTime").mCustomScrollbar({
+                axis: "y",
+                theme: "dark-thin",
+                autoExpandScrollbar: false,
+                advanced: { autoExpandHorizontalScroll: true }
+            });
+
+            function layout() {
+                $(".warningInfo").css({ "width": $(window).width() - 66, "height": $(window).height() - 5 });
+                $(".wMain").css("height", $(".warningInfo").height() - 115);
+                var realTimeText = $(".realTimeText");
+                var headerLeft = $(".headerLeft");
+                var historyText = $(".historyText");
+                var history = $(".history");
+                var oTime = $(".wTime");
+                realTimeText.css({
+                    left: (headerLeft.width() - realTimeText.width()) / 2,
+                    position: "absolute",
+                });
+                historyText.css({
+                    right: (history.width() - historyText.width()) / 2,
+                    position: "absolute",
+                });
+                oTime.css(
+                    "marginRight", realTimeText.offset().right + realTimeText.width());
+            }
+            layout();
+            $(window).resize(function () { layout() });
+
+            $(".startTime").cxCalendar();
+            $(".endTime").cxCalendar();
+            //$(".endTime").cxCalendar({
+            //    startDate:new Date($('.startTime').val().replace(/-/g,'/')).getTime()
+            //});
+                
+            //$('.startEndTime').keydown(function (event) {
+            //    if ((event.keyCode == 8) || (event.keyCode == 46)) {
+            //        $(this).val = '';
+            //    }
+            //});
+            function difftime() {
+                    var startTime=Date.parse($(".startTime").val());
+                    var endTime = Date.parse($(".endTime").val());
+                    //console.log(startTime);
+                    //console.log(endTime);
+                    var bool = endTime - startTime;
+                    if (bool < 0) {
+                        alert("结束时间不能早于开始时间");
+                        return false
+                    } else {
+                        return true;
+                    }
+            }
+        });
+    </script>
+</body>
+</html>

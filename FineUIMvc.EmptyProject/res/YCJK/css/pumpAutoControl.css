@@ -1,0 +1,44 @@
+﻿body{
+    padding: 50px;
+}
+.header_wrap{
+    height: 28px;
+    margin-bottom: 20px;
+}
+
+.autoControl,.menufControl,.remoteAuto{
+    padding:0  6px;
+    height: 28px;
+    line-height: 28px;
+    float: left;
+    margin-right: 10px;
+    background: #0094ff;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.autoControl:hover,.menufControl:hover,.remoteAuto:hover{
+     background: #00ffff;
+    color: #ffffff;
+}
+.waterIn_wrap{
+    margin-bottom: 20px;
+}
+input{
+    width: 50px;
+    border: 1px solid #0094ff;
+}
+.accBtn{
+     padding:0  6px;
+    height: 28px;
+    line-height: 28px;
+    background: #0094ff;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.accBtn:hover{
+      background: #00ffff;
+    color: #ffffff;
+}

@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>熊猫机械集团厂区管网监控系统</title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/jquery-3.0.0.min.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="css/loader.css">	-->
+		<link rel="stylesheet" href="css/loginFixpx.css" />
+		<!--<script type="text/javascript" src="js/loader.js"></script>-->
+		<script type="text/javascript" src="js/login.js"></script>
+   
+	</head>
+	<body>
+		<!--<div id="loader-wrapper">
+		    <div id="loader"></div>
+		    <div class="loader-section section-left"></div>
+		    <div class="loader-section section-right"></div>
+		    <div class="load_title">正在加载<br><span>V1.0</span></div>
+		</div>-->
+		<!--<div class="loginBck">-->
+			
+			<div class="title">
+				<div class="markTitle"></div>
+			</div>
+			<!--悬浮提示-->
+			<div class="hint"></div>
+			<div class="main">
+				<div class="loginLeftImg">
+					<div class="loginPC"><p>泵房远程监控系统</p></div>
+					<div class="modelIcon loginWarning animation" id="loginWarning"></div>
+					<div class="col2"> 
+						<div class="modelIcon loginSet animation"></div>
+						<div class="modelIcon loginDataAnalysis animation"></div>
+					</div>
+					
+					<div class="col3">
+						<div class="modelIcon loginFailureRecovery animation" ></div>
+						<div class="modelIcon loginRemoteControl animation"></div>
+					</div>
+					
+				</div>
+				<!--
+                	作者：814068883@qq.com
+                	时间：2016-07-21
+                	描述：右边登录用户名和密码设置模块
+                -->
+				<div class="loginUserPsd">
+					
+					<div class="login">
+						<div class="planeIcon"></div>
+						<div class="loginHeader">用户登录</div>
+						<ul class="loginMain">
+							<li class="userName">
+								<i id="userNameIcon"></i><span></span><input  class="userNameText" type="text" placeholder="请输入用户名" name="userNameText" />
+							</li>
+							<li class="userPsd">
+								<i id="userPsdIcon"></i><span></span><input class="userPsdText" type="password" placeholder="请输入密码" name="userPsdText"  />
+								
+							</li> 
+							<li class="loginBtn"><a href="index.html" target="_parent">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</a></li>
+						</ul>
+					</div>
+					
+				</div>
+			
+			</div>
+			
+			<div class="loginFooter">
+				<span class="copyright">©</span><span class="text">Copyright 熊猫信息科技 建议浏览器：谷歌 分辨率1920</span>				
+			</div>			
+		<!--</div>-->	
+			
+		
+	</body>
+</html>
+<script>
+    $(function () {
+        //回车登录
+        $('body').keydown(
+            function (event) {
+                if (event.keyCode == 13) {
+                    console.log('what is wrong with you');
+                    if ($('.userNameText').val() != '' && $('.userPsdText').val() != '') {
+                        $('.loginBtn').click();
+                        console.log('what is up');
+                    }
+                }
+            }
+       );
+        //登录按钮点击登录
+        $('.loginBtn').click(loginFun);
+        function loginFun() {
+            $.ajax({
+                url: '../../Service/Sys_UserService.ashx?method=CheckLogin',
+                data: {
+                    FName: $('.userNameText').val(),
+                    FPassword: $('.userPsdText').val()
+                },
+                beforeSend: loadingFunction,
+                success: function (data) {
+                    console.log(data);
+                    var data = JSON.parse(data);
+                    if (data.result == 1) {
+                        window.location.href = './index.html'
+
+                    } else {
+                        alert('用户名或者密码错误！');
+                    }
+                },
+                complete: loadingMiss,
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            function loadingMiss() {
+                $('.loading').remove();
+            };
+            function loadingFunction() {
+                // var $div= '<div style="width: 140px;height: 40px;border: 1px solid #ccc;text-align: left;line-height: 40px;color: #ccc;position: absolute; left: 50%;top:50%;margin-left: -70px;margin-top: -20px;" ><img src="./img/load1.gif" alt="loading....">加载中...</div>';
+                var $div = $('<div class="loading" style="position:absolute;left: 50%;top:50%;margin-left: -150px;margin-top: -70px;width: 300px;color:black;text-align:center;line-height: 140px;height: 140px;background: rgba(255,255,0);color: white;border-radius: 8px;"><img style="position: relative;top: 56%;left: 15%;" src="./img/load1.gif" alt="loading....">正在加载中...</div>');
+                $('body').append($div);
+            };
+        };
+    });
+
+
+</script>

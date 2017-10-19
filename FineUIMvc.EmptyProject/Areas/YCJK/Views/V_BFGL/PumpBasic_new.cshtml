@@ -1,0 +1,328 @@
+﻿@{
+    ViewBag.Title = "TabStrip/PositionTools";
+    var F = @Html.F();
+}
+
+
+@section body {
+    @(F.Form()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnBasicCreate_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                   F.FormRow()
+                     .Items(
+                         F.TextBox()
+                            .Label("泵房名称")
+                            .EmptyText("请输入泵房名称")
+                            .ID("tbxPName")
+                            .LabelWidth(80)
+                            .Required(true)
+                            .ShowRedStar(true),
+                         F.TriggerBox()
+                            .ID("tbSelectedCustomer")
+                            .EnableEdit(false)
+                            .LabelWidth(80)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientCustomerSelect();")
+                            .Text(ViewBag.CustomerName)
+                            .Required(ViewBag.KHRequired)
+                            .ShowRedStar(ViewBag.KHRequired)
+                            .Hidden(ViewBag.KHHidden)
+                            .Readonly(ViewBag.KHReadOnly)
+                            .Label("客户名称")
+                         ),
+                     F.FormRow()
+                           .Items(
+                                 F.DropDownList()
+                                    .ID("ddlProvince")
+                                    .Label("所在省")
+                                    .LabelWidth(80)
+                                    .CompareType(CompareType.String)
+                                    .CompareValue("-1")
+                                    .CompareOperator(Operator.NotEqual)
+                                    .CompareMessage("请选择省份！")
+                                    .ShowRedStar(true)
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .DataSource(ViewBag.ddlProvinceDataSource)
+                                    .OnSelectedIndexChanged(Url.Action("ddlSheng_SelectedIndexChanged"), "SimpleForm1")
+                                    .SelectedValue("0"),
+                                 F.DropDownList()
+                                    .ID("ddlCity")
+                                    .Label("所在市")
+                                    .LabelWidth(80)
+                                    .CompareType(CompareType.String)
+                                    .CompareValue("-1")
+                                    .CompareOperator(Operator.NotEqual)
+                                    .CompareMessage("请选择地区市！")
+                                    .ShowRedStar(true)
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .SelectedValue("0")
+                           ),
+                   F.FormRow()
+                      .Items(
+                         F.TextBox()
+                            .Label("详细地址")
+                            .LabelWidth(80)
+                            .EmptyText("请输入详细地址")
+                            .ID("tbxAddress")
+                          ),
+                   F.FormRow()
+                              .Items(
+                                F.TriggerBox()
+                                    .ID("tbSelectedAddress")
+                                    .LabelWidth(80)
+                                    .EnableEdit(false)
+                                    .Required(true)
+                                    .ShowRedStar(true)
+                                    .TriggerIcon(TriggerIcon.Search)
+                                    .OnClientTriggerClick("OnClientAddressSelect();")
+                                    .Label("地理位置")
+                                  ),
+                   F.FormRow()
+                   .Items(
+                           F.DropDownList()
+                            .ID("ddlCompany")
+                            .LabelWidth(80)
+                            .Label("分公司")
+                            .DataTextField("Fengongsi")
+                            .DataValueField("U8number")
+                            .Required(ViewBag.FGSRequired)
+                            .ShowRedStar(ViewBag.FGSRequired)
+                            .Hidden(ViewBag.FGSHidden)
+                            .DataSource(ViewBag.ddlCompanyDataSource)
+                            .Readonly(ViewBag.FGSReadOnly)
+                            .SelectedValue(ViewBag.SelectValue),
+                           F.DropDownList()
+                                    .ID("ddlFocusMonitoring")
+                                    .Label("重点监控")
+                                    .LabelWidth(80)
+                                    .Required(true)
+                                    .ShowRedStar(true)
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .DataSource(ViewBag.ddlFocusMonitorDataSource)
+                                    .SelectedValue("0"),
+                                    F.TextBox()
+                            .Label("主控PLC IP")
+                            .EmptyText("请输入IP地址")
+                           .ID("tbxMasterControlPLCIP")
+                   ),
+                   F.FormRow()
+                   .Items(
+                 F.RadioButtonList()
+                    .ID("rbtnTankIsSharing")
+                    .LabelWidth(80)
+                    .Label("水箱共用")
+                    .ColumnNumber(2)
+                    .AutoColumnWidth(true)
+                    .Items(
+                          F.RadioItem()
+                              .Text("是")
+                              .Value("1")
+                              .Selected(true),
+                          F.RadioItem()
+                              .Text("否")
+                              .Value("0")
+                           ),
+                                    F.DropDownList()
+                          .ID("ddlPumpLocation")
+                          .Label("泵房位置")
+                          .Required(true)
+                          .LabelWidth(80)
+                          .ShowRedStar(true)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                          .DataSource(ViewBag.ddlPumpLocation)
+                          .SelectedValue("0"),
+                                  F.NumberBox()
+                         .Label("换药周期P")
+                         .LabelWidth(80)
+                         .Text("1")
+                         .ID("tbxDressingCycle")
+                ),
+                  F.FormRow()
+                   .Items(
+                   F.DropDownList()
+                        .ID("ddlPType")
+                        .Label("泵房类型")
+                        .Required(true)
+                        .ShowRedStar(true)
+                        .DataTextField("FName")
+                        .DataValueField("FValue")
+                        .EnableEdit(true)
+                        .ForceSelection(false)
+                        .DataSource(ViewBag.ddlPTypeDataSource)
+                        .SelectedValue("0"),
+              F.DatePicker()
+                 .Required(true)
+                 .LabelWidth(80)
+                 .DateFormatString("yyyy-MM-dd")
+                 .Label("安装日期")
+                 .EmptyText("请选择安装日期")
+                 .ID("dpInstallDate")
+                 .ShowRedStar(true)
+                 .SelectedDate(DateTime.Now),
+              F.DatePicker()
+                 .Required(true)
+                 .LabelWidth(80)
+                 .DateFormatString("yyyy-MM-dd")
+                 .Label("验收日期")
+                 .EmptyText("请选择验收日期")
+                 .ID("dpAcceptanceDate")
+                 .ShowRedStar(true)
+                 .SelectedDate(DateTime.Now),
+              F.NumberBox()
+                 .Label("供水楼层")
+                 .LabelWidth(80)
+                 .Text("1")
+                 .ID("tbxWaterFloor")
+              ),
+                  F.FormRow()
+                   .Items(
+                     F.DropDownList()
+                    .ID("ddlPumpSoaking")
+                    .LabelWidth(80)
+                    .Label("泵房浸水")
+                    .Items(
+                       F.ListItem()
+                           .Text("有")
+                           .Value("1"),
+                       F.ListItem()
+                           .Text("无")
+                           .Value("0")
+                          ),
+                F.DropDownList()
+                 .ID("ddlWaterQualityDetection")
+                 .Label("水质检测")
+                 .LabelWidth(80)
+                 .Items(
+                      F.ListItem()
+                          .Text("有")
+                          .Value("1"),
+                      F.ListItem()
+                          .Text("无")
+                          .Value("0")
+                      ),
+               F.DropDownList()
+                   .ID("ddlWarning")
+                   .LabelWidth(80)
+                   .Label("破窗报警")
+                   .Items(
+                       F.ListItem()
+                           .Text("有")
+                           .Value("1"),
+                       F.ListItem()
+                           .Text("无")
+                           .Value("0")
+                         ),
+                         F.DropDownList()
+                        .ID("ddlControlValve")
+                        .LabelWidth(90)
+                        .Label("进水调节阀")
+                        .Items(
+                             F.ListItem()
+                                 .Text("有")
+                                 .Value("1"),
+                             F.ListItem()
+                                 .Text("无")
+                                 .Value("0")
+                         ),
+               F.DropDownList()
+                       .ID("ddlWaterTankSterilizer")
+                       .Label("水箱消毒仪")
+                       .LabelWidth(90)
+                       .Items(
+                             F.ListItem()
+                                 .Text("有")
+                                 .Value("1"),
+                             F.ListItem()
+                                 .Text("无")
+                                 .Value("0")
+                         )
+                   ),
+                 F.FormRow()
+                   .Items(
+               F.TextBox()
+                   .Label("泵房编码")
+                   .Readonly(true)
+                   .Hidden(true)
+                   .LabelWidth(80)
+                   .Text(ViewBag.txtPCode)
+                   .ID("tbxPCode")
+                   .Required(true)
+                   .ShowRedStar(true),
+              F.HiddenField()
+                 .Label("经纬度")
+                 .ID("tbxLngLat"),
+              F.HiddenField()
+                 .Label("客户id")
+                 .ID("tbxCustomerID")
+                 .Text(ViewBag.CustomerID),
+              F.HiddenField()
+                 .Label("地图模板id")
+                 .ID("tbxFMapTempID")
+                 .Text(ViewBag.MapTempID)
+                 )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+
+        function updateCustomer(id, text,tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+    </script>
+}

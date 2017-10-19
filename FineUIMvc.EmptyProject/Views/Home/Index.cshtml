@@ -1,0 +1,413 @@
+﻿@using FineUIMvc.PumpMVC.Models
+@{
+    ViewBag.Title = ViewBag.Message;
+    var F = @Html.F();
+}
+
+@section head {
+
+    <link type="text/css" rel="stylesheet" href="~/res/css/default.css" />
+    <link href="~/res/css/reset.css" rel="stylesheet" />
+    <link href="~/res/css/animate.min.css" rel="stylesheet" />
+    <link href="~/res/YCJK/css/warnBoxStyle.css" rel="stylesheet" />
+    <style>        body {
+            position:relative !important;
+        }
+    </style>
+}
+
+@section body {
+    <div class="warnShowHideBox">
+        <div class="leftCircle"></div>
+        <div class="rightContent">
+            <div class="rightSet clearfix"><div class="rightSetBg"></div>设置</div>
+            <div class="rightInfo clearfix"><div class="rightInfoBg"></div>详情</div>
+        </div> 
+    </div>
+    <div class="warnContentBox rightBottom">
+        <div class="warnContentHeader clearfix">
+            <div class="contentHeaderBg"></div>
+            <div class="contentHeaderTxt"></div>
+        </div>
+        <div class="warnContentMain">
+            <div class="contentMainTime"></div>  
+            <div class="contentMainTxt"></div>
+        </div>
+        <div class="setAndSound clearfix">
+            <div class="setBtn"></div>
+            <div class="soundBtn"></div>
+        </div>
+        <div class="more">更多></div>
+        <div class="close">&times;</div>
+    </div>
+
+    <div class="warnSetContainer">
+        <div class="warnSetBox">
+            <div class="closeBox">&times;</div>
+            <div class="warnTypeBox clearfix">
+                <div class="warnTypeTxt">报警信息显示类型</div>
+                <div class="warnSoundBox"></div>
+            </div>
+            <div class="showType txtType">
+                <div class="showTxt">文字显示</div>
+                <div class="showBg"></div>
+            </div>
+            <div class="showType picType active">
+                <div class="showTxt">图标显示</div>
+                <div class="showBg"></div>
+            </div>
+            <p class="warnInfoPosition">报警信息显示页面位置</p>
+            <ul class="warnPositonBox clearfix">
+                <li class="positionItem" data-mark="5"></li>
+                <li class="positionItem" data-mark="6"></li>
+                <li class="positionItem" data-mark="7"></li>
+                <li class="positionItem" data-mark="4"></li>
+                <li class="positionItem" data-mark="0"></li>
+                <li class="positionItem" data-mark="8"></li>
+                <li class="positionItem" data-mark="3"></li>
+                <li class="positionItem" data-mark="2"></li>
+                <li class="positionItem" data-mark="1"></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="header" class="ui-widget-header f-mainheader" style="z-index:20">
+        <table>
+            <tr>
+                <td>
+                    <a class="logo" href="@Url.Content("~/")"  style="background: url('@ViewBag.Logo') no-repeat;">
+                    </a>
+                </td>
+                <td>
+                    @if ((ViewBag.Menus as List<Menus>).Count > 0)
+                    {
+                        <ul class="headerNav">
+                            @foreach (Menus Parentitem in (List<Menus>)ViewBag.Menus)
+                            {
+                                if (Parentitem.ParentID == 0)
+                                {
+                                    <li>
+                                        <div class="picBox" style="background: url(@Parentitem.ImageUrl)"></div>
+                                        <span class="picTxt"><a href="@Parentitem.NavigateUrl" target="_blank">@Parentitem.Name</a></span>
+                                        @foreach (Menus item in (List<Menus>)ViewBag.Menus)
+                                        {
+                                            if (item.ParentID != 0)
+                                            {
+                                                <ul class="childList">
+                                                    @if (Parentitem.ID == item.ParentID)
+                                                    {
+                                                    <li><a href="@item.NavigateUrl">@item.Name</a></li>
+                                                    }
+                                                </ul>
+                                            }
+
+                                        }
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    }
+
+                </td>
+                <td style="text-align: right;">
+                    @(F.Button()
+                        .EnableDefaultCorner(false)
+                        .EnableDefaultState(false)
+                        .IconAlign(IconAlign.Left)
+                        .IconUrl(Url.Content("~/res/images/my_face_80.jpg"))
+                        .Text(ViewBag.LoginName)
+                        .CssClass("userpicaction")
+                        .Menu(F.Menu()
+                            .Items(
+                                F.MenuButton()
+                                    .IconFont(IconFont.User)
+                                    .Text("修改密码")
+                                    .Listener("click", "onCreateClick"),
+                                F.MenuSeparator(),
+                                F.MenuButton()
+                                    .IconFont(IconFont.SignOut)
+                                    .Text("安全退出")
+                            //.Listener("click", "onSignOutClick")
+                                    .OnClick(Url.Action("onSignOutClick"))
+                            )
+                        )
+                    )
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    @(F.Panel()
+        .ShowHeader(false)
+        .ShowBorder(false)
+        .Layout(LayoutType.Region)
+        .ID("Panel1")
+
+        .IsViewPort(true)
+        .Items(
+            F.Panel()
+                .EnableCollapse(true)
+                .ShowHeader(false)
+                .ShowBorder(false)
+                .RegionPosition(Position.Top)
+                .CssClass("topregion")
+                .ID("topPanel")
+                .Height(50)
+                .ContentEl("#header"),
+            F.Panel()
+                .Layout(LayoutType.Fit)
+                .Collapsed(false)
+                .EnableCollapse(false)
+                .Title(ViewBag.TreeMenuTitle)
+                .ShowHeader(true)
+                .Width(180)
+                .ShowBorder(true)
+                .RegionSplitIcon(false)
+                .RegionSplitWidth(3)
+                .RegionSplit(true)
+                .RegionPosition(Position.Left)
+                .CssClass("leftregion")
+                .ID("leftPanel")
+                .Items(
+                    F.Tree()
+                        .ID("treeMenu")
+                        .ShowBorder(false)
+                        .ShowHeader(false)
+                        .EnableSingleClickExpand(true)
+                        .Nodes((TreeNode[])ViewBag.TreeMenuNodes)
+                )
+                .Tools(
+                    F.Tool()
+                        .IconFont(IconFont.ChevronCircleLeft)
+                        .ID("leftPanelToolCollapse")
+                        .Listener("click", "onLeftPanelToolCollapseClick"),
+                    F.Tool()
+                        .IconFont(IconFont.Gear)
+                        .ID("leftPanelToolGear")
+                        .Menu(F.Menu()
+                            .Items(
+                                F.MenuButton()
+                                    .Text("展开菜单")
+                                    .ID("btnExpandAll")
+                                    .Listener("click", "onExpandAllClick"),
+                                F.MenuButton()
+                                    .Text("折叠菜单")
+                                    .ID("btnCollapseAll")
+                                    .Listener("click", "onCollapseAllClick"),
+                                F.MenuSeparator(),
+                                F.MenuButton()
+                                    .Text("显示模式")
+                                    .ID("MenuMode")
+                                    .Hidden(ViewBag.CookieIsBase)
+                                    .Menu(F.Menu()
+                                        .Items(
+                                            F.MenuCheckBox()
+                                                .GroupName("MenuMode")
+                                                .Checked(true)
+                                                .AttributeDataTag("normal")
+                                                .ID("MenuModeNormal")
+                                                .Text("普通模式"),
+                                            F.MenuCheckBox()
+                                                .GroupName("MenuMode")
+                                                .AttributeDataTag("compact")
+                                                .ID("MenuModeCompact")
+                                                .Text("紧凑模式"),
+                                            F.MenuCheckBox()
+                                                .GroupName("MenuMode")
+                                                .AttributeDataTag("large")
+                                                .ID("MenuModeLarge")
+                                                .Text("大字体模式")
+                                        )
+                                        .Listener("checkchange", "onMenuModeCheckChange")
+                                    ),
+                                F.MenuButton()
+                                    .ID("MenuStyle")
+                                    .Text("菜单样式")
+                                    .Hidden(ViewBag.CookieIsBase)
+                                    .Menu(F.Menu()
+                                        .Items(
+                                            F.MenuCheckBox()
+                                                .GroupName("MenuStyle")
+
+                                                .AttributeDataTag("tree")
+                                                .ID("MenuStyleTree")
+                                                .Text("智能树菜单"),
+                                            F.MenuCheckBox()
+                                                      .Checked(true)
+                                                .GroupName("MenuStyle")
+                                                .AttributeDataTag("tree_minimode")
+                                                .ID("MenuStyleMiniModeTree")
+                                                .Text("智能树菜单（默认折叠）"),
+                                            F.MenuCheckBox()
+                                                .GroupName("MenuStyle")
+                                                .AttributeDataTag("plaintree")
+                                                .ID("MenuStylePlainTree")
+                                                .Text("树菜单")
+                                        )
+                                        .Listener("checkchange", "onMenuStyleCheckChange")
+                                    )
+                            )
+                        )
+                )
+                .Toolbars(
+                    F.Toolbar()
+                        .Layout(LayoutType.Fit)
+                        .Position(ToolbarPosition.Bottom)
+                        .ID("leftPanelBottomToolbar")
+                        .Items(
+                            F.TwinTriggerBox()
+                                        .Width(180)
+                                .Trigger2Icon(TriggerIcon.Search)
+                                .EmptyText("搜索示例")
+                                .Hidden(true)
+                                .ShowTrigger1(false)
+                                .Trigger1Icon(TriggerIcon.Clear)
+                                .ShowLabel(false)
+                                .ID("ttbxSearch")
+                                .Listener("trigger1click", "onSearchTrigger1Click")
+                                .Listener("trigger2click", "onSearchTrigger2Click")
+                        )
+                ),
+            F.TabStrip()
+                .EnableTabCloseMenu(true)
+                .ShowBorder(true)
+                .RegionPosition(Position.Center)
+                .CssClass("centerregion")
+                .ID("mainTabStrip")
+                .Tabs(
+                    F.Tab()
+                        .IFrameUrl(ViewBag.Url)
+                        .EnableIFrame(true)
+                        .IconFont(IconFont.Home)
+                        .Title("首页")
+                        .ID("Tab1")
+                )
+                .Tools(
+                    F.Tool()
+                        .ID("toolRefresh")
+                        .ToolTip("刷新本页")
+                        .CssClass("tabtool")
+                        .MarginRight(5)
+                        .IconFont(IconFont.Refresh)
+                        .Listener("click", "onToolRefreshClick"),
+                    F.Tool()
+                        .ID("toolMaximize")
+                        .ToolTip("最大化")
+                        .CssClass("tabtool")
+                        .IconFont(IconFont.Expand)
+                        .Listener("click", "onToolMaximizeClick")
+                ),
+            F.Panel()
+                .EnableCollapse(false)
+                .ShowHeader(false)
+                .ShowBorder(false)
+                .RegionPosition(Position.Bottom)
+                .CssClass("bottomregion")
+                .ID("bottomPanel")
+                .ContentEl("#footer")
+        )
+    )
+
+    @{
+        string cookieMenuStyle = (string)ViewBag.CookieMenuStyle;
+        string cookieMenuMode = (string)ViewBag.CookieMenuMode;
+        string cookieLang = (string)ViewBag.CookieLang;
+        string cookieSearchText = (string)ViewBag.CookieSearchText;
+
+        // 初始化左侧菜单
+        Tree treeMenu = F.GetControl<Tree>("treeMenu");
+        Panel leftPanel = F.GetControl<Panel>("leftPanel");
+        if (cookieMenuStyle == "tree" || cookieMenuStyle == "tree_minimode")
+        {
+            treeMenu.HideHScrollbar = true;
+            treeMenu.ExpanderToRight = true;
+            treeMenu.HeaderStyle = true;
+
+            if (cookieMenuStyle == "tree_minimode")
+            {
+                treeMenu.MiniMode = true;
+                treeMenu.MiniModePopWidth = 180;
+
+                F.GetControl<Tool>("leftPanelToolGear").Hidden = true;
+                F.GetControl<Toolbar>("leftPanelBottomToolbar").Hidden = true;
+                F.GetControl<Tool>("leftPanelToolCollapse").IconFont = IconFont.ChevronCircleRight;
+
+                leftPanel.Width = 50;
+                leftPanel.CssClass = "minimodeinside";
+            }
+        }
+
+        // 初始化设置 - 菜单模式
+        SetCheckedMenuItem(F.GetControl<MenuButton>("MenuMode"), cookieMenuMode);
+
+        // 初始化设置 - 菜单样式
+        SetCheckedMenuItem(F.GetControl<MenuButton>("MenuStyle"), cookieMenuStyle);
+
+        // 初始化搜索文本
+        var ttbxSearch = F.GetControl<TwinTriggerBox>("ttbxSearch");
+        if (!String.IsNullOrEmpty(cookieSearchText))
+        {
+            ttbxSearch.Text = cookieSearchText;
+            ttbxSearch.ShowTrigger1 = true;
+        }
+
+    //// 初始化主区域
+    //var pm = F.PageManager;
+    //var tab1 = F.GetControl<Tab>("Tab1");
+    //if (pm.Source.CustomTheme == "bootstrap_pure")
+    //{
+    //    tab1.IFrameUrl = "~/Basic/MainBootstrapPure";
+    //}
+
+    }
+
+}
+
+@functions {
+
+    private void SetCheckedMenuItem(MenuButton menuButton, string checkedValue)
+    {
+        foreach (MenuItem item in menuButton.Menu.Items)
+        {
+            MenuCheckBox checkBox = (item as MenuCheckBox);
+            if (checkBox != null)
+            {
+                checkBox.Checked = checkBox.AttributeDataTag == checkedValue;
+            }
+        }
+    }
+
+}
+@(F.Window()
+        .ID("Window1")
+        .Width(300)
+        .Height(200)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .Listener("close", "onWindow1Close")
+)
+@section script {
+
+    <script>
+
+    var COOKIE_MENUSTYLE = '@ViewBag.CookieMenuStyle';
+       function onCreateClick(event) {
+            F.ui.Window1.show('@Url.Content("~/Admin/ProFile")', '修改密码');
+        }
+        function onWindow1Close(event) {
+            F.ui.Window1.hide();
+        }
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+    <script src="~/res/js/index.js"></script>
+    <script src="/res/YCJK/js/warnControl.js"></script>
+}

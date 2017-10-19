@@ -1,0 +1,46 @@
+.fontMixin {
+  font-size: 12px;
+  font-family: "Microsoft YaHei";
+}
+.btnStyle {
+  padding: 0px 5px;
+  height: 24px;
+  line-height: 24px;
+  background: #0094ff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.main_wrap {
+  margin: 20px;
+  font-size: 12px;
+  font-family: "Microsoft YaHei";
+}
+.setPress_wrap,
+.setAperture_wrap {
+  height: 30px;
+  margin-bottom: 10px;
+}
+.setPress_wrap label,
+.setAperture_wrap label {
+  margin-right: 6px;
+}
+.setPress_wrap input,
+.setAperture_wrap input {
+  border: 1px solid #0094ff;
+  margin-right: 4px;
+  width: 50px;
+  height: 24px;
+}
+.setPress_wrap .accBtn,
+.setAperture_wrap .accBtn {
+  padding: 0px 5px;
+  height: 24px;
+  line-height: 24px;
+  background: #0094ff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}

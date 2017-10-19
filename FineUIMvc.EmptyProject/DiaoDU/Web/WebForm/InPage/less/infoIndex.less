@@ -1,0 +1,469 @@
+body {
+    background: #0d5d92;
+    min-width: 1200px;
+    font-family: "微软雅黑";
+}
+
+/*header*/
+.pageHeader {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #0f405c;
+    background: url(../img/logo.png) no-repeat 24px 10px;
+}
+.headerNav {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 0;
+    transform: translateX(-32%);
+    width: 640px;
+    height: 50px;
+}
+
+
+.headerNav li {
+    position: relative;
+    height: 44px;
+    width: 70px;
+    margin-right: 1px;
+    padding-top: 6px;
+    background: #2d749c;
+    float: left;
+    cursor: pointer;
+    font-size: 12px;
+    
+    .picBox {
+        width: 26px;
+        height: 26px;
+        margin-left: 20px;
+        background: url(../img/navBar.png) no-repeat;
+        
+    }
+ 
+        &:nth-of-type(1) .picBox {
+            background-position: 4px 2px;
+        }
+        &:nth-of-type(2) .picBox {
+            background-position: -64px 2px;
+        } 
+         &:nth-of-type(3) .picBox {        
+             
+            background: url(../img/navTopIco2.png) no-repeat 3px 0px;
+        }
+          &:nth-of-type(4) .picBox {
+           
+            background: url(../img/navTopIco2.png) no-repeat -66px 0px;
+        }
+        &:nth-child(5) .picBox {
+            background-position: -136px 2px;
+        }
+        &:nth-child(6) .picBox { 
+            background-position: -208px 2px;
+        }
+        &:nth-child(7) .picBox {
+            background-position: -278px 2px;
+        }
+        &:nth-child(8) .picBox {
+            background-position: -348px 2px;
+        }
+        &:nth-child(9) .picBox {
+            background-position: -422px 2px;
+        }
+
+    .picTxt {
+        width: 100%;
+        height: 19px;
+        line-height: 19px;
+        display: block;
+        color: #fff;
+        text-align: center;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .childList {
+        position: relative;
+        width: 70px;
+        background: #fff;
+        box-shadow: 1px 1px 2px #333;
+        display: none;
+        li {
+            width: 50px;
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            background: #fff;
+            font-size: 12px;
+           
+            a{
+                width: 50px;
+                padding: 4px 0 6px 0;
+                color: #424242;
+                border-bottom: 1px solid #ccc;
+            }
+            &:last-child a {
+                border-bottom: none; 
+            }
+            
+        }
+    }
+
+    &:hover {
+        background: #1F7BB2;
+    }
+}
+.adminBox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    background: #35769d;
+    &>div {
+        float: left;
+    }
+    .adminPic {
+        width: 34px;
+        height: 34px;
+        float: left;
+        border: 1px solid #7ba6bf;
+        border-radius: 6px;
+        margin: 10px 6px 0 8px;
+        background: url(../img/admin.png) no-repeat 4px 4px;
+        cursor: pointer;
+    }
+    .adminInfo {
+        float: left;
+        color: #fff;
+        cursor: pointer;
+        .adminName {
+            padding-top: 8px;
+            font-size: 16px;
+        
+        }
+        .changePwd{
+            padding-top: 2px;
+            font-size: 12px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    .exitBtn {
+        width: 30px;
+        height: 32px;
+        float: right;
+        margin:8px 18px 6px 40px;
+        background: url(../img/admin.png) no-repeat -136px;
+        cursor: pointer;
+    }
+}
+/*main*/
+.pageMain {
+    position: relative;
+    width: 100%;
+    height: 1030px;
+    .mapIframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .pageMainLeft {
+       position: absolute;
+       left: 0;
+       top: 0;
+       width: 337px;
+       margin-left: -336px;
+       height: 100%;
+       .leftNav {
+           width: 65px;
+           height: 100%;
+           float: left;
+           background: #09588c;
+           li {
+               width: 65px;
+               height: 65px;
+               text-align: center;
+               font-size: 14px;
+               color: #fff;
+               cursor: pointer;
+               &:hover {
+                   background: #1f7bb2;
+               }
+               &>div {
+                   width: 28px;
+                   height: 38px;
+                   margin-left: 16px;
+                   background: url(../img/anaSearch.png) no-repeat;
+               }
+               &:nth-of-type(1)>div {
+                   background-position: 2px 12px;
+               }
+               &:nth-of-type(2)>div {
+                    background-position: 3px -46px;
+               }
+               &:nth-of-type(3)>div {
+                    width: 30px;
+                    background: url(../img/pop.png) no-repeat 1px 12px;
+               }
+               &>span {
+                   width: 100%;
+                   padding-top: 4px; 
+               }
+               
+           }
+                   
+           .active {
+               background: #1f7bb2;
+           }
+        }
+       
+       .navContentBox {
+           width: 270px;
+           height: 100%;
+           border-right: 1px solid #a0a1a3;
+           float: left;
+           background: rgb(249, 249, 249);
+           .charBox {
+               width: 100%;
+               height: 100%;
+                &.hide {
+                 display: none;
+                }
+                
+                .objType {
+                    padding: 0 11px;
+                    /*height: 179px;*/
+                    border-bottom: 1px solid #e4e4e4;
+                    li {
+                        float: left;
+                        width: 60px;
+                        height: 89px;
+                        text-align: center;
+                        color: #666;
+                        .pupMarkerPic {
+                            width: 40px;
+                            height: 40px;
+                            margin-left: 10px;
+                            /*background: url(../img/pupType.png) no-repeat;*/
+                            
+                        }
+                        &:nth-of-type(1) .pupMarkerPic {
+                            /*background-position: 8px 14px;*/
+                            background: url(../img/guanxianL.png) no-repeat 4px 6px;
+                        }
+                        &:nth-of-type(2) .pupMarkerPic {
+                            /*background-position: -62px 14px;*/
+                             background: url(../img/bengzhanL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(3) .pupMarkerPic {
+                            /*background-position: -130px 14px;*/
+                             background: url(../img/famenL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(4) .pupMarkerPic {
+                            /*background-position: -201px 14px;*/
+                             background: url(../img/liuliangL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(5) .pupMarkerPic {
+                            /*background-position: 8px -66px;*/
+                             background: url(../img/shuichangL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(6) .pupMarkerPic {
+                            /*background-position: -64px -66px;*/
+                             background: url(../img/shuiyuanL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(7) .pupMarkerPic {
+                            /*background-position: -134px -66px;*/
+                             background: url(../img/dabiaoL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(8) .pupMarkerPic {
+                            /*background-position: -204px -66px;*/
+                             background: url(../img/yaliL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(9) .pupMarkerPic {
+                            background: url(../img/tiaofengL.png) no-repeat 6px 8px;
+                        }
+                        &:nth-of-type(10) .pupMarkerPic {
+                            background: url(../img/shuizhiL.png) no-repeat 6px 8px;
+                        }
+                        .pupMarkerTxt {
+                            width: 100%;
+                            display: block;
+                            margin-top: 3px; 
+                            font-size: 12px;
+                        }
+                        .pupMarkerNum {
+                            width: 100%;
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    }
+                } 
+                
+                .charPicContainer {
+                    width: 100%;
+                    .barChar {
+                        width: 270px;
+                        height: 158px;
+                        border-bottom: 1px solid #e4e4e4;
+                        #myChar1 {
+                            width: 323px;
+                            height: 158px;
+                        }
+                    }
+                    .lineChar {
+                        width: 323px;
+                        height: 158px;
+                        #myChar2 {
+                            width: 323px;
+                            height: 158px;
+                        }
+                    }
+                }
+           }
+           
+           .searchBox {
+               width: 100%;
+               height: 100%;
+                &.hide {
+                    display: none;
+                } 
+           }
+           .popBox {
+               width: 100%;
+               height: 100%;
+               &.hide {
+                   display: none;
+               }
+               .popHeader {
+                   width: 100%;
+                   height: 38px;
+                   background: #f2f2f2;
+                   line-height: 38px;
+                   font-size: 14px;
+                   border-bottom: 1px solid #e7e7e7;
+                   .popTitle {
+                       float: left;
+                       width: 80px;
+                       padding-left: 20px;
+                   }
+                   .newAndDel {
+
+                       float: right;
+                       width: 125px;
+                       li {
+                           float: left;
+                           width: 25px;
+                           height: 20px;
+                           margin-top: 10px;
+                           cursor: pointer;
+                           background: url(../img/newDele.png) no-repeat;
+                           &:nth-of-type(1) {
+                               background-position: 3px 2px;
+                           }
+                           &:nth-of-type(2) {
+                               background-position: -27px 2px;
+                           }
+                           &:nth-of-type(3) {
+                               background-position: -57px 2px;
+                           }
+                           &:nth-of-type(4) {
+                               background-position: -88px 2px;
+                           }
+                           &:nth-of-type(5) {
+                                background: url(../img/preview.png) no-repeat -2px 3px;
+                           }
+                       }
+                       
+                   }
+                                   
+                }
+               .popMainWrap {
+                  .popMain {
+                       width: 100%;
+                       overflow: auto;
+                       li {
+                           width: 100%;
+                           height: 40px;
+                           cursor: pointer;
+                           &:hover {
+                               background: #e7e7e7;
+                           }
+                           .checkMark {
+                               position: relative;
+                               float: left;
+                               width: 14px;
+                               height: 20px;
+                               top: 12px;
+                               left: 4px;
+                               background: url(../img/checked.png) no-repeat;
+                               &.noChecked {
+                                   background: none;
+                               }
+                           }
+                           .itemContent {
+                               float: right;
+                               width: 250px;
+                               height: 39px;
+                               color: #666;
+                               font-size: 14px;
+                               line-height: 40px;
+                               overflow: hidden;
+                               border-bottom: 1px solid #e7e7e7;
+                               .itemName {
+                                   width: 74%;
+                                   float: left;
+                               }
+                               .itemState {
+                                   width: 20%;
+                                   height: 18px;
+                                   line-height: 18px;
+                                   font-size: 12px;
+                                   text-align: center;
+                                   margin-top: 10px;
+                                   background: #58cbfb;
+                                   color: #fff;
+                                   border-radius: 4px;
+                                   float: left;
+                                   &.noChecked {
+                                       background: #b9b9b9;
+                                   }
+                               }
+                           }
+                       }
+                   }
+               }
+               
+           }
+           
+       }
+       
+       .showHide {
+           position: absolute;
+           right: -14px;
+           top: 50%;
+           margin-top: -28px;
+           width: 14px;
+           height: 56px;
+           background: #f9f9f9;
+           font-size: 16px;
+           line-height: 56px;
+           border: 1px solid #a0a1a3;
+           border-left: 1px solid #f9f9f9;
+           cursor: pointer;
+       }
+    }
+}
+
+#mCSB_1_container {
+    margin-right: 1px!important;
+}
+#mCSB_1_scrollbar_vertical {
+    width: 4px!important;
+}
+

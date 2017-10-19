@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="utf-8">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        
+        <link rel="stylesheet" href="css/index.css" />
+        <script src="js/flexible.js"></script>
+        <script src="layer_mobile/layer.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/index.js"></script>
+		<title>永吉加压集控系统</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				
+			}
+			html,body {
+				overflow-x: hidden; 
+			}
+			body {
+				background: #c9e4ff;
+			}
+			li {
+				list-style: none;
+			}
+			img {
+				display: block;
+				max-width: 100%;
+			}
+			input {
+				-webkit-tap-highlight-color:rgba(0,0,0,0);
+			}
+			a {
+				text-decoration: none;
+			}
+			.border1 {
+				border: 2px solid red;
+			}
+			.border2 {
+				border: 2px solid blue;
+			}
+			.clearfix {
+				zoom: 1;
+			}
+			.clearfix:after {
+				content: " ";
+				display: block;
+				height: 0;
+				clear: both;
+			}
+          
+			
+		</style>
+	</head>
+	<body>
+		<!--<header id='page_header' class="clearfix">
+			加压站集控系统
+			<span id='title'>加压站集控系统</span>
+			<span id='saveBtn'>保存</span>
+		</header>-->
+	    <div id='page_main'>
+	    				<div class="main_top">
+				<div class="top_header">
+					<div class="title"><i></i>一级加压站</div>
+					<div class="out clearfix">
+						<div class="outIco"></div>
+						<div class="data">
+							<p><span>总&nbsp;</span><span class="number total_number" data-add='totalFlow'>1750</span><span>&nbsp;m<sup>3</sup></span></p>
+							<p><span>瞬&nbsp;</span><span class="number current_number" data-add='currentFlow'>59.35</span><span>&nbsp;m<sup>3</sup>/h</span></p>
+						</div>
+					</div>
+					<div class="arcBg"></div>
+				</div>
+				<ul class="top_ul">
+					<li>
+                        <div class="on_off_box"><div class="on_off1"></div></div>
+						<div class="pumpName"><i class="pumpState2"></i><span>1号泵</span></div>
+						<em class="rightIco1"></em>
+                        <div class="flow_in"><i></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span>&nbsp;Mpa</span></span></div>	
+						<div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span>&nbsp;Mpa</span></span></div>
+											
+					</li>
+					<li>
+                        <div class="on_off_box"><div class="on_off1"></div></div>
+						<div class="pumpName"><i class="pumpState3"></i><span>2号泵</span></div>
+						<em class="rightIco0"></em>
+                        <div class="flow_in"><i></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span>&nbsp;Mpa</span></span></div>
+						<div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span>&nbsp;Mpa</span></span></div>
+						
+						
+						
+					</li>
+					<li>
+						<div class="on_off_box"><div class="on_off0"></div></div>
+						<div class="pumpName"><i class="pumpState1"></i><span>3号泵</span></div>
+						<em class="rightIco2"></em>
+                        <div class="flow_in"><i></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span>&nbsp;Mpa</span></span></div>
+						<div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span>&nbsp;Mpa</span></span></div>
+																	
+					</li>
+				</ul>
+			</div>
+			
+			<div class="main_top main_bottom">
+				<div class="top_header clearfix">			
+					<div class="title"><i></i>二级加压站</div>
+					<div class="out state2_in ">					
+							<div class="outIco"></div>
+							<div class="data">
+								<p><span>总&nbsp;</span><span class="number total_number" data-add='totalFlow'>1750</span><span>&nbsp;m<sup>3</sup></span></p>
+								<p><span>瞬&nbsp;</span><span class="number current_number" data-add='currentFlow'>59.35</span><span>&nbsp;m<sup>3</sup>/h</span></p>
+							</div>																	
+					</div>
+					<div class="out state2_out ">						
+							<div class="outIco"></div>
+							<div class="data">
+								<p><span>总&nbsp;</span><span class="number total_number" data-add='totalFlow'>1750</span><span>&nbsp;m<sup>3</sup></span></p>
+								<p><span>瞬&nbsp;</span><span class="number current_number" data-add='currentFlow'>59.35</span><span>&nbsp;m<sup>3</sup>/h</span></p>
+							</div>
+																	
+					</div>
+					<div class="out aperture ">						
+							<div class="outIco"></div>
+							<div class="data">
+								<p><span>开&nbsp;度&nbsp;</span><span class="aperture_value" ></span><span>%</span></p>
+								<button class="aperture_set aperture_set1">设定开度</button>
+							</div>						
+					</div>
+					<div class="out aperture">						
+							<div class="outIco"></div>
+							<div class="data">
+								<p><span>开&nbsp;度&nbsp;</span><span class="aperture_value" ></span><span>%</span></p>
+								<button class="aperture_set aperture_set2">设定开度</button>
+							</div>						
+					</div>
+                    
+				</div>
+				<ul class="top_ul">
+					<li>
+						<div class="on_off_box"><div class="on_off0"></div></div>
+						<div class="pumpName"><i class="pumpState2"></i><span>4号泵</span></div>
+						<em class="rightIco1"></em>
+						
+						<div class="flow_in"><i ></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span><span>&nbsp;Mpa</span></span></span></div>
+                        <div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span><span>&nbsp;Mpa</span></span></span></div>
+						
+					</li>
+					<li>
+						<div class="on_off_box"><div class="on_off2"></div></div>
+						<div class="pumpName"><i class="pumpState1"></i><span>5号泵</span></div>
+						<em class="rightIco2"></em>
+						
+						<div class="flow_in"><i></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span><span>&nbsp;Mpa</span></span></span></div>
+                        <div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span><span>&nbsp;Mpa</span></span></span></div>
+						
+					</li>
+					<li>
+						<div class="on_off_box"><div class="on_off1"></div></div>
+						<div class="pumpName"><i class="pumpState3"></i><span>6号泵</span></div>
+						<em class="rightIco1"></em>
+						
+						<div class="flow_in"><i></i><span><span class="flow_value" data-add="pump1_in">0.15</span><span>&nbsp;Mpa</span></span></div>
+                        <div class="flow_out"><i></i><span><span class="flow_value" data-add="pump1_out">0.15</span><span>&nbsp;Mpa</span></span></div>
+						
+					</li>
+				</ul>
+			</div>
+	    </div>
+    
+	</body>
+</html>

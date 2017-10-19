@@ -1,0 +1,117 @@
+﻿@bgColor: #f7f7f7;
+.main_wrap{
+    height: 100%;
+    width: 100%;
+    padding: 30px 0px;
+    overflow: auto;
+}
+.line_wrap{
+    height: 234px;
+    margin-bottom: 20px;
+    .chart_box{
+        width: 49%;
+        float: left;
+        background: @bgColor;
+        height: 100%;
+        position: relative;
+    }
+    .flowInPress_box,.waterUse_box{
+        margin-right: 2%;
+    }
+}
+.chartTitle{
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    color: #666666;
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    text-indent:22px;
+  
+}
+
+
+.generate-chartTitle(5);
+
+.generate-chartTitle(@n, @i: 1) when (@i =< @n) {
+  .chartTitle@{i} {
+    background: url("../img/dataReportIco@{i}.png") no-repeat 1px 3px;
+  }
+  .generate-chartTitle(@n, (@i + 1));
+}
+
+ 
+.selectData{
+    width: 144px;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    height: 20px;
+    a{
+        display: inline-block;
+        width: 48px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #535353;
+        cursor: pointer;
+    }
+    .year,.day{
+        background: #d8d8d8;
+    }
+    .month{
+        background: #e5e5e5;
+    }
+    .active{
+        background: #999b9b;
+        color: #ffffff;
+    }
+}
+
+.chart_wrap{
+    height: 100%;
+}
+.tWaterPowerUse_wrap{
+    height: 268px;
+    .tWaterPowerUse_box{
+        width: 540px;
+        height: 100%;
+        background: @bgColor;
+        float: left;
+        position: relative;
+    }
+    .powerUseList_box{
+       width: 350px;
+       height: 262px;
+       border: 1px solid #d8d8d8;
+       background: @bgColor;
+       float: right;
+       .powerUse_list{
+            height: 100%;
+            width: 100%;
+            li{
+                height: 29px;
+                border-bottom: 1px solid #d8d8d8;
+              
+                span{
+                   display: inline-block;
+                   height: 28px;
+                   line-height: 28px;
+                   text-align: center;
+                   vertical-align: middle;
+                }
+                .itemLabel{
+                   width: 150px;
+                   background: #e5e5e5;
+                   color: #858585;
+                }
+                .itemValue{
+                    width: 198px;
+                }
+            }
+       }
+    }
+}
+
+

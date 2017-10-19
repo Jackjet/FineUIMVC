@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "设备日志";
+    var F = @Html.F();
+}
+@section head {
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+   
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/listControl.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/MapRightChart.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/MidChart.css" />
+    <link href="~/res/css/radialindicator.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/reportNavListStyle.css" />
+
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/echarts.min.js"></script>
+    @*<script type="text/javascript" src="~/res/YCJK/js/laydate.js"></script>*@
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+    <script src="~/res/layer/layer.js"></script>
+}
+
+@section body {
+    <div class="main_wrap clearfix">
+        <div class="list_wrap">
+            <div class="list_header .clearfix">
+                <div class="search_box">
+                    <div class="search_wrap">
+                        <button class="onlineBtn">在线</button><button class="offlineBtn">离线</button><button class="alarmBtn">报警</button><button class="showAllBtn active">全部</button>
+                        <input id="searchText" type="text" placeholder="搜索内容" />
+                    </div>
+                    <button class="searchBtn">搜索</button>
+                </div>
+            </div>
+            <div class="list_table">
+                <div class="table1_wrap">
+                   
+                    <table class="myTable table1">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>设备编号</th>
+                                <th>设备名称</th>
+                                <th>最后采集时间</th>
+                                <th>进/出压力(Mpa)</th>
+                                <th>泵状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                     
+                        </tbody>
+                    </table>
+                    <div class="setBtn"></div>
+                </div>
+                <div class="table2_wrap">
+                    <table class="myTable table2">
+                        <thead>
+                          <tr>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                      
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="page_wrap">
+                <div class="page_box">
+                    <a id="firstPage" href="#">&lt;&lt;</a>
+                    <a id="prevPage" href="#">&lt;</a><a id="currentPage" href="#">1</a><a href="#">/</a><a id="totalPage" href="#">100</a><a id="nextPage" href="#">&gt;</a><a id="lastPage" href="#">&gt;&gt;</a>
+                    <span>每页</span><a id="pageSize" href="#">10</a><input type="text" id="editPageIndex" /><span>条，共</span><a id="totalNum" href="#">12222</a><span>条</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="chart_box">
+            <div id="showHideBtn" class="show"></div>
+            <div class="sectionBox sectionBox1">
+                  <div class="rightSectionHeader">
+                    <p class="modelText">机组运行状态</p>
+                    <ul class="showStatus">
+                        <li class="li_online"><i class="status1"></i><span class="disName">在线：</span><span class="disNum"></span></li>
+                        <li class="li_alarm"><i class="status2"></i><span class="disName">报警：</span><span class="disNum"></span></li>
+                        <li class="li_offline"><i class="status0"></i><span class="disName">离线：</span><span class="disNum"></span></li>
+                    </ul>
+                </div>
+                <div class="rightSectionTop">
+                    <p class="modelText">泵房机组数量信息</p>
+                    <div class="chart_wrap chart1_wrap">
+                        <div class="pumpJzNum">共有<span class="pumpNum"></span>个泵房，<span class="jzNum"></span>个机组</div>
+                        <div class="echart_box" id="map_echart1"></div>
+                    </div>
+                </div>
+
+                @*<div class="rightSectionMid">
+                    <p class="modelText"><span>年吨水能耗</span>前十机组</p>
+                    <div class="chart_wrap chart2_wrap">
+                        <div class="echart_box" id="map_echart2"></div>
+                    </div>
+                </div>
+                <div class="rightSectionBot">
+                    <p class="modelText"><span>年用水量</span>前十机组</p>
+                    <div class="chart_wrap chart3_wrap">
+                        <div class="echart_box" id="map_echart3"></div>
+                    </div>
+                </div>*@
+
+            </div>
+            <div class="sectionBox sectionBox2">
+                <div class="pageMidHead">
+                    <p class="modelText">用水量和用电量</p>
+                    <div class="dataCircle_wrap">
+                        <div class="process_wrap water_wrap">
+                            <div class="arrowUpIco_Box water_up"></div>
+                            <div class="arrowDownIco_Box water_down"></div>
+                            <div class="proCircle water_proCircle" id="proBar1"></div>
+                            <div class="monthData water_monthData">
+                                <div class="water_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalOutLL"></span></div>
+                                <div class="water_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalOutLL"></span></div>
+                            </div>
+                        </div>
+                        <div class="process_wrap electric_wrap">
+                            <div class="arrowUpIco_Box elec_up"></div>
+                            <div class="arrowDownIco_Box elec_down"></div>
+                            <div class="proCircle electric_proCircle" id="proBar2"></div>
+                            <div class="monthData electric_monthData">
+                                <div class="elec_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalDL"></span></div>
+                                <div class="elec_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalDL"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pageMidTop">
+                    <p class="modelText">进出水压力实时曲线图</p>
+                    <div class="chart_wrap chart1_wrap">
+                        <div class="echartsBox" id="echart1"></div>
+                    </div>
+                </div>
+                <div class="pageMidMid">
+                    <p class="modelText">近七日用水量对比图</p>
+                    <div class="chart_wrap chart2_wrap">
+                        <div class="echartsBox" id="echart2"></div>
+                    </div>
+                </div>
+                <div class="pageMidBot">
+                    <p class="modelText">近七日用电量对比图</p>
+                    <div class="chart_wrap chart2_wrap">
+                        <div class="echartsBox" id="echart3"></div>
+                    </div>
+                </div>
+             
+            </div>
+            
+            <div class="report_wrap">
+                <div class="showReportBtn">报表导航</div>
+                <div class="reportNav_wrap">
+                    <div class="reportNav_box">
+                        <div class="reportNav_head"><p>报表导航</p></div>
+                        <div class="report_listWrap">
+                            <ul class="report_list">
+                                @*<li data-key="egRunLog"><i class="area_ico"></i><a>运行日志查询</a></li>
+                                <li data-key="egCompreReport"><i class="lineBar_ico"></i><a>综合报表</a></li>
+                                <li data-key="egWaterInOutPress"><i class="lineBar_ico"></i><a>实时压力曲线图</a></li>
+                                <li data-key="dayHour_press"><i class="lineBar_ico"></i><a>日时段压力曲线图</a></li>
+                                <li data-key="dayHour_elec"><i class="area_ico"></i><a>日时段电量统计图</a></li>
+                                <li data-key="dayHour_flow"><i class="bar_ico"></i><a>日时段流量统计图</a></li>
+                                <li data-key="monthDay_press"><i class="lineBar_ico"></i><a>月每日压力曲线图</a></li>
+                                <li data-key="monthDay_elec"><i class="lineBar_ico"></i><a>月每日电量统计图</a></li>
+                                <li data-key="monthDay_flow"><i class="lineBar_ico"></i><a>月每日流量统计图</a></li>
+                                <li data-key="yearMonth_press"><i class="lineBar_ico"></i><a>年每月压力曲线图</a></li>
+                                <li data-key="yearMonth_elec"><i class="lineBar_ico"></i><a>年每月电量统计图</a></li>
+                                <li data-key="yearMonth_flow"><i class="lineBar_ico"></i><a>年每月流量统计图</a></li>
+                                <li data-key="rangePowerUse"><i class="lineBar_ico"></i><a>吨水能耗</a></li>
+                                <li data-key="pumpAutoControl"><i class="lineBar_ico"></i><a>泵房控制</a></li>
+                                <li><i class="lineBar_ico"></i><a></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hideReportBtn">向上收缩隐藏</div>
+                </div>
+            </div>
+         </div>
+    </div>
+    <div class="tempHtml">
+       
+    </div>
+}
+@section script {
+<script type="text/javascript" src="~/res/YCJK/js/MidChart.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/MapRightChart.js"></script>
+<script type="text/javascript" src="~/res/configJson/reportList.js"></script>
+<script type="text/javascript" src="~/res/CDJK/js/reportNavList.js"></script>
+
+    <script type="text/javascript" src="~/res/YCJK/js/listControl.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+<script src="~/res/js/radialIndicator.js"></script>
+}

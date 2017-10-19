@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "YuZhiPump_Diagram";
+var F = @Html.F();
+}
+
+
+@section body {
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .Layout(LayoutType.Region)
+        .IsViewPort(true)
+        .Items(
+            F.Panel()
+                .ID("panelLeftRegion")
+                .RegionPosition(Position.Left)
+                .RegionSplit(true)
+                .EnableCollapse(false)
+                .RegionSplitWidth(1)
+                .Width(130)
+                .Title("左侧面板（有提示信息）")
+                .TitleToolTip("左侧面板（有提示信息）")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .BodyPadding(5)
+                .IconFont(IconFont.ArrowCircleLeft)
+                .Items(
+                      F.Tree()
+                          .ID("Tree1")
+                          .Width(130)
+                          .ShowHeader(false)
+                          .Title("树控件（内联）")
+                          .EnableCollapse(true)
+                          .SelectedNodeID("basic")
+                          .Listener("nodeclick", "onTree1NodeClick")
+                          .IsViewPort(true)
+                          .Nodes(
+                              F.TreeNode()
+                                  .Text("基本信息")
+                                  .Expanded(false)
+                                  .Checked(true)
+                                  .NodeID("basic"),
+                              F.TreeNode()
+                                  .Text("设备档案")
+                                  .Expanded(false)
+                                  .Selectable(ViewBag.TreeNodeShow)
+                                  .NodeID("YuZhiPumpArchives")
+                               ),
+                      F.HiddenField()
+                          .ID("pageType")
+                          .Text(ViewBag.pageType),
+                      F.HiddenField()
+                          .ID("YuZhiPumpId")
+                          .Text(ViewBag.YuZhiPumpId)
+                      ),
+            F.Panel()
+                .ID("panelCenterRegion")
+                .RegionPosition(Position.Center)
+                .Title("中间面板")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .RegionSplitWidth(1)
+                .EnableIFrame(true)
+                .IconFont(IconFont.PlusCircle)
+        )
+    )
+}
+
+
+@section script {
+    <script>
+        function onTree1NodeClick(event, nodeId) {
+            var tree = this;
+            var nodeData = tree.getNodeData(nodeId);
+
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Tree1_NodeClick")', {
+                nodeId: nodeId,
+                YuZhiPumpId: F.ui.YuZhiPumpId.getValue()
+            });
+        }
+        function updateLabelResult(url) {
+            window.location.href = url;
+        }
+    </script>
+}

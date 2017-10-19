@@ -1,0 +1,57 @@
+﻿@model FineUIMvc.PumpMVC.Models.LoginPage
+@{
+    ViewBag.Title = "LoginPage_Edit";
+    var F = @Html.F();
+}
+@section body {
+    @(F.SimpleForm()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnLoginPageEdit_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                 F.TextBoxFor(x=>x.Host)
+                    .Label("域名")
+                    .EmptyText("请输入域名")
+                    .ID("tbxHost")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                F.TextBoxFor(x=>x.FileName)
+                    .Label("文件夹名称")
+                    .EmptyText("请输入文件夹名称")
+                    .ID("tbxFileName")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                 F.TextBoxFor(x=>x.Title)
+                    .Label("网站名称")
+                    .EmptyText("请输网站名称")
+                    .ID("tbxTitle")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                 F.HiddenFieldFor(x=>x.ID)
+                    .ID("tbxID")
+        )
+    )
+}
+
+@section script {
+    <script>
+
+
+    </script>
+}

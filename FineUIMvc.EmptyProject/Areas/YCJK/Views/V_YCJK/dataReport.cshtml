@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "dataReport";
+    var F = @Html.F();
+}
+@section head {
+<title>数据报表</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/dataReport.css" />
+<script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+<script src="~/res/layer/layer.js"></script>
+<script src="~/res/js/echarts.min.js"></script>
+}
+
+@section body {
+    <div class="main_wrap">
+        <div class="realPress_wrap line_wrap">
+           <div class="flowInPress_box chart_box">
+               <div class="chartTitle chartTitle1">进出水压力实时曲线图</div>
+               <div class="flowInPress_chart chart_wrap" id="dataReport_chart1"></div>
+           </div>
+            
+        </div>
+        <div class="waterElecUse_wrap line_wrap">
+            <div class="waterUse_box chart_box">
+                <div class="chartTitle chartTitle3">用水量分析对比图</div>
+                <div class="waterUse_chart chart_wrap" id="dataReport_chart3"></div>
+                <div class="selectData" data-type="waterUseData">
+                    <a class="year">年</a><a class="month">月</a><a class="day active">日</a>
+                </div>
+            </div>
+            <div class="elecUse_box chart_box">
+                <div class="chartTitle chartTitle4">用电量分析对比图</div>
+                <div class="elecUse_chart chart_wrap" id="dataReport_chart4"></div>
+                <div class="selectData" data-type="elecUseData">
+                    <a class="year">年</a><a class="month">月</a><a class="day active">日</a>
+                </div>
+            </div>
+        </div>
+        <div class="tWaterPowerUse_wrap">
+            <div class="tWaterPowerUse_box">
+                <div class="chartTitle chartTitle5">吨水能耗</div>
+                <div class="tWaterPowerUse_chart chart_wrap" id="dataReport_chart5"></div>
+                <div class="selectData" data-type="powerUseData">
+                    <a class="year">年</a><a class="month">月</a><a class="day active">日</a>
+                </div>
+            </div>
+            <div class="powerUseList_box">
+                <ul class="powerUse_list">
+                    <li><span class="itemLabel">开始累积流量(m³)</span><span class="itemValue sAccuFlow"></span></li>
+                    <li><span class="itemLabel">结束累积流量(m³)</span><span class="itemValue eAccuFlow"></span></li>
+                    <li><span class="itemLabel">时间段累积流量(m³)</span><span class="itemValue pAccuFlow"></span></li>
+                    <li><span class="itemLabel">开始耗电量(kW·h)</span><span class="itemValue sElecUse"></span></li>
+                    <li><span class="itemLabel">结束耗电量(kW·h)</span><span class="itemValue eElecUse"></span></li>
+                    <li><span class="itemLabel">时间段耗电量(kW·h)</span><span class="itemValue pElecUse"></span></li>
+                    <li><span class="itemLabel">吨水能耗(kW·h/m³)</span><span class="itemValue dsnh"></span></li>
+                    <li><span class="itemLabel">设计能耗(kW·h/m³)</span><span class="itemValue setDsnh"></span></li>
+                    <li><span class="itemLabel">月均能耗(kW·h/m³)</span><span class="itemValue averDsnh"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@section script {
+<script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+<script src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+<script src="~/res/YCJK/js/dataReport.js"></script>
+}

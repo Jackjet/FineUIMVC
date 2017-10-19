@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Alarm Contact Person</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <!--<link rel="stylesheet" href="css/alarmConPer.css" />-->
+    <link rel="stylesheet" href="css/setFrame_userManage.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="js/alarmConPer.js"></script>
+    <style type="text/css">
+        .tableHeader tr th, .customTable tr td {
+            width: 12.5%;
+        }
+        .tableHeader2 tr th, .customTable2 tr td {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="sFrame2Main">
+        <div class="sFrame2Left">
+            <div class="sFleftHeader">
+                <div class="search">
+                    <div class="select">
+                        <span class="defaultContainer">名称</span>
+                        <!--<span class="triangle"></span>-->
+                        <!--<ul class="dropDownMenu">
+                        <li>名称</li>
+                        <li>编号</li>
+                    </ul>-->
+                    </div>
+                    <input type="text" name="search" class="searchDiag" id="searchDiag" value="" />
+                    <button class="searchBtn"></button>
+                </div>
+                <button class="deleteIco"></button><i class="borderIco"></i>
+                <button class="alterIco"></button><button class="alterSave"></button><i class="borderIco"></i>
+
+                <button class="newIco"></button>
+                <button class="saveIco"></button>
+
+            </div>
+            <div class="sFrame2Table sFrame2Table1">
+                <table class="tableHeader tableHeader1">
+                    <thead>
+                        <tr>
+                            <th>联系人姓名</th>
+                            <th>手机号</th>
+                            <th>微信号</th>
+                            <th>发送短信</th>
+                            <th>发送微信</th>
+                            <th>QQ</th>
+                            <th>邮箱地址</th>
+                            <th>所属客户</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="tableScroll tableScroll1">
+                    <table class="customTable customTable1">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="sFrameLeftFooter">
+                <div class="changepageWrap">
+                    <i class="setListFinallyPage"></i>
+                    <i class="setListNextPage"></i>
+                    <span>第<a class="pageIndex">1</a>页，共<a class="totalPageNum">1</a>页</span>
+                    <i class="setListPrevPage"></i>
+                    <i class="setListFirstPage"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="propWrap">
+            <div class="propWindow" id="">
+                <div class="line propWindowHeader">
+                    <span class="propTitle">报警联系人信息</span>
+                    <button class="propExitBtn"></button>
+                </div>
+                <div class="line">
+                    <label class="loginName" id="FName">姓名&nbsp;<em>*</em><input type="text" name="loginName" /></label>
+                    <label class="phone" id="FPhone">手机号<em>*</em><input type="tel" name="Phone" /></label><br />
+                </div>
+                <div class="line">
+                    <!--<label class="loginName">姓&nbsp;&nbsp;&nbsp;&nbsp;名<em>*</em><input type="text" name="loginName" /></label>-->
+                    <label class="isMsg" id="FIsMsg">
+                        发送短信&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="isMsg"  value="1">是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="isMsg" value="0">否
+                    </label>
+                    <label class="isWeixinMsg" id="FIsWeiXinMsg">
+                        发送微信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="isWeiXinMsg" value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="isWeiXinMsg" value="0">否
+                    </label>
+                </div>
+                <div class="line">
+                    <label class="weiXin" id="FWeiXinName">微信号&nbsp;&nbsp;<input type="text" name="WeiXinName" /></label>
+                    <label class="email" id="FEmail">邮箱地址&nbsp;&nbsp;<input type="text" name="WeiXinName" /></label>
+                </div>
+                <div class="line">
+                    <label class="phone" id="FQQ">QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="QQ" /></label>
+                </div>
+                <div class="line">
+                    <label class="belong" id="FCustomerID">所属客户<em>*</em><input type="text" name="FCustomerID" readonly="readonly" /></label>
+                    <button class="customerBtn" >客户</button>
+                </div>
+                <div class="line ">
+                    <div class="propFooter">
+                        <button class="ackBtn">确定</button>
+                        <button class="cancelBtn">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sFrame2Table propTable">
+            <table class="tableHeader tableHeader2">
+                <thead>
+                    <tr>
+                        <th>客户名称</th>
+                        <th>联系人姓名</th>
+                        <th>电话</th>
+                        <th>地址</th>
+                        <th>创建日期</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="tableScroll tableScroll2">
+                <table class="customTable customTable2">
+                    
+                </table>
+            </div>
+        </div> 
+    </div>
+</body>
+
+</html>
+
+

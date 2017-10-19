@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "PumpVideoQuipment";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <style>
+        .f-grid-colheader-RunPumpNum, .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-Auxiliarypumpcount .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-DrainPumpNum .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-PumpJZAreaName .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+    </style>
+
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                    .ID("Toolbar1")
+                    .Items(
+                        F.Button()
+                         .ID("btnDeleteSelected")
+                         .Icon(Icon.Delete)
+                         .Text("删除子项")
+                         .Enabled(ViewBag.CorePumpVideoQDelete)
+                         .Listener("click", "onDeleteSelectedClick"),
+                        F.HiddenField()
+                         .ID("pumpId")
+                         .Text(ViewBag.pumpId),
+                        F.ToolbarFill()
+                         .ID("ToolbarFill1"),
+                        F.Button()
+                         .ID("btnNew")
+                         .Icon(Icon.Add)
+                         .Enabled(ViewBag.CorePumpVideoQNew)
+                         .Listener("click", "onCreateClick")
+                         .Text("新增视频门禁")
+
+                    )
+         )
+         .Items(
+                  //F.Form()
+                  //     .ID("Form3")
+                  //     .ShowHeader(false)
+                  //     .ShowBorder(false)
+                  //     .LabelAlign(LabelAlign.Left)
+                  //     .Rows(
+                  //        F.FormRow()
+                  //             .ID("FormRow2")
+                  //             .Items(
+                  //                //F.TwinTriggerBox()
+                  //                //       .ID("ttbSearchMessage")
+                  //                //       .ShowLabel(false)
+                  //                //       .EmptyText("在设备名称中搜索")
+                  //                //       .Trigger1Icon(TriggerIcon.Clear)
+                  //                //       .Trigger2Icon(TriggerIcon.Search)
+                  //                //       .ShowTrigger1(false)
+                  //                //       .Listener("trigger1click", "onTrigger1Click")
+                  //                //       .Listener("trigger2click", "onTrigger2Click"),
+                  //                F.HiddenField()
+                  //                       .ID("pumpId")
+                  //                       .Text(ViewBag.pumpId),
+                  //                 F.Label()
+                  //             )
+                  //     ),
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("GridVQ")
+                       .DataIDField("ID")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .AllowPaging(true)
+                       .IsDatabasePaging(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .OnPageIndexChanged(Url.Action("GridVQ_PageIndexChanged"), "GridVQ",
+                                        new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()"),
+                                        new Parameter("pumpid", "F.ui.pumpId.getValue()"))
+                       .PageSize(20)
+                       .PageItems(
+                           F.ToolbarSeparator()
+                              .ID("ToolbarSeparator1"),
+                           F.ToolbarText()
+                              .ID("ToolbarText1")
+                              .Text("每页记录数："),
+                           F.DropDownList()
+                              .ID("ddlGridPageSize")
+                              .Width(80)
+                              .Listener("change", "onDropDownListVQChange")
+                              .SelectedValue("20")
+                              .Items(
+                                 F.ListItem()
+                                   .Text("10")
+                                   .Value("10"),
+                                 F.ListItem()
+                                   .Text("20")
+                                   .Value("20"),
+                                 F.ListItem()
+                                   .Text("50")
+                                   .Value("50"),
+                                 F.ListItem()
+                                   .Text("100")
+                                   .Value("100")
+                              )
+                       )
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("设备")
+                                    .DataField("FName")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("设备名称")
+                                    .DataField("Type")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("品牌")
+                                    .DataField("Brand")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("型号")
+                                    .DataField("Number")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("IP地址")
+                                    .DataField("IP")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("端口")
+                                    .DataField("Port")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderEditField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderDeleteField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false)
+                               )
+                               .RecordCount(ViewBag.GridVQRecordCount)
+                               .DataSource(ViewBag.GridVQDataSource)
+         )
+    )
+
+
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(500)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .Listener("close", "onWindow1Close")
+    )
+
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+    var CorePumpVideoQDelete = @Convert.ToString(ViewBag.CorePumpVideoQDelete).ToLower();
+    var CorePumpVideoQEdit = @Convert.ToString(ViewBag.CorePumpVideoQEdit).ToLower();
+    function doCustomPostBack(type, params) {
+        var GridVQ = F.ui.GridVQ;
+        var ddlGridPageSize = F.ui.ddlGridPageSize;
+        // 触发后台事件
+        F.doPostBack('@Url.Action("MyCustomVQPostBack")', {
+            type: type,
+            gridFields: GridVQ.fields,
+            typeParams: params,
+            gridIndex: GridVQ.getPageIndex(),
+            gridPageSize: ddlGridPageSize.getValue(),
+            pumpid: F.ui.pumpId.getValue()
+        });
+    }
+
+
+    function onTrigger1Click(event) {
+        doCustomPostBack('trigger1');
+    }
+
+    function onTrigger2Click(event) {
+        var triggerValue = this.getValue();
+        if (!triggerValue) {
+            F.alert('请输入搜索关键词！');
+            return;
+        }
+
+        doCustomPostBack('trigger2', {
+            triggerValue: triggerValue
+        });
+    }
+
+    function onDropDownListVQChange(event) {
+        doCustomPostBack('dropdownlist', {
+            ddlValue: this.getValue()
+        });
+    }
+
+    function onWindow1Close(event) {
+        doCustomPostBack('windowclose');
+    }
+
+    function renderDeleteField(value, params) {
+        var disabledCls = CorePumpVideoQDelete ? '' : ' ui-state-disabled';
+        return '<a href="javascript:;" class="action-btn delete' + disabledCls + '" ><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/delete.png")"></a>';
+    }
+
+    function renderEditField(value, params) {
+        var disabledCls = CorePumpVideoQEdit ? '' : ' ui-state-disabled';
+        return '<a href="javascript:;" class="action-btn edit' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/pencil.png")"></a>';
+    }
+
+    function onCreateClick(event) {
+        F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpVQ_new")?pumpid=' + F.ui.pumpId.getValue(), '新增视频设备');
+    }
+
+    function deleteSelectedRows(selectedRows) {
+        var GridVQ = F.ui.GridVQ
+        var ddlGridPageSize = F.ui.ddlGridPageSize;
+        // 触发后台事件
+        F.doPostBack('@Url.Action("GridVQ_Delete")', {
+            selectedRows: selectedRows,
+            GridVQ_fields: GridVQ.fields,
+            gridIndex: GridVQ.getPageIndex(),
+            gridPageSize: ddlGridPageSize.getValue(),
+            pumpid: F.ui.pumpId.getValue()
+        });
+    }
+
+    function onDeleteSelectedClick(event) {
+        var GridVQ = F.ui.GridVQ;
+
+        if (!GridVQ.hasSelection()) {
+            F.alert('请至少选择一项！');
+            return;
+        }
+
+        var selectedRows = GridVQ.getSelectedRows();
+        F.confirm({
+            message: '你确定要删除选中的&nbsp;<b>' + selectedRows.length + '</b>&nbsp;行数据吗？',
+            target: '_top',
+            ok: function () {
+                deleteSelectedRows(selectedRows);
+            }
+        });
+    }
+
+    F.ready(function () {
+
+        var GridVQ = F.ui.GridVQ;
+        GridVQ.el.on('click', 'a.action-btn', function (event) {
+            var cnode = $(this);
+            var rowData = GridVQ.getRowData(cnode.closest('.f-grid-row'));
+
+            // 是否禁用
+            if (cnode.hasClass('ui-state-disabled')) {
+                return;
+            }
+            if (cnode.hasClass('delete')) {
+                F.confirm({
+                    message: '确定删除此记录？',
+                    target: '_top',
+                    ok: function () {
+                        deleteSelectedRows([rowData.id]);
+                    }
+                });
+            }
+            else if (cnode.hasClass('edit')) {
+                F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpVQ_edit")?pumpVQId=' + rowData.id, '编辑设备');
+            }
+        });
+    });
+    </script>
+}

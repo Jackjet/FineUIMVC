@@ -1,0 +1,350 @@
+﻿@{
+    ViewBag.Title = "BasicInfo/Flow/FlowBasic_edit";
+    var F = @Html.F();
+}
+@model FineUIMvc.PumpMVC.Models.BASE_LIULIANG
+
+@section body {
+    @(F.Form()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnBasicEdit_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                   F.FormRow()
+                     .Items(
+                         F.TextBoxFor(x=>x.FDTUCode)
+                            .Label("流量编号")
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .EmptyText("请输入流量编号")
+                            .ID("tbSelectedDTU")
+                         .LabelWidth(80),
+                         F.TextBoxFor(x=>x.FName)
+                            .Label("流量名称")
+                            .EmptyText("请输入流量计名称")
+                            .ID("tbxName")
+                            .LabelWidth(80)
+                            .Required(true)
+                            .ShowRedStar(true)
+
+                         ),
+                     F.FormRow()
+                      .Items(
+                         F.TriggerBoxFor(x=>x.Panda_Customer.Name)
+                            .ID("tbSelectedCustomer")
+                            .EnableEdit(false)
+                            .LabelWidth(80)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientCustomerSelect();")
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .Readonly(ViewBag.ReadOnly)
+                            .Label("客户名称"),
+                         F.TriggerBoxFor(x => x.AddressScheme.FName)
+                            .ID("tbSelectedAddressList")
+                            .EnableEdit(false)
+                            .Required(true)
+                            .LabelWidth(80)
+                            .ShowRedStar(true)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientAddressListSelect();")
+                            .Label("地址方案")
+                         ),
+                   F.FormRow()
+                     .Items(
+                     F.TriggerBoxFor(x => x.FMapAddress)
+                            .ID("tbSelectedAddress")
+                            .LabelWidth(80)
+                            .EnableEdit(false)
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientAddressSelect();")
+                            .Label("安装位置")
+                     ),
+                   F.FormRow()
+                     .Items(
+                        F.TriggerBox()
+                           .ID("tbSelectedFWell")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFWellSelect();")
+                           .Label("所在井室"),
+                         F.TriggerBox()
+                           .ID("tbSelectedFPipeline")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFPipelineSelect();")
+                           .Label("所在管线")
+                      ),
+                 F.FormRow()
+                    .Items(
+                        F.TriggerBox()
+                           .ID("tbSelectedFEnterValve")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFEnterValveSelect();")
+                           .Label("进口阀门"),
+                        F.TriggerBox()
+                           .ID("tbSelectedFExitValve")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFExitValveSelect();")
+                           .Label("出口阀门")
+                              ),
+                   F.FormRow()
+                      .Items(
+                          F.TextBoxFor(x=>x.FBrand)
+                            .Label("品牌")
+                            .EmptyText("请输入品牌")
+                            .ID("tbxFBrand")
+                            .LabelWidth(80),
+                          F.DropDownListFor(x => x.FMaterial)
+                            .ID("ddlFMaterial")
+                            .Label("材质")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFMaterialDataSource)
+                            .SelectedValue(ViewBag.ddlFMaterialSelect),
+                          F.DropDownListFor(x => x.FCaliber)
+                            .ID("ddlFCaliber")
+                            .Label("口径")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFCaliberDataSource)
+                            .SelectedValue(ViewBag.ddlFCaliberSelect)
+                          ),
+                   F.FormRow()
+                   .Items(
+                      F.DropDownListFor(x => x.FEQuiType)
+                            .ID("ddlFEQuiType")
+                            .Label("设备类型")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFEQuiTypeDataSource)
+                            .SelectedValue(ViewBag.ddlFEQuiTypeSelect),
+                      F.DropDownListFor(x => x.FInstallMode)
+                            .ID("ddlFInstallMode")
+                            .Label("安装方式")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFInstallModeDataSource)
+                            .SelectedValue(ViewBag.ddlFInstallModeSelect),
+                      F.DropDownListFor(x => x.FCommunicationMode)
+                            .ID("ddlFCommunicationMode")
+                            .Label("通讯方式")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFCommunicationModeDataSource)
+                            .SelectedValue(ViewBag.ddlFCommunicationModeSelect)
+                       ),
+                   F.FormRow()
+                   .Items(
+                       F.DropDownListFor(x => x.FReadMeterMode)
+                             .ID("ddlFReadMeterMode")
+                             .Label("抄表方式")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFReadMeterModeDataSource)
+                             .SelectedValue(ViewBag.ddlFReadMeterModeSelect),
+                       F.DropDownListFor(x => x.FBuriedMode)
+                             .ID("ddlFBuriedMode")
+                             .Label("埋设形式")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFBuriedModeDataSource)
+                             .SelectedValue(ViewBag.ddlFBuriedModeSelect),
+                        F.DropDownListFor(x => x.FEQuiState)
+                             .ID("ddlFEQuiState")
+                             .Label("设备状态")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFEQuiStateDataSource)
+                             .SelectedValue(ViewBag.ddlFEQuiStateSelect)
+                   ),
+              F.FormRow()
+               .Items(
+                   F.NumberBoxFor(x=>x.FGroundHeigh)
+                         .Label("地面标高")
+                         .LabelWidth(80)
+                         .DecimalPrecision(2)
+                         .TrimEndZero(false)
+                         .ID("tbxFGroundHeigh"),
+                   F.NumberBoxFor(x=>x.FBYCycle)
+                         .Label("保养周期")
+                         .LabelWidth(80)
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .ID("tbxFBYCycle"),
+                   F.NumberBoxFor(x=>x.FGHCycle)
+                         .Label("更换周期")
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .LabelWidth(80)
+                         .ID("tbxFGHCycle")
+                   ),
+                    F.FormRow()
+                      .Items(
+                          F.TextBoxFor(x=>x.FNote)
+                            .Label("备注")
+                            .EmptyText("请输入备注")
+                            .ID("tbxFNote")
+                            .LabelWidth(80)
+                          ),
+                 F.FormRow()
+                   .Items(
+              F.HiddenFieldFor(x => x.AddressScheme.ID)
+                 .ID("tbxFSchemeID"),
+              F.HiddenFieldFor(x => x.id)
+                 .ID("tbxID"),
+              F.HiddenFieldFor(x=>x.FLngLat)
+                 .Label("经纬度")
+                 .ID("tbxLngLat"),
+              F.HiddenFieldFor(x=>x.Panda_Customer.ID)
+                 .Label("客户id")
+                 .ID("tbxCustomerID"),
+              F.HiddenFieldFor(x=>x.FWell)
+                 .Label("所在井室")
+                 .ID("hidFWell"),
+              F.HiddenFieldFor(x=>x.FPipeline)
+                 .Label("所在管线")
+                 .ID("hidFPipeline"),
+              F.HiddenFieldFor(x=>x.FEnterValve)
+                 .Label("进口阀门")
+                 .ID("hidFEnterValve"),
+              F.HiddenFieldFor(x=>x.FExitValve)
+                 .Label("出口阀门")
+                 .ID("hidFExitValve"),
+              F.HiddenFieldFor(x => x.FDTUCode)
+                 .ID("tbOldDTU"),
+              F.HiddenFieldFor(x => x.FMarkerID)
+                 .ID("tbxFMarkerID"),
+              F.HiddenFieldFor(x => x.Panda_Customer.FMapTempID)
+                 .Label("地图模板id")
+                 .ID("tbxFMapTempID")
+                 )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+        function OnClientFWellSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/WellWindow")';
+            var openUrl = F.formatString("{0}?FWell={1}", url, F.urlEncode(F.ui.tbSelectedFWell.getValue()));
+
+            F.ui.Window1.show(openUrl, '所在井室选择');
+        }
+        function OnClientFPipelineSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/PipelineWindow")';
+            var openUrl = F.formatString("{0}?FPipeline={1}", url, F.urlEncode(F.ui.tbSelectedFPipeline.getValue()));
+
+            F.ui.Window1.show(openUrl, '所在管线选择');
+        }
+        function OnClientFEnterValveSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/EnterValveWindow")';
+            var openUrl = F.formatString("{0}?FEnterValve={1}", url, F.urlEncode(F.ui.tbSelectedFEnterValve.getValue()));
+
+            F.ui.Window1.show(openUrl, '进口阀门选择');
+        }
+        function OnClientFExitValveSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/ExitValveWindow")';
+            var openUrl = F.formatString("{0}?FExitValve={1}", url, F.urlEncode(F.ui.tbSelectedFExitValve.getValue()));
+
+            F.ui.Window1.show(openUrl, '出口阀门选择');
+        }
+        function OnClientAddressListSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/AddressSchemeWindow")';
+            var openUrl = F.formatString("{0}?id=3&AddressListId={1}", url, F.urlEncode(F.ui.tbSelectedAddressList.getValue()));
+
+            F.ui.Window1.show(openUrl, '地址方案选择', 700, 500);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.tbxFSchemeID.setValue(id);
+        }
+
+
+        function updateCustomer(id, text,tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+        function updateWell(id, text) {
+            F.ui.tbSelectedFWell.setValue(text);
+            F.ui.hidFWell.setValue(id);
+        }
+        function updatePipeline(id, text) {
+            F.ui.tbSelectedFPipeline.setValue(text);
+            F.ui.hidFPipeline.setValue(id);
+        }
+        function updateEnterValve(id, text) {
+            F.ui.tbSelectedFEnterValve.setValue(text);
+            F.ui.hidFEnterValve.setValue(id);
+        }
+        function updateExitValve(id, text) {
+            F.ui.tbSelectedFExitValve.setValue(text);
+            F.ui.hidFExitValve.setValue(id);
+        }
+
+    </script>
+}

@@ -1,0 +1,252 @@
+﻿@{
+    ViewBag.Title = "FamenBasic_new";
+    var F = @Html.F();
+}
+@section body {
+    @(F.SimpleForm()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnBasicCreate_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                 F.TextBox()
+                    .Label("编号")
+                    .EmptyText("请输入编号")
+                    .ID("tbxFDTUCode")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                F.TextBox()
+                    .Label("名称")
+                    .EmptyText("请输入名称")
+                            .ID("tbxFName")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                 F.TriggerBox()
+                    .ID("tbSelectedCustomer")
+                    .EnableEdit(false)
+                    .LabelWidth(80)
+                    .TriggerIcon(TriggerIcon.Search)
+                    .OnClientTriggerClick("OnClientCustomerSelect();")
+                    .Text(ViewBag.CustomerName)
+                    .Required(true)
+                    .ShowRedStar(true)
+                    .Readonly(ViewBag.ReadOnly)
+                    .Label("客户名称"),
+                 F.TextBox()
+                    .Label("品牌")
+                    .EmptyText("请输入品牌")
+                    .ID("tbxFBrand")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+               
+                 F.TriggerBox()
+                     .ID("tbSelectedAddress")
+                     .LabelWidth(80)
+                     .EnableEdit(false)
+                     .Required(true)
+                     .ShowRedStar(true)
+                     .TriggerIcon(TriggerIcon.Search)
+                     .OnClientTriggerClick("OnClientAddressSelect();")
+                     .Label("安装地址"),
+                 F.TriggerBox()
+                       .ID("tbSelectedAddressList")
+                       .EnableEdit(false)
+                       .LabelWidth(80)
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .TriggerIcon(TriggerIcon.Search)
+                       .OnClientTriggerClick("OnClientAddressListSelect();")
+                       .Label("地址方案"),
+                 F.DropDownList()
+                          .ID("ddlFMaterial")
+                          .Label("材质")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                          .DataSource(ViewBag.ddlCZDataSource)
+                          .SelectedValue("0"),
+                 F.DropDownList()
+                          .ID("ddlFDeviceType")
+                          .Label("设备类型")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                                  .DataSource(ViewBag.ddlSBLXDataSource)
+                          .SelectedValue("0"),
+                 F.DropDownList()
+                          .ID("ddlFOperationMode")
+                          .Label("操作方式")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                                  .DataSource(ViewBag.ddlCZFSDataSource)
+                          .SelectedValue("0"),
+                 F.DropDownList()
+                          .ID("ddlFCommunicationMode")
+                          .Label("通讯方式")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                                  .DataSource(ViewBag.ddlTXFSDataSource)
+                          .SelectedValue("0"),
+                 F.DropDownList()
+                          .ID("ddlFCaliber")
+                          .Label("口径")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                                  .DataSource(ViewBag.ddlKJDataSource)
+                          .SelectedValue("0"),
+                 F.DropDownList()
+                          .ID("ddlFValveFunction")
+                          .Label("阀门功能")
+                          .LabelWidth(80)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                                  .DataSource(ViewBag.ddlFSGNDataSource)
+                          .SelectedValue("0"),
+                  F.DropDownList()
+                           .ID("ddlFDrainageMethod")
+                           .Label("排水方式")
+                           .LabelWidth(80)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                                   .DataSource(ViewBag.ddlPSFSDataSource)
+                           .SelectedValue("0"),
+                  F.DropDownList()
+                           .ID("ddlFValveSteering")
+                           .Label("阀门转向")
+                           .LabelWidth(80)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                                   .DataSource(ViewBag.ddlFMZXDataSource)
+                           .SelectedValue("0"),
+                  F.DropDownList()
+                           .ID("ddlFBuriedForm")
+                           .Label("埋设形式")
+                           .LabelWidth(80)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlSMXSDataSource)
+                           .SelectedValue("0"),
+                  F.DropDownList()
+                           .ID("ddlFEquipmentState")
+                           .Label("设备状态")
+                           .LabelWidth(80)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlSBZTDataSource)
+                           .SelectedValue("0"),                     
+                 F.NumberBox()
+                        .Label("地面标高")
+                        .LabelWidth(80)
+                        .Text("1")
+                        .ID("tbxFGroundElevation"),
+                F.NumberBox()
+                   .Label("保养周期")
+                   .LabelWidth(80)
+                   .Text("1")
+                   .ID("tbxFBYCycle"),
+                F.NumberBox()
+                   .Label("更换周期")
+                   .LabelWidth(80)
+                   .Text("1")
+                   .ID("tbxFGHCycle"),
+                 F.TextBox()
+                     .Label("所在井室")
+                     .LabelWidth(80)
+                     .Text(ViewBag.txtPCode)
+                     .ID("tbxFWellRoom"),
+                 F.TextBox()
+                     .Label("所在管线")
+                     .LabelWidth(80)
+                     .Text(ViewBag.txtPCode)
+                     .ID("tbxFLocationPipeline"),
+                             F.HiddenField()
+                      .Label("地址表")
+                      .ID("tbxFSchemeID"),
+                 F.HiddenField()
+                    .Label("经纬度")
+                    .ID("tbxLngLat"),
+                 F.HiddenField()
+                    .Label("客户id")
+                    .ID("tbxCustomerID")
+                    .Text(ViewBag.CustomerID),
+                 F.HiddenField()
+                    .Label("地图模板id")
+                    .ID("tbxFMapTempID")
+                    .Text(ViewBag.MapTempID)
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+
+        function OnClientAddressListSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/AddressSchemeWindow")';
+            var openUrl = F.formatString("{0}?id=2&AddressListId={1}", url, F.urlEncode(F.ui.tbSelectedAddressList.getValue()));
+
+            F.ui.Window1.show(openUrl, '地址方案选择', 700, 500);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.tbxFSchemeID.setValue(id);
+        }
+
+        function updateCustomer(id, text, tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+    </script>
+}

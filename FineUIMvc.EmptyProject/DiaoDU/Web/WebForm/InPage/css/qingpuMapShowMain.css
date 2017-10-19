@@ -1,0 +1,1530 @@
+#map {
+	width: 100%;
+	height: 100%;
+}
+
+ .rightBox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 328px;
+}
+ .rightBox .toolsBox {
+  width: 100%;
+  height: 36px;
+  font-size: 14px;
+}
+ .rightBox .toolsBox .searchTool {
+  position: relative;
+  float: left;
+  width: 36px;
+  height: 36px;
+  background: url(../img/rightBoxSearch.png) no-repeat #ffffff 10px 10px;
+  box-shadow: 1px 1px 4px #ccc;
+  cursor: pointer;
+}
+ 
+        /*img[src^="http://api"] {
+            display: none!important;
+        }*/
+
+
+
+ .rightBox .toolsBox .searchTool .drawTools {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 36px;
+  height: 102px;
+  padding: 4px 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px#ccc;
+  display: none;
+}
+.rightBox .toolsBox .searchTool .drawTools li {
+  width: 24px;
+  height: 28px;
+  padding: 4px 6px;
+  cursor: pointer;
+  text-align: center;
+  color: #007FFF;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(1) {
+  position: absolute;
+  top: -5px;
+  left: 12px;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  border-right:6px solid transparent;
+  border-left:6px solid transparent;
+  border-bottom: 4px solid #999;
+  z-index: 2;
+}
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(1).active, .rightBox .toolsBox .searchTool .drawTools li:nth-of-type(1):hover {
+  background: none;
+  color: none;
+}
+
+.rightBox .toolsBox .searchTool .drawTools li.active, .rightBox .toolsBox .searchTool .drawTools li:hover {
+  background: #6AA7EA;
+  color: #fff;
+}
+.rightBox .toolsBox .searchTool .drawTools li.active div, .rightBox .toolsBox .searchTool .drawTools li:hover div {
+	background: url(../img/drawToolBgActive.png) no-repeat;
+}
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(3).active div, .rightBox .toolsBox .searchTool .drawTools li:nth-of-type(3):hover div {
+	background-position: 0 -43px;
+}
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(4).active div, .rightBox .toolsBox .searchTool .drawTools li:nth-of-type(4):hover div {
+	background-position: 0 -90px ;
+}
+.rightBox .toolsBox .searchTool .drawTools li div {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: url(../img/drawToolBg.png) no-repeat;
+  background-size: cover;
+}
+
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(3) div {
+  
+  background-position:  0 -47px ;
+
+}
+.rightBox .toolsBox .searchTool .drawTools li:nth-of-type(4) div {
+  
+  background-position: 0 -97px ;
+
+}
+ .rightBox .toolsBox .midToos {
+  float: left;
+  width: 242px;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 4px;
+  padding: 0 2px;
+  background: #fff;
+  box-shadow: 1px 1px 4px #ccc;
+}
+ .rightBox .toolsBox .midToos .fenQuJiL {
+  float: left;
+  width: 100px;
+  height: 36px;
+  cursor: pointer;
+  text-align: center;
+}
+
+ .rightBox .toolsBox .midToos .fenQuJiL .midPicBg {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-top: 6px;
+  background: url(../img/rightBoxBg.png) no-repeat 2px 2px;
+}
+ .rightBox .toolsBox .midToos .fenQuJiL .midPicTxt {
+  float: left;
+}
+ .rightBox .toolsBox .midToos .fenQuJiL:hover .midPicBg,
+ .rightBox .toolsBox .midToos .fenQuJiL.active .midPicBg {
+  background-image: url(../img/rightBoxBgActive.png);
+}
+ .rightBox .toolsBox .midToos .fenQuJiL:hover .midPicTxt,
+ .rightBox .toolsBox .midToos .fenQuJiL.active .midPicTxt {
+  color: #309ff4;
+}
+ .rightBox .toolsBox .midToos .diaoDu {
+  float: left;
+  width: 60px;
+  height: 36px;
+  cursor: pointer;
+}
+ .rightBox .toolsBox .midToos .diaoDu .midPicBg {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-top: 6px;
+  background: url(../img/rightBoxBg.png) no-repeat 2px 2px;
+}
+ .rightBox .toolsBox .midToos .diaoDu .midPicTxt {
+  float: left;
+}
+ .rightBox .toolsBox .midToos .diaoDu:hover .midPicBg,
+ .rightBox .toolsBox .midToos .diaoDu.active .midPicBg {
+  background-image: url(../img/rightBoxBgActive.png);
+}
+ .rightBox .toolsBox .midToos .diaoDu:hover .midPicTxt,
+ .rightBox .toolsBox .midToos .diaoDu.active .midPicTxt {
+  color: #309ff4;
+}
+ .rightBox .toolsBox .midToos .dingWei {
+  float: left;
+  width: 70px;
+  height: 36px;
+  cursor: pointer;
+}
+ .rightBox .toolsBox .midToos .dingWei .midPicBg {
+  float: left;
+  width: 24px;
+  height: 20px;
+  margin-top: 6px;
+  border-left: 1px solid #ccc;
+  background: url(../img/rightBoxBg.png) no-repeat -68px 2px;
+}
+ .rightBox .toolsBox .midToos .dingWei .midPicTxt {
+  float: left;
+}
+ .rightBox .toolsBox .midToos .dingWei:hover .midPicBg,
+ .rightBox .toolsBox .midToos .dingWei.active .midPicBg {
+  background-image: url(../img/rightBoxBgActive.png);
+}
+ .rightBox .toolsBox .midToos .dingWei:hover .midPicTxt,
+ .rightBox .toolsBox .midToos .dingWei.active .midPicTxt {
+  color: #309ff4;
+}
+ .rightBox .toolsBox .midToos .settings {
+  float: left;
+  width: 60px;
+  height: 36px;
+  cursor: pointer;
+}
+ .rightBox .toolsBox .midToos .settings .midPicBg {
+  float: left;
+  width: 24px;
+  height: 20px;
+  margin-top: 6px;
+  border-left: 1px solid #ccc;
+  background: url(../img/rightBoxBg.png) no-repeat -142px 2px;
+}
+ .rightBox .toolsBox .midToos .settings .midPicTxt {
+  float: left;
+}
+ .rightBox .toolsBox .midToos .settings:hover .midPicBg,
+ .rightBox .toolsBox .midToos .settings.active .midPicBg {
+  background-image: url(../img/rightBoxBgActive.png);
+}
+ .rightBox .toolsBox .midToos .settings:hover .midPicTxt,
+ .rightBox .toolsBox .midToos .settings.active .midPicTxt {
+  color: #309ff4;
+}
+ .rightBox .toolsBox .warnTool {
+  float: right;
+  width: 36px;
+  height: 36px;
+  background: url(../img/rightBoxBg.png) no-repeat -212px 8px #ffffff;
+  box-shadow: 1px 1px 4px #ccc;
+}
+ .rightBox .toolsBox .warnTool:hover,
+ .rightBox .toolsBox .warnTool.active{
+  background-image: url(../img/rightBoxBgActive.png);
+  color: #309ff4;
+}
+.rightBox .toolsBox .warnTool.warn {
+    background-image: url(../img/rightBoxBgWarn.png);
+  
+}
+ .rightBox .toolsContent {
+   float: right;
+    width: 290px;
+   margin-top: 8px;
+   background: #f4f4f4;
+   border: 1px solid #dadada;
+   box-shadow: 1px 1px 2px #ccc;
+}
+.rightBox .toolsContent .fenQuBox {
+      position: relative;
+   width: 100%;
+  display: none;
+  
+}
+  .rightBox .toolsContent .fenQuBox.show {
+   
+  display: block;
+  
+}
+.fenQuBox .checkAllBox {
+    width: 290px;
+    height: 28px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.fenQuBox .checkAllBox>div {
+    margin-top: 6px;
+    font-size: 14px;
+    float: left;  
+}
+.fenQuBox .checkAllBox .checkBox {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 4px 8px;
+    background: url(../img/quyuCheckPic.png) no-repeat;
+    /*background: url(../img/quyuCheckPic.png) no-repeat -342px 0;*/
+}
+.fenQuBox .checkAllBox .checkBox.checkAllAreaAndIn {
+    width: 20px;
+    height: 20px;
+    margin: 4px 4px;
+    cursor: pointer;
+    background-position:  -113px 3px;
+}
+.fenQuBox .checkAllBox .checkBox.checkAllAreaAndIn.active {  
+    background-position:  -226px 3px;
+}
+.fenQuBox .checkAllBox .checkBox.checkAllArea {
+    width: 20px;
+    height: 20px;
+    margin: 4px 4px;
+    cursor: pointer;
+    background-position:  -342px 3px;
+   
+}
+.fenQuBox .checkAllBox .checkBox.checkAllArea.active {  
+    background-position:  -568px 3px;
+   
+}
+.fenQuBox .areaMainBox {
+    width: 290px;
+    height: 400px;
+}
+.fenQuBox .areaMainBox .areaMain li {
+    width: 280px;
+    padding-left: 10px;
+    height: 32px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #666;
+}
+.fenQuBox .areaMainBox .areaMain li>div {
+   float: left;
+}
+.fenQuBox .areaMainBox .areaMain li .checkMark {
+   width: 20px;
+   height: 20px;
+   margin-top: 8px;
+    background: url(../img/quyuCheckPic.png) no-repeat 0 0;
+}
+.fenQuBox .areaMainBox .areaMain li .checkMark.active {
+   background: url(../img/quyuCheckPic.png) no-repeat  -226px 0;
+}
+.fenQuBox .areaMainBox .areaMain li .itemContent {
+  width: 260px;
+  height: 32px;
+  line-height: 32px;
+
+}
+.fenQuBox .areaMainBox .areaMain li .itemContent .itemName {
+    float: left;
+  width: 230px;
+  height: 32px;
+  line-height: 32px;
+
+}
+.fenQuBox .areaMainBox .areaMain li .itemContent .checkFlog {
+     float: right;
+      width: 24px;
+      height: 32px;
+      margin-top: 7px;
+      line-height: 32px;
+      background: url(../img/quyuCheckPic.png) no-repeat  -455px 0;
+}
+.fenQuBox .areaMainBox .areaMain li .itemContent .checkFlog.active {
+    background: url(../img/quyuCheckPic.png) no-repeat  -568px 0;
+
+}
+.fenQuBox .areaMainBox .areaMain li:hover {
+   background: #ddd;
+}
+
+.fenQuBox .closeBtnBox {
+     position: absolute;
+     top: 0;
+     right: 0;
+	width: 26px;
+	height: 26px;
+	border-bottom: 1px solid #dadada;
+}
+.fenQuBox .closeBtnBox .closeSet {
+	width: 26px;
+	height: 26px;
+	float: right;
+	text-align: center;
+	line-height: 26px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+
+ .rightBox .toolsContent .diaoDuBox {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: none;
+}
+ 
+ .diaoDuBox .closeBtnBox {
+     position: absolute;
+     top: 3px;
+     right: 5px;
+	width: 26px;
+	height: 26px;
+	border-bottom: 1px solid #dadada;
+}
+.diaoDuBox .closeBtnBox .closeSet {
+	width: 26px;
+	height: 26px;
+	float: right;
+	text-align: center;
+	line-height: 26px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+ .rightBox .toolsContent .diaoDuBox.show {
+  display: block;
+}
+ .rightBox .toolsContent .dingWeiBox {
+   position: relative;
+  width: 100%;
+  height: 200px;
+  display: none;
+}
+  .dingWeiBox .closeBtnBox {
+    
+	width: 100%;
+	height: 26px;
+	border-bottom: 1px solid #dadada;
+}
+.dingWeiBox .closeBtnBox .closeSet {
+	width: 26px;
+	height: 26px;
+	float: right;
+	text-align: center;
+	line-height: 26px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+.dingWeiBox .searchAndshowBox {
+    width: 100%;
+    height: 30px;
+    padding: 8px 7px 5px 12px;
+}
+.dingWeiBox .searchAndshowBox .searchTxt {
+    width: 200px;
+    height: 26px;
+    border: none;
+    text-indent: 10px;
+    box-shadow: 0 0 2px #666;
+    background: #ccc;
+    vertical-align: middle;
+}
+.dingWeiBox .searchAndshowBox .searchBtn {
+    width: 26px;
+    height: 26px;
+    border: none;
+    cursor: pointer;
+    background: url(../img/searchAndDingwei.png) no-repeat 0 0;
+    margin-left: 8px;
+     vertical-align: middle;
+}
+.dingWeiBox .searchAndshowBox .searchBtn:hover {
+  
+    background: url(../img/searchAndDingwei.png) no-repeat 0 -46px;
+ 
+}
+.dingWeiBox .searchAndshowBox .backCenter {
+    width: 26px;
+    height: 26px;
+    border: none;
+    cursor: pointer;
+    background: url(../img/searchAndDingwei.png) no-repeat -48px 0;
+     vertical-align: middle;
+}
+.dingWeiBox .searchAndshowBox .backCenter:hover {
+   
+    background: url(../img/searchAndDingwei.png) no-repeat -48px -46px;
+   
+}
+ .rightBox .toolsContent .dingWeiBox.show {
+  display: block;
+}
+.rightBox .toolsContent .settingBox {
+ 	position: relative;
+  	width: 290px;
+  	height: 400px;
+  	display: none;
+}
+.rightBox .toolsContent .settingBox.show {
+  display: block;
+}
+
+.settingBox .closeBtnBox {
+	width: 100%;
+	height: 26px;
+	border-bottom: 1px solid #dadada;
+	background: #fff;
+}
+.settingBox .closeBtnBox .closeSet {
+	width: 26px;
+	height: 26px;
+	float: right;
+	text-align: center;
+	line-height: 26px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+.settingBox .mapTypeSet {
+	width: 282px;
+	height: 92px;
+	text-align: right;
+	color: #fff;	
+  	padding: 0 4px;
+	font-weight: bold;
+	padding-top: 10px;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+}
+.settingBox .mapTypeSet li {
+	float: left;
+	width: 86px;
+	margin: 0 4px;
+	height: 84px;
+	
+}
+.settingBox .mapTypeSet li .mapPicBox {
+	width: 86px;
+	height: 55px;
+	background: url(../img/mapTypeSetBg.png) no-repeat;
+}
+.settingBox .mapTypeSet li:hover .mapCheckPic, .settingBox .mapTypeSet li.active .mapCheckPic {
+	width: 100%;
+	height: 100%;
+	background: url(../img/mapCheckBg.png) no-repeat;
+}
+.settingBox .mapTypeSet .satelliteMap .mapPicBox {
+	
+	background-position: -91px 0;
+}
+
+.settingBox .mapTypeSet .map3D .mapPicBox {
+	
+	background-position: -183px 0;
+}
+
+
+.settingBox .mapTypeSet li .mapCheckTxt {
+	text-align: center;
+	font-size: 12px;
+	margin-top: 8px;
+	color: #666666;
+}
+
+
+.lineAndMakerBox {
+	width: 276px;
+	text-align: right;
+	color: #fff;	
+  	padding: 0 7px;
+	font-weight: bold;
+	margin-top: 10px;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	background: #fff;
+}
+.lineAndMakerBox .lineAndMaker {
+	width: 100%;	
+	text-align: right;
+	color: #fff;	
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.lineAndMakerBox .lineAndMaker>li {
+	position: relative;
+	float: left;
+	width: 57px;
+	height: 66px;
+	margin: 0 6px;
+	margin-bottom: 10px;
+	box-shadow: 1px 1px 4px #ccc;
+	cursor: pointer;
+}
+.lineAndMakerBox .lineAndMaker>li .lineAndMakerChecked {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	background: url(../img/checkedBg.png) no-repeat -49px -2px;
+}
+.lineAndMakerBox .lineAndMaker>li.active .lineAndMakerChecked {	
+	background: url(../img/checkedBg.png) no-repeat -2px -2px;
+}
+.lineAndMakerBox .lineAndMaker>li .lineAndMakerPic {
+	margin-top: 2px;	
+	width: 57px;
+	height: 30px;
+	/*background: url(../img/pupType.png) no-repeat;*/
+   
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(1) .lineAndMakerPic {	
+	background: url(../img/guanxianL.png) 12px 0 no-repeat;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(2) .lineAndMakerPic {	
+	 background: url(../img/bengzhanL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(3) .lineAndMakerPic {	
+	  background: url(../img/famenL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(4) .lineAndMakerPic {	
+	 background: url(../img/liuliangL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(5) .lineAndMakerPic {	
+	 background: url(../img/shuichangL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(6) .lineAndMakerPic {	
+	 background: url(../img/shuiyuanL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(7) .lineAndMakerPic {	
+	  background: url(../img/dabiaoL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(8) .lineAndMakerPic {	
+	  background: url(../img/yaliL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(9) .lineAndMakerPic {	
+	background: url(../img/tiaofengL.png) no-repeat 12px 2px;	
+}
+.lineAndMakerBox .lineAndMaker>li:nth-of-type(10) .lineAndMakerPic {	
+	 background: url(../img/shuizhiL.png) no-repeat 12px 2px;		
+}
+
+.lineAndMakerBox .lineAndMaker .lineAndMakerName {
+    width: 57px;
+    height: 14px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+}
+
+.lineAndMakerBox .lineAndMaker>li .lineAndMakerSelect {
+	position: relative;
+	width: 57px;
+	height: 27px;
+	
+}
+
+
+/*select class*/
+ .selectBox{
+ 	position:relative;
+ 	width:57px;
+ 	height:20px;
+   
+ 	/*border:1px solid blue;
+ 	border-top: 1px solid transparent;*/
+ 	cursor:pointer;
+ 	
+ }
+ .selectBox:after{
+ 	content:"";
+ 	position:absolute;
+ 	top:50%;
+ 	right: 4px;
+ 	margin-top:-2px;
+ 	border-top:5px solid #ccc;
+ 	border-right:5px solid transparent;
+ 	border-left:5px solid transparent;
+ }
+    .selectBox .select_text {
+        color: #999;
+        height: 20px;
+        width: 40px;
+        line-height: 20px;
+        font-size: 9px;
+        -o-transform: scale(.75);
+        -webkit-transform: scale(.75);
+       overflow: hidden;
+       word-break : keep-all;
+       text-overflow:ellipsis;
+    }
+ .select_ul{
+ 	display:none;
+ 	position:absolute; 	
+ 	top:20px;
+ 	left:-1px;
+ 	width:66px;
+ 	border:1px solid #D4D4D4;
+ 	border-bottom-right-radius:3px;
+ 	border-bottom-left-radius:3px;
+ 	background:#fff;
+ 	font-size: 12px;
+ 	z-index: 2;
+ }
+ .select_ul li{
+ 	color: #666;
+ 	height: 27px;
+ 	line-height:27px;
+ 	text-align: center;
+ }
+ .select_ul li:hover{
+ 	color:#fff;
+ 	background:#6AA7EA;
+ }
+ .select_ul li.cur{
+ 	color:#fff;
+ 	background:#195DA3;
+ }
+
+
+/*图例*/
+.cutline {
+	position: absolute;
+	bottom: 30px;
+	left: 40px;
+	width: 195px;
+	height: 90px;
+    padding: 4px 8px;
+	border-radius: 1px;
+	background: rgba(255,255,255,.9);
+	box-shadow: 0 0 4px #ccc;
+}
+.cutline li {
+	float: left;
+	width: 65px;
+	height: 30px;
+}
+.cutline li .cutlinePic {
+	float: left;
+	width: 25px;
+	height: 25px;
+	
+}
+.cutline li:nth-of-type(1) .cutlinePic {
+	background: url(../img/bz.png)  no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(2) .cutlinePic {
+	background: url(../img/fm.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(3) .cutlinePic {
+	background: url(../img/ll.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(4) .cutlinePic {
+	background: url(../img/sc.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(5) .cutlinePic {
+	background: url(../img/sy.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(6) .cutlinePic {
+	background: url(../img/db.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(7) .cutlinePic {
+	background: url(../img/yl.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(8) .cutlinePic {
+	background: url(../img/tf.png) no-repeat 4px 6px;
+}
+.cutline li:nth-of-type(9) .cutlinePic {
+	background: url(../img/sz.png) no-repeat 4px 6px;
+}
+.cutline li .cutlineTxt {
+	float: left;
+	width: 40px;
+	height: 30px;
+	
+	line-height: 30px;
+	font-size: 12px;
+	color: #666;
+}
+
+
+/*全景动画*/
+
+
+@-webkit-keyframes myfirst /* Firefox */
+{
+0% {background-position: 0 -14px;}
+1% {background-position: -16px -14px;}
+2% {background-position: -16px -14px;}
+3% {background-position: -16px -14px;}
+4% {background-position: -16px -14px;}
+5% {background-position: -16px -14px;}
+6% {background-position: -16px -14px;}
+7% {background-position: -32px -14px;}
+8% {background-position: -32px -14px;}
+9% {background-position: -32px -14px;}
+10% {background-position: -32px -14px;}
+11% {background-position: -32px -14px;}
+12% {background-position: -32px -14px;}
+13% {background-position: -48px -14px;}
+14% {background-position: -48px -14px;}
+15% {background-position: -48px -14px;}
+16% {background-position: -48px -14px;}
+17% {background-position: -48px -14px;}
+18% {background-position: -48px -14px;}
+19% {background-position: -64px -14px;}
+20% {background-position: -64px -14px;}
+21% {background-position: -64px -14px;}
+22% {background-position: -64px -14px;}
+23% {background-position: -64px -14px;}
+24% {background-position: -64px -14px;}
+25% {background-position: -80px -14px;}
+26% {background-position: -80px -14px;}
+27% {background-position: -80px -14px;}
+28% {background-position: -80px -14px;}
+29% {background-position: -80px -14px;}
+30% {background-position: -80px -14px;}
+31% {background-position: -96px -14px;}
+32% {background-position: -96px -14px;}
+33% {background-position: -96px -14px;}
+34% {background-position: -96px -14px;}
+35% {background-position: -96px -14px;}
+36% {background-position: -96px -14px;}
+37% {background-position: -112px -14px;}
+38% {background-position: -112px -14px;}
+39% {background-position: -112px -14px;}
+40% {background-position: -112px -14px;}
+41% {background-position: -112px -14px;}
+42% {background-position: -112px -14px;}
+43% {background-position: -128px -14px;}
+44% {background-position: -128px -14px;}
+45% {background-position: -128px -14px;}
+46% {background-position: -128px -14px;}
+47% {background-position: -128px -14px;}
+48% {background-position: -128px -14px;}
+49% {background-position: -144px -14px;}
+50% {background-position: -144px -14px;}
+51% {background-position: -144px -14px;}
+52% {background-position: -144px -14px;}
+53% {background-position: -144px -14px;}
+54% {background-position: -144px -14px;}
+55% {background-position: -160px -14px;}
+56% {background-position: -160px -14px;}
+57% {background-position: -160px -14px;}
+58% {background-position: -160px -14px;}
+59% {background-position: -160px -14px;}
+60% {background-position: -160px -14px;}
+61% {background-position: -176px -14px;}
+62% {background-position: -176px -14px;}
+63% {background-position: -176px -14px;}
+64% {background-position: -176px -14px;}
+65% {background-position: -176px -14px;}
+66% {background-position: -176px -14px;}
+67% {background-position: -192px -14px;}
+68% {background-position: -192px -14px;}
+69% {background-position: -192px -14px;}
+70% {background-position: -192px -14px;}
+71% {background-position: -192px -14px;}
+72% {background-position: -192px -14px;}
+73% {background-position: -208px -14px;}
+74% {background-position: -208px -14px;}
+75% {background-position: -208px -14px;}
+76% {background-position: -208px -14px;}
+77% {background-position: -208px -14px;}
+78% {background-position: -208px -14px;}
+79% {background-position: -224px -14px;}
+80% {background-position: -224px -14px;}
+81% {background-position: -224px -14px;}
+82% {background-position: -224px -14px;}
+83% {background-position: -224px -14px;}
+84% {background-position: -224px -14px;}
+85% {background-position: -240px -14px;}
+86% {background-position: -240px -14px;}
+87% {background-position: -240px -14px;}
+88% {background-position: -240px -14px;}
+89% {background-position: -240px -14px;}
+90% {background-position: -240px -14px;}
+91% {background-position: -256px -14px;}
+92% {background-position: -256px -14px;}
+93% {background-position: -256px -14px;}
+94% {background-position: -256px -14px;}
+95% {background-position: -256px -14px;}
+96% {background-position: -256px -14px;}
+97% {background-position: -256px -14px;}
+98% {background-position: -256px -14px;}
+99% {background-position: -256px -14px;}
+100% {background-position: -256px -14px;}
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+0% {background-position: 0 -14px;}
+1% {background-position: -16px -14px;}
+2% {background-position: -16px -14px;}
+3% {background-position: -16px -14px;}
+4% {background-position: -16px -14px;}
+5% {background-position: -16px -14px;}
+6% {background-position: -16px -14px;}
+7% {background-position: -32px -14px;}
+8% {background-position: -32px -14px;}
+9% {background-position: -32px -14px;}
+10% {background-position: -32px -14px;}
+11% {background-position: -32px -14px;}
+12% {background-position: -32px -14px;}
+13% {background-position: -48px -14px;}
+14% {background-position: -48px -14px;}
+15% {background-position: -48px -14px;}
+16% {background-position: -48px -14px;}
+17% {background-position: -48px -14px;}
+18% {background-position: -48px -14px;}
+19% {background-position: -64px -14px;}
+20% {background-position: -64px -14px;}
+21% {background-position: -64px -14px;}
+22% {background-position: -64px -14px;}
+23% {background-position: -64px -14px;}
+24% {background-position: -64px -14px;}
+25% {background-position: -80px -14px;}
+26% {background-position: -80px -14px;}
+27% {background-position: -80px -14px;}
+28% {background-position: -80px -14px;}
+29% {background-position: -80px -14px;}
+30% {background-position: -80px -14px;}
+31% {background-position: -96px -14px;}
+32% {background-position: -96px -14px;}
+33% {background-position: -96px -14px;}
+34% {background-position: -96px -14px;}
+35% {background-position: -96px -14px;}
+36% {background-position: -96px -14px;}
+37% {background-position: -112px -14px;}
+38% {background-position: -112px -14px;}
+39% {background-position: -112px -14px;}
+40% {background-position: -112px -14px;}
+41% {background-position: -112px -14px;}
+42% {background-position: -112px -14px;}
+43% {background-position: -128px -14px;}
+44% {background-position: -128px -14px;}
+45% {background-position: -128px -14px;}
+46% {background-position: -128px -14px;}
+47% {background-position: -128px -14px;}
+48% {background-position: -128px -14px;}
+49% {background-position: -144px -14px;}
+50% {background-position: -144px -14px;}
+51% {background-position: -144px -14px;}
+52% {background-position: -144px -14px;}
+53% {background-position: -144px -14px;}
+54% {background-position: -144px -14px;}
+55% {background-position: -160px -14px;}
+56% {background-position: -160px -14px;}
+57% {background-position: -160px -14px;}
+58% {background-position: -160px -14px;}
+59% {background-position: -160px -14px;}
+60% {background-position: -160px -14px;}
+61% {background-position: -176px -14px;}
+62% {background-position: -176px -14px;}
+63% {background-position: -176px -14px;}
+64% {background-position: -176px -14px;}
+65% {background-position: -176px -14px;}
+66% {background-position: -176px -14px;}
+67% {background-position: -192px -14px;}
+68% {background-position: -192px -14px;}
+69% {background-position: -192px -14px;}
+70% {background-position: -192px -14px;}
+71% {background-position: -192px -14px;}
+72% {background-position: -192px -14px;}
+73% {background-position: -208px -14px;}
+74% {background-position: -208px -14px;}
+75% {background-position: -208px -14px;}
+76% {background-position: -208px -14px;}
+77% {background-position: -208px -14px;}
+78% {background-position: -208px -14px;}
+79% {background-position: -224px -14px;}
+80% {background-position: -224px -14px;}
+81% {background-position: -224px -14px;}
+82% {background-position: -224px -14px;}
+83% {background-position: -224px -14px;}
+84% {background-position: -224px -14px;}
+85% {background-position: -240px -14px;}
+86% {background-position: -240px -14px;}
+87% {background-position: -240px -14px;}
+88% {background-position: -240px -14px;}
+89% {background-position: -240px -14px;}
+90% {background-position: -240px -14px;}
+91% {background-position: -256px -14px;}
+92% {background-position: -256px -14px;}
+93% {background-position: -256px -14px;}
+94% {background-position: -256px -14px;}
+95% {background-position: -256px -14px;}
+96% {background-position: -256px -14px;}
+97% {background-position: -256px -14px;}
+98% {background-position: -256px -14px;}
+99% {background-position: -256px -14px;}
+100% {background-position: -256px -14px;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0% {background-position: 0 -14px;}
+1% {background-position: -16px -14px;}
+2% {background-position: -16px -14px;}
+3% {background-position: -16px -14px;}
+4% {background-position: -16px -14px;}
+5% {background-position: -16px -14px;}
+6% {background-position: -16px -14px;}
+7% {background-position: -32px -14px;}
+8% {background-position: -32px -14px;}
+9% {background-position: -32px -14px;}
+10% {background-position: -32px -14px;}
+11% {background-position: -32px -14px;}
+12% {background-position: -32px -14px;}
+13% {background-position: -48px -14px;}
+14% {background-position: -48px -14px;}
+15% {background-position: -48px -14px;}
+16% {background-position: -48px -14px;}
+17% {background-position: -48px -14px;}
+18% {background-position: -48px -14px;}
+19% {background-position: -64px -14px;}
+20% {background-position: -64px -14px;}
+21% {background-position: -64px -14px;}
+22% {background-position: -64px -14px;}
+23% {background-position: -64px -14px;}
+24% {background-position: -64px -14px;}
+25% {background-position: -80px -14px;}
+26% {background-position: -80px -14px;}
+27% {background-position: -80px -14px;}
+28% {background-position: -80px -14px;}
+29% {background-position: -80px -14px;}
+30% {background-position: -80px -14px;}
+31% {background-position: -96px -14px;}
+32% {background-position: -96px -14px;}
+33% {background-position: -96px -14px;}
+34% {background-position: -96px -14px;}
+35% {background-position: -96px -14px;}
+36% {background-position: -96px -14px;}
+37% {background-position: -112px -14px;}
+38% {background-position: -112px -14px;}
+39% {background-position: -112px -14px;}
+40% {background-position: -112px -14px;}
+41% {background-position: -112px -14px;}
+42% {background-position: -112px -14px;}
+43% {background-position: -128px -14px;}
+44% {background-position: -128px -14px;}
+45% {background-position: -128px -14px;}
+46% {background-position: -128px -14px;}
+47% {background-position: -128px -14px;}
+48% {background-position: -128px -14px;}
+49% {background-position: -144px -14px;}
+50% {background-position: -144px -14px;}
+51% {background-position: -144px -14px;}
+52% {background-position: -144px -14px;}
+53% {background-position: -144px -14px;}
+54% {background-position: -144px -14px;}
+55% {background-position: -160px -14px;}
+56% {background-position: -160px -14px;}
+57% {background-position: -160px -14px;}
+58% {background-position: -160px -14px;}
+59% {background-position: -160px -14px;}
+60% {background-position: -160px -14px;}
+61% {background-position: -176px -14px;}
+62% {background-position: -176px -14px;}
+63% {background-position: -176px -14px;}
+64% {background-position: -176px -14px;}
+65% {background-position: -176px -14px;}
+66% {background-position: -176px -14px;}
+67% {background-position: -192px -14px;}
+68% {background-position: -192px -14px;}
+69% {background-position: -192px -14px;}
+70% {background-position: -192px -14px;}
+71% {background-position: -192px -14px;}
+72% {background-position: -192px -14px;}
+73% {background-position: -208px -14px;}
+74% {background-position: -208px -14px;}
+75% {background-position: -208px -14px;}
+76% {background-position: -208px -14px;}
+77% {background-position: -208px -14px;}
+78% {background-position: -208px -14px;}
+79% {background-position: -224px -14px;}
+80% {background-position: -224px -14px;}
+81% {background-position: -224px -14px;}
+82% {background-position: -224px -14px;}
+83% {background-position: -224px -14px;}
+84% {background-position: -224px -14px;}
+85% {background-position: -240px -14px;}
+86% {background-position: -240px -14px;}
+87% {background-position: -240px -14px;}
+88% {background-position: -240px -14px;}
+89% {background-position: -240px -14px;}
+90% {background-position: -240px -14px;}
+91% {background-position: -256px -14px;}
+92% {background-position: -256px -14px;}
+93% {background-position: -256px -14px;}
+94% {background-position: -256px -14px;}
+95% {background-position: -256px -14px;}
+96% {background-position: -256px -14px;}
+97% {background-position: -256px -14px;}
+98% {background-position: -256px -14px;}
+99% {background-position: -256px -14px;}
+100% {background-position: -256px -14px;}
+}
+
+@keyframes camera
+{
+0% {background-position: 0 -14px;}
+1% {background-position: -16px -14px;}
+2% {background-position: -16px -14px;}
+3% {background-position: -16px -14px;}
+4% {background-position: -16px -14px;}
+5% {background-position: -16px -14px;}
+6% {background-position: -16px -14px;}
+7% {background-position: -32px -14px;}
+8% {background-position: -32px -14px;}
+9% {background-position: -32px -14px;}
+10% {background-position: -32px -14px;}
+11% {background-position: -32px -14px;}
+12% {background-position: -32px -14px;}
+13% {background-position: -48px -14px;}
+14% {background-position: -48px -14px;}
+15% {background-position: -48px -14px;}
+16% {background-position: -48px -14px;}
+17% {background-position: -48px -14px;}
+18% {background-position: -48px -14px;}
+19% {background-position: -64px -14px;}
+20% {background-position: -64px -14px;}
+21% {background-position: -64px -14px;}
+22% {background-position: -64px -14px;}
+23% {background-position: -64px -14px;}
+24% {background-position: -64px -14px;}
+25% {background-position: -80px -14px;}
+26% {background-position: -80px -14px;}
+27% {background-position: -80px -14px;}
+28% {background-position: -80px -14px;}
+29% {background-position: -80px -14px;}
+30% {background-position: -80px -14px;}
+31% {background-position: -96px -14px;}
+32% {background-position: -96px -14px;}
+33% {background-position: -96px -14px;}
+34% {background-position: -96px -14px;}
+35% {background-position: -96px -14px;}
+36% {background-position: -96px -14px;}
+37% {background-position: -112px -14px;}
+38% {background-position: -112px -14px;}
+39% {background-position: -112px -14px;}
+40% {background-position: -112px -14px;}
+41% {background-position: -112px -14px;}
+42% {background-position: -112px -14px;}
+43% {background-position: -128px -14px;}
+44% {background-position: -128px -14px;}
+45% {background-position: -128px -14px;}
+46% {background-position: -128px -14px;}
+47% {background-position: -128px -14px;}
+48% {background-position: -128px -14px;}
+49% {background-position: -144px -14px;}
+50% {background-position: -144px -14px;}
+51% {background-position: -144px -14px;}
+52% {background-position: -144px -14px;}
+53% {background-position: -144px -14px;}
+54% {background-position: -144px -14px;}
+55% {background-position: -160px -14px;}
+56% {background-position: -160px -14px;}
+57% {background-position: -160px -14px;}
+58% {background-position: -160px -14px;}
+59% {background-position: -160px -14px;}
+60% {background-position: -160px -14px;}
+61% {background-position: -176px -14px;}
+62% {background-position: -176px -14px;}
+63% {background-position: -176px -14px;}
+64% {background-position: -176px -14px;}
+65% {background-position: -176px -14px;}
+66% {background-position: -176px -14px;}
+67% {background-position: -192px -14px;}
+68% {background-position: -192px -14px;}
+69% {background-position: -192px -14px;}
+70% {background-position: -192px -14px;}
+71% {background-position: -192px -14px;}
+72% {background-position: -192px -14px;}
+73% {background-position: -208px -14px;}
+74% {background-position: -208px -14px;}
+75% {background-position: -208px -14px;}
+76% {background-position: -208px -14px;}
+77% {background-position: -208px -14px;}
+78% {background-position: -208px -14px;}
+79% {background-position: -224px -14px;}
+80% {background-position: -224px -14px;}
+81% {background-position: -224px -14px;}
+82% {background-position: -224px -14px;}
+83% {background-position: -224px -14px;}
+84% {background-position: -224px -14px;}
+85% {background-position: -240px -14px;}
+86% {background-position: -240px -14px;}
+87% {background-position: -240px -14px;}
+88% {background-position: -240px -14px;}
+89% {background-position: -240px -14px;}
+90% {background-position: -240px -14px;}
+91% {background-position: -256px -14px;}
+92% {background-position: -256px -14px;}
+93% {background-position: -256px -14px;}
+94% {background-position: -256px -14px;}
+95% {background-position: -256px -14px;}
+96% {background-position: -256px -14px;}
+97% {background-position: -256px -14px;}
+98% {background-position: -256px -14px;}
+99% {background-position: -256px -14px;}
+100% {background-position: -256px -14px;}
+}
+/*全景和定位*/
+
+
+.panoramaShowBox {
+    position: absolute;
+    top:64px;
+    right: 20px;
+    width: 290px;
+    height: 100px;
+    background: #f6f6f6;
+    border-radius: 2px;
+    display: none;
+}
+.panoramaHeader {
+    width: 290px;
+    height: 30px;
+    background: #fff;
+}
+.panCloseBtn {
+    position: absolute;
+    top: 0px;
+    right: 4px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #666;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.panoramaMainBox {
+    width: 290px;
+    min-height: 400px;
+    max-height: 500px;
+    overflow: auto;
+    background: #f6f6f6;
+}
+.panoramaMain {
+    width: 290px;
+    height: 100%;    
+    padding-bottom: 30px;
+}
+.panoramaMain>li .panoramaItemTitle {
+    width:290px;
+    height: 30px;
+    border-top: 1px solid #e0e0e0 ;
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 30px;
+    font-size: 14px;
+    text-indent: 1px;
+}
+
+.panoramaMain>li .panoramaItemTitle span {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 4px 4px;
+}
+
+.panoramaMain>li:nth-of-type(1) .panoramaItemTitle .titlePic {    
+    background: url(../img/bengzhanL.png) no-repeat;
+   background-size: cover;
+}
+.panoramaMain>li:nth-of-type(2) .panoramaItemTitle .titlePic{  
+    background: url(../img/famenL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(3) .panoramaItemTitle .titlePic{  
+    background: url(../img/liuliangL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(4) .panoramaItemTitle .titlePic{  
+    background: url(../img/shuichangL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(5) .panoramaItemTitle .titlePic{  
+    background: url(../img/shuiyuanL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(6) .panoramaItemTitle .titlePic{  
+    background: url(../img/dabiaoL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(7) .panoramaItemTitle .titlePic{  
+    background: url(../img/yaliL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(8) .panoramaItemTitle .titlePic{  
+    background: url(../img/tiaofengL.png) no-repeat;
+    background-size: cover;
+}
+.panoramaMain>li:nth-of-type(9) .panoramaItemTitle .titlePic{  
+    background: url(../img/shuizhiL.png) no-repeat;
+    background-size: cover;
+}
+
+
+.panoramaMain>li .panoramaItemContent {
+     width:290px;  
+     background: #fff;
+}
+.panoramaMain>li .panoramaItemContent.hide {
+    display: none;
+}
+.panoramaMain>li .panoramaItemContent>li {
+    position: relative;
+    width:280px;  
+    height: 70px;
+    margin-left: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #e0e0e0;
+   
+}
+.panoramaMain>li .panoramaItemContent>li:last-child {  
+    border-bottom: none;
+   
+}
+.panoramaMain>li .panoramaItemContent>li .contentLeft {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 80px;  
+    height: 48px;
+    /*background: url(../img/topMaskBg.png) no-repeat;
+    background-size: cover;*/
+}
+.panoramaMain>li .panoramaItemContent>li:nth-of-type(2n-1) .contentLeft {
+  
+    background: url(../img/panoramaBgPic.png) no-repeat 0 0;
+    background-size: cover;
+}
+.panoramaMain>li .panoramaItemContent>li:nth-of-type(2n) .contentLeft {
+  
+    background: url(../img/panoramaBgPic.png) no-repeat 0 -70px;
+    background-size: cover;
+}
+
+.panoramaMain>li .panoramaItemContent>li .contentRight {
+    position: absolute;
+    top: 12px;
+    left: 90px;
+    width: 188px;  
+    height: 48px;
+}
+
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightTop,.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightBottom {
+    position: relative;
+    width: 180px;
+    height: 24px;
+}
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightTop .picBox {
+    display: block;
+    float: left;
+   width: 13px;
+   height: 24px;
+   background: url(../img/camera_pan.png) no-repeat 0 -14px;
+   cursor: pointer;
+   overflow: hidden;
+}
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightTop .picBox:hover {
+  
+    -moz-animation: myfirst .5s;	
+    -webkit-animation: myfirst .5s;
+    -o-animation: myfirst .5s;
+      animation: myfirst .5s;	
+}
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightTop .txtBox {
+     display: block;
+     float: left;
+   width: 140px;
+   height: 24px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   word-break: keep-all;
+   color: #666;
+   cursor: pointer;
+}
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightBottom .picBox {
+    display: block;
+    float: left;
+    width: 20px;
+   height: 20px;
+   background: url(../img/marker2.png) no-repeat;
+   cursor: pointer;
+}
+.panoramaMain>li .panoramaItemContent>li .contentRight .contentRightBottom .txtBox {
+    display: block;
+    float: left;
+   width: 140px;
+   height: 24px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   word-break: keep-all;
+   color: #989898;
+   cursor: pointer;
+}
+
+
+.panoramaMain>li .panoramaItemContent>li .rightTopNum {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    background: #00b7ee;
+    color: #fff;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+/*从全景返回*/
+.panoramaBackBtn {
+    position: absolute;
+    top: 20px;
+    right: 360px;
+    width: 100px;
+    height: 34px;
+    outline: none;
+    border: none;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+
+}
+
+/*报警*/
+
+.warnBox {
+    position: absolute;
+    top:44px;
+    right: 4px;
+    width: 290px;
+    height: 300px;
+    box-shadow: 1px 1px 3px #ccc;
+    display: none;
+    background: #f6f6f6;
+}
+.warnBox .closeBtnBox {
+  
+    width: 100%;
+    height: 26px;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.warnBox .closeBtnBox .closeSet {
+    width: 20px;
+    height: 26px;
+    line-height: 28px;
+    font-size: 18px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+    color: black;
+    font-weight: 400;
+
+}
+.warnBox .warnContentBox {
+    padding: 0 3px 0 15px;
+    width: 272px;
+    background: #f6f6f6;
+    overflow: auto;
+}
+.warnBox .warnContentBox .timeLineBg {
+    margin-left: 4px;
+    float: left;
+    width: 4px;
+    height: 100%;
+    background: #e1e1e1;
+
+}
+.warnBox .warnContentBox .warnContent {
+    float: left;
+    width: 240px;
+    height: 100%;
+    margin-left: 8px;
+    padding: 0 0 0 8px;
+
+}
+.warnBox .warnContentBox .warnContent li {
+    position: relative;
+   width: 100%;
+   height: 100px;
+   
+}
+.warnBox .warnContentBox .warnContent li .timeBox {
+   width: 100%;
+   height: 30px;
+   line-height: 30px;
+   font-size: 12px;
+
+}
+.warnBox .warnContentBox .warnContent li .timeBox .dateTxt {
+   float: left;
+   width: 140px;/*78px;*/
+   color: #939090;
+
+}
+.warnBox .warnContentBox .warnContent li .timeBox .timeTxt {
+   float: left;
+   width: 72px;
+   color: #6f6f6f;
+
+}
+.warnBox .warnContentBox .warnContent li .timeBox .timeGap {
+   float: right;
+   color: #989898;
+   padding-right: 8px;
+   text-align: right;
+
+}
+.warnBox .warnContentBox .warnContent li .itemContent {
+   border-radius: 4px;
+   background: #FFF;
+   font-size: 12px;
+   min-height: 72px;
+   box-shadow: 1px 1px 3px #ccc;
+}
+.warnBox .warnContentBox .warnContent li .itemContent .warnAdreess {
+   height: 36px;
+   width: 100%;
+   font-size: 14px;
+   line-height: 36px;
+   color: #323232;
+}
+.warnBox .warnContentBox .warnContent li .itemContent .warnAdreess .adressBg {
+    margin: 10px 0 0 10px;
+   height: 16px;
+   width: 16px;
+   display: block;
+   float: left;
+   background: url(../img/marker2.png) no-repeat 0 0;
+}
+.warnBox .warnContentBox .warnContent li .itemContent .warnTxt {
+  
+   height: 20px;
+  line-height: 20px;
+  text-indent: 26px;
+  color: #00b7ee;
+}
+.warnBox .warnContentBox .warnContent li .timeMarker {
+    position: absolute;
+    left: -23px;
+    top: 8px;
+    z-index: 4!important;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00b7ee;
+}
+
+#mCSB_1_scrollbar_vertical {
+    width: 4px!important;
+}

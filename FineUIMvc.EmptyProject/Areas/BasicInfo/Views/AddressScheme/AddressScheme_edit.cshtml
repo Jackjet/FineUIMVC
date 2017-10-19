@@ -1,0 +1,137 @@
+﻿@model  FineUIMvc.PumpMVC.Models.AddressScheme
+@{
+    ViewBag.Title = "AddressScheme_edit";
+    var F = @Html.F();
+}
+@section body {
+    @(F.SimpleForm()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                      .ValidateForms("SimpleForm1")
+                      .Icon(Icon.SystemSaveClose)
+                      .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                      .Text("保存")
+                 )
+         )
+         .Items(
+                F.TextBoxFor(x => x.ID)
+                      .Label("主键ID")
+                      .ID("tbxID")
+                      .LabelWidth(80)
+                      .Required(true)
+                      .Readonly(true)
+                      .ShowRedStar(true),
+                F.TextBoxFor(x=>x.FNumber)
+                 .Label("编号")
+                 .EmptyText("请输入编号")
+                 .ID("tbxFNumber")
+                 .LabelWidth(80)
+                 .Required(true)
+                 .ShowRedStar(true),
+                F.TextBoxFor(x=>x.FName)
+                 .Label("名称")
+                 .EmptyText("请输入名称")
+                 .ID("tbxFName")
+                 .LabelWidth(80)
+                 .Required(true),
+                F.TextBoxFor(x=>x.FStartAddress)
+                 .Label("开始地址")
+                 .EmptyText("请输入开始地址")
+                 .ID("tbxFStartAddress")
+                 .LabelWidth(80)
+                 .Required(true)
+                 .ShowRedStar(true),
+                F.NumberBoxFor(x=>x.FAddressLength)
+                 .Label("地址长度")
+                 .EmptyText("请输入地址长度")
+                 .ID("tbxFAddressLength")
+                 .LabelWidth(80)
+                 .Required(true)
+                 .ShowRedStar(true),
+                F.NumberBoxFor(x=>x.FOrderBy)
+                 .Label("排序")
+                 .EmptyText("请输入地址长度")
+                 .ID("tbxFOrderBy")
+                 .LabelWidth(80)
+                 .Required(true)
+                 .ShowRedStar(true),
+               F.DropDownListFor(x => x.FType)
+                  .ID("ddlFType")
+                  .Label("方案类型")
+                  .LabelWidth(80)
+                  .Items(
+                       F.ListItem()
+                        .Text("泵站")
+                        .Value("1"),
+                       F.ListItem()
+                        .Text("阀门")
+                        .Value("2"),
+                       F.ListItem()
+                        .Text("流量")
+                        .Value("3"),
+                       F.ListItem()
+                        .Text("水厂")
+                        .Value("4"),
+                       F.ListItem()
+                        .Text("水源")
+                        .Value("5"),
+                       F.ListItem()
+                        .Text("大表")
+                        .Value("6"),
+                       F.ListItem()
+                        .Text("压力")
+                        .Value("7"),
+                       F.ListItem()
+                        .Text("调峰")
+                        .Value("8"),
+                       F.ListItem()
+                        .Text("水质")
+                        .Value("9")
+                           ),
+               F.TextBoxFor(x=>x.FNote)
+                .Label("备注")
+                .EmptyText("请输入备注")
+                .ID("tbxFNote")
+                .LabelWidth(80)
+           
+        )
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+
+        function updateCustomer(id, text, tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+    </script>
+}

@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "AddressSchemeEntry";
+    var F = @Html.F();
+}
+
+
+@section body {
+
+    @(
+    F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .Margin(5)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Items(
+                  F.Form()
+                       .ID("Form3")
+                       .BodyPadding("5px")
+                       .ShowHeader(false)
+                       .ShowBorder(false)
+                       .LabelAlign(LabelAlign.Left)
+                       .Rows(
+                          F.FormRow()
+                               .ID("FormRow2")
+                               .Items(
+                                  F.TwinTriggerBox()
+                                         .ID("ttbSearchMessage")
+                                         .ShowLabel(false)
+                                         .EmptyText("在地址名称中搜索")
+                                         .Trigger1Icon(TriggerIcon.Clear)
+                                         .Trigger2Icon(TriggerIcon.Search)
+                                         .ShowTrigger1(false)
+                                         .Listener("trigger1click", "onTrigger1Click")
+                                         .Listener("trigger2click", "onTrigger2Click"),
+                                   F.Label()
+                               )
+                       ),
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("Grid1")
+                       .DataIDField("ID")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .AllowCellEditing(true)
+                       .ClicksToEdit(1)
+                       .OnAfterEdit(Url.Action("Grid1_AfterEdit"), "Grid1", new Parameter("FSchemeID", "F.ui.FSchemeID.getValue()")
+                                          , new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()")
+                                          , new Parameter("searchMessage", "F.ui.ttbSearchMessage.getValue()"))
+                       .AllowPaging(true)
+                       .IsDatabasePaging(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                        .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1", new Parameter("FSchemeID", "F.ui.FSchemeID.getValue()")
+                                        , new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()")
+                                        , new Parameter("searchMessage", "F.ui.ttbSearchMessage.getValue()"))
+                       .PageSize(1000)
+                       .PageItems(
+                           F.ToolbarSeparator()
+                              .ID("ToolbarSeparator1"),
+                           F.ToolbarText()
+                              .ID("ToolbarText1")
+                              .Text("每页记录数："),
+                           F.DropDownList()
+                              .ID("ddlGridPageSize")
+                              .Width(80)
+                              .Listener("change", "onDropDownList1Change")
+                              .SelectedValue("1000")
+                              .Items(
+                                 F.ListItem()
+                                   .Text("1000")
+                                   .Value("1000"),
+                                 F.ListItem()
+                                   .Text("2000")
+                                   .Value("2000"),
+                                 F.ListItem()
+                                   .Text("5000")
+                                   .Value("5000"),
+                                 F.ListItem()
+                                   .Text("10000")
+                                   .Value("10000")
+                              )
+                       )
+                       .Columns(
+            F.RowNumberField(),
+            F.RenderField()
+                .HeaderText("名称")
+                .DataField("FName")
+                .Width(180),
+            F.RenderField()
+                .HeaderText("数据库字段")
+                .DataField("FDBAddress")
+                .Width(100),
+           F.RenderField()
+            .HeaderText("PLC地址")
+            .DataField("FPLCAddress")
+            .Width(100)
+            .Editor(
+                F.TextBox()
+                 .ID("tbxFPLCAddress")
+                
+                    ),
+            F.RenderField()
+              .HeaderText("读写")
+              .DataField("FWorR")
+              .Width(80)
+              .Editor(
+                  F.DropDownList()
+                   .ID("tbxFWorR")
+                   .Items(
+                     F.ListItem()
+                      .Text("R")
+                      .Value("R"),
+                     F.ListItem()
+                      .Text("WR")
+                      .Value("WR")
+                   )
+                   .Required(true)
+              ),
+           F.RenderField()
+             .HeaderText("FRate")
+             .DataField("FRate")
+             .Width(80)
+             .Editor(
+                 F.TextBox()
+                  .ID("tbxFRate")
+                  .Required(true)
+             ),
+            F.RenderField()
+                .HeaderText("单位")
+                .DataField("FUnit")
+                .Width(100)
+                .Editor(
+                    F.TextBox()
+                     .ID("tbxFUnit")
+                     .Required(true)
+                ),
+            F.RenderField()
+             .HeaderText("备注")
+             .DataField("FNote")
+             .Width(580)
+             .Editor(
+                 F.TextBox()
+                  .ID("tbxFNote")
+                  .Required(true)
+             )
+                )
+                 .RecordCount(ViewBag.Grid1RecordCount)
+                 .DataSource(ViewBag.Grid1DataSource),
+     
+  
+       F.HiddenField()
+        .ID("FSchemeID")
+        .Text(ViewBag.FSchemeID)
+                      )
+
+    )
+    
+
+
+}
+
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function doCustomPostBack(type, params) {
+            var grid1 = F.ui.Grid1;
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            var FSchemeID = F.ui.FSchemeID.getValue();
+            // 触发后台事件
+            F.doPostBack('@Url.Action("MyCustomPostBack")', {
+                type: type,
+                gridFields: grid1.fields,
+                typeParams: params,
+                gridIndex: grid1.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue(),
+                FSchemeID:FSchemeID
+            });
+        }
+        function renderAction1(value, params) {
+            var deleteImageUrl = '@Url.Content("~/res/icon/delete.png")';
+            return '<a class="action-btn mybtn2" href="javascript:;"><img class="f-grid-cell-icon" src="' + deleteImageUrl + '"></a>';
+        }
+
+        function onTrigger1Click(event) {
+            doCustomPostBack('trigger1');
+        }
+
+        function onTrigger2Click(event) {
+            var triggerValue = this.getValue();
+            if (!triggerValue) {
+                F.alert('请输入搜索关键词！');
+                return;
+            }
+
+            doCustomPostBack('trigger2', {
+                triggerValue: triggerValue
+            });
+        }
+        function onDropDownList1Change(event) {
+            doCustomPostBack('dropdownlist', {
+                ddlValue: this.getValue()
+                
+            });
+        }
+    </script>
+
+}

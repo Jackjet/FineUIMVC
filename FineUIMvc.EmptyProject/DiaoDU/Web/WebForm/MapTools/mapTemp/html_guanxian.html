@@ -1,0 +1,42 @@
+﻿<div class="property_box " data-type="Line" data-mapId=""><input type="hidden" class="data-key" data-field="FMapLineID" />
+    <div class="map_property">
+        <div><i class="tri_ico"></i><span class="prop_title">地图属性</span></div>
+        <ul class="map_property_list">
+            <li><label>别名</label><input type="text" class="data-key" data-field="FAliasName" /></li>
+            <li><label>名称</label><input type="text" class="data-key" data-field="FName" /></li>
+            <li><label>管线数据</label><input type="text" readonly="readonly" class="data-key" data-field="FLine" /></li>
+            <li><label>颜色</label><input type="text" id="line_color" class="data-key minicolors" data-field="FStrokeColor" /></li>
+            <li><label>透明度</label>
+                <input type="text" class=" data-key" id="id_opacity" data-field="FStrokeOpacity" readonly="readonly" />
+                <div style="padding: 6px 10px;  height:13px;" class="mySlider"><div id="slider-range-opacity"></div></div>
+            </li>
+            <li><label>宽度</label>
+                <input type="text" id="id_lineWidth" class="data-key" data-field="FStrokeWeight" readonly="readonly" />
+                <div style="padding: 6px 10px;  height:13px;" class="mySlider"><div id="slider-range-width"></div></div>
+            </li>
+            <li><label>实线与虚线</label>
+            <!--<input type="hidden" class="data-key" data-field="FStrokeStyle" />-->
+                <select class="cla_selector data-key" data-field="FStrokeStyle">
+                    <option value="solid">实线</option>
+                    <option value="dashed">虚线</option>
+                </select>
+            </li>
+            <li class="li_area" style="position: relative;"><label>所属区域</label><ul class="belongArea data-key" data-field="TB_AreaOverlay"></ul><button class="line_areaModify" type="button">修改</button></li>
+        </ul>
+    </div>
+    <div class="ele_property">
+        <div>
+            <i class="tri_ico"></i><span class="prop_title">业务属性</span></div>
+        <ul class="property_list">
+            <li><label>管径类型</label><input type="text" class="data-key" data-field="FLineType" /></li>
+            <li><label>管径</label><input type="text" class="data-key" data-field="FPipeSize" /></li>
+            <li><label>管材</label><input type="text" class="data-key" data-field="FPipeMaterials" /></li>
+            <li><label>铺设日期</label><input type="text" id="line_layDate" class="data-key" data-field="FPavDate" /></li>
+            <li><label>埋深</label><input type="text" class="data-key" data-field="FDepth" /></li>
+            <li><label>管线长度</label><input type="text" class="data-key" data-field="FLength" /></li>
+            <li><label>壁厚</label><input type="text" class="data-key" data-field="FThickness" /></li>
+            <li><label>上级管线</label><input type="text" class="data-key" data-field="FStrokeParentID" /></li>
+        </ul>
+    </div>
+
+</div>

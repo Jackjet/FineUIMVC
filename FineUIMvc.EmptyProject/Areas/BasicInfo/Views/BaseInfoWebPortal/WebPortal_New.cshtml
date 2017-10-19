@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "WebPortal_New";
+    var F = @Html.F();
+}
+@section body {
+    @(F.SimpleForm()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnWebPortalCreate_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                 F.TextBox()
+                    .Label("门户名称")
+                    .EmptyText("请输入门户名称")
+                    .ID("tbxName")
+                    .LabelWidth(100)
+                    .Required(true)
+                    .ShowRedStar(true),
+                F.TextBox()
+                    .Label("门户地址")
+                    .EmptyText("请输入门户地址")
+                    .ID("tbxAddress")
+                    .LabelWidth(100)
+                    .Required(true)
+                    .ShowRedStar(true)
+        )
+    )
+}
+
+@section script {
+    <script>
+    </script>
+}
+

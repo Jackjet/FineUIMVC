@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="../FTZ/css/jquery.mCustomScrollbar.css">
+    <link href="css/loginCss.css" rel="stylesheet" type="text/css" />
+    <link href="./css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="./js/skins/danlan/laydate.css" rel="stylesheet" type="text/css" />
+    <!--<link href="./css/laydate.css" rel="stylesheet" type="text/css" />-->
+    <script type="text/javascript" src="../FTZ/js/jquery.min.js"></script>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>-->
+    <script type="text/javascript" src="../FTZ/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mCustomScrollbar.js"></script>
+    <!--<script src="js/laydate.js"></script>-->
+    <script type="text/javascript" src="./js/laydate.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <title>charts</title>
+    <style>
+        *{
+            margin:0 ;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #myChart {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #search{
+            position: absolute;
+            top:12px;
+            right: 47px;
+            width:260px;
+            height:36px;
+            border: 1px solid rgba(70,157,181,1);
+            border-radius: 5px;
+            z-index: 10;
+        }
+        
+             #search input {
+                display: inline-block;
+                height: 32px;
+                width: 210px;
+                margin: 1px;
+                vertical-align: middle;
+                border: none;
+            }
+            #search label {
+                width: 30px;
+                height: 30px;
+                display: inline-block;
+                border: 0px solid red;
+                vertical-align: middle;
+                background: url(./img/searchBtn.png) no-repeat 0px 2px;
+                background-size: 100%;
+                cursor: pointer;              
+            }
+    </style>
+</head>
+<body>
+    <div id="search">
+        <input id="searchInput" type="text" /> <label id="searchBtn" ></label>
+    </div>
+    <div id="myChart">
+
+       
+    </div>
+    <script>
+        $(function () {
+            function parseUrl() {
+
+                var url = window.location.href;
+             //   alert(url);
+                var i = url.indexOf('?');
+                //alert(1);
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+                    arr2[tar[0]] = tar[1];
+                };             
+                return arr2;
+            }
+
+            var vUrl = parseUrl();    //sxx modify
+            console.log(vUrl);
+          
+            var pumpID = vUrl.id;
+            var chartIndex = parseInt(vUrl.index);
+          //  console.log(chartIndex);
+            var myChart = echarts.init($('#myChart')[0]);
+
+            function myDate(chartIndex) {
+                var d = new Date();
+                var dM = (d.getMonth() <= 9) ? '0' + (d.getMonth()+1) : (d.getMonth()+1);
+                if (chartIndex == 3) {
+                    var dateTemp = d.getFullYear() + "-" + (dM );
+                    return dateTemp;
+                } else {
+                    var dateTemp = d.getFullYear() + "-" + (dM) + "-" + d.getDate();
+                    return dateTemp;
+                }
+               
+            }
+            var date = myDate(chartIndex);
+          //  console.log(date);
+            //alert(date);
+
+
+            var dateOps1 = {};
+            if (chartIndex == 1)
+            {
+                 dateOps1 = {
+                    elem: '#searchInput',
+                    format: 'YYYY-MM-DD',
+                };
+            } else if (chartIndex == 3) {
+                dateOps1 = {
+                    elem: '#searchInput',
+                    format: 'YYYY-MM',
+                };
+            }        
+            laydate(dateOps1);
+
+
+            function chartsOpen(chartIndex, date) {                                
+                switch (chartIndex)
+                {
+                    case 0:
+                        $("#search").css('display','none');
+                        myChart.setOption(option0);
+                        chart1Request(pumpID);
+                        break;
+                    case 1:                    
+                        myChart.setOption(option0);
+                        chart2Request(pumpID,date);
+                        break;
+                    case 2:
+                        $("#search").css('display', 'none');
+                        myChart.setOption(option0);
+                        chart3Request(pumpID);
+                        break;
+                    case 3:
+                      
+                        myChart.setOption(option0);
+                        chart4Request(pumpID,date);
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+          
+            //曲线图
+            function chart1Request(pumpID) {
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getcurvedata',
+                    data: { 'PumpID': pumpID },
+
+                    success: function (data) {
+                       
+                        var data = JSON.parse(data);
+                        console.log(data);                    
+                        var xData = [];
+                        var seriesData = [];
+                        $.each(data, function (i, v) {                         
+                            xData.push(v.T_Time);
+                            seriesData.push( v.A03 )
+                        });
+                         // console.log("xData" + xData);
+                        //    console.log("seriesData" + seriesData);
+                      var   options1 = {                      
+                            xAxis: {
+                                data: xData
+                            },
+                            series: {                               
+                                data: seriesData
+                            },
+                        };                    
+                      myChart.setOption(options1);
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+
+            //柱形图
+            function chart2Request(pumpID, date) {
+                console.log(date);
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=gethistogramdata',
+                    data: { 'PumpID': pumpID,"Date":date },
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                      //  console.log(data + 'dddddddd');
+                        var xData = [];
+                        var seriesData = [];
+                        var legData = [];
+                        legData.push(date);
+                        $.each(data, function (i, v) {
+                            xData.push(v.h_TM);
+                            seriesData.push(v.data);
+                        });
+                        var options1 = {
+                            title: {
+                                text:' 日用水量'
+                            },
+                            legend: {
+                                data: legData
+                            },
+                            xAxis: {
+                                data: xData
+                            },
+                            yAxis: {                              
+                                name:'用水量(m³)'
+                            },
+                            series: [{
+                                name: date,
+                                type: 'bar',
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                            ]
+                                        )
+                                    },                  
+                                    emphasis: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: '#2378f7' },
+                                                { offset: 0.7, color: '#2378f7' },
+                                                { offset: 1, color: '#83bff6' }
+                                            ]
+                                        )
+                                    }
+                                },
+                                data: seriesData
+                            }],
+                        };                    
+                        myChart.setOption(options1);
+                       
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+
+
+            //第三个 曲线图  周用水量
+            function chart3Request(pumpID) {
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getwatpumpweekdata',
+                    data: { 'PumpID': pumpID},
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                        var json=data.data;
+                          console.log(json + 'dddddddd');
+                        var xData = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六'];
+                        var seriesData = [];
+                        var legData = [];                       
+                        $.each(json, function (i, v) {
+                            console.log( v.week);
+                            var series_tempData = [];
+                            var xData = [];
+                            for (var j = 0; j < v.detailData.length; j++)
+                            {
+                                //v.detailData[j].T_dayHour
+                                series_tempData.push(v.detailData[j].data);
+                                xData.push(v.detailData[j].t_weekday);
+                            }                      
+                            legData.push(v.week);                          
+                            seriesData.unshift({ name: v.week, data: series_tempData })
+                        });
+                          console.log("xData" + xData);
+                            console.log("seriesData" + seriesData);
+                        var options1 = {
+                            title: {
+                                text:'周用水量'
+                            },
+                            legend: {
+                                data:legData,
+                            },
+                            xAxis: {
+                                data: xData
+                            },
+                            yAxis:{name:'用水量(m³)'},
+                            series: [{
+                                name: seriesData[0].name,
+                                type: 'bar',
+                                data: seriesData[0].data,
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                            ]
+                                        )
+                                    },                               
+                                },
+                            },
+                            {
+                                name: seriesData[1].name,
+                                type: 'bar',
+                                data: seriesData[1].data,
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: 'rgba(179,124,250,0.9)' },
+                                                { offset: 1, color: 'rgba(153,89,236,0.7)' }
+                                            ]
+                                        )
+                                    },                               
+                                },
+                            }
+                               // seriesData[0],
+                              //  seriesData[1]
+                            ],
+                        };
+                        myChart.setOption(options1);
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+        
+            //month data 第四个
+            function chart4Request(pumpID, date) {              
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getwatpumpmonthdata',
+                    data: { 'PumpID': pumpID, "Date": date },
+                    success: function (data) {
+                        if (!data)
+                        {
+                            alert(data);
+                            return
+                        }
+                        var data = JSON.parse(data);
+                          console.log(data + 'monthdata');
+                        var xData = [];
+                        var seriesData = [];
+                        var legData = [];
+                        legData.push(date);
+                        $.each(data, function (i, v) {
+                            xData.push(v.t_monthDay);
+                            seriesData.push(v.data);
+                        });
+                        var options1 = {
+                            title:{text:'月用水量'},
+                            legend: {
+                                data: legData
+                            },
+                            xAxis: {
+                                name:'日期',
+                                data: xData
+                            },
+                            yAxis:{name:'用水量(m³)'},
+                            series: {
+                                type:'bar',
+                                name: date,
+                                data: seriesData,
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                            ]
+                                        )
+                                    },
+                                    emphasis: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                { offset: 0, color: '#2378f7' },
+                                                { offset: 0.7, color: '#2378f7' },
+                                                { offset: 1, color: '#83bff6' }
+                                            ]
+                                        )
+                                    }
+                                },
+                            },
+                        };
+                        myChart.setOption(options1);
+
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+
+            $(window).resize(function () {
+                myChart.resize();
+            });
+         var    option0= {
+                title: {
+                    text: '实时压力曲线图',
+                    textStyle: {
+                        color: 'rgb(0,0,0)'
+                    }
+                },
+                grid: {
+                    left: 40,
+                    right: 45,
+                    bottom: 30
+                },
+                 tooltip: {
+                        trigger: 'axis',
+                        backgroundColor: 'rgba(28,136,151,0.6)',
+                        padding: [5, 10],
+                        axisPointer: {
+                            lineStyle: {
+                                color: 'rgba(37,211,186,0.7)'   
+                            }
+                        }
+                 },
+                legend: {
+                    data: ['当天'],
+                    textStyle: {
+                        color: '#000',
+                    },
+                //    selected: {
+                //        '当月': true
+                //    }
+                },
+                xAxis: {
+                    show: 'false',
+                    type: 'category',
+                    name:"时间",
+                    axisLabel: {
+                        textStyle: {
+                            color: '#000'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                   // boundaryGap: true,
+               //     data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                    data: []
+                },
+                yAxis: {
+                    show: true,
+                    type: 'value',
+                    name:"压力值(MPa)",
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: 'rgb(0,0,0)',
+                            fontSize: 12,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['rgba(27, 131, 167,0.5)'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
+                },
+                series: [ {
+                    name: '当天',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        smooth:true,                      
+                    },                 
+                  //  data: ["0.274", "0.277", "0.274", "0.281", "0.277", "0.274", "0.279", "0.282", "0.274", "0.268", "0.276", "0.266", "0.260", "0.267", "0.277", "0.278", "0.287", "0.287", "0.282", "0.287", "0.287", "0.281", "0.276", "0.275", "0.254", "0.259", "0.282", "0.283", "0.286", "0.279", "0.279", "0.282", "0.278", "0.251", "0.271", "0.281", "0.270", "0.283", "0.282", "0.285", "0.277", "0.276", "0.267", "0.267", "0.268", "0.261", "0.250", "0.240", "0.212", "0.203", "0.203", "0.214", "0.189", "0.183", "0.184", "0.208", "0.207", "0.197", "0.188", "0.207", "0.198", "0.191", "0.197", "0.198", "0.188", "0.197", "0.180", "0.176", "0.168", "0.186", "0.178"]
+                    data:[]
+                }]
+         };
+    
+         chartsOpen(chartIndex, date);
+        
+             $("#searchBtn").click(function () {                 
+                  date = $.trim($("#searchInput").val());
+                  if (!date)
+                  {
+                      alert('日期不能为空！');
+                      return
+                  }
+                 chartsOpen(chartIndex,date);
+             });
+        })
+    </script>
+</body>
+</html>

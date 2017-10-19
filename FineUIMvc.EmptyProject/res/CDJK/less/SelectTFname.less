@@ -1,0 +1,168 @@
+﻿
+.searchBtnMixin{
+         height: 28px;
+           line-height: 28px;
+           border-radius: 14px;
+           background-color: #3683af;
+           border: none;
+           padding: 0 14px;
+           color: #fff;
+           outline: none;
+           cursor: pointer;
+          position: absolute;
+          right: 10px;
+          top: 14px;
+}
+
+
+#tableWrap{
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    position: relative;
+    .list_header{
+    	padding: 16px;
+    	height: 54px;
+        position: relative;
+        .searchBtn{
+        	 .searchBtnMixin;
+        }
+        .TFnameSearch{
+            height: 30px;
+             margin-right: 4px;
+        	border: 1px solid #d0d5d9;
+        	border-radius: 14px;	
+        	padding:0px 10px;	
+        	background-color: #fff;
+            position: absolute;
+            top: 14px;
+            right: 70px;
+            input{
+               border: none;
+            	height: 28px;
+                width: 186px;
+            	line-height: 28px;
+                padding-right: 14px;
+            	outline: none;
+                border-radius: 12px;
+               text-indent: 2px;
+                font-size: 12px;
+            	font-family: "微软雅黑";
+            }
+        }
+    }
+
+}
+.list_table{
+   border-top: 2px solid #438eb9;
+	width: 100%;
+	border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	margin-bottom: 3px;	
+    position: relative;
+}
+.table1_wrap{
+	width: 100%;
+    height: 34px;
+    top: 0px;
+    position: absolute;
+	overflow: hidden;	
+    z-index: 2;
+}
+.myTable{
+	width: 100%;
+	border-collapse: collapse;
+
+}
+.table1{
+	position: relative;
+}
+.table2{
+    width: 100%;
+}
+.table2_wrap{
+	height: 100%;
+	background-color: #fff;
+	overflow: auto;
+}
+.myTable tr{
+	width: 100%;
+	height:34px;
+    cursor: pointer;
+      &:hover td{
+        background-color: #e0f4ff;
+    }
+}
+
+.myTable th{
+    /*padding-left: 5px;*/
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #e5e5e5;
+	color: #676767;
+	font-size: 12px;
+    font-family: "微软雅黑";
+    text-align: center;
+     min-width: 70px;
+     width: 70px;
+}
+.myTable tr th:nth-child(1),.myTable tr td:nth-child(1){
+   display: none;
+}
+.myTable td{
+	text-align: center;
+	border-bottom: 1px dashed #e8e8e8;
+	background-color: #fff;
+	color: #676767;
+	font-size: 12px;
+    font-family: "微软雅黑";
+    /*padding-left: 3px;*/
+    min-width: 70px;
+    width: 70px;
+  
+}
+/*翻页*/
+.page_wrap{
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 44px;
+	position: absolute;
+	right: 12px;
+	bottom: 20px;
+}
+.page_box{
+	float: right;
+	margin-top: 10px;
+	padding-right: 16px;
+}
+.page_box span{
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+.page_box a{
+	display: inline-block;	
+	color: #8f9092;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	text-align: center;
+	padding: 4px;
+    font-weight: bold;
+}
+.page_box a:hover{
+	color: #438eb9;
+}
+.page_box span{
+	color: #8f9092;
+}
+.page_box #lastPage{
+	margin-right: 20px;
+}
+.page_box #currentPage,.page_box #pageSize,.page_box #totalNum{
+	color: #438eb9;
+}
+#editPageIndex{
+    width: 20px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    display: none;
+}

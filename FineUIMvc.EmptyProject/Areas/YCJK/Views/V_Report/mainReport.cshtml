@@ -1,0 +1,252 @@
+﻿@{
+    ViewBag.Title = "mainReport";
+    var F = @Html.F();
+}
+@section head {
+<title>主报表</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/mainReport.css" />
+<script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+<script src="~/res/js/echarts.min.js"></script>
+<script src="~/res/layer/layer.js"></script>
+}
+
+@section body {
+    <div class="main_wrap">
+        <ul class="showEquipNum">
+            <li class="pumpNum">
+                <div class="itemIco itemIco1"></div>
+                <p class="itemText">泵房数</p>
+                <div class="itemNum" data-name="pumpNum">11</div>
+            </li>
+            <li class="jzNum">
+                <div class="itemIco itemIco2"></div>
+                <p class="itemText">机组数</p>
+                <div class="itemNum" data-name="jzNum">11</div>
+            </li>
+            <li class="xsNum">
+                <div class="itemIco itemIco3"></div>
+                <p class="itemText">箱式数</p>
+                <div class="itemNum" data-name="xsNum">11</div>
+            </li>
+            <li class="gsNum">
+                <div class="itemIco itemIco4"></div>
+                <p class="itemText">罐式数</p>
+                <div class="itemNum" data-name="gsNum">11</div>
+            </li>
+            <li class="qtNum li_right">
+                <div class="itemIco itemIco5 "></div>
+                <p class="itemText">其他</p>
+                <div class="itemNum" data-name="otherNum">11</div>
+            </li>
+            <li class="onlineNum ">
+                <div class="itemIco itemIco6"></div>
+                <p class="itemText">在线</p>
+                <div class="itemNum" data-name="onlineNum">11</div>
+            </li>
+            <li class="alarmNum">
+                <div class="itemIco itemIco7"></div>
+                <p class="itemText">报警</p>
+                <div class="itemNum" data-name="alarmNum">11</div>
+            </li>
+            <li class="offlineNum">
+                <div class="itemIco itemIco8"></div>
+                <p class="itemText">离线</p>
+                <div class="itemNum" data-name="offlineNum">11</div>
+            </li>
+            <li class="pumpNum"></li>
+            <li class="pumpNum li_right"></li>
+        </ul>
+        @*<div class="top10_wrap" >
+            <div class="waterUse_wrap use_wrap">
+                <ul class="waterUse_list">
+                    <li>
+                        <div class="front">
+                            <div class="line1_wrap .clearfix">
+                                <div class="seriNum_ico"><p>1</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                            </div>
+                            <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                        </div>
+                        <div class="back">
+                            <div class="leftArrow"></div>
+                            <div class="backText">原理图</div>
+                            <div class="rightArrow"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="front">
+                            <div class="line1_wrap .clearfix">
+                                <div class="seriNum_ico"><p>2</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                            </div>
+                            <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                        </div>
+                        <div class="back">
+                            <div class="leftArrow"></div>
+                            <div class="backText">原理图</div>
+                            <div class="rightArrow"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="front">
+                            <div class="line1_wrap .clearfix">
+                                <div class="seriNum_ico"><p>3</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                            </div>
+                            <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                        </div>
+                        <div class="back">
+                            <div class="leftArrow"></div>
+                            <div class="backText">原理图</div>
+                            <div class="rightArrow"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="front">
+                            <div class="line1_wrap .clearfix">
+                                <div class="seriNum_ico"><p>4</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                            </div>
+                            <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                        </div>
+                        <div class="back">
+                            <div class="leftArrow"></div>
+                            <div class="backText">原理图</div>
+                            <div class="rightArrow"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="chart_wrap">
+                <div class="waterChart_wrap chartInner_wrap">
+                    <div class="chartTitle">用水量前十机组</div>
+                    <div class="selectTime" data-type="water"><a class="year active" data-timeType="year">年</a><a class="month" data-timetype="month">月</a><a class="day" data-timetype="day">日</a></div>
+                    <div class="chart_box" id="waterUseChart"></div>
+                </div>
+                <div class="elecChart_wrap chartInner_wrap">
+                    <div class="chartTitle">用电量前十机组</div>
+                    <div class="selectTime" data-type="elec"><a class="year active" data-timetype="year">年</a><a class="month" data-timetype="month">月</a><a class="day" data-timetype="day">日</a></div>
+                    <div class="chart_box" id="elecUseChart"></div>
+                </div>
+            </div>
+            <div class="elecUse_wrap use_wrap">
+                <ul class="elecUse_list">
+                    <li>
+                        <div class="line1_wrap .clearfix">
+                            <div class="seriNum_ico top3_ico"><p>1</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                        </div>
+                        <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                    </li>
+                    <li>
+                        <div class="line1_wrap .clearfix">
+                            <div class="seriNum_ico top3_ico"><p>2</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                        </div>
+                        <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                    </li>
+                    <li>
+                        <div class="line1_wrap .clearfix">
+                            <div class="seriNum_ico top3_ico"><p>3</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                        </div>
+                        <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                    </li>
+                    <li>
+                        <div class="line1_wrap .clearfix">
+                            <div class="seriNum_ico"><p>4</p></div><div class="jzName">机组名称</div><div class="useValue">2345</div>
+                        </div>
+                        <div class="equipAddr">上海市青浦区盈港东路6355号</div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>*@
+
+        <div class="alarm_wrap clearfix">
+            <div class="realAlarm_wrap model_wrap">
+                <div class="model_title">及时报警</div>
+                <div class="modle_main">
+                    <div class="table1_wrap">
+                        <table class="myTable table1">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="PName">泵房名称</th>
+                                    <th class="PumpJZName">机组名称</th>
+                                    <th class="FSetMsg">报警信息</th>
+                                    <th class="FAlarmTime">报警时间</th>
+                                    <th class="CXTime">持续时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table2_wrap">
+                        <table class="myTable table2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="PName">泵房名称</th>
+                                    <th class="PumpJZName">机组名称</th>
+                                    <th class="FSetMsg">报警信息</th>
+                                    <th class="FAlarmTime">报警时间</th>
+                                    <th class="CXTime">持续时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page_wrap .clearfix">
+                    <div class="page_box">
+                        <a id="firstPage" href="#">&lt;&lt;</a>
+                        <a id="prevPage" href="#">&lt;</a><a id="currentPage" href="#">1</a><a href="#">/</a><a id="totalPage" href="#">100</a><a id="nextPage" href="#">&gt;</a><a id="lastPage" href="#">&gt;&gt;</a>
+                        <span>每页</span><a id="pageSize" href="#">10</a><span>条，共</span><a id="totalNum" href="#">12222</a><span>条</span>
+                        @*<input type="text" id="editPageIndex" />*@
+                    </div>
+                </div>
+             </div>
+            <div class="alarmInfo_wrap model_wrap">
+                <div class="model_title">预警信息</div>
+                <div class="modle_main"></div>
+            </div>
+        </div>
+
+        
+        <div class="reportNav_wrap">
+            <div class="reportNav_head"><p>报表导航</p></div>
+            @*<div class="reportIndex">报表首页</div>*@
+            <div class="list_wrap">
+                <ul class="report_list">
+                    <li data-key="egRunLog"><i class="area_ico"></i><a>运行日志查询</a></li>
+                    <li data-key="egWaterInOutPress"><i class="lineBar_ico"></i><a>实时压力曲线图</a></li>
+                    <li data-key="dayHour_press"><i class="lineBar_ico"></i><a>日时段压力曲线图</a></li>
+                    <li data-key="dayHour_elec"><i class="area_ico"></i><a>日时段电量统计图</a></li>
+                    <li data-key="dayHour_flow"><i class="bar_ico"></i><a>日时段流量统计图</a></li>
+                    <li data-key="monthDay_press"><i class="lineBar_ico"></i><a>月每日压力曲线图</a></li>
+                    <li data-key="monthDay_elec"><i class="lineBar_ico"></i><a>月每日电量统计图</a></li>
+                    <li data-key="monthDay_flow"><i class="lineBar_ico"></i><a>月每日流量统计图</a></li>
+                    <li data-key="yearMonth_press"><i class="lineBar_ico"></i><a>年每月压力曲线图</a></li>
+                    <li data-key="yearMonth_elec"><i class="lineBar_ico"></i><a>年每月电量统计图</a></li>
+                    <li data-key="yearMonth_flow"><i class="lineBar_ico"></i><a>年每月流量统计图</a></li>
+                    <li data-key="rangePowerUse"><i class="lineBar_ico"></i><a>吨水能耗</a></li>
+                    <li><i class="lineBar_ico"></i><a></a></li>
+                    <li><i class="lineBar_ico"></i><a></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<ul class="fixNav">
+    <li class="nav_more">更多</li>
+    @*<li class="nav_top10">前10</li>*@
+    <li class="nav_alarm">预警报警</li>
+    <li class="nav_toTop">返回顶部</li>
+</ul>
+}
+@section script {
+    <script type="text/javascript" src="~/res/YCJK/js/mainReport.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="~/res/CDJK/js/reportNavList.js"></script>
+<script type="text/javascript" src="~/res/configJson/reportList.js"></script>
+}

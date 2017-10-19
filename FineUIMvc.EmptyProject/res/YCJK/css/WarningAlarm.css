@@ -1,0 +1,348 @@
+﻿a,a:active {
+    text-decoration: none;
+}
+.main_wrap{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.list_wrap{
+	/*margin-left: 32px;*/
+	height: 100%;
+	/*border: 1px solid red;*/
+	padding-right: 12px;
+	padding-left: 8px;
+	
+	
+	position: relative;	
+}
+.list_header{
+	padding: 16px;
+	height: 54px;
+	background-color: #f2f3f7;
+}
+ul.searchCriteria{
+    height: 30px;
+    float: left;
+}
+.searchCriteria li{
+    float: left;
+    margin-right: 4px;
+     height: 30px;
+	border: 1px solid #d0d5d9;
+	border-radius: 14px;	
+	padding:0px 10px;	
+	background-color: #fff;
+    vertical-align: middle;
+    position:relative;
+}
+.searchCriteria li input{
+   border: none;
+	height: 28px;
+    width: 186px;
+	line-height: 28px;
+    padding-right: 14px;
+	outline: none;
+    border-radius: 12px;
+   text-indent: 2px;
+    font-size: 12px;
+	font-family: "微软雅黑";
+    
+}
+.searchCriteria li .selectBtn{
+    display: inline-block;
+    width: 18px;
+    height: 24px; 
+    background: url(../img/loopSearch.png) no-repeat 0px 2px;
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    cursor: pointer;
+}
+.searchTime{
+    height: 30px;
+    margin-right: 30px;
+    float: right;
+}
+.searchTime input{
+    height: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    color: #a0a0a0;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    text-indent: 4px;
+}
+.searchTime span{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #a2a0a0;
+}
+.search_box{
+	float: right;
+}
+
+button.searchBtn{
+	height: 28px;
+	line-height: 28px;	
+	border-radius: 14px;	
+	background-color: #3683af;
+	border: none;
+	padding: 0 14px;
+	color: #fff;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	outline: none;
+	cursor: pointer;
+}
+
+.list_table{
+	position: relative;
+	width: 100%;
+    margin-top: 8px;
+}
+.alarmList_wrap{
+    width: 278px;
+    float: left;
+     border-top: 2px solid #438eb9;
+    border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	margin-bottom: 3px;	
+}
+.alarm_title{
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    height: 34px;
+    line-height: 34px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    color: #676767;
+    margin-bottom: 5px;
+}
+.alarmListScroll_wrap{
+    height: 550px;
+    overflow: auto
+}
+.ul_alarmList{
+    padding: 0px 5px;
+}
+.ul_alarmList li{
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 3px;
+}
+.ul_alarmList li:hover,.ul_alarmList li.active{
+    background-color: #e0f4ff;
+}
+.line1_box{
+    height:20px;
+    font-family: "微软雅黑";
+    font-size: 12px;
+}
+
+.line1_box p.real_pumpName{
+    font-weight: bold;
+    float: left;
+    color: #666666;
+}
+
+.line1_box p.real_keepTime{
+    float: right;
+    color: #999999;
+}
+.real_jzName{
+    font-family: "微软雅黑";
+    font-size: 12px;
+    height: 26px;
+    line-height: 20px;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 6px;
+     color: #999999;
+}
+.line2_box p{
+      font-family: "微软雅黑";
+    font-size: 12px;
+    line-height: 22px;
+    color: #438eb9;
+}
+.detailAlarm_wrap{
+    width: 758px;
+    border-top: 2px solid #438eb9;
+    border-left: 1px solid #E5E5E5;
+	border-right: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	margin-bottom: 3px;	
+    float: right;
+    position: relative;
+}
+.table1_wrap{
+	width: 100%;
+    height: 34px;
+    position: absolute;
+  
+	overflow: hidden;	
+}
+.myTable{
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 760px;
+}
+.table1{
+	position: relative;
+}
+.table2_wrap{
+	/*height: 240px;*/
+	background-color: #fff;
+	overflow: auto;
+}
+.myTable tr{
+	width: 100%;
+	height:34px;
+}
+.myTable th{
+    padding-left: 5px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #e5e5e5;
+	color: #676767;
+	font-size: 12px;
+    font-family: "微软雅黑";
+    text-align: left;
+}
+.myTable td{
+	text-align: left;
+	border-bottom: 1px dashed #e8e8e8;
+	background-color: #fff;
+	color: #676767;
+	font-size: 12px;
+    font-family: "微软雅黑";
+    padding-left: 3px;
+    height: 34px;
+}
+.myTable tr td.hide{
+    display: none;
+}
+.myTable th.pumpID,.myTable th.pumpJZId,.myTable td[data-id=pumpID],.myTable td[data-id=pumpJZId]{
+    display: none;
+}
+.myTable th.DTUCode,.myTable td[data-id=DTUCode]{
+    width: 120px;
+}
+.myTable th.FUpdateDate,.myTable td[data-id=FUpdateDate]{
+    width: 150px;
+}
+.myTable td.equipName a{
+	display: inline-block;
+	height: 100%;	
+}
+.myTable td.equipName i{
+	display: inline-block;
+	width: 16px;
+	height: 100%;
+	background: url(../img/onOffAlarmIco.png) no-repeat;	
+}
+td.equipName i.status_1{
+	background-position: -1px 18px;
+}
+td.equipName i.status_0{
+	background-position: -1px -30px;
+}
+td.equipName i.status_2{
+	background-position: -1px -90px;
+}
+.myTable th:last-child,.myTable td:last-child{
+	width: 50px;
+}
+.myTable tr.active td{
+	background-color: #e0f4ff;
+}
+.myTable tr:hover td{
+	background-color: #e0f4ff;
+}
+.inOutPress span{
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: #ececec;
+	color: #676767;
+	border-radius: 2px;
+	margin-right: 5px;
+}
+.pumpStatus span{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background: url(../img/pumpStatus.png) no-repeat;
+}
+.pumpStatus span.onSta{
+	background-position: 0px 0px;
+}
+.pumpStatus span.offSta{
+	background-position: -26px 0px;
+}
+.pumpStatus span.alarmSta{
+	background-position: -52px 0px;
+}
+.inOutPress span.alarm{
+	background-color: #ffead9;
+	color: #ff6f03;
+}
+.setBtn{
+	width: 14px;
+	height: 14px;
+	background: url(../img/setIco.png) no-repeat 0 0;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+	/*margin: 0 auto;*/
+}
+.page_wrap{
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 44px;
+	position: absolute;
+	right: 12px;
+	bottom: 20px;
+}
+.page_box{
+	float: right;
+	margin-top: 10px;
+	padding-right: 16px;
+}
+.page_box span{
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+.page_box a{
+	display: inline-block;	
+	color: #8f9092;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	text-align: center;
+	padding: 4px;
+    font-weight: bold;
+}
+.page_box a:hover{
+	color: #438eb9;
+}
+.page_box span{
+	color: #8f9092;
+}
+.page_box #lastPage{
+	margin-right: 20px;
+}
+.page_box #currentPage,.page_box #pageSize,.page_box #totalNum{
+	color: #438eb9;
+}
+#editPageIndex{
+    width: 20px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    display: none;
+}
+

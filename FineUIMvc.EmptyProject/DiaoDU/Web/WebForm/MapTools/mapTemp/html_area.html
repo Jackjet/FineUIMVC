@@ -1,0 +1,48 @@
+﻿<div class="property_box " data-type="Area" data-mapid="" >
+    <input type="hidden" class="data-key" data-field="FMapAreaID" />
+    <div class="map_property">
+        <div><i class="tri_ico"></i><span class="prop_title">地图属性</span></div>
+        <ul class="map_property_list">
+            <li><label>别名</label><input type="text" class="data-key" data-field="FAliasName" /></li>
+            <li><label>名称</label><input type="text" class="data-key" data-field="FName" /></li>
+            <li><label>区域类型</label><input type="text" class="data-key" disabled="disabled" data-field="FAreaType" /></li>
+            <li><label>区域数据</label><input type="text" readonly="readonly" class="data-key" data-field="FArea" /></li>
+            <li><label>边框颜色</label><input type="text" id="line_color" class="data-key minicolors" data-field="FStrokeColor" /></li>
+            <li>
+                <label>边框透明度</label>
+                <input type="text" class=" data-key" id="id_opacity" data-field="FStrokeOpacity" readonly="readonly" />
+                <div style="padding: 6px 10px;  height:13px;" class="mySlider"><div id="slider-range-opacity"></div></div>
+            </li>
+            <li>
+                <label>边框宽度</label>
+                <input type="text" id="id_lineWidth" class="data-key" data-field="FStrokeWeight" readonly="readonly" />
+                <div style="padding: 6px 10px;  height:13px;" class="mySlider"><div id="slider-range-width"></div></div>
+            </li>
+            <li>
+                <label>实线与虚线</label>
+                <!--<input type="hidden" class="data-key" data-field="FStrokeStyle" />-->
+                <select class="cla_selector data-key" data-field="FStrokeStyle">
+                    <option value="solid">实线</option>
+                    <option value="dashed">虚线</option>
+                </select>
+            </li>
+            <li><label>区域颜色</label><input type="text" id="area_color" class="data-key minicolors" data-field="FAreaColor" /></li>
+            <li>
+                <label>区域透明度</label>
+                <input type="text" class=" data-key" id="area_opacity" data-field="FAreaOpacity" readonly="readonly" />
+                <div style="padding: 6px 10px;  height:13px;" class="mySlider"><div id="slider-area-opacity"></div></div>
+            </li>
+        </ul>
+    </div>
+    <div class="ele_property">
+        <div>
+            <i class="tri_ico"></i><span class="prop_title">业务属性</span>
+        </div>
+        <ul class="property_list">
+            <!--<li><label>管径类型</label><input class="data-key" data-field="" /></li>
+            <li><label>管径</label><input type="text" class="data-key" data-field="" /></li>-->
+           
+        </ul>
+    </div>
+
+</div>

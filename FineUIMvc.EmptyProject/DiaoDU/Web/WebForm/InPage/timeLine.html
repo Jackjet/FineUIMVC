@@ -1,0 +1,486 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		 <link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery-2.1.0.js"></script>
+		 <script src="js/jquery-ui.min.js"></script>
+    	<script src="js/jquery.mousewheel.js"></script>
+    	<script src="js/jquery.mCustomScrollbar.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/timeLine.css"/>
+		<style>
+			body {
+				background-color: #196892;
+			}
+			.wrap {
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+			}
+			/*.timeLineItem {
+				height: 200px;
+				width: 926px;
+				background: #fff;
+				margin: 0 10% ;
+			}
+			
+			.timeLineMark {
+				position: relative;
+				float: left;
+				height: 96px;
+				width: 50px;
+				border: 1px solid green;
+				
+			}
+			.TimeLineLine {
+				
+				width: 4px;
+				height: 100%;
+				margin: 0 auto;
+				background: red;
+			}
+			.timeLineNumber {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -10px 0 0 -10px;
+				width: 20px;
+				height: 20px;
+				background: #0D5D92;
+				border-radius: 50%;
+				color: #fff;
+				text-align: center;
+				line-height: 20px;
+			}
+			.timeContentBox {
+				float: right;
+				width: 876px;
+				height: 200px;
+			}
+			.contentLeft {
+				float: left;
+				width: 70%;
+				height: 100%;
+				background: green;
+			}
+			.contentRight {
+				float: right;
+				width: 28%;
+				height: 100%;
+				background: yellow;
+			}
+			.contentTag {
+				width: 88%;
+				margin:40px auto;
+				height: 40px;
+				background: red;
+			}*/
+			
+			/*1*/
+			
+			/*.timeLineItem.timeLineItem1 {
+				height: 96px;
+				width: 596px;
+				background: #fff;
+				margin: 0 10% ;
+				
+			}
+			
+			.timeLineItem.timeLineItem1 {
+				height: 96px;
+				width: 596px;
+				background: #fff;
+				margin: 0 10% ;
+				
+			}
+			.timeLineItem.timeLineItem1 .timeContentBox {
+				width: 610px;
+				height: 96px;
+				background: red;
+				
+			}
+			.timeLineItem.timeLineItem1 .timeContentBox .contentLeft {
+				background: green;
+				width: 284px;
+				height: 96px;
+				background: red;
+				
+			}
+			.timeLineItem.timeLineItem1 .timeContentBox .contentMid {
+				background: blue;
+				width: 152px;
+				height: 96px;
+				background: red;
+				
+			}
+			.timeLineItem.timeLineItem1 .timeContentBox .contentRight {
+				background: black;
+				width: 152px;
+				height: 96px;
+				background: red;
+				
+			}*/
+		</style>
+		<title></title>
+	</head>
+	<body>
+		
+		<div class="wrap">
+			
+			<div class="timeLineItem timeLineItem1 clearfix">
+				<div class="timeLineMark">
+					<div class="TimeLineLine"></div>
+					<div class="timeLineNumber">1</div>
+				</div>
+				<div class="timeContentBox clearfix">
+					<div class="contentLeft">
+						<h2>大埔河原水厂</h2>
+						<p>供水面积达590平方公里</p>
+					</div>
+					<div class="contentMid">
+						<div class="title"><span class="titleBg"></span>年</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>100万吨</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>14.25%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>16万吨</div></li>
+						</ul>
+					</div>
+					<div class="contentRight">					
+						<div class="title"><span class="titleBg"></span>月</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>10万吨</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>16.75%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>2万吨</div></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!--2-->
+			<div class="timeLineItem timeLineItem2 clearfix">
+				<div class="timeLineMark">
+					<div class="TimeLineLine"></div>
+					<div class="timeLineNumber">2</div>
+				</div>
+				<div class="timeContentBox clearfix">
+					<div class="contentLeft clearfix">
+						<div class="contentLeft1 newFirstClick">
+							<p class="number">58472.14</p>
+							<p class="waterAdreess">青浦第二水厂</p>
+							<div class="shuiChangMark"></div>
+						</div>
+						<div class="contentLeft2  newFirstClick">
+							<p class="number">48312.54</p>
+							<p class="waterAdreess">青浦第三水厂</p>
+							<div class="shuiChangMark"></div>
+						</div>						
+					</div>
+					<div class="contentMid">
+						<div class="title"><span class="titleBg"></span>年</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>80万吨</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>13.63%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>17万吨</div></li>
+						</ul>
+					</div>
+					<div class="contentRight">					
+						<div class="title"><span class="titleBg"></span>月</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>18万吨</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>15.1%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>3万吨</div></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<!--新增-->
+			<!--<div class="timeLineItem new clearfix">
+				<div class="timeLineMark">
+					<div class="TimeLineLine"></div>
+					<div class="timeLineNumber">3</div>
+				</div>
+				<div class="timeContentBox clearfix">
+					<div class="contentLeft clearfix">						
+						<ul class="contentBottom clearfix">
+							<li class="contBotItem clickItem">
+								<div class="picWrap"></div>
+								<div class="txtWarp">
+									<div class="contBotTxt">流量</div>
+									<div class="contBotNumber">9564.68</div>
+								</div>
+								<div class="rightTopBg"></div>
+							</li>
+							<li class="contBotItem clickItem">
+								<div class="picWrap"></div>
+								<div class="txtWarp">
+									<div class="contBotTxt">流量</div>
+									<div class="contBotNumber">9564.68</div>
+								</div>
+								<div class="rightTopBg"></div>
+							</li>
+							<li class="contBotItem clickItem">
+								<div class="picWrap"></div>
+								<div class="txtWarp">
+									<div class="contBotTxt">流量</div>
+									<div class="contBotNumber">9564.68</div>
+								</div>
+								<div class="rightTopBg"></div>
+							</li>
+							<li class="contBotItem clickItem">
+								<div class="picWrap"></div>
+								<div class="txtWarp">
+									<div class="contBotTxt">流量</div>
+									<div class="contBotNumber">9564.68</div>
+								</div>
+								<div class="rightTopBg"></div>
+							</li>
+							<li class="contBotItem clickItem">
+								<div class="picWrap"></div>
+								<div class="txtWarp">
+									<div class="contBotTxt">流量</div>
+									<div class="contBotNumber">9564.68</div>
+								</div>
+								<div class="rightTopBg"></div>
+							</li>
+						</ul>
+					</div>
+					<div class="contentBoxRight">
+						<div class="contentMid">
+						<div class="title"><span class="titleBg"></span>年</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>84.25</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>84.25%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>84.25</div></li>
+						</ul>
+					</div>
+					<div class="contentRight">					
+						<div class="title"><span class="titleBg"></span>月</div>
+						<ul class="listItem">
+							<li><div class="listItemBg"></div><div>总容量:</div><div>84.25</div></li>
+							<li><div class="listItemBg"></div><div>漏损率:</div><div>84.25%</div></li>
+							<li><div class="listItemBg"></div><div>漏损量:</div><div>84.25</div></li>
+						</ul>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+			-->
+			
+			<!--<div class="timeLineItem timeLineItem1 clearfix">
+				<div class="timeLineMark">
+					<div class="TimeLineLine"></div>
+					<div class="timeLineNumber">2</div>
+				</div>
+				<div class="timeContentBox clearfix">
+					<div class="contentLeft">
+						<ul class="contentTag">
+							<li class="contentTagList"></li>
+							<li class="contentTagList"></li>
+							<li class="contentTagList"></li>
+						</ul>
+					</div>
+					<div class="contentRight"></div>
+				</div>
+			</div>-->
+			
+		</div>
+	<script>
+		$(function(){
+			pageReset();
+			$(window).resize(function(){
+				pageReset();
+			});
+			
+			timeMarkeClick();
+			newFirstClick();
+			wrapScroll();
+		});
+		
+		var bgArr=['./img/itemBg1.png','./img/itemBg2.png','./img/itemBg3.png'];
+		var nameArr=[
+	'纵申机械',
+	'唯赛勃环保',
+	'真兰仪表',
+	'百世物流',
+	'华通集团',
+	'釜正液压',
+	'思辟德包装',
+	'浦宇铜艺',
+	'道尔奋',
+	'郏一工业区',
+	'翔山实业',
+	'望瑞门遮阳',
+	'明丰印务',
+	'富美家装',
+	'佳林五金',
+	'锦佳喷涂厂',
+	'都宇机械',
+	'工业园区',
+	'西凡建筑',
+	'源胜实业',
+	'思沛音响',
+	'纳峰真空'	
+];
+
+		function pageReset(){
+			var $h=$(window).height();
+			var $conH=$('.new.timeLineItem').height();			
+			$('.wrap').height($h);
+			console.log($('.wrap').height());
+			//$('.timeLineItem').height($conH);
+			//alert($('.timeLineItem').length);
+//			for(var i=0;i<$('.timeLineItem').length;i++){
+//				$('.timeLineItem')
+//			}
+			$('.timeLineMark').each(function(i,v){
+//				alert(i);
+//				alert($(this).height());
+				$(this).height($(this).parent().height());
+			});
+			console.log($('.timeLineItem').height());
+//			$('.timeLineMark').height($conH);
+
+
+		}
+		
+		function newFirstClick(){			
+			$('body').delegate('.newFirstClick','click',function(ev){								
+				var index=3;
+//				if($(this).hasClass('active')){
+//					return;
+//				}	
+//			alert(index);
+				$(this).parent().parent().parent().nextAll().remove();
+				$(this).addClass('active').siblings().removeClass('active');
+				
+			var $itemStr='';
+			for(var i=0;i<3+Math.floor(Math.random()*(10-1));i++){			
+				$itemStr+='<li class="contBotItem clickItem">'+
+								'<div class="picWrap" style="background-image: url('+bgArr[Math.floor(Math.random()*3)]+')"></div>'+
+							
+							'	<div class="txtWarp">'+
+							'		<div class="contBotTxt">'+nameArr[Math.floor(Math.random()*18)]+'-'+(index+2)+'-'+(i+1)+'</div>'+
+									'<div class="contBotNumber">'+(1600+Math.floor(Math.random()*1000))+'</div>'+
+								'</div>'+
+								'<div class="rightTopBg"></div></li>';
+			}
+				$(this).parent().parent().parent().after(
+				'	<div class="timeLineItem new clearfix">'+
+				'<div class="timeLineMark">'+
+				'	<div class="TimeLineLine"></div>'+
+				'	<div class="timeLineNumber">'+index+'</div>'+
+				'</div>'+
+				'<div class="timeContentBox clearfix">'+
+				'	<div class="contentLeft clearfix">	'+					
+				'		<ul class="contentBottom clearfix">'+
+				$itemStr+
+				'		</ul>'+
+				'	</div>'+
+				'	<div class="contentBoxRight">'+
+				'		<div class="contentMid">'+
+				'		<div class="title"><span class="titleBg"></span>年</div>'+
+				'		<ul class="listItem">'+
+				'			<li><div class="listItemBg"></div><div>总容量:</div><div>'+(6000+Math.floor(Math.random()*2000))+'</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损率:</div><div>'+(1+(Math.random()*5).toFixed(2))+'%</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损量:</div><div>'+(900+Math.floor(Math.random()*1400))+'</div></li>'+
+				'		</ul>'+
+				'	</div>'+
+				'	<div class="contentRight">	'+				
+				'		<div class="title"><span class="titleBg"></span>月</div>'+
+				'		<ul class="listItem">'+
+				'			<li><div class="listItemBg"></div><div>总容量:</div><div>'+(1500+Math.floor(Math.random()*800))+'</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损率:</div><div>'+(1+(Math.random()*5).toFixed(2))+'%</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损量:</div><div>'+(100+Math.floor(Math.random()*800))+'</div></li>'+
+				'		</ul>'+
+				'	</div>'+
+				'	</div>'+
+					
+				'</div>'+
+			'</div>');
+				pageReset();
+				
+				//$(this).addClass('active');
+			});
+			
+		}
+		function timeMarkeClick(){
+			
+			$('body').delegate('.clickItem','click',function(ev){								
+				var index=$(this).parent().parent().parent().parent().index();
+//				if($(this).hasClass('active')){
+//					return;
+//				}	
+			//alert(index);
+				$(this).parent().parent().parent().parent().nextAll().remove();
+				$(this).addClass('active').siblings().removeClass('active');
+
+			var $itemStr='';
+			for(var i=0;i<3+Math.floor(Math.random()*(10-1));i++){
+				$itemStr+=
+				'<li class="contBotItem clickItem">'+
+								'<div class="picWrap" style="background-image: url('+bgArr[Math.floor(Math.random()*3)]+')"></div>'+
+							
+							'	<div class="txtWarp">'+
+							'		<div class="contBotTxt">'+nameArr[Math.floor(Math.random()*18)]+'-'+(index+2)+'-'+(i+1)+'</div>'+
+								'<div class="contBotNumber">'+(1600+Math.floor(Math.random()*1000))+'</div>'+
+								'</div>'+
+							'	<div class="rightTopBg"></div>'+
+							'</li>';
+			}
+				$(this).parent().parent().parent().parent().after(
+				'	<div class="timeLineItem new clearfix">'+
+				'<div class="timeLineMark">'+
+				'	<div class="TimeLineLine"></div>'+
+				'	<div class="timeLineNumber">'+(index+2)+'</div>'+
+				'</div>'+
+				'<div class="timeContentBox clearfix">'+
+				'	<div class="contentLeft clearfix">'+						
+				'		<ul class="contentBottom clearfix">'+
+				$itemStr+
+				'		</ul>'+
+				'	</div>'+
+				'	<div class="contentBoxRight">'+
+				'		<div class="contentMid">'+
+				'		<div class="title"><span class="titleBg"></span>年</div>'+
+				'		<ul class="listItem">'+
+				'			<li><div class="listItemBg"></div><div>总容量:</div><div>'+(6000+Math.floor(Math.random()*2000))+'</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损率:</div><div>'+(1+(Math.random()*5).toFixed(2))+'%</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损量:</div><div>'+(600+Math.floor(Math.random()*1400))+'</div></li>'+
+				'		</ul>'+
+				'	</div>'+
+				'	<div class="contentRight">	'+				
+				'		<div class="title"><span class="titleBg"></span>月</div>'+
+				'		<ul class="listItem">'+
+				'			<li><div class="listItemBg"></div><div>总容量:</div><div>'+(1500+Math.floor(Math.random()*800))+'</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损率:</div><div>'+(1+(Math.random()*5).toFixed(2))+'%</div></li>'+
+				'			<li><div class="listItemBg"></div><div>漏损量:</div><div>'+(100+Math.floor(Math.random()*800))+'</div></li>'+
+				'		</ul>'+
+				'	</div>'+
+				'	</div>'+
+					
+				'</div>'+
+			'</div>');
+				pageReset();
+				
+				//$(this).addClass('active');
+			});
+			
+		
+		}
+		
+			function wrapScroll() {
+    
+			    $('.wrap').mCustomScrollbar({
+			        scrollbarPosition: "inside",
+			        theme: "minimal-dark"
+			    });
+			    
+			}
+	</script>
+	</body>
+</html>

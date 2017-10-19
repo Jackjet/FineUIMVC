@@ -1,0 +1,363 @@
+﻿.warnShowHideBox {
+    position: absolute;
+    bottom: 160px;
+    right: -100px;
+    z-index: 3;
+    width: 106px;
+    height: 42px;
+    background: #fe3950;
+    border-radius: 21px;
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 0 3px  #fe8694;
+    
+    .leftCircle {
+        position: absolute;
+        left: -16px;
+        top: -3px;
+        width: 48px;
+        height: 48px;
+        border: 2px solid rgba(255,255,255,.4);
+        background: url(/res/YCJK/img/warnBg.png) no-repeat 14px 12px #fe3950;
+        border-radius: 50%;
+        cursor: pointer;
+        &.hide {
+            background-image: none;
+        }
+    }
+    .rightContent {
+        width: 52px;
+        height: 42px;
+        margin-left: 32px;
+        color: #fff600;
+        font-size: 12px;
+        cursor: pointer;
+        .rightSet {          
+            height: 18px;
+            line-height: 18px;
+            .rightSetBg {
+                float: left;
+                width: 18px;
+                height: 18px;
+                background: url(/res/YCJK/img/warnBg.png) no-repeat -34px 2px;
+            } 
+        }
+        .rightInfo {          
+            height: 18px;
+            line-height: 18px;
+            .rightInfoBg {
+                float: left;
+                width:18px;
+                height: 18px;
+                 background: url(/res/YCJK/img/warnBg.png) no-repeat -146px 2px;
+            } 
+        }
+    }
+}
+
+.warnContentBox {
+    position: absolute;
+    z-index: 5;
+    width: 334px;
+    height: 148px;
+    background: #757575;
+    border-radius: 2px;
+    margin-right: -10000000px;
+    &.leftTop {
+        top: 4px;
+        left: 6px;
+    }
+    &.top {
+        top: 4px;
+        left: 50%;
+        //transform: translateX(-50%);
+        margin-left: -167px;
+    }
+    &.rightTop {
+        top: 4px;
+        right: 4px;
+
+    }
+    &.right{
+        right: 4px;
+        top: 50%;
+        margin-top: -74px;
+    }
+    &.rightBottom {
+        right: 4px;
+        bottom: 4px;
+
+    }
+    &.bottom {
+        bottom: 4px;
+        left: 50%;
+         margin-left: -167px;
+    }
+    &.leftBottom {
+        bottom: 4px;
+        left: 4px;
+    }
+    &.left {
+        left: 4px;
+        top: 50%;
+        margin-top: -74px;
+    }
+}
+
+.warnContentHeader {
+    margin-left: 14px;
+    height: 28px;
+    margin-top: 18px;
+    line-height: 28px;
+    color: #fff600;
+    font-size: 14px;
+    .contentHeaderBg {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url(/res/YCJK/img/warnBg.png) no-repeat 2px 5px;
+    }
+    .contentHeaderTxt {
+        float: left;
+    }
+}
+
+.warnContentMain {
+     margin-left: 14px;
+     .contentMainTime {
+         height: 20px;
+         line-height: 20px;
+         color: #fff;
+         font-weight: bold;
+         font-size: 14px;
+     }
+     .contentMainTxt {
+         width: 299px;
+         height: 52px;
+         color: #ededed;
+         font-size: 12px;
+         line-height: 16px;
+     }
+}
+
+.more {
+    position: absolute;
+    right: 6px;
+    bottom: 10px;
+    width: 36px;
+    height: 16px;
+    line-height: 16px;
+    color: #a2a2a2;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #e9e9e9;
+    &:hover {
+        color: #fff;
+    }
+}
+
+.setAndSound {
+    position: absolute;
+    top: 24px;
+    right: 6px;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    .setBtn {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url(/res/YCJK/img/warnBg.png) no-repeat -35px 2px;
+    }
+    .soundBtn {
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url(/res/YCJK/img/warnBg.png) no-repeat -70px 2px;
+        &.noSound {
+            background-position:  -106px 2px;
+        }
+    }
+}
+
+
+//报警 信息显示  设定窗口
+
+.warnSetContainer {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 6;
+   right: 0;
+   bottom: 0;
+   background: rgba(0,0,0,.3);
+   display: none;
+   .warnSetBox {
+       position: absolute;
+       left: 50%;
+       top: 50%;
+       width: 322px;
+       height: 242px;
+       margin-left: -161px;
+       margin-top: -121px;
+       background: #fff;
+       box-shadow: 0 0 2px grba(0,0,0,.4);
+       .closeBox {
+           width: 20px;
+           height: 20px;
+           color: #b9b9b9;
+           margin-left: 298px;
+           text-align: center;
+           line-height: 22px;
+           font-size: 18px;
+           font-weight: bold;
+           cursor: pointer;
+
+           &:hover {
+               color: #666;
+           }
+
+       }
+       .warnTypeBox {
+           height: 44px;
+           margin-left: 20px;
+           line-height: 40px;
+           .warnTypeTxt {
+               float: left;
+               color: #989898;
+               font-size: 14px;
+
+           }
+           .warnSoundBox {
+               float: left;
+               width: 20px;
+               height: 20px;
+               background: url(/res/YCJK/img/warnSetRoundBg.png) no-repeat  -23px 4px;
+               margin-top: 10px;
+               margin-left: 150px;
+               cursor: pointer;
+               &.noSound {
+                   background-position: 4px 4px;
+               }
+
+           }
+           
+       }
+       .showType {
+           position: relative;
+           float: left;
+           width: 68px;
+           height: 33px;
+           line-height: 33px;
+           text-align: center;
+           color: #717171;
+           margin-left: 20px;
+           font-size: 12px;
+           background: #f4f4f4;
+           border-radius: 5px;
+           cursor: pointer;
+           &:hover {
+                background: #e0f4ff;
+                color: #188df0;
+           }
+           &.active {
+               background: #e0f4ff;
+               color: #188df0;
+               .showBg {
+                     position: absolute;
+                     bottom: 0;
+                     right: 0;
+                     width: 22px;
+                     height: 16px;
+                     border-radius: 0 0 5px 0;
+                     background: url(/res/YCJK/img/rightCheck.png) no-repeat ;
+                 }
+           }
+           
+       }
+
+       .warnInfoPosition {
+           margin-top: 40px;
+           margin-left: 20px;
+           color: #989898;
+           
+       }
+
+       .warnPositonBox {
+           margin-left: 20px;
+           margin-top: 10px;
+           width: 100px;
+           height: 103px;
+           background: url(/res/YCJK/img/warnPositionBgNormal.png) no-repeat ;
+           .positionItem {
+               float: left;
+               width: 32px;
+               height: 33px;
+               margin-top: 1px;
+               margin-left: 1px;
+               background:  rgba(255,255,255,.1);
+               &:nth-of-type(1) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) no-repeat 0 0 #fff;
+                    }
+               }
+               &:nth-of-type(2) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) no-repeat -34px 0 #fff;
+                    }
+               }
+               &:nth-of-type(3) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) no-repeat -68px 0 #fff;
+                    }
+               }
+               &:nth-of-type(4) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) no-repeat 0 -35px #fff;
+                    }
+               }
+               &:nth-of-type(5) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) -34px -35px  no-repeat #fff;
+                    }
+               }
+               &:nth-of-type(6) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) -68px -35px  no-repeat #fff;
+                    }
+               }
+               &:nth-of-type(7) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) 0 -69px no-repeat #fff;
+                    }
+               }
+               &:nth-of-type(8) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) -34px -69px  no-repeat #fff;
+                    }
+               }
+               &:nth-of-type(9) {
+                   &:hover,&.active {
+                      background:  url(/res/YCJK/img/warnPositionBgActive.png) -68px -69px no-repeat #fff;
+                    }
+               }
+               
+           }
+       }
+   }
+}

@@ -1,0 +1,197 @@
+﻿@{
+    ViewBag.Title = "编辑加压站";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.BASE_JIAYAZHAN
+
+@section body {
+
+    @(F.Form()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .IsViewPort(true)
+                .BodyPadding(5)
+                .AutoScroll(true)
+                .Toolbars(
+                    F.Toolbar()
+                        .Items(
+                            F.Button()
+                                .ValidateForms("SimpleForm1")
+                                .Icon(Icon.SystemSaveClose)
+                                .OnClick(Url.Action("btnBasicEdit_Click"), "SimpleForm1")
+                                .Text("保存")
+                        )
+                )
+                .Items(
+                F.FormRow()
+                     .Items(
+                       F.TextBoxFor(x => x.FName)
+                          .Label("泵房名称")
+                          .EmptyText("请输入泵房名称")
+                          .ID("tbxFName")
+                          .LabelWidth(80)
+                          .Required(true)
+                          .ShowRedStar(true),
+                          F.TriggerBox()
+                          .ID("tbSelectedCustomer")
+                          .EnableEdit(false)
+                          .LabelWidth(80)
+                          .Required(true)
+                          .ShowRedStar(true)
+                          .TriggerIcon(TriggerIcon.Search)
+                          .OnClientTriggerClick("OnClientCustomerSelect();")
+                          .Text(ViewBag.tbSelectedCustomer)
+                          .Readonly(ViewBag.KHReadOnly)
+                          .Label("客户名称")
+                     ),
+                F.FormRow()
+                     .Items(
+                       F.DropDownListFor(x => x.FCompanyNumber)
+                                  .ID("ddlCompany")
+                                  .Label("分公司")
+                                  .LabelWidth(80)
+                                  .DataTextField("Fengongsi")
+                                  .DataValueField("U8number")
+                                  .DataSource(ViewBag.ddlCompanyDataSource)
+                                  .SelectedValue(ViewBag.ddlCompanySelect),
+                       F.DropDownListFor(x => x.FProvince)
+                          .ID("ddlProvince")
+                          .Label("所在省")
+                                  .LabelWidth(80)
+                          .CompareType(CompareType.String)
+                          .CompareValue("-1")
+                          .CompareOperator(Operator.NotEqual)
+                          .CompareMessage("请选择省份！")
+                          .ShowRedStar(true)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                          .DataSource(ViewBag.ddlProvinceDataSource)
+                          .OnSelectedIndexChanged(Url.Action("ddlSheng_SelectedIndexChanged"), "SimpleForm1")
+                          .SelectedValue(ViewBag.ddlProvinceSelect),
+                       F.DropDownListFor(x => x.FCity)
+                          .ID("ddlCity")
+                          .Label("所在市")
+                          .LabelWidth(80)
+                          .CompareType(CompareType.String)
+                          .CompareValue("-1")
+                          .CompareOperator(Operator.NotEqual)
+                          .CompareMessage("请选择地区市！")
+                          .ShowRedStar(true)
+                          .DataTextField("FName")
+                          .DataValueField("FValue")
+                          .DataSource(ViewBag.ddlCityDataSource)
+                          .SelectedValue(ViewBag.ddlCitySelect)
+                     ),
+                     F.FormRow()
+                     .Items(
+                     F.TextBoxFor(x => x.FXXAddress)
+                          .Label("详细地址")
+                          .LabelWidth(80)
+                          .EmptyText("请输入详细地址")
+                          .ID("tbxAddress")
+                     ),
+                     F.FormRow()
+                     .Items(
+                     F.TriggerBoxFor(x => x.FAddress)
+                          .ID("tbSelectedAddress")
+                          .EnableEdit(false)
+                                  .LabelWidth(80)
+                          .Required(true)
+                          .ShowRedStar(true)
+                          .TriggerIcon(TriggerIcon.Search)
+                          .OnClientTriggerClick("OnClientAddressSelect();")
+                          .Label("地理位置")
+                     ),
+                             F.FormRow()
+                                .Items(
+                                   F.TextBoxFor(x=>x.FJKLink)
+                                      .Label("监控链接")
+                                      .LabelWidth(80)
+                                      .EmptyText("请输入监控链接")
+                                      .Hidden(ViewBag.JKLJ)
+                                      .ID("tbxFJKLink")
+                                    ),
+                         F.FormRow()
+                               .Items(
+                                  F.TextBoxFor(x => x.FNote)
+                                     .Label("备注")
+                                     .LabelWidth(80)
+                                     .EmptyText("请输入备注")
+                                     .ID("tbxFNote")
+                                   ),
+
+
+                     F.FormRow()
+                     .Items(
+                             F.HiddenFieldFor(x => x.ID)
+                                  .ID("tbxID"),
+                                F.TextBoxFor(x => x.FCode)
+                                  .Label("泵房编码")
+                                  .Hidden(true)
+                                  .Readonly(true)
+                                  .ID("tbxFCode")
+                                  .Required(true)
+                                  .ShowRedStar(true),
+                             F.HiddenFieldFor(x => x.FLngLat)
+                                  .Label("经纬度")
+                                  .ID("tbxLngLat"),
+                             F.HiddenField()
+                                  .Label("客户id")
+                                  .ID("tbxCustomerID")
+                                  .Text(ViewBag.hidSelectedCustomer),
+                             F.HiddenFieldFor(x => x.FMarkerID)
+                                  .ID("tbxFMarkerID"),
+                             F.HiddenField()
+                                  .Label("地图模板id")
+                                  .Text(ViewBag.FMapTempID)
+                                  .ID("tbxFMapTempID")
+                     )
+               )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+@section script {
+
+    <script>
+
+         function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl,'客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl,'坐标地址选择');
+        }
+
+        function updateCustomer(id, text, tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+    </script>
+}

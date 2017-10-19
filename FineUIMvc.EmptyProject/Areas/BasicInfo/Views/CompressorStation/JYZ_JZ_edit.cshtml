@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "编辑加压站机组";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.BASE_JIAYAZHAN_JZ
+
+@section body {
+    @(F.Form()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                             F.HiddenFieldFor(x => x.ID)
+                                .ID("tbxID"),
+                            F.Button()
+                                .Icon(Icon.SystemClose)
+                                .Text("关闭")
+                                .Listener("click", "F.activeWindow.hide();"),
+                            F.ToolbarSeparator(),
+                            F.Button()
+                                .ValidateForms("SimpleForm1")
+                                .Icon(Icon.SystemSaveClose)
+                                        .OnClick(Url.Action("btnJZEdit_Click"), "SimpleForm1")
+                                .Text("保存后关闭"),
+                            F.ToolbarFill()
+                 )
+         )
+         .Items(
+                   F.FormRow()
+                     .Items(
+                         F.TextBoxFor(x=>x.DTUCode)
+                            .Label("DTU编号")
+                            .EmptyText("请输入DTU编号")
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .ID("tbSelectedDTU"),
+                         F.TextBoxFor(x=>x.jyzJZName)
+                            .Label("机组名称")
+                            .EmptyText("请输入机组名称")
+                            .ID("tbxName")
+                            .LabelWidth(80)
+                            .Required(true)
+                            .ShowRedStar(true)
+
+                         ),
+                     F.FormRow()
+                      .Items(
+                                    F.DropDownListFor(x=>x.FType)
+                                             .ID("ddlType")
+                                             .Label("设备类型")
+                                             .Required(true)
+                                             .ShowRedStar(true)
+                                             .DataTextField("FName")
+                                             .DataValueField("FValue")
+                                             .DataSource(ViewBag.ddlTypeDataSource)
+                                             .SelectedValue(ViewBag.ddlTypeSelect),
+                                     F.NumberBoxFor(x=>x.jyzJZCollectPeriod)
+                                            .ID("txt_cjzq")
+                                            .MinValue(1)
+                                            .Text("1")
+                                            .Label("采集周期")
+                         ),
+                   F.FormRow()
+                     .Items(
+                                F.NumberBoxFor(x=>x.jyzJZCollectLength)
+                                            .ID("txt_cjcd")
+                                            .Text("1")
+                                            .MinValue(1)
+                                            .Label("采集长度"),
+                                         F.DropDownListFor(x=>x.jyzJZReadMode)
+                                            .ID("ddlDqms")
+                                            .Label("读取模式")
+                                            .Required(true)
+                                            .ShowRedStar(true)
+                                            .DataTextField("FName")
+                                            .DataValueField("FValue")
+                                            .DataSource(ViewBag.ddlDqmsDataSource)
+                                            .SelectedValue(ViewBag.ddlDqmsSelect)
+                      ),
+                 F.FormRow()
+                    .Items(
+                                         F.TriggerBoxFor(x => x.AddressScheme.FName)
+                                            .ID("tbSelectedAddressList")
+                                            .EnableEdit(false)
+                                            .Required(true)
+                                            .ShowRedStar(true)
+                                            .TriggerIcon(TriggerIcon.Search)
+                                            .OnClientTriggerClick("OnClientAddressListSelect();")
+                                            .Label("地址方案"),
+                                          F.NumberBoxFor(x=>x.FSort)
+                                                  .ID("txtFSort")
+                                                  .MinValue(1)
+                                                  .Label("排序")
+                              ),
+                   F.FormRow()
+                      .Items(
+
+                          ),
+                 F.FormRow()
+                   .Items(
+                             F.HiddenFieldFor(x => x.AddressScheme.ID)
+                        .Label("地址表")
+                        .ID("hidDZB"),
+                        F.HiddenFieldFor(x => x.DTUCode)
+                 .ID("tbOldDTU")
+                 )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+        function OnClientAddressListSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/AddressSchemeWindow")';
+            var openUrl = F.formatString("{0}?id=10&AddressListId={1}", url, F.urlEncode(F.ui.tbSelectedAddressList.getValue()));
+
+            F.ui.Window1.show(openUrl, '地址方案选择', 700, 500);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.hidDZB.setValue(id);
+        }
+    </script>
+}

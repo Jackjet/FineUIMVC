@@ -1,0 +1,126 @@
+.report_wrap {
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+}
+.showReportBtn {
+  width: 114px;
+  height: 45px;
+  margin: 0 auto;
+  vertical-align: bottom;
+  background: url(../img/reportBtn.png) no-repeat center center;
+  text-align: center;
+  padding-top: 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.showReportBtn:hover {
+  background: url(../img/reportBtnBg.png) no-repeat center center;
+  color: #ffffff;
+}
+.reportNav_wrap {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.reportNav_wrap .hideReportBtn {
+  width: 100%;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  color: #b8b8b8;
+  background: url(../img/hideArrowIco.png) no-repeat 124px center;
+  background-color: #f4f4f4;
+  position: absolute;
+  bottom: 2px;
+  z-index: 2;
+  cursor: pointer;
+  font-size: 12px;
+}
+.reportNav_box {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  background: #ffffff;
+  box-shadow: 0 0 2px 1px #cfcdcd;
+  z-index: 2;
+}
+.reportNav_box .reportNav_head {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #08b4fd;
+  padding: 2px;
+}
+.reportNav_box .reportNav_head p {
+  font-size: 12px;
+  height: 100%;
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+  background: #08b4fd;
+}
+.reportNav_box .reportIndex {
+  height: 32px;
+  background: url(../img/listItemIco.png) no-repeat 5px 10px;
+  background-color: #e2f4fe;
+  line-height: 32px;
+  text-indent: 30px;
+  color: #2e3e4e;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.reportNav_box .report_listWrap {
+  width: 100%;
+  height: 100%;
+}
+.report_list {
+  width: 100%;
+  height: 100%;
+}
+.report_list li {
+  height: 32px;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+.report_list li.active {
+  background-color: #e2f4fe;
+}
+.report_list li:hover {
+  background-color: #e2f4fe;
+}
+.report_list li i {
+  display: inline-block;
+  height: 32px;
+  width: 30px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.report_list li i.bar_ico {
+  background: url(../img/listItemIco.png) no-repeat 5px -62px;
+}
+.report_list li i.pie_ico {
+  background: url(../img/listItemIco.png) no-repeat 5px -205px;
+}
+.report_list li i.lineBar_ico {
+  background: url(../img/listItemIco.png) no-repeat 5px -133px;
+}
+.report_list li i.area_ico {
+  background: url(../img/listItemIco.png) no-repeat 5px -277px;
+}
+.report_list li a {
+  display: inline-block;
+  height: 32px;
+  line-height: 31px;
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+  color: #2e3e4e;
+  font-size: 12px;
+}

@@ -1,0 +1,105 @@
+body {
+	font-family: "Microsoft YaHei";
+	background: url(../img/zizBigBg.png) no-repeat fixed;
+	background-size: cover;
+	overflow: hidden;
+}
+.wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+    z-index: 3;
+}
+.maskTop {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 50%;
+	background: #053f57;
+}
+.maskTopBg {
+	position: absolute;
+	bottom: 2px;
+	left: 50%;
+	width: 190px;
+	height: 143px;
+	margin-left: -95px;
+	background: url(../img/topMaskBg.png) #053f57 no-repeat;	
+}
+.maskBottom {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+	width: 100%;
+	height: 50%;
+	background: #053f57;
+}
+.maskBottomBg {
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	width: 788px;
+	height: 135px;
+	margin-left: -394px;
+	background: url(../img/bottomMaskBg.png) #053f57 no-repeat;	
+}
+.zizOpen {
+	position: absolute;
+	top: 50%;
+	margin-top: -12px;
+	left: 0;
+	width: 100%;
+	height: 24px;
+	z-index: 3;
+	background: #fff;
+	margin-left: -100%;
+	background: url(../img/zizBg.png) repeat-x;
+}
+
+
+.loginLoadingBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    
+}
+.loadingBg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    margin-left: -24px;
+    margin-top: -24px;
+    background: url(../img/load1.gif) no-repeat;
+    opacity: .3;
+}
+.loadingBg.hide {
+    display: none;
+}
+
+
+.error {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 80px;
+  height: 20px;
+  font-size: 14px;
+  color: black;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  margin-left: -40px;
+  background: #ffd800;
+}
+
+.error.hide {
+ display: none;
+}

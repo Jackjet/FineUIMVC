@@ -1,0 +1,954 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>青浦调峰</title>
+    <script src="js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="../Baidu/layer/layer.js"></script>
+    <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+    <!--<script type="text/javascript" src="js/qrcode.js"></script>-->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-family: "微软雅黑";
+        }
+
+        li {
+            list-style: none;
+        }
+
+        html {
+            overflow: hidden;
+            -ms-touch-action: none;
+            -ms-content-zooming: none;
+        }
+
+        body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            min-height: 768px;
+            min-width: 1366px;
+            background: url(img/login-bg.png) no-repeat fixed;
+            background-size: cover;
+        }
+
+        .login-header {
+            width: 100%;
+            min-width: 1366px;
+            height: 113px;
+            min-height:80px;
+            background: url(img/bg-nav.png) no-repeat ;
+            background-size: 100%;
+            position: absolute;
+            z-index: 100;
+        }
+
+            .login-header .markTitle {
+                width: 398px;
+                height: 65px;
+                background: url(img/pandaLog.png) no-repeat;
+                background-size: 100%;
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                margin-left: -208px;
+            }
+
+        #canvas {
+            position: absolute;
+            width: 100%;
+            height: 760px;
+            min-height: 580px;
+            /*background:rgba(255,255,255,0.1);*/
+        }
+
+        .login-footer {
+            width: 100%;
+            height: 130px;
+            position: fixed;
+            bottom: 0;
+            border: 0px solid red;
+            background: url(img/borderImg.png) no-repeat;
+            background-size: cover;
+        }
+
+        .login-diag {
+            width:840px; /*594px;*/
+            height: 32px;
+            border: 0px solid red;
+            margin: 25px auto;
+        }
+
+            .login-diag li {
+                display: inline-block;
+                width: 220px;
+                margin-right: 17px;
+                background: rgba(0,0,0,0.2);
+                float: left;
+            }
+
+                .login-diag li i {
+                    display: inline-block;
+                    float: left;
+                    width: 22px;
+                    height: 22px;
+                    background: url(img/userIco.png) no-repeat;
+                    margin: 6px;
+                }
+
+                .login-diag li.login-password i {
+                    background: url(img/psdIco.png) no-repeat;
+                }
+
+                .login-diag li input {
+                    display: inline-block;
+                    height: 32px;
+                    float: left;
+                    border: none;
+                    background: none;
+                    outline: none;
+                }
+
+            .login-diag .login-btn {
+                width: 120px;
+                float: right;
+                background: none;
+                margin-right: 0;
+            }
+
+                .login-diag .login-btn input {
+                    display: block;
+                    width: 100%;
+                    border: none;                 
+                    background: url(img/btn-bg1.png) no-repeat;
+                    background-size: 211%;
+                    cursor: pointer;
+                }
+        .login-btn input:hover {
+            background: url(img/btn-bg1.png) no-repeat -134px 0;
+            background-size: 211%;
+        }
+         .login-footer p {
+            width: 436px;
+            text-align: center;
+            font-size: 12px;
+            margin: 0 auto;
+        }
+
+        .faceLoginBox{
+            position: absolute;
+            width: 646px;
+            height: 416px;
+            left: 50%;
+            top: 50%;
+            margin-left: -323px;
+            margin-top: -208px;
+            border: 1px solid red;
+            /*background-color: rgb(0,0,0);*/
+            display: none;
+        }
+
+        .mainBox{
+            position: absolute;
+            left: 64px;
+            top:56px;
+            width: 497px;
+            height: 365px;
+            border: 1px solid red;
+            background: url(./img/faceLogIco1.png) no-repeat 0px 0px;   
+            z-index: 10;   
+        }
+        .leftCircle {
+            position: absolute;
+            left: 0;
+            bottom: 24px;
+            width: 113px;
+            height: 112px;
+            background: url(./img/faceLogIco2.png) no-repeat 0px 0px;
+            z-index: 9;
+            -webkit-animation:  rotate 2s infinite linear;
+        }
+        .rightCircle {
+            position: absolute;
+            right: 0px;
+            top: 70px;
+            width: 216px;
+            height: 216px;
+            background: url(./img/faceLogIco3.png) no-repeat 0px 0px;
+            z-index: 9;
+            -webkit-animation: rotate 2s infinite linear;
+        }
+        .faceLoginTitle {
+            position: absolute;
+            left: 250px;
+            top: 0;
+            width: 190px;
+            height: 61px;
+            line-height: 61px;
+            background: url(./img/faceLogIco5.png) no-repeat 0px 0px;
+            text-align: center;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: rgb(37,199,243);
+        }
+        .mainBox .greenCircle {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            width: 30px;
+            height: 30px;
+            background: url(./img/faceLogIco4.png) no-repeat 0px 0px;
+            -webkit-animation: rotate 2s infinite linear;
+        }
+        .mainBox .userFace {
+            position: absolute;
+            left: 54px;
+            top: 62px;
+            width: 196px;
+            height: 218px;
+            background: url(./img/faceLogIco7.png) no-repeat 0px 0px;
+        }
+        #video {
+            width: 186px;
+            height: 208px;
+            margin: 4px;
+            border: 1px solid #fff;
+        }
+        .scanBar {
+            width: 177px;
+            height: 13px;
+            position: absolute;
+            background: url(./img/faceLogIco8.png) no-repeat 0px 0px;
+            top: 0px;
+            left: 10px;
+            display: none; 
+        }
+         .bannerBox {
+            position: absolute;
+            right: 70px;
+            top: 73px;
+            width: 130px;
+            height: 190px;
+            border: 0px solid #fff;
+            overflow: hidden;
+        } 
+
+         .ulImg{
+             position: absolute;
+             top: 0px;
+         }
+      
+        .faceImg1 {
+            width: 130px;
+            height: 78px;
+            border: 0px solid red;
+        } 
+      
+        #snap {
+            position: absolute;
+            bottom: 10px;
+            right: 70px;
+        }
+
+      
+        @-webkit-keyframes rotate {
+            0%{
+                    -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        @-moz-keyframes rotate {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        li.moreLogMethods {
+            height: 32px;
+          
+            float: right;
+            border: 0px solid red;
+            border-radius: 3px;
+            background: none;
+        }
+        .moreLogMethods {
+         
+            display: inline-block;
+            height: 100%;
+            width: 150px;
+         
+            text-align: left;
+        }
+        .faceLoginBtn {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: url(./img/faceLogBtn.png) no-repeat 0px 0px;
+            margin-left: 8px;
+            margin-right: 8px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .weixinLogBtn {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: url(./img/weixinLogBtn.png) no-repeat 0px 0px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        #QRbox {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            margin: 20px;
+            display: none;
+        } 
+        #twoDimCode {
+            width: 100%;
+            height: 100%;
+            border: 0px solid red;
+          
+            /*margin: 20px;*/
+           
+       
+        }
+
+        #twoDimCode canvas{
+            width:100%;
+            height: 100%;
+        }
+        .centerImg {
+            width: 80px;
+            height: 80px;
+           
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -40px;
+            margin-top: -40px;
+            background: url(./img/QRcenterImg.png) 0px 0px  no-repeat;
+            background-size: cover;
+        }
+        /*.layui-layer {
+            background-color: rgba(0,0,0,0.8);
+        }*/
+    </style>
+
+    <script type="text/javascript" src="js/ge1doot.js"></script>
+    <script type="text/javascript">
+
+        "use strict";
+
+        (function () {
+            /* ==== definitions ==== */
+            var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1, 2],
+            // ---- poly constructor ----
+            Poly = function (parent, face) {
+                this.parent = parent;
+                this.ctx = ctx;
+                this.color = face.fill || false;
+                this.points = [];
+                if (!face.img) {
+                    // ---- create points ----
+                    for (var i = 0; i < 4; i++) {
+                        this.points[i] = new ge1doot.transform3D.Point(
+                            parent.pc.x + (face.x[i] * parent.normalZ) + (face.z[i] * parent.normalX),
+                            parent.pc.y + face.y[i],
+                            parent.pc.z + (face.x[i] * parent.normalX) + (-face.z[i] * parent.normalZ)
+                        );
+                    }
+                    this.points[3].next = false;
+                }
+            },
+            // ---- diapo constructor ----
+            Diapo = function (path, img, structure) {
+                // ---- create image ----
+                this.img = new ge1doot.transform3D.Image(
+                    this, path + img.img, 1, {
+                        isLoaded: function (img) {
+                            img.parent.isLoaded = true;
+                            img.parent.loaded(img);
+                        }
+                    }
+                );
+                this.visible = false;
+                this.normalX = img.nx;
+                this.normalZ = img.nz;
+                // ---- point center ----
+                this.pc = new ge1doot.transform3D.Point(img.x, img.y, img.z);
+                // ---- target positions ----
+                this.tx = img.x + (img.nx * Math.sqrt(camera.focalLength) * 20);
+                this.tz = img.z - (img.nz * Math.sqrt(camera.focalLength) * 20);
+                // ---- create polygons ----
+                this.poly = [];
+                for (var i = -1, p; p = structure[++i];) {
+                    layers[i] = (p.img === true ? 1 : 2);
+                    this.poly.push(
+                        new Poly(this, p)
+                    );
+                }
+            },
+            // ---- init section ----
+            init = function (json) {
+                // draw poly primitive
+                Poly.prototype.drawPoly = ge1doot.transform3D.drawPoly;
+                // ---- init screen ----
+                scr = new ge1doot.Screen({
+                    container: "canvas"
+                });
+                ctx = scr.ctx;
+                scr.resize();
+                // ---- init pointer ----
+                pointer = new ge1doot.Pointer({
+                    tap: function () {
+                        if (camera.over) {
+                            if (camera.over === camera.target.elem) {
+                                // ---- return to the center ----
+                                camera.target.x = 0;
+                                camera.target.z = 0;
+                                camera.target.elem = false;
+                            } else {
+                                // ---- goto diapo ----
+                                camera.target.elem = camera.over;
+                                camera.target.x = camera.over.tx;
+                                camera.target.z = camera.over.tz;
+                                // ---- adapt tesselation level to distance ----
+                                for (var i = 0, d; d = diapo[i++];) {
+                                    var dx = camera.target.x - d.pc.x;
+                                    var dz = camera.target.z - d.pc.z;
+                                    var dist = Math.sqrt(dx * dx + dz * dz);
+                                    var lev = (dist > 1500) ? quality[0] : quality[1];
+                                    d.img.setLevel(lev);
+                                }
+                            }
+                        }
+                    }
+                });
+                // ---- init camera ----
+                camera = new ge1doot.transform3D.Camera({
+                    focalLength: Math.sqrt(scr.width) * 10,
+                    easeTranslation: 0.05,
+                    easeRotation: 0.06,
+                    disableRz: true
+                }, {
+                    move: function () {
+                        this.over = false;
+                        // ---- rotation ----
+                        if (pointer.isDraging) {
+                            this.target.elem = false;
+                            this.target.ry = -pointer.Xi * 0.01;
+                            this.target.rx = (pointer.Y - scr.height * 0.5) / (scr.height * 0.5);
+                        } else {
+                            if (this.target.elem) {
+                                this.target.ry = Math.atan2(
+                                    this.target.elem.pc.x - this.x,
+                                    this.target.elem.pc.z - this.z
+                                );
+                            }
+                        }
+                        this.target.rx *= 0.9;
+                    }
+                });
+                camera.z = -10000;
+                camera.py = 0;
+                // ---- create images ----
+                for (var i = 0, img; img = json.imgdata[i++];) {
+                    diapo.push(
+                        new Diapo(
+                            json.options.imagesPath,
+                            img,
+                            json.structure
+                        )
+                    );
+                }
+                // ---- start engine ---- >>>
+                setInterval(function () {
+                    quality = (fps > 50) ? [2, 3] : [1, 2];
+                    fps = 0;
+                }, 1000);
+                run();
+            },
+            // ---- main loop ----
+            run = function () {
+                // ---- clear screen ----
+                ctx.clearRect(0, 0, scr.width, scr.height);
+                // ---- camera ----
+                camera.move();
+                // ---- draw layers ----
+                for (var k = -1, l; l = layers[++k];) {
+                    light = false;
+                    for (var i = 0, d; d = diapo[i++];) {
+                        (l === 1 && d.draw()) ||
+                        (d.visible && d.poly[k].draw());
+                    }
+                }
+                // ---- cursor ----
+                if (camera.over && !pointer.isDraging) {
+                    scr.setCursor("pointer");
+                } else {
+                    scr.setCursor("move");
+                }
+                // ---- loop ----
+                fps++;
+                requestAnimFrame(run);
+            };
+            /* ==== prototypes ==== */
+            Poly.prototype.draw = function () {
+                // ---- color light ----
+                var c = this.color;
+                if (c.light || !light) {
+                    var s = c.light ? this.parent.light : 1;
+                    // ---- rgba color ----
+                    light = "rgba(" +
+                        Math.round(c.r * s) + "," +
+                        Math.round(c.g * s) + "," +
+                        Math.round(c.b * s) + "," + (c.a || 1) + ")";
+                    ctx.fillStyle = light;
+                }
+                // ---- paint poly ----
+                if (!c.light || this.parent.light < 1) {
+                    // ---- projection ----
+                    for (
+                        var i = 0;
+                        this.points[i++].projection() ;
+                    );
+                    this.drawPoly();
+                    ctx.fill();
+                }
+            }
+            /* ==== image onload ==== */
+            Diapo.prototype.loaded = function (img) {
+                // ---- create points ----
+                var d = [-1, 1, 1, -1, 1, 1, -1, -1];
+                var w = img.texture.width * 0.5;
+                var h = img.texture.height * 0.5;
+                for (var i = 0; i < 4; i++) {
+                    img.points[i] = new ge1doot.transform3D.Point(
+                        this.pc.x + (w * this.normalZ * d[i]),
+                        this.pc.y + (h * d[i + 4]),
+                        this.pc.z + (w * this.normalX * d[i])
+                    );
+                }
+            }
+            /* ==== images draw ==== */
+            Diapo.prototype.draw = function () {
+                // ---- visibility ----
+                this.pc.projection();
+                if (this.pc.Z > -(camera.focalLength >> 1) && this.img.transform3D(true)) {
+                    // ---- light ----
+                    this.light = 0.5 + Math.abs(this.normalZ * camera.cosY - this.normalX * camera.sinY) * 0.6;
+                    // ---- draw image ----
+                    this.visible = true;
+                    this.img.draw();
+                    // ---- test pointer inside ----
+                    if (pointer.hasMoved || pointer.isDown) {
+                        if (
+                            this.img.isPointerInside(
+                                pointer.X,
+                                pointer.Y
+                            )
+                        ) camera.over = this;
+                    }
+                } else this.visible = false;
+                return true;
+            }
+            return {
+                // --- load data ----
+                load: function (data) {
+                    window.addEventListener('load', function () {
+                        ge1doot.loadJS(
+                            "js/imageTransform3D.js",
+                            init, data
+                        );
+                    }, false);
+                }
+            }
+        })().load({
+            imgdata: [
+                // north
+                { img: 'imgs/1.jpg', x: -1000, y: 0, z: 1500, nx: 0, nz: 1 },
+                { img: 'imgs/2.jpg', x: 0, y: 0, z: 1500, nx: 0, nz: 1 },
+                { img: 'imgs/3.jpg', x: 1000, y: 0, z: 1500, nx: 0, nz: 1 },
+                // east
+                { img: 'imgs/4.jpg', x: 1500, y: 0, z: 1000, nx: -1, nz: 0 },
+                { img: 'imgs/5.jpg', x: 1500, y: 0, z: 0, nx: -1, nz: 0 },
+                { img: 'imgs/6.jpg', x: 1500, y: 0, z: -1000, nx: -1, nz: 0 },
+                // south
+                { img: 'imgs/7.jpg', x: 1000, y: 0, z: -1500, nx: 0, nz: -1 },
+                { img: 'imgs/8.jpg', x: 0, y: 0, z: -1500, nx: 0, nz: -1 },
+                { img: 'imgs/9.jpg', x: -1000, y: 0, z: -1500, nx: 0, nz: -1 },
+                // west
+                { img: 'imgs/10.jpg', x: -1500, y: 0, z: -1000, nx: 1, nz: 0 },
+                { img: 'imgs/11.jpg', x: -1500, y: 0, z: 0, nx: 1, nz: 0 },
+                { img: 'imgs/12.jpg', x: -1500, y: 0, z: 1000, nx: 1, nz: 0 }
+            ],
+            structure: [
+                {
+                    // wall
+                    fill: { r: 0, g: 0, b: 0, a: 0.2, light: 1 },
+                    x: [-1001, -490, -490, -1001],
+                    z: [-500, -500, -500, -500],
+                    y: [500, 500, -500, -500]
+                }, {
+                    // wall
+                    fill: { r: 0, g: 0, b: 0, a: 0.2, light: 1 },
+                    x: [-501, 2, 2, -500],
+                    z: [-500, -500, -500, -500],
+                    y: [500, 500, -500, -500]
+                }, {
+                    // wall
+                    fill: { r: 0, g: 0, b: 0, a: 0.2, light: 1 },
+                    x: [0, 502, 502, 0],
+                    z: [-500, -500, -500, -500],
+                    y: [500, 500, -500, -500]
+                }, {
+                    // wall
+                    fill: { r: 0, g: 0, b: 0, a: 0.2, light: 1 },
+                    x: [490, 1002, 1002, 490],
+                    z: [-500, -500, -500, -500],
+                    y: [500, 500, -500, -500]
+                }, {
+                    // shadow
+                    fill: { r: 0, g: 0, b: 0, a: 0.2 },
+                    x: [-420, 420, 420, -420],
+                    z: [-500, -500, -500, -500],
+                    y: [150, 150, -320, -320]
+                }, {
+                    // shadow
+                    fill: { r: 0, g: 0, b: 0, a: 0.2 },
+                    x: [-20, 20, 20, -20],
+                    z: [-500, -500, -500, -500],
+                    y: [250, 250, 150, 150]
+                }, {
+                    // shadow
+                    fill: { r: 0, g: 0, b: 0, a: 0.2 },
+                    x: [-20, 20, 20, -20],
+                    z: [-500, -500, -500, -500],
+                    y: [-320, -320, -500, -500]
+                }, {
+                    // shadow
+                    fill: { r: 0, g: 0, b: 0, a: 0.2 },
+                    x: [-20, 20, 10, -10],
+                    z: [-500, -500, -100, -100],
+                    y: [-500, -500, -500, -500]
+                }, {
+                    // base
+                    fill: { r: 32, g: 32, b: 32 },
+                    x: [-50, 50, 50, -50],
+                    z: [-150, -150, -50, -50],
+                    y: [-500, -500, -500, -500]
+                }, {
+                    // support
+                    fill: { r: 16, g: 16, b: 16 },
+                    x: [-10, 10, 10, -10],
+                    z: [-100, -100, -100, -100],
+                    y: [300, 300, -500, -500]
+                }, {
+                    // frame
+                    fill: { r: 255, g: 255, b: 255 },
+                    x: [-320, -320, -320, -320],
+                    z: [0, -20, -20, 0],
+                    y: [-190, -190, 190, 190]
+                }, {
+                    // frame
+                    fill: { r: 255, g: 255, b: 255 },
+                    x: [320, 320, 320, 320],
+                    z: [0, -20, -20, 0],
+                    y: [-190, -190, 190, 190]
+                },
+                { img: true },
+                {
+                    // ceilingLight
+                    fill: { r: 0, g: 183, b: 238 },
+                    x: [-50, 50, 50, -50],
+                    z: [450, 450, 550, 550],
+                    y: [500, 500, 500, 500]
+                }, {
+                    // groundLight
+                    fill: { r: 0, g: 183, b: 238 },
+                    x: [-50, 50, 50, -50],
+                    z: [450, 450, 550, 550],
+                    y: [-500, -500, -500, -500]
+                }
+            ],
+            options: {
+                imagesPath: ""
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <div class="login-header">
+        <div class="markTitle"></div>
+    </div>
+    <div style="text-align:center;clear:both;">
+        <!--<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+        <script src="/follow.js" type="text/javascript"></script>-->
+    </div>
+    <canvas id="canvas">你的浏览器不支持HTML5画布技术，请使用谷歌浏览器。</canvas>
+    <div class="login-footer">
+        <ul class="login-diag">
+            <li class="login-username"><i></i><input type="text" placeholder="用户名" class="userNameText" /></li>
+            <li class='login-password'><i></i><input type="password" placeholder="密码" class="userPsdText" /></li>
+          
+            <li class="moreLogMethods"><button class="faceLoginBtn"></button><button class="weixinLogBtn" id="weixinLog"></button></li>
+             <li class="login-btn"><input type="button" value="登入" /></li>
+           
+        </ul>
+        <p>支持的浏览器：IE9以上版本 火狐 谷歌建议分辨率大于1366</p>
+    </div>
+
+ <div id="QRbox">
+     <div id="twoDimCode">
+        
+     </div>
+     <div class="centerImg"></div>
+ </div> 
+  <!--  <div class="faceLoginBox"  id="faceLogin">
+        <div class="faceLoginTitle">人脸识别登录</div>
+        <div class="mainBox">
+            <div class="greenCircle"></div>
+            <div class="userFace">          
+                <video id="video"  autoplay></video>
+                <div class="scanBar"></div>
+            </div>
+            <div class="bannerBox">
+                <ul class="ulImg">
+                    <li><img class="faceImg1 img1" src="./img/faceLogIco9.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLogIco9.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLogIco9.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLogIco9.png" /></li>
+                    
+                </ul>              
+            </div>
+            <canvas id="canvas2"></canvas>
+          
+        </div>
+        <div class="leftCircle"></div>
+        <div class="rightCircle"></div>
+    </div>-->
+  
+
+   
+    <script>
+        $(function () {
+            //回车登录
+            $('body').keydown(
+                function (event) {
+                    if (event.keyCode == 13) {
+                        // console.log('what is wrong with you');
+                        if ($('.userNameText').val() != '' && $('.userPsdText').val() != '') {
+                            $('.login-btn').click();
+                            // console.log('what is up');
+                        }
+                    }
+                }
+           );
+            //登录按钮点击登录
+            $('.login-btn').click(loginFun);
+            function loginFun() {
+                $.ajax({
+                    url: '../../Service/Sys_UserService.ashx?method=CheckLogin',
+                    data: {
+                        FName: $('.userNameText').val(),
+                        FPassword: $('.userPsdText').val()
+                    },
+                    beforeSend: loadingFunction,
+                    success: function (data) {
+                        // console.log(data);
+                        var data = JSON.parse(data);
+                        if (data.result == 1) {
+                            window.location.href = './infoIndex.html'
+                        } else {
+                            alert('用户名或者密码错误！');
+                        }
+                    },
+                    complete: loadingMiss,
+                    error: function (data) {
+                        if (window.console) {
+                            console.log(data);
+                        }
+                    }
+                });
+                function loadingMiss() {
+                    $('.loading').remove();
+                };
+                function loadingFunction() {
+                    var $div = $('<div class="loading" style="position:absolute;left: 50%;top:50%;margin-left: -150px;margin-top: -70px;width: 300px;color:black;text-align:center;line-height: 140px;height: 140px;background: rgba(255,255,0);color: white;border-radius: 8px;"><img style="position: relative;top: 56%;left: 15%;" src="./img/load1.gif" alt="loading....">正在加载中...</div>');
+                    $('body').append($div);
+                };
+            };
+
+        
+   
+            function pic_show() {
+                (function () {
+                    var pic_count = 4;
+                    var $this = $('.bannerBox');
+                    var scrollTimer;
+                    var get_alerm_timer;
+
+                    $this.hover(function () {
+
+                        clearInterval(scrollTimer);
+
+                    },
+                    function () {
+                        scrollTimer = setInterval(function () {
+                            alerm_loop($this);
+                        }, 90);
+                    }
+                    ).trigger('mouseout');
+
+                    //滚动动画
+                    function alerm_loop(obj) {
+                        var $self = obj.find("ul:first");
+                        var $moveHeight = $self.find("li:first").height();
+                        var $length = $self.find("li").length;
+                        if ($length <= 1) {
+                            return;
+                        } else {
+                            $self.animate({ "margin-top": -$moveHeight+ "px" }, 90, function () {
+                                $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                            });
+                        }
+                    };
+                })();
+            }
+          //  pic_show();
+     
+
+            $(".faceLoginBtn").click(function () {
+              layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .5,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['800px', '500px'],
+                    content: 'faceLogin.html'
+                /*    success: function () {
+                        openCamera();
+                       // $(".weixinLogBtn").trigger('click');
+                    },
+                    content: $('#faceLogin')*/
+                 
+                });
+            });
+           
+            function uuid(len,radix) {
+                var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+                var uuid = [], i;
+                radix = radix || chars.length;
+                if (len) {
+                    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
+                } else {
+                    var r;
+                    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+                    uuid[14] = '4';
+                    for (i = 0; i < 36; i++) {
+                        if (!uuid[i]) {
+                            r = 0 | Math.random()*16;
+                            uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+                        }
+                    }
+                }
+                return uuid.join('');
+            }
+
+            var scanQRcode;
+            $(".weixinLogBtn").click(function () {
+                $('#twoDimCode').empty();
+                var pctoken = uuid(8, 10);
+                console.log(pctoken);
+                jQuery('#twoDimCode').qrcode("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8c49c5751dbf51bd&redirect_uri=http://gzh.s-water.cn/WeiXin/pandacompany?pctoken=" + pctoken + "&response_type=code&scope=snsapi_base&state=1#wechat_redirect\\");
+
+                layer.open({
+                    type: 1,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['240px', '240px'],
+                    content: $('#QRbox'),
+                });               
+                scanQRcode = setInterval(function () {
+                   // console.log(pctoken);
+                    weixinRequest(pctoken);
+                }, 2000);
+
+
+            });
+
+            /*二维码扫描请求登录*/
+            function weixinRequest(pctoken) {
+                $.ajax({
+                    url: '../../Service/Sys_UserService.ashx?method=checkwxlogin',
+                   data: {
+                       pctoken: pctoken
+                    },
+                    /*  beforeSend: loadingFunction,*/
+                    success: function (data) {
+                        console.log(data);
+                        var data = JSON.parse(data);
+                        if (data.result == 1) {
+                            window.location.href = './index.html';
+                            clearInterval(scanQRcode);
+                        } 
+                    },
+                   // complete: loadingMiss,
+                    error: function (data) {
+                        if (window.console) {
+                            console.log(data);
+                        }
+                    }
+                });
+             /*   function loadingMiss() {
+                    $('.loading').remove();
+                };
+                function loadingFunction() {
+                    var $div = $('<div class="loading" style="position:absolute;left: 50%;top:50%;margin-left: -150px;margin-top: -70px;width: 300px;color:black;text-align:center;line-height: 140px;height: 140px;background: rgba(255,255,0);color: white;border-radius: 8px;"><img style="position: relative;top: 56%;left: 15%;" src="./img/load1.gif" alt="loading....">正在加载中...</div>');
+                    $('body').append($div);
+                };*/
+            }
+
+
+        });
+
+        $(function () {
+            function layout() {
+
+                var footerH = $(".login-footer").height();
+                $("#canvas").css("height", $(window).height() - footerH - 2);
+            }
+            layout();
+            $(window).resize(function () { layout() });
+        });
+
+
+    
+   </script>
+</body>
+</html>

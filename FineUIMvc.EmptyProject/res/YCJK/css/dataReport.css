@@ -1,0 +1,119 @@
+.main_wrap {
+  height: 100%;
+  width: 100%;
+  padding: 30px 0px;
+  overflow: auto;
+}
+.line_wrap {
+  height: 234px;
+  margin-bottom: 20px;
+}
+.line_wrap .chart_box {
+  width: 49%;
+  float: left;
+  background: #f7f7f7;
+  height: 100%;
+  position: relative;
+}
+
+.line_wrap .waterUse_box {
+  margin-right: 2%;
+}
+.line_wrap .flowInPress_box {
+    width: 100%;
+}
+.chartTitle {
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+  color: #666666;
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  text-indent: 22px;
+}
+.chartTitle1 {
+  background: url("../img/dataReportIco1.png") no-repeat 1px 3px;
+}
+.chartTitle2 {
+  background: url("../img/dataReportIco2.png") no-repeat 1px 3px;
+}
+.chartTitle3 {
+  background: url("../img/dataReportIco3.png") no-repeat 1px 3px;
+}
+.chartTitle4 {
+  background: url("../img/dataReportIco4.png") no-repeat 1px 3px;
+}
+.chartTitle5 {
+  background: url("../img/dataReportIco5.png") no-repeat 1px 3px;
+}
+.selectData {
+  width: 144px;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  height: 20px;
+}
+.selectData a {
+  display: inline-block;
+  width: 48px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: #535353;
+  cursor: pointer;
+}
+.selectData .year,
+.selectData .day {
+  background: #d8d8d8;
+}
+.selectData .month {
+  background: #e5e5e5;
+}
+.selectData .active {
+  background: #999b9b;
+  color: #ffffff;
+}
+.chart_wrap {
+  height: 100%;
+}
+.tWaterPowerUse_wrap {
+  height: 268px;
+}
+.tWaterPowerUse_wrap .tWaterPowerUse_box {
+  width: 540px;
+  height: 100%;
+  background: #f7f7f7;
+  float: left;
+  position: relative;
+}
+.tWaterPowerUse_wrap .powerUseList_box {
+  width: 350px;
+  height: 262px;
+  border: 1px solid #d8d8d8;
+  background: #f7f7f7;
+  float: right;
+}
+.tWaterPowerUse_wrap .powerUseList_box .powerUse_list {
+  height: 100%;
+  width: 100%;
+}
+.tWaterPowerUse_wrap .powerUseList_box .powerUse_list li {
+  height: 29px;
+  border-bottom: 1px solid #d8d8d8;
+}
+.tWaterPowerUse_wrap .powerUseList_box .powerUse_list li span {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  vertical-align: middle;
+}
+.tWaterPowerUse_wrap .powerUseList_box .powerUse_list li .itemLabel {
+  width: 150px;
+  background: #e5e5e5;
+  color: #858585;
+}
+.tWaterPowerUse_wrap .powerUseList_box .powerUse_list li .itemValue {
+  width: 198px;
+}

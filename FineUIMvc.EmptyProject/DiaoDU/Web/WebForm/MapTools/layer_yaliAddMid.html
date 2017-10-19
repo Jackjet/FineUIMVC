@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>关联设备ID</title>
+    <!--<link href="css/jquery.pagination.css" rel="stylesheet" />-->
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="../InPage/layer/layer.js"></script>
+    <!--<script src="js/jquery.pagination-1.2.7.min.js"></script>-->
+    <style type="text/css">
+            body, ul, li, a, button, span {
+                margin: 0;
+                padding: 0;
+                font-family: "微软雅黑";
+                font-size: 12px;
+            }
+
+            body {
+                margin: 0;
+                padding: 0px 25px 12px 25px;
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .clearfix {
+                zoom: 1;
+            }
+
+                .clearfix:after {
+                    content: '';
+                    height: 0;
+                    display: block;
+                    clear: both;
+                }
+
+            .main_wrap {
+                margin: 0 auto;
+            }
+
+            .addBtn {
+                margin-top: 10px;
+            }
+
+            .searchBtn, .addBtn {
+                padding: 8px 14px;
+                background-color: #36a9ff;
+                font-size: 12px;
+                color: #fff;
+                border: none;
+                border-radius: 2px;
+                margin-left: 9px;
+                cursor: pointer;
+            }
+
+            .searchText {
+                height: 26px;
+                text-indent: 6px;
+                width: 278px;
+                padding-right: 32px;
+                background: url(img/searchIco.png) no-repeat right 0px;
+                border: 1px solid #d0d5d9;
+            }
+
+            .search_wrap {
+                height: 48px;
+            }
+
+            .search_box {
+                float: right;
+                margin: 10px 0;
+            }
+
+            table {
+                border-collapse: collapse;
+                border: 1px solid #d0d5d9;
+                width: 100%;
+            }
+
+            table, th, td {
+                font-family: "微软雅黑";
+                font-size: 12px;
+                color: #505654;
+            }
+
+            tr.current {
+                background: #000;
+            }
+
+        table tr th:nth-child(1), table tr td:nth-child(1),table tr th:nth-child(2), table tr td:nth-child(2) {
+            display: none;
+        }
+
+            tr:nth-child(odd) td {
+                background-color: #fff;
+            }
+
+            tr td:first-child {
+                width: 54px;
+            }
+
+            tr td:last-child {
+                width: 54px;
+            }
+
+            tr td:first-child i {
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin: 0 auto;
+                background: url(img/checkIco.png) no-repeat -40px 0;
+                cursor: pointer;
+            }
+
+            tr.current td:first-child i {
+                background: url(img/checkIco.png) no-repeat 0 0;
+            }
+
+            th {
+                padding: 14px 6px;
+                text-align: center;
+                background-color: #eef3f7;
+                color: #9ba4a9;
+                border-bottom: 1px solid #d0d5d9;
+            }
+
+            td {
+                padding: 14px 6px;
+                text-align: center;
+                background-color: #f0f8fa;
+            }
+        tr:hover td {
+            background-color: #b8e9f5;
+        }
+            tr td:last-child i {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: url(img/modi_deleIco.png) no-repeat -45px 4px;
+                margin-right: 4px;
+                cursor: pointer;
+            }
+
+                tr td:last-child i.deleBtn {
+                    background-position: 0 4px;
+                }
+
+            .page_wrap {
+                height: 28px;
+                margin: 14px 0 16px 0;
+            }
+            /*.page_ul {
+                height: 28px;
+                float: right;
+            }
+                .page_ul li {
+                    float: left;
+                    height: 26px;
+                    margin-right: 4px;
+                    border: 1px solid #d0d5d9;
+                }
+
+                .page_ul a {
+                    display: inline-block;
+                    padding: 0 10px;
+                    line-height: 26px;
+                    color: #8f9092;
+
+                }
+           .page_ul li:hover {
+               border: none;
+           }
+        .page_ul a:hover {
+
+                    color: #000;
+                }
+            .page_ul  li.active{
+                border: none;
+
+            }
+              .page_ul li.active  a{
+                  color: #000;
+                }
+            .page_next {
+                display: inline-block;
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                float: right;
+                color: #8f9092;
+                text-align: center;
+
+                font-size: 12px;
+                border: 1px solid #d0d5d9;
+            }*/
+            .pageBox {
+                float: right;
+            }
+
+                .pageBox span {
+                    display: inline-block;
+                    padding: 0 10px;
+                    line-height: 26px;
+                    color: #8f9092;
+                    border: 1px solid #d0d5d9;
+                    margin-left: 5px;
+                    cursor: pointer;
+                }
+
+            a.currentPage {
+                color: #000;
+            }
+    </style>
+</head>
+<body>
+    <div class="main_wrap">
+        <div class="search_wrap clearfix">
+            <button class="addBtn" type="button">新增</button>
+            <div class="search_box">
+                <input class="searchText" type="text" /><button class="searchBtn" type="button">搜索</button>
+            </div>
+        </div>
+        <div class="table_wrap">
+            <table>
+                <thead>
+                    <tr><th>列名1</th><th>列表日期</th><th>列表日期</th><th>列表日期</th><th>列表日期</th><th>列表日期</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><i class="active"></i></td><td>2017-03-31</td><td>2017-03-31</td><td>2017-03-31</td><td>2017-03-31</td><td>2017-03-31</td></tr>
+                    <tr><td><i></i></td><td>熊猫机械集团</td><td>2017-03-31</td><td>熊猫机械集团</td><td>熊猫机械集团</td><td>熊猫机械集团</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                    <tr><td><i></i></td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td><td>青浦调峰</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="pageIna" class="page_wrap clearfix">
+            <!--<span class="page_next">&gt;</span>
+            <ul class="page_ul">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><span>...</span><a href="#">110</a></li>
+            </ul>-->
+            <div class="pageBox">
+                <span class="firstPage"><<</span><span class="prevPage"><</span><span><a class="currentPage">1</a><a> / </a><a class="totalPage">10</a></span><span class="nextPage">></span><span class="lastPage">>></span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log('aaaa');
+            /*  var theadArr = ['编号', '名称'];
+               $("thead tr").empty();
+               for(var i=0;i<theadArr.length;i++)
+               {
+                   $("thead tr").append('<th>'+theadArr[i]+'</th>');
+               }*/
+            $(".table_wrap tbody").on('click', 'tr', function () {
+                //  $(this).addClass('current').find('i').addClass("active").parents('tr').siblings().removeClass('current').find('i').removeClass("active");
+                $(this).addClass('current').siblings().removeClass('current');
+                var fMidName = $(this).children("td[data-id='FName']").html();
+                var fMidID = $(this).children("td[data-id='id']").html();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                var proId = parent.$(".property_main").find('input[type="hidden"]').val();
+            //    parent.modifyProperty('../../Service/Map_Marker.ashx?method=updmarkerpro', proId, 'FMID', fMidID, '', fMidName);
+            });
+
+            var urlJson = parseUrl();
+            console.log(urlJson);
+            var searchText = $(".searchText").val();
+            $(".searchBtn").click(function () {
+                searchText = $(".searchText").val();
+                console.log(window.location.href);
+                console.log(parseUrl());
+                searchMidFn('', searchText);
+            });
+            $(".pageBox").on('click', 'span.nextPage', function () {
+                if (pageIndex == (totalPage - 1)) {
+                    alert('当前为最后一页');
+                } else {
+                    pageIndex++;
+                    searchMidFn('', searchText)
+                }
+            });
+            $(".pageBox").on('click', 'span.prevPage', function () {
+                if (!(pageIndex == 0)) {
+                    pageIndex--;
+                    searchMidFn('', searchText)
+                } else {
+                    alert('当前为第一页');
+                }
+            });
+            $(".pageBox").on('click', 'span.firstPage', function () {
+                if (!(pageIndex == 0)) {
+                    pageIndex = 0;
+                    searchMidFn('', searchText)
+                } else {
+                    alert('当前为第一页');
+                }
+            });
+            $(".pageBox").on('click', 'span.lastPage', function () {
+                if (pageIndex == totalPage - 1) {
+                    alert('当前为最后一页');
+
+                } else {
+                    pageIndex = totalPage - 1;
+                    searchMidFn('', searchText);
+                }
+            });
+            function parseUrl() {
+                var url = window.location.href;
+                var i = url.indexOf('?');
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+                    arr2[tar[0]] = tar[1];
+                };
+                return arr2;
+            }
+            searchMidFn(urlJson.id);
+            //搜索
+            var pageIndex = $("a.currentPage").html() - 1;
+            var totalPage = $("a.lastPage").html();
+            function searchMidFn(id, searchText) {
+                $.ajax({
+                    type: 'POST',
+                    url: '../../Service/BaseToMarker.ashx?method=search',
+                    data: {
+                        'Type': urlJson.typeIndex,
+                        'ID': id,
+                        'Content': searchText,
+                        'pageIndex': pageIndex,
+                        'pageSize': 10
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('MID');
+                        console.log(data);
+                        var result = data.data;
+                        //  var result= JSON.parse(data);
+                        console.log(data.data);
+                        console.log(result[0].jsonName);
+                        dealTheadFn(result[0].jsonName);
+                        console.log(result[1].jsonData);
+                        dealTbodyFn(result[0].jsonName, result[1].jsonData.data);
+                        dealPage(result[1].jsonData.total);
+                        $('.currentPage').html(parseInt(pageIndex + 1));
+                        $(".totalPage").html(totalPage);
+
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+
+            function dealTheadFn(thData) {
+                $("thead tr").empty();
+                $("thead tr").append('<th></th>');
+                for (var i = 0; i < thData.length; i++) {
+                    $("thead tr").append('<th>' + thData[i] + '</th>');
+                }
+                $("thead tr").append('<th></th>');
+            }
+
+            function dealTbodyFn(thData, tbData) {
+                $("tbody").empty();
+                for (var i = 0; i < tbData.length; i++) {
+                    var tempStr = '<td><i></i></td>';
+                    for (var key in tbData[i]) {
+                        tempStr += '<td data-id="' + key + '">' + tbData[i][key] + '</td>'
+                    }
+                    /*   for (var j = 0; j < thData.length; j++) {
+                           tempStr += '<td>' + j+eval(tbData[i])[j]+ '</td>'
+                       }*/
+                    tempStr = '<tr>' + tempStr + '<td><i class="modiBtn"></i><i class="deleBtn"></i></td></tr>';
+                    $("tbody").append(tempStr);
+                    /*for(var key in tbData[i] )
+                    {
+                        tempStr += '<td>' + tbData[i][key]+ '</td>'
+                    }*/
+                }
+
+            }
+            function dealPage(total) {
+                totalPage = Math.ceil(total / 10);
+            }
+            //新增
+            $(".addBtn").click(function () {
+                var opType = 1;
+                var index = layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['650px', '292px'],
+                    content: 'layer_addMidForm.html?opType=' + opType,
+                    success: function () {
+                        console.log(222);
+                        //  var currentStyle = layer.getChildFrame(".style_imgBox", index);
+                        //  currentStyle.children('img[alt="' + styleV + '"]').parents(".style_styleBox").addClass('current');
+                    },
+                    end: function () {
+                        searchMidFn('', searchText);
+                    }
+                });
+            });
+            //修改
+            $(".table_wrap tbody").on('click', '.modiBtn', function (e) {
+                e.stopPropagation();
+                $(this).parents("tr").siblings().removeClass('current');
+                $(this).parents("tr").addClass('current');
+                var equip_id = $(this).parents("tr").children("td[data-id='id']").html();
+                console.log(equip_id);
+                var opType = 2;
+                var url = 'layer_addMidForm.html?opType=' + opType + '&id=' + equip_id;
+                var index = layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['650px', '292px'],
+                    content: url,
+                    success: function () {
+                        console.log(222);
+                        //  var currentStyle = layer.getChildFrame(".style_imgBox", index);
+                        //  currentStyle.children('img[alt="' + styleV + '"]').parents(".style_styleBox").addClass('current');
+                    },
+                    end: function () {
+                        searchMidFn('', searchText);
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Admin/Role_new";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnCreate_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBox()
+                       .Label("名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                               .ID("tbxName"),
+                    F.TextBox()
+                       .Label("备注")
+                       .ID("tbxRemark"),
+                    F.DropDownList()
+                        .ID("ddlType")
+                        .Label("用户类型")
+                        .Required(true)
+                        .ShowRedStar(true)
+                        .EnableMultiSelect(false)
+                        .Items(
+                            F.ListItem()
+                                .Text("普通角色")
+                                .Value("0"),
+                            F.ListItem()
+                                .Text("客户角色")
+                                .Value("1")
+                             )
+                        .Listener("change", "onddlTypeChange")
+                        .Readonly(ViewBag.ReadOnly)
+                        .SelectedValue(ViewBag.SelectValue),
+                     F.TriggerBox()
+                        .ID("tbSelectedCustomer")
+                        .EnableEdit(false)
+                        .TriggerIcon(TriggerIcon.Search)
+                        .Required(true)
+                        .ShowRedStar(true)
+                        .OnClientTriggerClick("OnClientCustomerSelect();")
+                        .Text(ViewBag.CustomerName)
+                        .Hidden(ViewBag.Hidden)
+                        .Readonly(ViewBag.ReadOnly)
+                        .Label("选择客户"),
+                     F.HiddenField()
+                        .Label("客户id")
+                        .ID("tbxCustomerID")
+                        .Text(ViewBag.CustomerID)
+               )
+        )
+    )
+@(F.Window()
+        .ID("Window1")
+        .Width(400)
+        .Height(400)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+)
+}
+@section script {
+
+    <script>
+        //F.ready(function () {
+        //    F.ui.tbSelectedCustomer.setHidden(true);
+        //})
+        function onddlTypeChange(event) {
+            var ddlType = F.ui.ddlType;
+            var tbSelectedCustomer = F.ui.tbSelectedCustomer;
+            var tbxCustomerID = F.ui.tbxCustomerID;
+            if(ddlType.getValue()=="0"){  //普通角色
+                tbSelectedCustomer.setHidden(true);
+            }
+            else if (ddlType.getValue() == "1") { //客户角色
+                tbSelectedCustomer.setHidden(false);
+            }
+
+            tbSelectedCustomer.setValue("");
+            tbxCustomerID.setValue("0");
+        }
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl,"客户选择",700,500);
+        }
+
+        function updateCustomer(id, text) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+        }
+    </script>
+}

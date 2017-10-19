@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>熊猫园区手机监控</title>
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css/pandaMobile.css?v=1.0.0" rel="stylesheet" />
+    <script type="text/javascript" src="../FTZ/js/jquery.min.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="layer/layer.js"></script>
+
+    <title></title>
+</head>
+<body>
+   
+
+
+    <script>
+        $(function () {
+            function parseUrl() {
+
+                var url = window.location.href;
+                // alert(url);
+                var i = url.indexOf('?');
+                // alert(1);
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+
+                    arr2[tar[0]] = tar[1];
+                };
+                // alert(0);
+                // alert(arr2);
+                return arr2;
+
+
+            }
+            var v = parseUrl();
+
+
+
+            //loadData();
+            getData(v['id']);
+            //function loadData() {
+            //    $.ajax({
+            //        url: '../../Service/T_DataMainService.ashx?method=getcurrentdata&id=1',
+            //        success: function (dat) {
+            //            var data = JSON.parse(dat);
+            //            // alert(data);
+
+            //            showContent(data);
+            //        },
+            //        error: function (data) {
+            //            console.log('error');
+            //        }
+            //    });
+            //}
+
+
+
+
+            //数据获取函数
+
+            function getData(pId) {
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                    data: { 'FPumpID': pId },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data+"dafdsfs");
+                        var data = JSON.parse(data);
+                        data = data.data[0];
+                        showContent(data, pId);////
+                        pumpName(pId);////
+                    }
+                });
+            }
+
+            //泵房名称获取函数
+            function pumpName(id) {
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=get',
+                    data: { 'id': id },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data +"dddfasdfsdfsafsa");
+                        // alert(data+'dddddddddddddddddddd');
+                        var data = JSON.parse(data);
+
+                        $('.number_box .pump_name').html(data.FName);
+                        $('.number_box .pump_number').html(data.FNumber);
+                        $('.item_bg1').parent().parent().find('.item_content').html(data.FName);
+                        $('.item_bg2').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg3').parent().parent().find('.item_content').html(data.FMaintenancePeriod);
+                        $('.item_bg4').parent().parent().find('.item_content').html(data.FChangePeriod);
+                        $('.item_bg5').parent().parent().find('.item_content').html(data.FMaterial);
+                        //$('.item_bg6').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg7').parent().parent().find('.item_content').html(data.FPumpType);
+                        $('.item_bg8').parent().parent().find('.item_content').html(data.FStatus);
+                        $('.item_bg9').parent().parent().find('.item_content').html(data.FPipeSize);
+                        $('.item_bg10').parent().parent().find('.item_content').html(data.FCaliber);
+
+                        window.setTimeout(function () {
+                            pic_show();////
+
+
+                            info_show();////
+                        }, 400);
+                    }
+                });
+            }
+
+
+
+
+            function showContent(data, pId) {
+                if ($('.stage')) {
+                    $('.stage').remove();
+                }
+
+                var $iframe;
+
+                if (data.FPumpType) {
+                    $iframe = data.FURL;
+                } else {
+                    $iframe = 'iframe1';
+                }
+                var addTime = data.AddTime ? data.AddTime.replace('T', ' ') : ' ';
+                var infoBox =
+               '<div class="stage">' +
+           '	<div class="contentBox">' +
+           '		<div class="fore">' +
+           '			' +
+           '			' +
+           '			<div class="fore_header">' +
+           '				' +
+           '				<ul class="img-box clearfix">' +
+           '					<li><img src="img1/img1.png" /></li>' +
+           '					<li><img src="img1/img2.png" /></li>' +
+           '					<li><img src="img1/img1.png" /></li>' +
+           '					<li><img src="img1/img2.png" /></li>' +
+           '				</ul>' +
+           '				' +
+           '				<div class="time-box">' +
+           '					<p class="pump_time">采集时间：<span>' + addTime + '</span></p>					' +
+           '				</div>				' +
+           '				<div class="number_box">' +
+           '					<p class="pump_name">泵房名称</p>' +
+           '					<p class="pump_number">23</p>' +
+           '				</div>' +
+           '				' +
+           '			</div>	' +
+           '			' +
+           '			<div class="closeBox"><span class="close">&times;</span></div>' +
+           '            <div class="camera"></div>' +
+           '			<div class="content">' +
+           '				<ul class="power_box">' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child1"></span>正累积流量</div><div class="number">' + (data.P01 ? data.P01 : ' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child2"></span>压力</div><div class="number">' + (data.A03 ? data.A03 : ' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child3"></span>瞬时流量</div><div class="number">' + (data.A01 ? data.A01 : ' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child4"></span>负累积流量</div><div class="number">' + (data.P02 ? data.P02 : ' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child5"></span>GPRS电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.V ? data.V : ' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child6"></span>电池电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.A02 ? data.A02 : ' ') + '</div></li>' +
+           '				</ul>' +
+           '			</div>						' +
+           '			<div class="fore_footer">' +
+           '				<ul class="warning_info_box">' +
+           '					<li><a href="javascript:void(0);">东泵房报警泵房水压报警1</a></li>' +
+           '					<li><a href="javascript:void(0);">泵房阀门异常报警2</a></li>' +
+           '					<li><a href="javascript:void(0);">泵房流量报警3</a></li>' +
+           '				</ul>' +
+           '			</div>				' +
+           '		</div>' +
+           '		<div class="back">' +
+           '			<div class="closeBox"><span class="close">&times;</span></div>' +
+           '			<div class="back_header">' +
+           '				<p class="backBox"><span class="backBtn"></span></p>			' +
+           '                <div id="echart_box"></div>' +
+           '<div title="' + pId + '" class="show_list"><ul><li class="showList_li1"></li><li class="showList_li2"></li><li class="showList_li3"></li><li class="showList_li4"></li><li class="showList_li5"></li></ul></div>' +
+           '			</div>			' +
+           '			<div class="back_content">' +
+           '				<ul>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg1"></span>名称</div>' +
+           '						<div class="item_content">熊猫管网</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg2"></span>品牌</div>' +
+           '						<div class="item_content">熊猫</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg3"></span>保养周期</div>' +
+           '						<div class="item_content">6个月</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg4"></span>更换周期</div>' +
+           '						<div class="item_content">6个月</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg5"></span>材质</div>' +
+           '						<div class="item_content">PVC</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg6"></span>埋深</div>' +
+           '						<div class="item_content">0.8米</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg7"></span>设备类型</div>' +
+           '						<div class="item_content">官网监测</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg8"></span>设备状态</div>' +
+           '						<div class="item_content">使用中</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg9"></span>管径</div>' +
+           '						<div class="item_content">DF65</div>' +
+           '					</li>' +
+           '					<li class="clearfix">' +
+           '						<div class="item"><span class="item_bg item_bg10"></span>口径</div>' +
+           '						<div class="item_content">DF65</div>' +
+           '					</li>' +
+           '				</ul>' +
+           '				' +
+           '			</div>' +
+           '		</div>' +
+           '	</div>' +
+           '</div> ';
+
+                $('body').append(infoBox);
+
+                $('.stage').ready(function () {
+                    var $h = $(window).height() - $('.fore_header').height() - $('.sysBox').height() - $('.pump_box').height() - $('.fore_footer').height() - 30;
+                    // alert($h);
+
+
+                    var myChart = echarts.init($('#echart_box')[0]);
+                    myChart.setOption(option0);
+
+                    function chart1Request(ID) {
+                        $.ajax({
+                            url: '../../Service/T_ReportService.ashx?method=getcurvedata',
+                            data: { 'PumpID': ID },
+
+                            success: function (data) {
+                                //  alert(data);
+                                var data = JSON.parse(data);
+                                // console.log(data);
+                                var xData = [];
+                                var seriesData = [];
+                                $.each(data, function (i, v) {
+                                    xData.push(v.T_Time);
+                                    // xData.push(' ');
+                                    seriesData.push(v.A03)
+                                });
+                                // console.log("xData" + xData);
+                                //    console.log("seriesData" + seriesData);
+                                var options1 = {
+                                    xAxis: {
+                                        data: xData
+                                    },
+                                    series: {
+                                        data: seriesData
+                                    },
+                                };
+                                // console.log(options1);
+                                myChart.setOption(options1);
+                            },
+                            error: function (data) {
+                                // console.log('错误：' + data.responseText);
+                            }
+                        });
+                    }
+
+
+
+
+                    chart1Request(193);
+
+                    $('.tab-content').height($h + 'px');
+                    // alert($('.tab-content ').height());
+                    //if ($('.customer')) {
+                    //    $.ajax({
+                    //        url: '../Service/T_CustomerService.ashx?method=get&id=' + $('.customer').attr('id'),
+                    //        cache: false,
+                    //        success: function (data) {
+                    //            var data = JSON.parse(data);
+                    //            $('.customer').html(data.FName);
+                    //            alerm_fun();
+                    //            //$('.tab-content').mCustomScrollbar();
+                    //            maxMinShow($('.stage').attr('numb'));
+                    //            getCurrentData($('.stage').attr('numb'));
+                    //        }
+                    //    });
+                    //}
+                })
+
+                //$('body').delegate('.pump_name', 'mouseover', function () {
+                //    $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                //        $(this).removeClass('swing animated');
+                //    });
+                //});
+            };
+
+
+
+
+
+            $('body').delegate('.close', 'touchstart', function () {
+
+              
+                $('.stage').remove();
+                window.location.href = "mobileSelectList.html";
+               
+            });
+            $('body').delegate('.pump_name', 'touchstart', function () {
+                $('.fore').removeClass('clickTwo').addClass('click').css('z-index', '0');
+                $('.back').removeClass('clickTwo').addClass('click').css('z-index', '2');
+                $('.fore .tab-content').removeClass('show').addClass('hidden');
+            });
+            //$('body').delegate('.backBtn', 'mouseover', function () {
+            //    $(this).addClass('tada animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            //        $(this).removeClass('tada animated');
+            //    });
+            //});
+            $('body').delegate('.backBtn', 'touchstart', function () {
+                $('.back').removeClass('click').addClass('clickTwo').css('z-index', '0');
+                $('.fore').removeClass('click').addClass('clickTwo').css('z-index', '2');
+                $('.fore .tab-content').removeClass('hidden').addClass('show');
+            });
+
+            //$('body').delegate('.back_bottom  .pump_info li', 'mouseover', function () {
+            //    $(this).addClass('bounce animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            //        $(this).removeClass('bounce animated');
+            //    });
+            //});
+
+
+
+
+
+            $('body').delegate('.show_list ul li', 'touchstart', function (e,i, v) {
+                console.log(e);
+                e.stopPropagation();
+                e.preventDefault();
+                var id = $(this).parent().parent().attr('title');
+                var index = $(this).index();
+                top.layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['99%', '40%'],
+                    content: '../Baidu/chartsFrame.html?id=' + id + '&index=' + index
+                });
+            });
+
+
+
+            //报警信息函数
+            function alerm_fun() {
+                var $this = $('.fore_footer');
+                var scrollTimer;
+                var get_alerm_timer;
+                $this.hover(function () {
+                    clearInterval(scrollTimer);
+                },
+                function () {
+                    scrollTimer = setInterval(function () {
+                        alerm_loop($this);
+                    }, 2000);
+                }
+                ).trigger('mouseout');
+
+                //报警 滚动动画
+                function alerm_loop(obj) {
+                    var $self = obj.find("ul:first");
+                    var lineHeight = $self.find("li:first").height();
+
+
+                    var len = $self.find("li").length;
+                    if (len <= 1) {
+                        return;
+                    }
+
+                    $self.animate({ "margin-top": -lineHeight + "px" }, 1000, function () {
+                        $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                    });
+                };
+
+                setInterval(function () {
+                    get_alarm();
+                }, 1000 * 60);
+                //获取 报警的信息
+                get_alarm();
+                function get_alarm() {
+                    $('.fore_footer .warning_info_box').html('');
+                    $.ajax({
+                        url: '../Service/T_AlarmService.ashx?method=searchall',
+                        data: { 'FPumpID': $('.fore_footer .warning_info_box').attr('id') },//v['id']
+                        cache: false,
+                        success: function (data) {
+                            //console.log(data);
+
+                            //console.log($('#footer .left_list').html()+"sdfsalfjfasljfalsfjsfj");
+                            var data = JSON.parse(data);
+                            if (data['total'] != 0) {
+                                $.each(data.data, function (i, v) {
+                                    var FAlarmDate = v.FAlarmDate ? v.FAlarmDate.replace("T", " ") : "无数据";
+                                    $('.fore_footer .warning_info_box').append('<li><a href="javascript:void(0);">' + v.FContent + '</a></li>');
+                                });
+                            }
+                        },
+                        error: function (data) {
+                            if (window.console) {
+                                console.log('错误：' + data.responseText);
+                            }
+                        }
+                    });
+
+                };
+            };
+
+
+
+         
+
+           
+
+
+            function pic_show() {
+                (function () {
+                    var pic_count = 4;
+                    var $this = $('.fore_header');
+                    var scrollTimer;
+                    var get_alerm_timer;
+
+                    $this.hover(function () {
+                        console.log(222222);
+                        clearInterval(scrollTimer);
+                        console.log(333333);
+                    },
+                    function () {
+                        scrollTimer = setInterval(function () {
+                            alerm_loop($this);
+                        }, 3500);
+                    }
+                    ).trigger('mouseout');
+
+                    //滚动动画
+                    function alerm_loop(obj) {
+                        var $self = obj.find("ul:first");
+                        var $moveWidth = $self.find("li:first").width();
+                        var $length = $self.find("li").length;
+                        if ($length <= 1) {
+                            return;
+                        } else {
+                            $self.animate({ "margin-left": -$moveWidth + "px" }, 2500, function () {
+                                $self.css("margin-left", "0px").find("li:first").appendTo($self);
+                            });
+                        }
+                    };
+                })();
+            }
+            pic_show();
+
+
+            //报警信息函数
+
+            function info_show() {
+                (function () {
+                    var $this = $('.fore_footer');
+                    var scrollTimer;
+                    var get_alerm_timer;
+                    $this.hover(function () {
+
+                        clearInterval(scrollTimer);
+
+                    },
+                    function () {
+                        scrollTimer = setInterval(function () {
+                            alerm_loop($this);
+                        }, 3000);
+                    }
+                    ).trigger('mouseout');
+
+                    //报警 滚动动画
+                    function alerm_loop(obj) {
+                        var $self = obj.find("ul:first");
+                        var lineHeight = $self.find("li:first").height();
+
+                        $self.animate({ "margin-top": -lineHeight + "px" }, 2000, function () {
+                            $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                        });
+                    };
+
+
+                })();
+            }
+            info_show();
+
+            //echart
+
+            var option0 = {
+                title: {
+                    text: '实时压力',
+                    show: false,
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: '12px',
+
+                    },
+                    left: '40%'
+                },
+                grid: {
+                    show: true,
+                    borderWidth: .2,
+                    borderColor: 'gray',
+                    top: 40,
+                    left: 10,
+                    right: 10,
+                    bottom: 10
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(28,136,151,0.6)',
+                    padding: [5, 10],
+                    axisPointer: {
+                        lineStyle: {
+                            color: 'rgba(37,211,186,0.7)'
+                        }
+                    }
+                },
+                legend: {
+                    data: [''],
+                    textStyle: {
+                        color: '#fff',
+                    },
+                    //    selected: {
+                    //        '当月': true
+                    //    }
+                },
+                xAxis: {
+                    show: true,
+                    type: 'category',
+                    name: "",
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                            type: 'solid',
+                        },
+                    },
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .2,
+                        },
+                    },
+                    // boundaryGap: true,
+                    //     data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                    data: []
+                },
+                yAxis: {
+                    show: true,
+                    type: 'value',
+                    name: "",
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: 'rgb(0,0,0)',
+                            fontSize: 12,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                            type: 'solid',
+                        },
+                    },
+                },
+                series: [{
+                    name: '当天',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        smooth: true,
+                    },
+                    //  data: ["0.274", "0.277", "0.274", "0.281", "0.277", "0.274", "0.279", "0.282", "0.274", "0.268", "0.276", "0.266", "0.260", "0.267", "0.277", "0.278", "0.287", "0.287", "0.282", "0.287", "0.287", "0.281", "0.276", "0.275", "0.254", "0.259", "0.282", "0.283", "0.286", "0.279", "0.279", "0.282", "0.278", "0.251", "0.271", "0.281", "0.270", "0.283", "0.282", "0.285", "0.277", "0.276", "0.267", "0.267", "0.268", "0.261", "0.250", "0.240", "0.212", "0.203", "0.203", "0.214", "0.189", "0.183", "0.184", "0.208", "0.207", "0.197", "0.188", "0.207", "0.198", "0.191", "0.197", "0.198", "0.188", "0.197", "0.180", "0.176", "0.168", "0.186", "0.178"]
+                    data: []
+                }]
+            };
+
+
+
+           
+
+
+
+        });
+
+    </script>
+</body>
+
+</html>

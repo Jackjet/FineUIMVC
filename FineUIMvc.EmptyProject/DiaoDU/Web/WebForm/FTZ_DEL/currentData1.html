@@ -1,0 +1,689 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>currentData</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <link rel="stylesheet" href="css/dataAnalysis.css" />-->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <link href="css/jquery.toolbar.css" rel="stylesheet" />
+    <link href="http://www.jq22.com/jquery/font-awesome.4.6.0.css" rel="stylesheet" media="screen">
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="js/jquery.toolbar.min.js"></script>
+    <script src="../Baidu/layer/layer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            /*background: #115676;*/ /*rgba(16,80,91,.4)*/
+            background: rgba(14,70,112,0.4);
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .clearfix:after {
+                content: '';
+                display: block;
+                clear: both;
+        }
+
+        .main {
+            position: relative;
+            padding-top: 50px;
+            margin-left: 61px;
+        }
+
+        .changePageMain {
+            color: #42abf7;
+        }
+
+        .changePageMain i {
+                display: inline-block;
+                cursor: pointer;
+        }
+
+
+        .changePageMain i.firstPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningFront.png) no-repeat;
+                    background-position-y: 2px;
+        }
+
+        .changePageMain i.prevlPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningLeft.png) no-repeat;
+                    background-position-y: 2px;
+        }
+
+        .changePageMain i.nextPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningRight.png) no-repeat;
+                    background-position-y: 2px;
+        }
+
+        .changePageMain i.finallyPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningLast.png) no-repeat;
+                    background-position-y: 2px;
+        }
+
+        .changePageMain .currentPage {
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                font-size: 12px;
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+        }
+
+        .changePageMain .totalPages {
+                color: white;
+                font-size: 12px;
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+       }
+
+        .tableBox {
+            position: relative;
+            /*background: rgba(16,80,91,.4);*/
+            box-sizing: border-box;
+            min-height: 400px;
+        }
+
+        .tableBox .pump_status {
+            vertical-align: top;
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            background: url(./img/images/inline.png) no-repeat;
+        }
+
+        .tableBox .pump_name {
+            font-size: 12px;
+            height: 32px;
+            line-height: 32px;
+            display: inline-block;
+        }
+
+        .tableBox .pump_status.status0 {
+            background-position: -80px 0;
+        }
+
+        /*.tableBox .pump_status.status1 {
+            background-position: -10px 0;
+        }*/
+
+        .tableBox .pump_status.status2 {
+            background-position: -50px 0;
+        }
+
+        .table.table1 {
+            position: absolute;
+            border-bottom: 2px solid #257393;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            /*background: rgba(15,88,114,1);*/
+            background: rgb(3, 66, 113);
+            height: 60px;
+            overflow: hidden;
+        }
+
+        #mCSB_1 .mCSB_container_wrapper {
+            margin-right: 10px;
+        }
+
+        #mCSB_1 .mCSB_container {
+            padding-right: 0;
+        }
+
+        #mCSB_1_scrollbar_horizontal .mCSB_draggerRail {
+            height: 2px;
+        }
+
+        .table1 tbody {
+            max-height: 1px;
+        }
+
+        .table tr {
+            height: 32px;
+        }
+
+        .table {
+            width: 99.4%;
+            color: #fff;
+            overflow: auto;
+            border-collapse: collapse;
+        }
+
+        .table th {
+             min-width: 140px;
+             height: 36px;
+             font-weight: normal;
+             font-size: 12px;
+             text-align: center;
+         }
+
+            .table td {
+                white-space: nowrap;
+                height: 32px;
+                font-size: 12px;
+                /*padding-left: 50px;*/
+                border-bottom: 1px dashed rgba(255,255,255,0.2); /*border: 1px solid groove;*/
+                text-align: center;
+            }
+
+         .table td.currentStatus {
+             text-align: left;
+             padding-left: 66px;
+         }
+
+        .tableBox .state {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background: url(./img/images/bump_status.png) no-repeat left top;
+        }
+
+        .tableBox .state.status1 {
+                background-position: right top;
+        }
+
+        .tableBox .state.status2 {
+                background-position: left top;
+        }
+
+        .tableBox .state.status3 {
+                background-position: -50px top;
+        }
+
+        .tableBoxT {
+            position: absolute;
+            width: 99.2%;
+            box-sizing: border-box;
+            margin-right: 15px;
+            height: 36px;
+            overflow: hidden;
+            /*background: rgba(15,88,114,.6);*/
+            background: rgba(16,80,91,.3);
+            border-bottom: 2px solid #257393;
+            z-index: 10;
+        }
+
+        .tableBox .press {
+            width: 38px;
+            font-size: 12px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 1px 1px 1px 2px rgba(0,0,0,.4);
+            box-shadow: 1px 1px 1px rgba(0,0,0,.4);
+            color: #fff;
+            background: rgba(0,0,0,.3);
+        }
+        td span{
+            display: inline-block;
+            height: 32px;
+            line-height: 32px;
+        }
+        .mainBottom {
+            position: absolute;
+            left: 10px;
+            bottom: 8px;
+            font-size: 12px;
+        }
+
+        /*toolBar  style*/
+        .btn-toolbar{
+            width: 10px;
+            height: 10px;
+            line-height: 10px;
+            padding: 8px 10px 8px 6px;
+            margin-top: 3px;
+            float: right;
+        }
+            .btn-toolbar > i{
+                font-size: 12px;
+            }
+
+        .barItemText {
+            width: 100px;
+            font-size: 12px;
+            margin-left: -40px;
+            transform: scale(0.80);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="tableBox">
+                <div class="tableBoxT clearfix">
+                    <table class="table table1">
+                        <thead>
+                            <tr>
+                                <th>设备名称</th>
+                                <th>采集时间</th>
+                                <th>压力(MPa)</th>
+                                <th>正累积流量(M<sup>3</sup>)</th>
+                                <th>瞬时流量(M<sup>3</sup>/H)</th>
+                                <th>GPRS电压(V)</th>
+                                <th>水表电池电压(V)</th>
+                                <th>负累积流量(M<sup>3</sup>)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tableBox2">
+                    <table class="table table2">
+                        <thead>
+                            <tr>
+                                <th>设备名称</th>
+                                <th>采集时间</th>
+                                <th>压力(MPa)</th>
+                                <th>正累积流量(M<sup>3</sup>)</th>
+                                <th>瞬时流量(M<sup>3</sup>/H)</th>
+                                <th>GPRS电压(V)</th>
+                                <th>水表电池电压(V)</th>
+                                <th>负累积流量(M<sup>3</sup>)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="contentBox">
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+        </div>
+       
+        <div class="mainBottom">        
+            <div class="changePageMain">
+                <i class="firstPage"></i>
+                <i class="prevlPage"></i>
+                <a class="currentPage">12</a>
+                <span>/</span>
+                <span class="totalPages">89</span>
+                <i class="nextPage"></i>
+                <i class="finallyPage"></i>
+                <span>每页</span>
+                <a class="pageSize">10</a>
+                <span>条，共</span>
+                <a class="total">500</a>
+                <span>条</span>
+            </div>        
+        </div>
+
+        <div id="set-01-options" class="toolbar-icons hidden">
+            <a href="#"><i class="fa fa-line-chart"></i></a>
+        </div>       
+        <div id="set-02-options" class="toolbar-icons hidden">
+            <a href="#"><i class="fa fa-bar-chart"></i><p class="barItemText">日每时</p></a>
+            <a href="#"><i class="fa fa-bar-chart"></i><p class="barItemText">周每日</p></a>
+            <a href="#"><i class="fa fa-bar-chart"></i><p class="barItemText">月每日</p></a>
+            <a href="#"><i class="fa fa-bar-chart"></i><p class="barItemText">年每月</p></a>
+        </div>
+        
+    </div>
+    <script>
+        /* $('.main').height($(window).height());
+         $(window).resize(function () {
+             $('.main').height($(window).height());
+         });
+         */
+        function mainSize() {
+            var h = $(window).height();
+            $('body').height(h);
+            //alert(h);
+            // alert('body'+$('body').height());
+            $('.main').height(h-50);//100
+            $('.main .tableBox').height(h - 50);
+            $('.main .tableBox2').height(h - 50);
+            //$('.main .tableBox .table2').height(h - 100);
+
+
+        };
+        mainSize();
+
+        //window  chrange resize
+        $(window).resize(function () {
+            mainSize();
+            /*trResize();*/
+            tableClone();
+        });
+
+        //page load  trigger resize
+
+        //$('.table1').append($('.table2 tbody').clone());
+
+        $('.tableBox2').mCustomScrollbar({
+            scrollButtons: {
+                enable: true,
+                scrollType: "continuous",
+                scrollSpeed: 20,
+                scrollAmount: 40
+            },
+            axis: "yx",
+            set_width: false,
+            scrollbarPosition: "inside",
+            callbacks: {
+                whileScrolling: function () {
+                    var $that = this.mcs.left;
+                    //alert($that);
+                    //tableClone();
+                    $('.table1').css('left', $that);
+                    $('.tableBoxT').css('width', '99.2%');
+
+                }
+            }
+        });
+
+        /* $('.scrollBox').mCustomScrollbar({
+             scrollButtons: {
+                 enable: true,
+                 scrollType: "continuous",
+                 scrollSpeed: 20,
+                 scrollAmount: 40
+             },
+             axis: "x",
+             set_width: false,
+             scrollbarPosition: "inside"
+         });*/
+        /*function trResize() {
+            $(".table1 th").each(function () {
+                var num = $(this).index();
+                var th_width = $(".table2 th").eq(num).width();
+                $(this).css("width", th_width+30 + "px");
+
+            });
+        }
+        trResize();*/
+
+        function tableClone() {
+            if ($('.table1 thead').next()) {
+                $('.table1 thead').next().remove();
+            }
+            $('.table1 thead').after($('.contentBox').clone());
+        };
+        tableClone();
+        //泵房分页
+        (function () {
+            //初始化
+            $('.currentPage').html(1);
+            var $currentPage = $('.currentPage').html();
+            var $pageSize = 20;
+            $('.pageSize').html($pageSize);
+            var $totalPages = 30;
+            $('.totalPages').html($totalPages);
+            $('.total').html(100);
+            var $fromTime = null;
+            var $endTime = null;
+            var $wSearchText = null;
+            
+            var pressIndex = 0;
+            var flowIndex = 0;
+            var pumpId = 0;
+
+            //流量 和压力
+            function pressStatic(data) {
+                var pressData = data;
+
+                var pressFS = [];
+            
+                pressFS[0] = pressData['A03'];
+                pressFS[1] = pressData['P01'];
+                pressFS[2] = pressData['A01'];
+                pressFS[3] = pressData['V'];
+                pressFS[4] = pressData['A02'];
+                pressFS[5] = pressData['P02'];
+
+                return { 'a': pressFS };
+            }
+
+            //时间处理函数
+            function changeDate(str) {
+                var oDate = new Date(str),
+                oYear = oDate.getFullYear(),
+                oMonth = oDate.getMonth() + 1,
+                oDay = oDate.getDate(),
+                oHour = oDate.getHours(),
+                oMin = oDate.getMinutes(),
+                oSen = oDate.getSeconds(),
+                oTime = oYear + '-' + getzf(oMonth) + '-' + getzf(oDay) + '  ' + getzf(oHour) + ':' + getzf(oMin) + ':' + getzf(oSen);//最后拼接时间  
+                return oTime;
+            };
+
+            //补0  
+            function getzf(num) {
+                if (parseInt(num) < 10) {
+                    num = '0' + num;
+                }
+                return num;
+            }
+
+            //定时获取
+            var getPumpTimer;
+            getPumpTimer = setInterval(function () {
+                $('.currentPage').html(1);
+                getPump();
+            },3000*60);
+            function getPump() {
+                $currentPage = $('.currentPage').html();
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=GetCurrentAll',
+                    data: {
+                        'pageIndex': $currentPage - 1,
+                        'pageSize': $pageSize
+
+                    },
+                    success: function (data) {
+
+                        var data = JSON.parse(data);
+                        console.log(data);
+                        $('.total').html(data.total);
+                        if (!data.total) {
+                            $('.currentPage').html(0);
+                            alert('暂无数据！');
+                        }
+                        $('.totalPages').html(Math.ceil($('.total').html() / $pageSize));
+                        $('.contentBox').empty();
+                        $.each(data.data, function (i, v) {
+                            var m = JSON.parse(v.DataMain);
+                            m = m[0];                         
+                            if (m.AddTime) {
+                                var len = m.AddTime.length;
+                                var createDate = m.AddTime.substring(6, len - 2);
+                                createDate = changeDate(new Date(Number(createDate)));
+                            } else {
+                                var createDate = v.AddTime ? v.AddTime.replace("T", " ") : "暂无获取";
+                            }
+                           
+                            $('.contentBox').append(
+                                '<tr pumpId="' + m.FPumpID + '">\
+                                <td class="currentStatus"><span class="pump_name">' + v.FName + '</span></td>\
+                                <td class="pumpSt lifeSt">\
+                                    <span class="createTime">' + createDate + '</span>\
+                                </td>\
+                                <td class="colPress"><span>' + pressStatic(m)['a'][0] + '</span><div data-toolbar="set-01" class="btn-toolbar btn-toolbar-primary pull-left" data-toolbar-style="primary"><i class="fa fa-line-chart"></i></div></td>\
+                                <td class="positiveFlow"><span>' + pressStatic(m)['a'][1] + '</span><div data-toolbar="set-02" class="btn-toolbar btn-toolbar-primary pull-left" data-toolbar-style="primary"><i class="fa fa-bar-chart"></i></div></td>\
+                                <td class="instanceFlow"><span>' + pressStatic(m)['a'][2] + '</span><div data-toolbar="set-01" class="btn-toolbar btn-toolbar-primary pull-left" data-toolbar-style="primary"><i class="fa fa-line-chart"></i></div></td>\
+                                <td class="pumpPr firePr">' + pressStatic(m)['a'][3] + '</td>\
+                                <td class="pumpPr sprayPr">' + pressStatic(m)['a'][4] + '</td>\
+                            <td class="negtiveFlow"><span>' + pressStatic(m)['a'][5] + '</span></td>\
+                            </tr>');
+                        });
+
+                        $('div[data-toolbar="set-01"]').toolbar({
+                            content: '#set-01-options',
+                            position: 'left',
+                        });
+                        $('div[data-toolbar="set-02"]').toolbar({
+                            content: '#set-02-options',
+                            position: 'left',
+                        });
+                       // 
+                        $('div[data-toolbar="set-01"]').on('toolbarItemClick', function (i,event) {                        
+                            pumpId = $(this).parents("tr").attr("pumpId");
+                            var parentClass = $(this).parents("td").attr("class");                                                                  
+                            layer.open({
+                                type: 2,
+                                anim: 3,
+                                shade: .6,
+                                title: false,
+                                shadeClose: true, //点击遮罩关闭层
+                                area: ['75%', '65%'],
+                                content: 'echartsLayer.html?pumpId=' + pumpId + '&index=' + pressIndex + '&parentClass=' + parentClass
+                            });
+                        });
+
+                        $('div[data-toolbar="set-02"]').on('toolbarItemClick', function (i, event) {
+                            pumpId = $(this).parents("tr").attr("pumpId");
+                            var parentClass = $(this).parents("td").attr("class");
+                            
+                            layer.open({
+                                type: 2,
+                                anim: 3,
+                                shade: .6,
+                                title: false,
+                                shadeClose: true, //点击遮罩关闭层
+                                area: ['75%', '65%'],
+                                content: 'echartsLayer.html?pumpId=' + pumpId + '&index=' + flowIndex + '&parentClass=' + parentClass
+                            });
+                        });
+                        //$('#set-01-optionsa').on('click',function () {
+                        //    var index = $(this).index();
+
+                        //    console.log(index);
+                        //    console.log(pumpId);
+                        //});
+
+                    },
+                    error: function (data) {
+                        alert('错误：' + data.responseText);
+                    }
+                });
+            };
+
+            getPump();
+            /*echarts弹出层*/
+          /*  $(".contentBox").delegate(".chart_icos li", "click", function () {
+                $(this).parent(".chart_icos").removeClass('overed');
+                var pumpId = $(this).parents("tr").attr("pumpId");
+                var index = $(this).index();
+                layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['75%', '65%'],
+                    content: 'echartLayer.html?pumpId=' + pumpId + '&index=' + index
+                });
+                //   alert(index);
+            });*/
+
+
+
+
+            $('.changePageMain .prevlPage').click(function () {
+                if ($('.currentPage').html() == 1) {
+                    alert('已经是第一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    return --v;
+                });
+                getPump();
+            });
+
+
+            $('.changePageMain .nextPage').click(function () {
+                if ($('.currentPage').html() == $('.totalPages').html()) {
+                    alert('已经是最后一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    return ++v;
+                });
+                getPump();
+            });
+
+            $('.changePageMain .firstPage').click(function () {
+                if ($('.currentPage').html() == 1) {
+                    alert('已经是第一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    v = 1;
+                    return v;
+                });
+                getPump();
+            });
+
+            $('.changePageMain .finallyPage').click(function () {
+                if ($('.currentPage').html() == $('.totalPages').html()) {
+                    alert('已经是最后一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    v = $('.totalPages').html();
+                    return v;
+                });
+                getPump();
+            });
+
+            /*toolBar*/
+           
+                $("#set-01-options a").click(function () {
+                   // $(this).siblings().removeClass('clicked');
+                    // $(this).addClass('clicked');
+                    pressIndex = $(this).index();                  
+                });
+
+                $("#set-02-options a").click(function () {
+                    // $(this).siblings().removeClass('clicked');
+                    // $(this).addClass('clicked');
+                    flowIndex = $(this).index();                 
+                });
+           
+           
+
+        })();
+
+    </script>
+</body>
+</html>

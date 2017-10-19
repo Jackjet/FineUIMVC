@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "PumpVQ_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.Panda_PumpVQ
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnVQEdit_Click"), "SimpleForm1")
+                        .Text("保存后关闭"),
+                    F.ToolbarFill()
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                      F.HiddenFieldFor(x => x.ID)
+                         .ID("tbxID"),
+                      F.DropDownListFor(x => x.QuipmentType)
+                           .ID("ddlType")
+                           .Label("设备")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .Listener("change", "onddlTypeChange")
+                           .DataSource(ViewBag.ddlTypeDataSource)
+                           .SelectedValue(ViewBag.ddlTypeSelect),
+                        F.TextBoxFor(x => x.Rtmp)
+                         .Label("RTMP")
+                         .ID("tbxRtmp")
+                         .Required(true)
+                         .ShowRedStar(true),
+                        F.TextBoxFor(x => x.Hls)
+                         .Label("HLS")
+                         .ID("tbxHls")
+                         .Required(true)
+                         .ShowRedStar(true),
+                      F.TextBoxFor(x => x.Type)
+                           .Label("名称")
+                           .ID("tbxType")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.TextBoxFor(x => x.Brand)
+                           .Label("品牌")
+                           .ID("tbxBrand")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.TextBoxFor(x => x.Number)
+                           .Label("型号")
+                           .ID("tbxNumber")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.TextBoxFor(x => x.IP)
+                           .Label("IP地址")
+                           .ID("tbxIP"),
+                      F.NumberBoxFor(x => x.Port)
+                           .Label("型号")
+                           .ID("tbxPort"),
+                      F.TextBoxFor(x => x.UserName)
+                           .Label("用户名")
+                           .ID("tbxUserName")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.TextBoxFor(x => x.PassWord)
+                           .Label("密码")
+                           .ID("tbxPassWord")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.NumberBoxFor(x => x.FOrderBy)
+                           .Label("排序")
+                           .ID("tbxFOrderBy")
+                           .Required(true)
+                           .ShowRedStar(true),
+                      F.TextBoxFor(x => x.Mark)
+                           .Label("备注")
+                           .EmptyText("")
+                           .ID("tbxMark")
+               )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+@section script {
+
+    <script>
+        F.ready(function () {
+            TypeHidden();
+        })
+        function TypeHidden() {
+            var ddlType = F.ui.ddlType;
+            var tbxRtmp = F.ui.tbxRtmp;
+            var tbxHls = F.ui.tbxHls;
+
+            if (ddlType.getValue() == "3") {  //管理员
+                tbxRtmp.setHidden(false);
+                tbxHls.setHidden(false);
+            }
+            else { //其他
+                tbxRtmp.setHidden(true);
+                tbxHls.setHidden(true);
+            }
+        }
+        function onddlTypeChange(event) {
+         
+            TypeHidden();
+        }
+
+        function updateDTU(id, text) {
+            F.ui.tbSelectedDTU.setValue(text);
+            F.ui.hidDTU.setValue(id);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.hidDZB.setValue(id);
+        }
+
+    </script>
+}
+

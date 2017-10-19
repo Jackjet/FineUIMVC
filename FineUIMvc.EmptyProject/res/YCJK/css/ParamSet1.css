@@ -1,0 +1,73 @@
+﻿.main_wrap{
+    width: 100%;
+    height: 100%;
+    padding: 8px  14px;
+    background-color:#f5f5f5;
+}
+/*.btns_wrap{
+    height: 30px;
+    margin-bottom: 8px;
+}
+.btnStyle{
+    width: 52px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    text-align: center;
+    background-color:#3683af;
+    border-radius: 14px;
+    float: right;
+    margin-right: 2px;
+}
+.saveBtn{
+    background-color: #ff5d04;
+    cursor: pointer;
+}*/
+
+.defaultOp_wrap{
+    height: 290px;
+    padding: 10px 0px 10px 20px;
+    background-color: #fff;
+    margin-bottom: 42px;
+}
+.othersOp_wrap{
+    height: 290px;
+    padding: 10px 0px 10px 20px;
+    background-color: #fff;
+    margin-bottom: 42px;
+}
+.defaultOp_wrap p,.othersOp_wrap p{
+    border-left: 3px solid #438eb9;
+    height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    color: #676767;
+    text-indent: 5px;
+    margin: 8px 0px;
+}
+.ul_default li,.ul_others li{
+    width: 162px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+}
+
+/*.ul_default li input,.ul_others li input{
+   display: none;
+}*/
+.ul_default li i,.ul_others li i{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #c8c8c8;
+     margin-right: 4px;
+}
+.ul_default li i.checked,.ul_others li i.checked{
+    background: url(../img/checkedIco.png) no-repeat;
+}
+    .ul_default li label, .ul_others li label{
+        color: #8a8888;
+    }
+

@@ -1,0 +1,1719 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" href="css/baiduMouse2.css" />
+        <link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/qingpuMapShowMain.css" />
+        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css/tiaoFengPop.css" rel="stylesheet" />
+        <link href="css/yaLiContent.css" rel="stylesheet" />
+        <link href="css/bengZhanPop.css" rel="stylesheet" />
+        <link href="css/dabiaoAndliuliang2.css" rel="stylesheet" />
+        <link href="css/liuLiangPop.css" rel="stylesheet" />      
+        <link href="css/yaLiPop.css" rel="stylesheet" /> 
+        <link href="/res/css/radialindicator.css" rel="stylesheet" />
+        <link href="css/dianDongFaPop.css" rel="stylesheet" />
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>       
+        <script src="/res/configJson/reportList.js"></script>
+		<script src="js/baiduMouse2.js"></script>
+		<script src="js/geoUtils.js"></script>
+        <script src="js/echarts.min.js"></script>
+        <script src="js/radialIndicator.min.js"></script>
+       
+		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+        
+        <script src="layer/layer.js"></script>   
+       
+        <script src="js/jquery.mousewheel.js"></script>
+        <script src="js/jquery.mCustomScrollbar.js"></script>
+        <style>
+            .anchorBL {
+                display: none;
+            }
+        </style>
+		<title></title>
+	</head>
+	<body>
+		<div id="map"></div>
+
+
+
+        <!--电动阀-->
+        <div class="dianDongFaBox clearfix">
+
+            <div class="dianDongFaB">
+                <div class="closeBox"><span class="close">&times;</span></div>
+                <div class="bHeader">
+                    <!--<p class="backBox"><span class="backBtn"></span></p>-->
+
+                    <div class="dianDongKaiduSetBox clearfix">
+
+                        <div class="dianDongKaiduRadia"></div>
+                        <div class="dianDongRadioSetBox">
+                            <input class="dianDongKaiduZhi" placeholder="输入开度">
+                            <button class="dianDongKaiduBtn">确定</button>
+                            <div class="faYuanKong">远程控制</div>
+                            <div class="faBenKong">本地控制</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="bContentBox clearfix">
+                    <ul class="cotentLeftNav">
+                        <li class="bLeftNavItem detail"></li>
+                        <li class="bLeftNavItem info "></li>
+                        <li class="bLeftNavItem baobiao"></li>
+                        <li class="bLeftNavItem baojing"></li>
+                        
+                    </ul>
+                    <div class="bRightContentWrap">
+                        <ul class="bRightUl detail">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">采集时间</div>
+                                <!--<ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>-->
+                                <div class="bRightItemNumber caiJiTime"></div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">进水压力</div>
+                                <ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>
+                                <div class="bRightItemNumber inPress"></div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">出水压力</div>
+                                <ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>
+                                <div class="bRightItemNumber outPress"></div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">压力设定</div>
+                                <ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>
+                                <div class="bRightItemNumber yaLiSheDing"></div>
+                            </li>
+                            <!--<li class="bRightItem clearfix">
+                                <div class="bRightItemName">阀门开度</div>
+                                <ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>
+                                <div class="bRightItemNumber faMenKaiDu"></div>
+                            </li>-->
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">累计流量</div>
+                                <ul class="bRightItemUl clearfix">
+                                    <li class="bRightItemListItem"></li>
+                                    <li class="bRightItemListItem"></li>
+                                </ul>
+                                <div class="bRightItemNumber leiJiLiuLiang"></div>
+                            </li>
+                           
+                        </ul>
+                        <ul class="bRightUl info">
+                            <!--<li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>-->
+                        </ul>
+                        
+
+                        <div class="bRightUl">
+                            <div class="baoBiaoBox">
+                                <ul class="baoBiaoUl">
+                                    <li class="baoBiaoListItem" data-url=" 1 ">123213</li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--<ul class="bRightUl baobiao">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            
+                           
+                        </ul>-->
+                        <ul class="bRightUl baojing">
+
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--压力 的  弹出-->
+        <div class="yaLiBox clearfix">
+            <!--a-->
+            <div class="yaLiA">
+                <div class="aHeader">
+                    <div class="imgBox clearfix">
+
+                    </div>
+                    <div class="timeBox">
+                        <p class="caiJiTime">采集时间：<span></span></p>
+                    </div>
+                    <div class="numberBox">
+                        <p class="pumpName"></p>                      
+                        <p class="pumpNumber"></p>
+                        <div class=" pumpQuanJing"><div class="quanjingBg"></div></div>
+                    </div>
+
+                </div>
+
+                <div class="closeBox"><span class="close">&times;</span></div>
+                <div class="aContentList">
+                    <ul class="power_box">
+                        <li class="clearfix yaLiDianLiang">
+                            <div class="power_name">
+                                压力电量
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem zhuxing"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix yaLiShangXian">
+                            <div class="power_name">
+                                压力上限
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem zhuxing"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix shiShiYaLi">
+                            <div class="power_name">
+                                实时压力
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem zhuxing"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix yaLiXiaXian">
+                            <div class="power_name">
+                                压力下限
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem zhuxing"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <!--<li class="clearfix yaLi">
+                        <div class="power_name">
+                            流量
+                        </div>
+                        <ul class="tubiaoList clearfix">
+                            <li class="tuBiaoItem bingtu"></li>
+                            <li class="tuBiaoItem quxian"></li>
+                            <li class="tuBiaoItem set"></li>
+                        </ul>
+                        <div class="number">
+                            12
+                        </div>
+                    </li>-->
+                    </ul>
+                </div>
+            </div>
+            <!--b-->
+            <div class="yaLiB">
+                <div class="closeBox"><span class="close">&times;</span></div>
+                <div class="bHeader">
+                    <p class="backBox"><span class="backBtn"></span></p>
+                    <div id="echart_box"></div>
+
+                </div>
+
+
+                <div class="bContentBox clearfix">
+                    <ul class="cotentLeftNav">
+                        <li class="bLeftNavItem info active"></li>
+                        <li class="bLeftNavItem baobiao"></li>
+                        <li class="bLeftNavItem baojing"></li>
+                    </ul>
+                    <div class="bRightContentWrap">
+                        <ul class="bRightUl info active">
+                            <!--<li class="bRightItem clearfix" data-name="">
+                                <div class="bRightItemName"> </div>
+                                <div class="bRightItemNumber"> </div>
+                            </li>-->
+                            <!--<li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>-->
+                        </ul>
+                        <div class="bRightUl">
+                            <div class="baoBiaoBox">
+                                <ul class="baoBiaoUl">
+                                    <li class="baoBiaoListItem" data-url=" 1 "></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<ul class="bRightUl baobiao">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                        </ul>-->
+                        <ul class="bRightUl baojing">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName"> </div>
+                                <div class="bRightItemNumber"> </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--流量 的  弹出-->
+        <div class="liuLiangBox clearfix">
+            <!--a-->
+            <div class="liuLiangA">
+                <div class="aHeader">
+                    <div class="imgBox clearfix">
+
+                    </div>
+                    <div class="timeBox">
+                        <p class="caiJiTime">采集时间：<span></span></p>
+                    </div>
+                    <div class="numberBox">
+                        <p class="pumpName"></p>
+                        <p class="pumpNumber">12</p>
+                    </div>
+
+                </div>
+
+                <div class="closeBox"><span class="close">&times;</span></div>
+                <div class="aContentList">
+                    <ul class="power_box">
+                        <li class="clearfix zhengLeiJi">
+                            <div class="power_name">
+                                正累积流量
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem zhuxing"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix fuLeiji">
+                            <div class="power_name">
+                                负累积流量
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix yaLi">
+                            <div class="power_name">
+                                进水压力
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix shunShiLiuLiang">
+                            <div class="power_name">
+                                瞬时流量
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix dianChiDianYa">
+                            <div class="power_name">
+                                水表电池电压
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <li class="clearfix dianYa">
+                            <div class="power_name">
+                                GPRS电压
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem set"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>
+                        <!--<li class="clearfix liuLiang">
+                            <div class="power_name">
+                                流量
+                            </div>
+                            <ul class="tubiaoList clearfix">
+                                <li class="tuBiaoItem bingtu"></li>
+                                <li class="tuBiaoItem quxian"></li>
+                                <li class="tuBiaoItem set"></li>
+                            </ul>
+                            <div class="number">
+                                12
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+            <!--b-->
+            <div class="liuLiangB">
+                <div class="closeBox"><span class="close">&times;</span></div>
+                <div class="bHeader">
+                    <p class="backBox"><span class="backBtn"></span></p>
+                    <div id="echart_box"></div>
+
+                </div>
+
+
+                <div class="bContentBox clearfix">
+                    <ul class="cotentLeftNav">
+                        <li class="bLeftNavItem info active"></li>
+                        <li class="bLeftNavItem baobiao"></li>
+                        <li class="bLeftNavItem baojing"></li>
+                    </ul>
+                    <div class="bRightContentWrap">
+                        <ul class="bRightUl info active">
+                            <!--<li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                                <div class="bRightItemNumber">123 </div>
+                            </li>-->
+                        </ul>
+                        <div class="bRightUl">
+                            <div class="baoBiaoBox">
+                                <ul class="baoBiaoUl">
+                                    <li class="baoBiaoListItem" data-url=" 1 "></li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<ul class="bRightUl baobiao">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName">qqqqq </div>
+                            </li>
+                        </ul>-->
+                        <ul class="bRightUl baojing">
+                            <li class="bRightItem clearfix">
+                                <div class="bRightItemName"> </div>
+                                <div class="bRightItemNumber"> </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--二供泵站弹出-->
+        <div class="mapClickShow">
+            <div class="mapClickShowLeft">
+                <div class="showLeftTop">
+                    <div class="pumpSelectBox clearfix">
+                        <div class="pumpNameBg"></div>
+                        <div class="selectBox selectBox1 selectB">
+                            <div class=" select_text select_text1"></div>
+                            <ul class="select_ul select_ul1">
+                                <li class="" data-value="0">请选择</li>
+                                
+                                <!--<li data-value="1" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="2" class="cur">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="3" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="4" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="5" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="6" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="6" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="6" class="">上海 泵房依法法师 啊防守打法</li>
+                                <li data-value="6" class="">上海 泵房依法法师 啊防守打法</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="txtAndJzNameBox clearfix">
+                        <div class="pumpTime clearfix">
+                            <div class="pumpTimeBg"></div>
+                            <div class="pumpTimeTxt"></div>
+                        </div>
+                        <div class="pumpJz clearfix">
+                            <div class="pumpJzBg"></div>
+                            <div class="pumpJzTxt"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="bottomLine"></div>
+                </div>
+                <div class="showLeftMid">
+                    <div class="showMidBgBox">
+                        <div class="inNum">0.14</div>
+                        <div class="outNum">0.27</div>
+                        <ul class="yelunStatusBox clearfix">
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus"></div>
+                            </li>
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus "></div>
+                            </li>
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus"></div>
+                            </li>
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus"></div>
+                            </li>
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus"></div>
+                            </li>
+                            <li class="yelunItem">
+                                <div class="yelunLine"></div>
+                                <div class="yelunStatus"></div>
+                            </li>
+
+                        </ul>
+                        <div class="showMidBg"></div>
+                    </div>
+                    <div class="bottomLine"></div>
+                </div>
+                <div class="showLeftBot clearfix">
+                    <div class="liuDianPinBox liuLiang">
+                        <div class="liuDianPinBoxBg liuLiang"></div>
+                        <div class="liuDianPinTxt">总流量</div>
+                        <div class="liuDianPinNum">dd</div>
+                    </div>
+                    <div class="liuDianPinBox dianLiang">
+                        <div class="liuDianPinBoxBg dianLiang"></div>
+                        <div class="liuDianPinTxt">总电量</div>
+                        <div class="liuDianPinNum">dd</div>
+                    </div>
+                    <div class="liuDianPinBox bianPinQi">
+                        <div class="liuDianPinBoxBg bianPinQi"></div>
+                        <div class="liuDianPinTxt">变频器频率</div>
+                        <div class="liuDianPinNum">dd</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mapClickShowMid">
+                <div class="dataItem showItem active"></div>
+                <div class="infoItem showItem"></div>
+                <div class="tubiaoItem showItem"></div>
+                <div class="baojingItem showItem"></div>
+                <div class="quanjingItem">
+                    <div class="quanjingBg"></div>
+                </div>
+            </div>
+            <div class="mapClickShowRight">
+                <div class="mapCloseBox">&times;</div>
+                <div class="headerBox dataItem">实时数据</div>
+                <div class="rightScrollBox">
+                    <ul class="forData dataItem listBox clearfix active">
+
+                       
+                        <!--<li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯蒂芬收到货发斯蒂芬那份</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>
+                        <li class="listItem clearfix">
+                            <div class="listItemName">泵房地址：</div>
+                            <div class="listItemTxt">上市上阿斯</div>
+                        </li>-->
+                    </ul>
+                    <div class="forInfo infoItem listBox">
+                        <div class="infoBox bengFangInfoBox">
+                            <div class="infoBoxHeader bengFangInfoHeader clearfix">
+                                <div class="infoBg"></div>
+                                <div class="infoTxt">泵房信息</div>
+                            </div>
+                            <ul class="infoMain bengFangInfoMain clearfix">
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">泵房名称：</div>
+                                    <div class="infoItemTxt bengFangItemTxt " data-txtval="PName"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">安装时间：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="InstallDate"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">泵房进水：</div>
+                                    <div class="infoItemTxt  bengFangItemTxt" data-txtval="PumpSoaking"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">水箱消毒仪：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="WaterTankSterilizer"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">水箱共用：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="TankIsSharing"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">验收日期：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="AcceptanceDate"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">破窗报警：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="Warning"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">泵房位置：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="PumpLocation"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">地理位置(经纬度)：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="PLngLat"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">供水楼层：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="WaterFloor"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">水质检测：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="WaterQualityDetection"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">主控PLC IP：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="MasterControlPLCIP"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">换药周期：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="DressingCycle"></div>
+                                </li>
+                                <li class="bengFangListItem clearfix">
+                                    <div class="infoItemName bengFangItemName">进水调节阀：</div>
+                                    <div class="infoItemTxt bengFangItemTxt" data-txtval="ControlValve"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="shiPinBox">
+                            <div class="shiPinHeader clearfix">
+                                <div class="infoBg"></div>
+                                <div class="infoTxt">视频信息</div>
+                            </div>
+                            <div class="shiPinItem clearfix">
+                                <div class="shiPinItemName">摄像机</div>
+                                <div class="shiPinItemMain">
+                                    <div class=" shiPinItemBox shiPinTypeBox clearfix">
+                                        <div class="shiPinItemName shiPinTypeName">类型：</div>
+                                        <div class="shiPinItemTxt shiPinTypeTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinPinPaiBox clearfix">
+                                        <div class="shiPinItemName shiPinPinPaiName">品牌：</div>
+                                        <div class="shiPinItemTxt shiPinPinPaiTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinXingHaoBox clearfix">
+                                        <div class="shiPinItemName shiPinXingHaoName">型号：</div>
+                                        <div class="shiPinItemTxt shiPinXingHaoTxt">请求</div>
+                                    </div>
+                                    <div class="shiPinItemBox shiPinDuanKouBox clearfix">
+                                        <div class="shiPinItemName shiPinDuanKouName">IP端口号：</div>
+                                        <div class="shiPinItemTxt shiPinDuanKouTxt">请求请求群</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="shiPinItem clearfix">
+                                <div class="shiPinItemName">摄像机</div>
+                                <div class="shiPinItemMain">
+                                    <div class=" shiPinItemBox shiPinTypeBox clearfix">
+                                        <div class="shiPinItemName shiPinTypeName">类型：</div>
+                                        <div class="shiPinItemTxt shiPinTypeTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinPinPaiBox clearfix">
+                                        <div class="shiPinItemName shiPinPinPaiName">品牌：</div>
+                                        <div class="shiPinItemTxt shiPinPinPaiTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinXingHaoBox clearfix">
+                                        <div class="shiPinItemName shiPinXingHaoName">型号：</div>
+                                        <div class="shiPinItemTxt shiPinXingHaoTxt">请求</div>
+                                    </div>
+                                    <div class="shiPinItemBox shiPinDuanKouBox clearfix">
+                                        <div class="shiPinItemName shiPinDuanKouName">IP端口号：</div>
+                                        <div class="shiPinItemTxt shiPinDuanKouTxt">请求请求群</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="shiPinItem clearfix">
+                                <div class="shiPinItemName">摄像机</div>
+                                <div class="shiPinItemMain">
+                                    <div class=" shiPinItemBox shiPinTypeBox clearfix">
+                                        <div class="shiPinItemName shiPinTypeName">类型：</div>
+                                        <div class="shiPinItemTxt shiPinTypeTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinPinPaiBox clearfix">
+                                        <div class="shiPinItemName shiPinPinPaiName">品牌：</div>
+                                        <div class="shiPinItemTxt shiPinPinPaiTxt">去去去</div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinXingHaoBox clearfix">
+                                        <div class="shiPinItemName shiPinXingHaoName">型号：</div>
+                                        <div class="shiPinItemTxt shiPinXingHaoTxt">请求</div>
+                                    </div>
+                                    <div class="shiPinItemBox shiPinDuanKouBox clearfix">
+                                        <div class="shiPinItemName shiPinDuanKouName">IP端口号：</div>
+                                        <div class="shiPinItemTxt shiPinDuanKouTxt">请求请求群</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="shiPinItem clearfix">
+                                <div class="shiPinItemName">摄像机</div>
+                                <div class="shiPinItemMain">
+                                    <div class=" shiPinItemBox shiPinTypeBox clearfix">
+                                        <div class="shiPinItemName shiPinTypeName">类型：</div>
+                                        <div class="shiPinItemTxt shiPinTypeTxt"></div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinPinPaiBox clearfix">
+                                        <div class="shiPinItemName shiPinPinPaiName">品牌：</div>
+                                        <div class="shiPinItemTxt shiPinPinPaiTxt"></div>
+                                    </div>
+                                    <div class=" shiPinItemBox shiPinXingHaoBox clearfix">
+                                        <div class="shiPinItemName shiPinXingHaoName">型号：</div>
+                                        <div class="shiPinItemTxt shiPinXingHaoTxt"></div>
+                                    </div>
+                                    <div class="shiPinItemBox shiPinDuanKouBox clearfix">
+                                        <div class="shiPinItemName shiPinDuanKouName">IP端口号：</div>
+                                        <div class="shiPinItemTxt shiPinDuanKouTxt"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="infoBox jZInfoBox">
+                            <div class="infoBoxHeader jZInfoHeader clearfix">
+                                <div class="infoBg"></div>
+                                <div class="infoTxt">机组信息</div>
+                            </div>
+                            <ul class=" infoMain infoInfoMain clearfix">
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoName">设备编号：</div>
+                                    <div class="infoItemTxt infoTxt" data-txtval="DTUCode"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">设备分区：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZArea"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">进口管径：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZInletDiameter"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">1#水箱容积：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZTankVolume"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">成套品牌：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZBrandSet"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">归属泵房：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PName"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">设备类型：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="MachineType"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">出口管径：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZOutletDiameter"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">水泵品牌：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZPumpBrand"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">调峰功能：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZPeak"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">止回阀类型：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZCheckValve"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">供水楼层：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="WaterFloor"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">水箱尺寸：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZTankLength"></div>
+                                </li>
+                                <li class="infoListItem clearfix">
+                                    <div class="infoItemName infoItemName">有无减压阀：</div>
+                                    <div class="infoItemTxt infoItemTxt" data-txtval="PumpJZPressReliValve"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="zhuBengInfoBox">
+                            <div class="zhuBengInfoHeader clearfix">
+                                <div class="infoBg"></div>
+                                <div class="infoTxt">主泵信息</div>
+                            </div>
+                            <ul class=" infoMain zhuBengInfoMain clearfix">
+                                <li class="zhuBengListItem clearfix">
+                                    <div class="infoItemName zhuBengItemName">主泵数量：</div>
+                                    <div class="infoItemTxt zhuBengItemTxt" data-txtval="RunPumpNum"></div>
+                                </li>
+                                <li class="zhuBengListItem clearfix">
+                                    <div class="infoItemName zhuBengItemName">主泵流量：</div>
+                                    <div class="infoItemTxt zhuBengItemTxt" data-txtval="PumpJZMainPumpFlow"></div>
+                                </li>
+                                <li class="zhuBengListItem clearfix">
+                                    <div class="infoItemName zhuBengItemName">主泵扬程：</div>
+                                    <div class="infoItemTxt zhuBengItemTxt" data-txtval="PumpJZMainPumpLift"></div>
+                                </li>
+                                <li class="zhuBengListItem clearfix">
+                                    <div class="infoItemName zhuBengItemName">主泵功率：</div>
+                                    <div class="infoItemTxt zhuBengItemTxt" data-txtval="PumpJZMainPumpPower"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fubengInfoBox">
+                            <div class="fubengInfoHeader clearfix">
+                                <div class="infoBg"></div>
+                                <div class="infoTxt">辅泵信息</div>
+                            </div>
+                            <ul class=" infoMain fuBengInfoMain clearfix">
+                                <li class="fuBengListItem clearfix">
+                                    <div class="infoItemName fuBengItemName">辅泵数量：</div>
+                                    <div class="infoItemTxt fuBengItemTxt" data-txtval="Auxiliarypumpcount"></div>
+                                </li>
+                                <li class="fuBengListItem clearfix">
+                                    <div class="infoItemName fuBengItemName">辅泵流量：</div>
+                                    <div class="infoItemTxt fuBengItemTxt" data-txtval="PumpJZAuxiliPumpFlow"></div>
+                                </li>
+                                <li class="fuBengListItem clearfix">
+                                    <div class="infoItemName fuBengItemName">辅泵扬程：</div>
+                                    <div class="infoItemTxt fuBengItemTxt" data-txtval="PumpJZAuxiliPumpLift"></div>
+                                </li>
+                                <li class="fuBengListItem clearfix">
+                                    <div class="infoItemName fuBengItemName">辅泵功率：</div>
+                                    <div class="infoItemTxt fuBengItemTxt" data-txtval="PumpJZAuxiliPumpPower"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="forTuBiao tubiaoItem listBox">
+                        <div class="pageMidBox">
+                            <div class="pageMidHead">
+                                <p class="modelText">用水量和用电量</p>
+                                <div class="dataCircle_wrap">
+                                    <div class="process_wrap water_wrap">
+                                        <div class="arrowUpIco_Box water_up"></div>
+                                        <div class="arrowDownIco_Box water_down"></div>
+                                        <div class="proCircle water_proCircle" id="proBar1"></div>
+                                        <div class="monthData water_monthData">
+                                            <div class="water_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalOutLL"></span></div>
+                                            <div class="water_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalOutLL"></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="process_wrap electric_wrap">
+                                        <div class="arrowUpIco_Box elec_up"></div>
+                                        <div class="arrowDownIco_Box elec_down"></div>
+                                        <div class="proCircle electric_proCircle" id="proBar2"></div>
+                                        <div class="monthData electric_monthData">
+                                            <div class="elec_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalDL"></span></div>
+                                            <div class="elec_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalDL"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pageMidTop">
+                                <p class="modelText">进出水压力实时曲线图</p>
+                                <div class="chart_wrap_w chart_wrap chart1_wrap">
+                                    <div class="echartsBox" id="echart1"></div>
+                                </div>
+                            </div>
+                            <div class="pageMidMid">
+                                <p class="modelText">近七日用水量对比图</p>
+                                <div class="chart_wrap_w chart_wrap chart2_wrap">
+                                    <div class="echartsBox" id="echart2"></div>
+                                </div>
+                            </div>
+                            <div class="pageMidBot">
+                                <p class="modelText">近七日用电量对比图</p>
+                                <div class="chart_wrap_w chart_wrap chart2_wrap">
+                                    <div class="echartsBox" id="echart3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forBaoJing baojingItem listBox">
+
+                        <!--@*<div class="timeItem clearfix">
+                            <div class="leftTimeBox">
+                                <div class="timeLine">
+                                    <div class="timeQiu"></div>
+                                </div>
+                            </div>
+                            <div class="rightContentBox">
+                                <div class="warnHeader">是是萨哈嗲爱德华发is发生</div>
+                                <div class="warnTxt">是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨是是萨</div>
+                            </div>
+                        </div>*@-->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <section class="rightBox">
+            <div class="toolsBox">
+                <div class="searchTool">
+                    <ul class="drawTools">
+                        <li class="hand" data-charindex="undefined" data-drawingtype="hander"></li>
+                        <li data-charindex="0" data-drawingtype="rectangle" title=""><div></div></li>
+                        <li data-charindex="1" data-drawingtype="polygon"><div></div></li>
+                        <li data-charindex="2" data-drawingtype="circle"><div></div></li>
+                    </ul>
+                </div>
+                <div class="midToos clearfix">
+                    <div class="fenQuJiL  clearfix">
+                        <div class="midPicBg"></div>
+                        <div class="midPicTxt">分区计量</div>
+                    </div>
+                    <!--<div class="diaoDu clearfix">
+                        <div class="midPicBg"></div>
+                        <div class="midPicTxt">调度</div>
+                    </div>-->
+                    <div class="dingWei clearfix">
+                        <div class="midPicBg"></div>
+                        <div class="midPicTxt">定位</div>
+                    </div>
+                    <div class="settings clearfix">
+                        <div class="midPicBg"></div>
+                        <div class="midPicTxt">设置</div>
+                    </div>
+                </div>
+                <div class="warnTool"></div>
+            </div>
+            <div class="toolsContent">
+                <div class="fenQuBox">
+                    <div class="closeBtnBox"><span class="closeSet">&times;</span></div>
+                    <div class="checkAllBox">
+                        <div class=" checkBox checkAllAreaAndIn" ></div><div>全选</div>
+                        <div class="checkBox checkAllArea"></div><div>全选</div>
+                        
+                    </div>
+                    <div class="areaMainBox">
+                        <ul class="areaMain">
+                            <!--<li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog"></div>
+                                </div>
+                            </li>
+                            <li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog"></div>
+                                </div>
+                            </li>
+                            <li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog"></div>
+                                </div>
+                            </li>
+                            <li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog active"></div>
+                                </div>
+                            </li>
+                            <li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog"></div>
+                                </div>
+                            </li>
+                            <li class="areaItem clearfix">
+                                <div class="checkMark active"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">区域名称</div>
+                                    <div class="checkFlog"></div>
+                                </div>
+                            </li>-->
+                        </ul>
+                       
+                    </div>                   
+                </div>
+                <!--<div class="diaoDuBox">
+                    <div class="closeBtnBox"><span class="closeSet">&times;</span></div>
+
+                </div>-->
+                <div class="dingWeiBox">
+                    <div class="closeBtnBox"><span class="closeSet">&times;</span></div>
+                    <div class="searchAndshowBox">
+                        <input type="text" class="searchTxt" /><button class="searchBtn"></button> <button class="backCenter"></button> 
+                    </div>
+                    <div class="panoramaMainBox">
+                        <ul class="panoramaMain">
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"> <span class="titlePic"></span>泵站</div>
+                                <ul class="panoramaItemContent hide" data-ftype="1">
+                                    <li class="itemContentItem">
+                                        <div class="contentLeft"></div>
+                                        <div class="contentRight">
+                                            <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                                            <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+                                        </div>
+                                        <div class="rightTopNum">1</div>
+                                    </li>
+                                    <li class="itemContentItem">
+                                        <div class="contentLeft"></div>
+                                        <div class="contentRight">
+                                            <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                                            <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+                                        </div>
+                                        <div class="rightTopNum">1</div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>阀门</div>
+                                <ul class="panoramaItemContent hide" data-ftype="2">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>流量</div>
+                                <ul class="panoramaItemContent hide" data-ftype="3">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>水厂</div>
+                                <ul class="panoramaItemContent hide" data-ftype="4">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>水源</div>
+                                <ul class="panoramaItemContent hide" data-ftype="5">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>大表</div>
+                                <ul class="panoramaItemContent hide" data-ftype="6">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>压力</div>
+                                <ul class="panoramaItemContent hide" data-ftype="7">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>调峰</div>
+                                <ul class="panoramaItemContent hide" data-ftype="8">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                            <li class="panoramaItem">
+                                <div class="panoramaItemTitle"><span class="titlePic"></span>水质</div>
+                                <ul class="panoramaItemContent hide" data-ftype="9">
+                                    <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="settingBox  ">
+                    <div class="closeBtnBox"><span class="closeSet">&times;</span></div>
+                    <ul class="mapTypeSet">
+                        <li class="mapTypeBox normalMap active">
+                            <div class="mapPicBox">
+                                <div class="mapCheckPic"></div>
+                            </div>
+                            <div class="mapCheckTxt">标准地图</div>
+                        </li>
+                        <li class="mapTypeBox satelliteMap">
+                            <div class="mapPicBox">
+                                <div class="mapCheckPic"></div>
+                            </div>
+                            <div class="mapCheckTxt">卫星地图</div>
+                        </li>
+                        <li class="mapTypeBox map3D">
+                            <div class="mapPicBox">
+                                <div class="mapCheckPic"></div>
+                            </div>
+                            <div class="mapCheckTxt">三维地图</div>
+                        </li>
+                    </ul>
+
+                    <div class="lineAndMakerBox">
+                        <ul class="lineAndMaker clearfix">
+                            <li class="linePip active" data-charindex="0">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <!--<div class="lineAndMakerSelect">
+                        <div class="selectBox">
+                            <div class="select_text">压力</div>
+                            <ul class="select_ul">
+                                <li class="" data-value="0">请选择</li>
+                                <li data-value="1" class="">流量</li>
+                                <li data-value="2" class="cur">压力</li>
+                            </ul>
+                        </div>
+
+                    </div>-->
+                                <!--<div class="selectList">
+                        <div class="selectItem">压力</div>
+                        <div class="selectItem">水压</div>
+                    </div>-->
+                            </li>
+                            <li class="markerBengZhan active" data-charindex="1">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">泵站</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div data-name="yaLi" class="select_text yaLi">压力</div>
+                                        <ul class="select_ul">
+
+                                            <li data-name="yaLi" data-value="2" class="cur">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerFaMen active" data-charindex="2">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">阀门</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div data-name="faMenKaiDu" class="select_text faMenKaiDu">阀门开度</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-name="leiJiLiuLiang" data-value="1" class="">累计流量</li>
+                                            <li data-name="inPress" data-value="2" class="">进水压力</li>
+                                            <li data-name="outPress" data-value="3" class="">出水压力</li>
+                                            <li data-name="faMenKaiDu" data-value="4" class="cur">阀门开度</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerLiuliang active" data-charindex="3">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">流量</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div data-name="liuLiang" class="select_text liuLiang">流量</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-name="liuLiang" data-value="1" class="cur">流量</li>
+                                            <li data-name="yaLi" data-value="2" class="">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerShuiChang active" data-charindex="4">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">水厂</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div class="select_text">压力</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-value="1" class="">流量</li>
+                                            <li data-value="2" class="cur">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerShuiYuan active" data-charindex="5">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">水源</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div class="select_text">压力</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-value="1" class="">流量</li>
+                                            <li data-value="2" class="cur">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerDaBiao active" data-charindex="6">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">大表</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div class="select_text">压力</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-value="1" class="">流量</li>
+                                            <li data-value="2" class="cur">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="markerYaLi active" data-charindex="7">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">压力</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div data-name="shiShi" class="select_text shiShi">实时</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-name="shangXian" data-value="1" class="">上限</li>
+                                            <li data-name="xiaXian" data-value="2" class="">下限</li>
+                                            <li data-name="shiShi" data-value="3" class="">实时</li>
+                                            <li data-name="dianLiang" data-value="4" class="cur">电量</li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </li>
+                          
+                            <li class="markerTiaoFeng active" data-charindex="8">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">调峰</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div data-name="outPress" class="select_text outPress">出水压</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-name="shuiXiangYeWei" data-value="1" class="">水位</li>
+                                            <li data-name="chuShuiZongLiang" data-value="2" class="">储水量</li>
+                                            <li data-name="chuShuiLiuLiang" data-value="3" class="">出水量</li>
+                                            <li data-name="tiaoFengNengLi" data-value="4" class="">调峰能力</li>
+                                            <li data-name="inPress" data-value="5" class="">进水压</li>
+                                            <li data-name="outPress" data-value="6" class="cur">出水压</li>
+                                            <li data-name="liuFaYuanKai" data-value="7" class="">开度</li>
+                                        </ul>
+                                    </div>
+                                   
+                                </div>
+                            </li>
+                            <li class="markerShuiZhi active" data-charindex="9">
+                                <div class="lineAndMakerChecked"></div>
+                                <div class="lineAndMakerPic"></div>
+                                <div class="lineAndMakerName">水质</div>
+                                <div class="lineAndMakerSelect">
+                                    <div class="selectBox selectBoxR">
+                                        <div class="select_text">压力</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">收回</li>
+                                            <li data-value="1" class="">流量</li>
+                                            <li data-value="2" class="cur">压力</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="warnBox">
+                <div class="closeBtnBox"><span class="closeSet">&times;</span></div>
+                <div class="warnContentBox">
+                    <div class="timeLineBg"></div>
+                    <ul class="warnContent">
+                        <!--<li class="warnItem">
+                            <div class="timeMarker"></div>
+                            <div class="timeBox"><span class="dateTxt">2017-04-07</span><span class="timeTxt">13:27:43</span> <span class="timeGap">30分钟前</span></div>
+                            <div class="itemContent">
+                                <div class="warnAdreess"><span class="adressBg"></span>上海青浦水厂</div>
+                                <div class="warnTxt">高位压力报警</div>
+                            </div>
+                         </li>-->
+                       
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!--图例-->
+        <ul class="cutline">
+            <!--<li class="cutlineBox">
+            <div class="cutlinePic"></div>
+            <div class="cutlineTxt">管线</div>
+        </li>-->
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">泵站</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">阀门</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">流量</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">水厂</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">水源</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">大表</div>
+            </li>
+
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">压力</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">调峰</div>
+            </li>
+            <li class="cutlineBox">
+                <div class="cutlinePic"></div>
+                <div class="cutlineTxt">水质</div>
+            </li>
+        </ul>
+
+        <!--选框 选择 框-->
+        <div class="panoramaShowBox">
+            <div class="panoramaHeader">
+                <div class="panCloseBtn">&times;</div>
+            </div>
+            <div class="panoramaMainBox">
+                <ul class="panoramaMain">
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"> <span class="titlePic"></span>泵站</div>
+                        <ul class="panoramaItemContent" data-fType="1">
+                            <!--<li class="itemContentItem">
+                                <div class="contentLeft"></div>
+                                <div class="contentRight">
+                                    <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                                    <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+                                </div>
+                                <div class="rightTopNum">1</div>
+                            </li>
+                            <li class="itemContentItem">
+                                <div class="contentLeft"></div>
+                                <div class="contentRight">
+                                    <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                                    <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+                                </div>
+                                <div class="rightTopNum">1</div>
+                            </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>阀门</div>
+                        <ul class="panoramaItemContent" data-ftype="2">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>流量</div>
+                        <ul class="panoramaItemContent" data-ftype="3">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>水厂</div>
+                        <ul class="panoramaItemContent" data-ftype="4">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>水源</div>
+                        <ul class="panoramaItemContent" data-ftype="5">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>大表</div>
+                        <ul class="panoramaItemContent" data-ftype="6">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>压力</div>
+                        <ul class="panoramaItemContent" data-ftype="7">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>调峰</div>
+                        <ul class="panoramaItemContent" data-ftype="8">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                    <li class="panoramaItem">
+                        <div class="panoramaItemTitle"><span class="titlePic"></span>水质</div>
+                        <ul class="panoramaItemContent" data-ftype="9">
+                            <!--<li class="itemContentItem">
+            <div class="contentLeft"></div>
+            <div class="contentRight">
+                <div class="contentRightTop"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂江西省抚州市水厂江西省抚州市水厂</span></div>
+                <div class="contentRightBottom"><span class="picBox"></span><span class="txtBox">江西省抚州市水厂</span></div>
+            </div>
+            <div class="rightTopNum">1</div>
+        </li>-->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="panoramaBackBtn">返回</button>
+
+
+        <script src="js/qingpuMapInit.js"></script>
+        <script src="/res/YCJK/js/MidChart.js"></script>
+        <script src="js/liuLiangPop.js"></script>
+        <script src="js/yaLiPop.js"></script>
+        <script src="js/mapPageMain.js"></script>
+        <script src="js/BMapInfobox.js"></script>
+        <script src="js/dianDongfaPop.js"></script>
+
+       
+	</body>
+	
+</html>

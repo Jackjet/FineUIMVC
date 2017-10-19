@@ -1,0 +1,1304 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../InPage/css/reset.css" rel="stylesheet" />
+    <link href="../InPage/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="../InPage/js/jquery-ui.min.js"></script>
+    <script src="../InPage/js/jquery.mousewheel.js"></script>
+    <script src="../InPage/js/jquery.mCustomScrollbar.js"></script>
+    <script src="../InPage/js/echarts.min.js"></script>
+
+    <style type="text/css">
+        body {
+            background-color: #0d5d92;
+            font-family: "微软雅黑";
+            overflow: hidden;
+        }
+        .wrap {
+            width: 98%;
+            min-width: 998px;
+            max-width: 2000px;
+            height: 100%;
+            border: 0px solid rgba(0,0,0,0.2);
+            margin: 0 auto;
+            margin-top: 15px;
+            font-size: 12px;
+        }
+            .wrap .topHeader {
+                width: 100%;
+               width: 700px;
+                height: 46px;
+                margin-top: 12px;
+                overflow: hidden;
+                background: rgba(255,255,255,.2);
+            }
+                .wrap .topHeader .areaName {
+                    float: left;
+                    height: 46px;
+                    overflow: hidden;
+                }
+                    .wrap .topHeader .areaName .nameBg {
+                        margin-top: 15px;
+                        margin-left: 10px;
+                        float: left;
+                        width: 6px;
+                        height: 20px;
+                        background: #55d8ff;
+                    }
+                    .wrap .topHeader .areaName .nameTxt {
+                       font-size: 22px;
+                       color: #fff;
+                       height: 46px;
+                       margin-left: 10px;
+                       line-height: 48px;
+                    }
+        .areaDataBox {
+             float: right;
+             margin-right: 10px;
+        }
+        .areaDataBox button {
+            float: left;
+            width: 40px;
+            height: 22px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            color: #fff; 
+            background: rgba(255,255,255,.3);
+            margin-right: 10px;
+        }
+            .areaDataBox button:hover {
+                
+                background: rgba(255,255,255,.5);
+            } 
+        .wrap .mainContentBox {
+            width: 100%;
+            height: 661px;
+            /*background: blue;*/
+        }
+            .wrap .mainTopBox {
+                width: 100%;
+                min-width: 1120px;
+                height: 280px;
+                margin-top: 10px;
+            }
+                .wrap .mainTopBox .mainTopLeft {
+                    float: left;
+                    width: 49.5%;
+                    height: 280px;
+                    /*background: violet;*/
+                }
+                .wrap .mainTopBox .mainTopRight {
+                    float: right;
+                    width: 49.5%;
+                    height: 280px;
+                    /*background: violet;*/
+                }
+            .wrap .mainMidBox {
+                width: 100%;
+                min-width: 1120px;
+                height: 280px;
+                margin-top: 10px;
+                /*background: green;*/
+            }
+            .wrap .mainBottomBox {
+                width: 100%;
+                min-width: 1120px;
+                height: 280px;
+                margin-top: 10px;
+                /*background: gray;*/
+            }
+                .wrap .mainBottomBox .mainBottomLeft  {
+                    float: left;
+                    width: 27%;
+                    height: 280px;
+                    /*background: violet;*/
+                }
+        .mainBottomLeft table {
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            border-collapse:collapse;
+           
+        }
+            .mainBottomLeft table td {
+                border: 1px solid rgba(255,255,255,.1);
+                text-align: center;
+            }
+            .mainBottomLeft table .left {
+               width: 30%;
+               background: rgba(255,255,255,.1);
+            }
+            .mainBottomLeft table .right {
+                width: 70%;
+                background: rgba(255,255,255,.05);
+            }
+         .wrap .mainBottomBox .mainBottomRight {
+            float: right;
+            width: 72%;
+            height: 280px;
+            /*background: yellow;*/
+        }
+
+        #liuliangChart, #dianliangChart, #yaLiChart, #dunshiChart {
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+    <title>Data Analysis </title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="topHeader clearfix">
+            <div class="areaName clearfix"><span class="nameBg"></span><span class="nameTxt">赵巷</span></div>
+            <div class="areaDataBox clearfix">
+                <button class="nian">年</button>
+                <button class="yue">月</button>
+                <button class="ri">日</button>
+            </div>
+        </div>
+        <div class="mainContentBox">
+            <div class="mainTopBox clearfix">
+                <div class="mainTopLeft">
+                    <div id="liuliangChart"></div>
+                </div>
+                <div class="mainTopRight">
+                    <div id="dianliangChart"></div>
+                </div>
+            </div>
+            <div class="mainMidBox">
+                <div id="yaLiChart"></div>
+            </div>
+            <div class="mainBottomBox">
+                <div class="mainBottomLeft">
+                    <table>
+                        <tr>
+                            <td class ="left">开始累计流量：</td>
+                            <td class="right">2010</td>
+                        </tr>
+                        <tr>
+                            <td class="left">结束累计流量：</td>
+                            <td class="right">2053</td>
+                        </tr>
+                        <tr>
+                            <td class="left">时间段累计流量：</td>
+                            <td class="right">43</td>
+                        </tr>
+                        <tr>
+                            <td class="left">开始耗电量：</td>
+                            <td class="right">23</td>
+                        </tr>
+                        <tr>
+                            <td class="left">结束耗电量：</td>
+                            <td class="right">123</td>
+                        </tr>
+                        <tr>
+                            <td class="left">时间段耗电量：</td>
+                            <td class="right">100</td>
+                        </tr>
+                        <tr>
+                            <td class="left">吨水能耗：</td>
+                            <td class="right">0.43</td>
+                        </tr>
+                        <tr>
+                            <td class="left">月均能耗：</td>
+                            <td class="right">0.3</td>
+                        </tr>
+                        <tr>
+                            <td class="left">设计能耗：</td>
+                            <td class="right">0.6</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="mainBottomRight">
+                    <div id="dunshiChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>   
+
+
+        $(function () {
+            layout();
+            $(window).resize(function () { layout() });
+            vUrl = parseUrl();
+            //alert(vUrl['indexNum']);
+            $('.ri').trigger('click');
+            $('.nameTxt').html(titleArr[vUrl['indexNum']]);
+            liuliangChar.setOption(option0);
+            dianliangchar.setOption(option2);
+            yaliChar.setOption(option3);
+            dunshichar.setOption(option4);
+
+           
+            clickShowYueRiNi();
+
+        });
+
+        var  vUrl;
+
+        var chart1TitleArr = ['赵巷', '崧泽', '香花桥', '重固', '徐泾',];
+
+        var titleArr = ['赵巷用户总表', '崧泽用户总表', '香花桥用户总表', '重固用户总表', '徐泾用户总表'];
+       
+        var liuliangChar = echarts.init($('#liuliangChart')[0]);
+        var dianliangchar = echarts.init($('#dianliangChart')[0]);
+        var yaliChar = echarts.init($('#yaLiChart')[0]);
+        var dunshichar = echarts.init($('#dunshiChart')[0]);
+        
+
+        //url
+        function parseUrl() {
+
+            var url = window.location.href;
+            //alert(url);
+            var i = url.indexOf('?');
+            //alert(1);
+            if (i == -1) { return };
+            var queryStr = url.substr(i + 1);
+            var arr1 = queryStr.split('&');
+            var arr2 = {};
+            for (j in arr1) {
+                var tar = arr1[j].split('=');
+                arr2[tar[0]] = tar[1];
+            };
+            return arr2;
+        }
+
+        //随机数产生函数
+      //  alert(randomFn(12, 10, 30));
+        function randomFn(num, cha, min,n) {
+            var numarr = [];
+
+            if (n > 1) {
+                for (var i = 0; i < num; i++) {
+                    numarr.push((min + Math.floor(Math.random() * cha)));
+                }
+            } else if (n < 1) {
+                for (var i = 0; i < num; i++) {
+                    numarr.push((min + (Math.random() * cha)).toFixed(2));
+                }
+            }
+            
+            return numarr;
+        }
+
+
+
+        //var liuliangXData_ri = [
+        //    [2810, 2312, 2121, 1954, 2260, 2830, 2710, 2010, 2312, 2921, 2054, 2260, 2830, 2710, 2010, 1912, 1921, 1834, 2765, 2423, 2427, 1928, 2520, 2034],
+        //    [2830, 2710, 2010, 2312, 2921, 2054, 2010, 2312, 2921, 2054, 2260, 2830, 2710, 2054, 2260, 2830, 2054, 2260, 2830, 2710, 2010, 1912,  2765, 2423 ],
+        //    [2830, 2710, 2010, 1912, 1921, 1834, 2765, 2423, 2427, 1928, 2520, 2034, 2810, 2312, 2121, 1954, 2260, 2830, 2710, 2010, 2312, 2921, 2054, 2260],
+        //    [2830, 2710, 2010, 2312, 29212810, 2312, 2121, 1954, 22601834, 2765, 2423, 2427, 1928, 2520, 2034, 2054, 2260, 2830, 2710, 2010, 1912, 1921],
+        //    [2312, 2121, 1954, 2260, 2830, 2710, 2010, 2810, 2921, 2054, 2260, 2830, 2710, 2010, 1912, 1921, 1834, 2765, 2423, 2427, 1928, 2520, 2312, 2034]
+        //];
+        //var liuliangXData_shi = [
+            
+        //    [ 930, 710, 10, 12, 21, 54, 830, 710, 10, 21, 54, 260,240, 830, 710, 21, 20, 54, 10, 12, 21, 54, 260, 830, 710],
+        //    [730, 610, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 16, 27, 54, 10, 72, 21, 54, 260, 830, 710],
+        //    [630, 760, 10, 21, 54, 240, 830, 710, 10, 12, 21, 54, 260, 830, 710, 16, 20, 54, 10, 12, 21, 54, 260, 830, 710],
+        //    [930, 810, 12, 23, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 50, 54, 10, 62, 21, 54, 260, 830, 710],
+        //    [830, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710, 710, 10, 21, 54, 260, 830, 710, 10, 12, 21]
+        //];
+        //var liuliangXData_yue = [
+
+        //    [2810, 2312, 2121, 1954, 2260, 2830, 2710, 2010, 2312, 2921, 2054, 2260],
+        //    [2830, 2710, 2010, 2312, 2921, 2054, 2010, 2312, 2921, 2054, 2260, 2830],
+        //    [2810, 2312, 2121, 1954, 2260, 2830, 2710, 2010, 2312, 2921, 2054, 2260],
+        //    [2830, 2710, 2010, 2312, 2921, 2810, 2312, 2121, 1912, 1921, 1834, 2260],
+        //    [2810, 2921, 2054, 2312, 2830, 2710, 2010, 2765, 1928, 2520, 2312, 2034]
+
+        //];
+
+
+       
+        var option0;
+        var  option2, option3, option4;
+
+        option0 = {
+            backgroundColor: 'rgba(255,255,255,.06)',
+            title: {
+                text: '用水量分析对比图',
+                textStyle: {
+                    color:'rgb(255,255,255)'
+                }
+            },
+            grid: {
+                left: 40,
+                right: 70,
+                bottom:30
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: 'rgba(28,136,151,0.6)',
+                padding: [5, 10],
+                axisPointer: {
+                    lineStyle: {
+                        color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                    }
+                }
+            },
+            legend: {
+                data: ['2017-4-7', '2017-4-8', '2017-4-9'],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+           
+            xAxis: {
+                type: 'category',
+                name:'时',
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                boundaryGap: true,
+               // data: [],
+                data:['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+            },
+            yAxis: {
+                type: 'value',
+                name: '单位(m³)',
+                nameTextStyle: {
+                    color:'rgb(255,255,255)'
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            series: [{
+                name: '2017-4-7',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(179,124,250)',
+                        lineStyle: { color: 'rgb(179,124,250)' }
+                    },
+                },
+                smooth: true,
+                data: randomFn(24, 1.4, 2.4, 0.2),
+                //    data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+            },
+            {
+                name: '2017-4-8',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(171,222,86)',
+                        lineStyle: { color: 'rgb(171,222,86)' }
+                    },
+                },
+                smooth: true,
+                data: []
+                //   data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+            },
+          
+            {
+                name: '2017-4-9',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#2378f7' },
+                                { offset: 0.7, color: '#2378f7' },
+                                { offset: 1, color: '#83bff6' }
+                            ]
+                        )
+                    }
+                },
+                data:[]
+                //    data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+            }]
+        };
+        
+
+        option2 = {
+            backgroundColor: 'rgba(255,255,255,.06)',
+            title: {
+                text: '用电量分析对比图',
+                textStyle: {
+                    color: 'rgb(255,255,255)'
+                }
+            },
+            grid: {
+                left: 40,
+                right: 70,
+                bottom: 30
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: 'rgba(28,136,151,0.6)',
+                padding: [5, 10],
+                axisPointer: {
+                    lineStyle: {
+                        color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                    }
+                }
+            },
+            legend: {
+                data: [],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+
+            xAxis: {
+                type: 'category',
+                name: '时',
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                boundaryGap: true,
+                 data: [],
+                //data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max:100,
+                name: '单位(m³)',
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            series: [{
+                name: '2017-4-7',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(179,124,250)',
+                        lineStyle: { color: 'rgb(179,124,250)' }
+                    },
+                },
+                smooth: true,
+               // data: randomFn(24, 1.4, 2.4, 0.2),
+                //    data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+            },
+            {
+                name: '2017-4-8',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(171,222,86)',
+                        lineStyle: { color: 'rgb(171,222,86)' }
+                    },
+                },
+                smooth: true,
+                data: []
+                //   data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+            },
+
+            {
+                name: '2017-4-9',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#2378f7' },
+                                { offset: 0.7, color: '#2378f7' },
+                                { offset: 1, color: '#83bff6' }
+                            ]
+                        )
+                    }
+                },
+                data: []
+                //    data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+            }]
+        };
+        option3= {
+            backgroundColor: 'rgba(255,255,255,.06)',
+            title: {
+                text: '压力对比图',
+                textStyle: {
+                    color:'rgb(255,255,255)'
+                }
+            },
+            grid: {
+                left: 40,
+                right: 70,
+                bottom:30
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: 'rgba(28,136,151,0.6)',
+                padding: [5, 10],
+                axisPointer: {
+                    lineStyle: {
+                        color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                    }
+                }
+            },
+            legend: {
+                data: ['2017-4-7', '2017-4-8', '2017-4-9'],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+           
+            xAxis: {
+                type: 'category',
+                name:'时',
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                boundaryGap: true,
+                // data: [],
+                data:['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+            },
+            yAxis: {
+                type: 'value',
+                name: '单位(m³)',
+                nameTextStyle: {
+                    color:'rgb(255,255,255)'
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            series: [{
+                name: '2017-4-7',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(179,124,250)',
+                        lineStyle: { color: 'rgb(179,124,250)' }
+                    },
+                },
+                smooth: true,
+                data: [],
+                //    data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+            },
+            {
+                name: '2017-4-8',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(171,222,86)',
+                        lineStyle: { color: 'rgb(171,222,86)' }
+                    },
+                },
+                smooth: true,
+                data: []
+                //  data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+            },
+          
+            {
+                name: '2017-4-9',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#2378f7' },
+                                { offset: 0.7, color: '#2378f7' },
+                                { offset: 1, color: '#83bff6' }
+                            ]
+                        )
+                    }
+                },
+                data: randomFn(24, 1.4, 2.4, 0.2)
+                //   data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+            }]
+        };
+
+        option4= {
+            backgroundColor: 'rgba(255,255,255,.06)',
+            title: {
+                text: '吨水能耗',
+                textStyle: {
+                    color:'rgb(255,255,255)'
+                }
+            },
+            grid: {
+                left: 40,
+                right: 70,
+                bottom:30
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: 'rgba(28,136,151,0.6)',
+                padding: [5, 10],
+                axisPointer: {
+                    lineStyle: {
+                        color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                    }
+                }
+            },
+            legend: {
+                data: ['2017-4-7', '2017-4-8', '2017-4-9'],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+           
+            xAxis: {
+                type: 'category',
+                name:'时',
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                boundaryGap: true,
+                // data: [],
+                data:['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+            },
+            yAxis: {
+                type: 'value',
+                nameTextStyle: {
+                    color:'rgb(255,255,255)'
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            series: [{
+                name: '2017-4-7',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(179,124,250)',
+                        lineStyle: { color: 'rgb(179,124,250)' }
+                    },
+                },
+                smooth: true,
+                data: [],
+                //    data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+            },
+            {
+                name: '2017-4-8',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(171,222,86)',
+                        lineStyle: { color: 'rgb(171,222,86)' }
+                    },
+                },
+                smooth: true,
+                data: []
+                //   data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+            }
+          
+           ]
+        };
+
+        //设置 显示 分类
+        function setxAxisTitle(dataType) {
+            if (dataType == "day") {
+                xAxisName = "时";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+               
+            } else if (dataType == "month") {
+                xAxisName = "日";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+            } else if (dataType == "year") {
+                xAxisName = "月";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            }
+        }
+
+       
+
+
+        //根据点击 显示 月 日  年  的信息
+
+        function clickShowYueRiNi(areaNum) {
+
+            $('.yue').click(function () {
+                setxAxisTitle('month');
+                //liuliangYData = randomFn(30, 2800, 1100);
+                //dianliangYData = randomFn(30, 2800, 1100);
+                //yaliYData = randomFn(30, 2800, 1100);
+                //dnushuiYdata = randomFn(30, 2800, 1100);
+
+                var legData = ['2017-1', '2017-3', '2017-4'];
+
+                var optionsliuliangRi = {
+                   
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '日',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '2017-1',
+                               data: randomFn(30, 1430, 200,2)
+                           },
+                           {
+                               name: '2017-3',
+                               data: randomFn(30, 1430, 200,2)
+                           },
+                           {
+                               name: '2017-4',
+                               data: randomFn(30, 1430, 200,2)
+                           }
+                    ],
+
+                };
+
+                var optionsdianliangRi = {
+
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '日',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '2017-1',
+                               data: randomFn(30, 40, 25, 2)
+                           },
+                           {
+                               name: '2017-3',
+                               data: randomFn(30, 40,25, 2)
+                           },
+                           {
+                               name: '2017-4',
+                               data: randomFn(30, 40, 25, 2)
+                           }
+                    ],
+
+                };
+
+                var optionsyaliRi = {
+
+                    legend: {
+                        data: ['最大值', '平均值', '最小值']
+                    },
+                    xAxis: {
+                        name: '日',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '最大值',
+                               data: randomFn(30, 1.4, 2.4,0.2)
+                           },
+                           {
+                               name: '平均值',
+                               data: randomFn(30, 0.97, 1.2,0.2)
+                           },
+                           {
+                               name: '最小值',
+                               data: randomFn(30, 0.6, 0.3,0.2)
+                           }
+                    ],
+
+                };
+
+                var optionsdunshuiRi = {
+
+                    legend: {
+                        data: ['设计值','当前值']
+                    },
+                    xAxis: {
+                        name: '日',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '设计值',
+                               data: randomFn(30, 0,0.6 ,0.2)
+                           },
+                           {
+                               name: '当前值',
+                               data: randomFn(30, 0.36,0.128, 0.2)
+                           }
+                    ],
+
+                };
+
+                liuliangChar.setOption(optionsliuliangRi); 
+                dianliangchar.setOption(optionsdianliangRi);
+                yaliChar.setOption(optionsyaliRi);
+                dunshichar.setOption(optionsdunshuiRi);
+
+
+
+            });
+            $('.ri').click(function () {
+                setxAxisTitle('day');
+                var legData = ['2017-4-7', '2017-4-8', '2017-4-9'];
+                var optionsliuliangShi = {
+
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '时',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '2017-4-7',
+                               data: randomFn(24, 1430, 200, 2)
+                           },
+                           {
+                               name: '2017-4-8',
+                               data: randomFn(24, 1430, 200, 2)
+                           },
+                           {
+                               name: '2017-4-9',
+                               data: randomFn(24, 1430, 200, 2)
+                           }
+                    ],
+
+                };
+
+                var optionsdianliangShi = {
+
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '时',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                            {
+                                name: '2017-4-7',
+                                data: randomFn(24, 40, 25, 2)
+                            },
+                           {
+                               name: '2017-4-8',
+                               data: randomFn(24, 40, 25, 2) //data: randomFn(24, 98, 2, 2)
+                           },
+                           {
+                               name: '2017-4-9',
+                               data: randomFn(24, 40, 25, 2)
+                           },
+                    ],
+
+                };
+
+                var optionsyaliShi = {
+
+                    legend: {
+                        data: ['最大值','平均值','最小值']
+                    },
+                    xAxis: {
+                        name: '时',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '最大值',
+                               data: randomFn(24, 1.4, 2.4, 0.2)
+                           },
+                           {
+                               name: '平均值',
+                               data: randomFn(24, 0.97, 1.2, 0.2)
+                           },
+                           {
+                               name: '最小值',
+                               data: randomFn(24, 0.6, 0.3, 0.2)
+                           }
+                    ],
+
+                };
+
+                var optionsdunshuiShi = {
+
+                    legend: {
+                        data: ['设计值','当前值']
+                    },
+                    xAxis: {
+                        name: '时',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '设计值',
+                               data: randomFn(24, 0, 0.6, 0.2)
+                           },
+                           {
+                               name: '当前值',
+                               data: randomFn(24, 0.36, 0.128, 0.2)
+                           }
+                    ],
+
+                };
+
+                liuliangChar.setOption(optionsliuliangShi);
+                dianliangchar.setOption(optionsdianliangShi);
+                yaliChar.setOption(optionsyaliShi);
+                dunshichar.setOption(optionsdunshuiShi);
+
+
+
+                
+            });
+            $('.nian').click(function () {
+                setxAxisTitle('year');
+                var legData = ['2014', '2015', '2016'];
+
+                var optionsliuliangRi = {
+
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '月',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '2014',
+                               data: randomFn(12, 1430, 200, 2)
+                           },
+                           {
+                               name: '2015',
+                               data: randomFn(12, 1430, 200, 2)
+                           },
+                           {
+                               name: '2016',
+                               data: randomFn(12, 1430, 200, 2)
+                           }
+                    ],
+
+                };
+
+                var optionsdianliangRi = {
+
+                    legend: {
+                        data: legData
+                    },
+                    xAxis: {
+                        name: '月',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '2014',
+                               data: randomFn(12, 40, 25, 2)
+                           },                         
+                           {                          
+                               name: '2015',          
+                               data: randomFn(12, 40, 25, 2)
+                           },                         
+                           {                          
+                               name: '2016',          
+                               data: randomFn(12, 40, 25, 2)
+                           }
+                    ],
+
+                };
+
+                var optionsyaliRi = {
+
+                    legend: {
+                        data: ['最大值','平均值','最小值']
+                    },
+                    xAxis: {
+                        name: '月',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '最大值',
+                               data: randomFn(12, 1.4, 2.4, 0.2)
+                           },
+                           {
+                               name: '平均值',
+                               data: randomFn(12, 0.97, 1.2, 0.2)
+                           },
+                           {
+                               name: '最小值',
+                               data: randomFn(12, 0.6, 0.3, 0.2)
+                           }
+                    ],
+
+                };
+
+                var optionsdunshuiRi = {
+
+                    legend: {
+                        data: ['设计值','当前值']
+                    },
+                    xAxis: {
+                        name: '月',
+                        data: xData
+                    },
+                    yAxis: {
+                        name: ''
+                    },
+                    series: [
+                           {
+                               name: '设计值',
+                               data: randomFn(12, 0, 0.6, 0.2)
+                           },
+                           {
+                               name: '当前值',
+                               data: randomFn(12, 0.36, 0.128, 0.2)
+                           }
+                    ],
+
+                };
+
+                liuliangChar.setOption(optionsliuliangRi);
+                dianliangchar.setOption(optionsdianliangRi);
+                yaliChar.setOption(optionsyaliRi);
+                dunshichar.setOption(optionsdunshuiRi);
+
+
+
+                
+            });
+
+
+
+            $('.ri').trigger('click');
+
+        }
+
+        //布局重置函数
+            function layout() {
+                var $W = $(window).width();
+                var $H = $(window).height();
+                $('.wrap').css({ 'height': $H - 2});
+                console.log($('.wrap').height());
+                $(".mainContentBox").css("height", $('.wrap').height() - $('.topHeader').height() - 30);
+                $(".leftChart").css("width", $('.chart').width() - $('.rightChart').width() - 15);
+
+                liuliangChar.resize();
+                dianliangchar.resize();
+                yaliChar.resize();
+                dunshichar.resize();
+            }
+           
+            (function () {
+                $('.mainContentBox').mCustomScrollbar({
+                    scrollButtons: {
+                        enable: true,
+                        scrollType: "continuous",
+                        scrollSpeed: 20,
+                        scrollAmount: 40
+                    },
+                    axis: "y",
+                    set_width: false,
+                    scrollbarPosition: "inside",
+
+                });
+            })();
+            
+
+
+           
+
+    </script>
+</body>
+
+</html>

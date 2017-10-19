@@ -1,0 +1,534 @@
+@chatset "utf-8";
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+}
+img {
+	border: none;
+}
+
+
+
+* {
+  outline: 0;
+  font-family: "微软雅黑";
+}
+li { 
+   list-style: none;
+ }
+  .dabiaoAndLiuliang.stage {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 280px;
+    height: 384px;
+    -webkit-perspective: 1200;
+       -moz-perspective: 1200;
+      -ms-perspective: 1200;
+          perspective: 1200;
+
+       -ms-transform: perspective(1200px);
+      -moz-transform: perspective(1200px);
+          -moz-transform-style: preserve-3d; 
+           -ms-transform-style: preserve-3d; 
+    
+
+  }
+   .dabiaoAndLiuliang.stage .close {
+    font-size: 20px;
+    font-weight: bold; 
+    color: #fff;
+  
+  }
+   .dabiaoAndLiuliang.stage .contentBox {
+    
+    position: relative;
+    
+    width: 280px;
+    height: 384px;
+      -webkit-transition: .6s;
+      -webkit-transform-style: preserve-3d;
+      -ms-transition: .6s;
+
+      -moz-transition: .6s;
+      -moz-transform: perspective(1200px);
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+
+      transition: .6s;
+      transform-style: preserve-3d;
+  }
+  .dabiaoAndLiuliang.stage .fore, .back {
+    border-radius: 2px;
+    -webkit-box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+     -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+       -ms-backface-visibility: hidden;
+           backface-visibility: hidden;
+
+             -webkit-transition: .9s;
+        -webkit-transform-style: preserve-3d;
+              -webkit-transform: rotateY(0deg);
+
+             -moz-transition: .9s;
+        -moz-transform-style: preserve-3d;
+              -moz-transform: rotateY(0deg);
+
+        -o-transition: .9s;
+        -o-transform-style: preserve-3d;
+        -o-transform: rotateY(0deg);
+
+             -ms-transition: .9s;
+        -ms-transform-style: preserve-3d;
+              -ms-transform: rotateY(0deg);
+
+             transition: .9s;
+        transform-style: preserve-3d;
+              transform: rotateY(0deg);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 384px;
+  }
+   .dabiaoAndLiuliang.stage .fore { 
+    background: #eaeff3;
+      -webkit-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+            z-index: 2;     
+  }
+   .dabiaoAndLiuliang.stage .fore_header {
+    width: 280px;
+    height: 60px;
+    background: #20a6ff;
+  }
+  .dabiaoAndLiuliang.stage .fore.click {
+    -webkit-transform: rotateY(180deg);
+         -moz-transform: rotateY(180deg);
+             -o-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+  }
+   .dabiaoAndLiuliang.stage .fore.clickTwo {
+    -webkit-transform: rotateY(0deg);
+         -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+  }
+
+  .dabiaoAndLiuliang.stage .back {   
+               background: #eaeff3;
+        -webkit-transform: rotateY(-180deg);
+           -moz-transform: rotateY(-180deg);
+             -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+                padding-bottom: 6px;    
+  }
+   .dabiaoAndLiuliang.stage .back.click {
+    -webkit-transform: rotateY(0deg);
+           -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+  }
+  .dabiaoAndLiuliang.stage .back.clickTwo {
+    -webkit-transform: rotateY(-180deg);
+           -moz-transform: rotateY(-180deg);
+             -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+  }
+   .dabiaoAndLiuliang.stage .pump_name {
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 0 0 18px;
+    width: 180px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+   .dabiaoAndLiuliang.stage .pump_address {
+    color: #fff;
+    padding: 4px 0 0 18px;
+    font-size: 12px;
+  }
+
+
+   .dabiaoAndLiuliang.stage .panoramaIn {
+      position: absolute;
+      top: 34px;
+      right: 30px;
+      width: 30px;
+      height: 24px;
+      background: url(../img/camera.png) no-repeat ;
+      background-size: contain; 
+      cursor: pointer;
+  }
+   .dabiaoAndLiuliang.stage .cllickIn {
+      position: absolute;
+      top: 34px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+  }
+   .dabiaoAndLiuliang.stage .cllickIn a {
+    width: 100%;
+    height: 100%;
+    display: block;
+      background: url(../img/intoHouse.png) no-repeat;
+      background-size:cover; 
+  }
+   .dabiaoAndLiuliang.stage .tab-content {
+    width: 270px;
+    height: 216px;
+    padding: 6px 5px 0 5px;   
+    overflow: hidden;
+  }
+   .dabiaoAndLiuliang.stage .tab-content .pop {
+    display: none;
+  }
+   .dabiaoAndLiuliang.stage .tab-content div.active {
+    display: block;
+  }
+   .dabiaoAndLiuliang.stage .closeBox {
+    z-index: 4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+      -webkit-transition: all .8s ease-in;
+           -o-transition: all .8s ease-in;
+              transition: all .8s ease-in;
+    -webkit-transform-origin: 10px 11px;
+       -moz-transform-origin: 10px 11px;
+        -ms-transform-origin: 10px 11px;
+         -o-transform-origin: 10px 11px;
+            transform-origin: 10px 11px;
+  }
+   .dabiaoAndLiuliang.stage .closeBox:hover {
+    -webkit-transform: rotateZ(700deg);
+        -ms-transform: rotateZ(700deg);
+         -o-transform: rotateZ(700deg);
+            transform: rotateZ(700deg);
+  }
+  .dabiaoAndLiuliang.stage .backBtn {
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    width: 19px;
+    height: 19px;
+    background: url(../img/backBtn.png) no-repeat;
+  }
+  .dabiaoAndLiuliang.stage .clearfix {
+    zoom: 1;
+  }
+  .dabiaoAndLiuliang.stage .clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox {
+    width: 100%;
+    position: relative;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox li {
+    float: left;
+    width: 33.33%;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+    color: #7b848b;
+    background:#fff;
+    border-bottom: 1px solid #dce0e3;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox li .bg {
+    background: url(../img/new_bg.png) no-repeat;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .hover_bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 33.33%;
+    height: 2px;
+    background: #2bb5ff;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox .bg.life {
+    background-position: 0 0;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox .bg.fire {
+    background-position: -80px 0;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox .bg.spray {
+    background-position: -158px 0;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox li a { 
+    color: #7b848b;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .sysBox li .num {  
+    font-size: 24px;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .pump_box {  
+    width: 270px;
+    height: 28px;
+    margin: 4px 5px 0 4px;
+    border: 1px solid #dce0e3;
+    /*background : red;*/
+    background: #fff;
+    line-height: 30px;
+  }
+  .dabiaoAndLiuliang.stage .inner_box {
+    /*background: red;*/
+    height: 28px;
+    margin: 0 16px;
+    overflow: hidden;
+  }
+  .dabiaoAndLiuliang.stage .inner_box .pump_status {
+    display: none;
+  }
+  .dabiaoAndLiuliang.stage .inner_box .active.pump_status {
+    display: block;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .pump_status span { 
+    background: url(../img/pump_status.png) no-repeat;
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    margin: 0 4px;
+  }
+  .dabiaoAndLiuliang.stage .fore .content .pump_box .pump_status span.status0 { 
+    background-position: -100px 0;    
+  }
+
+  .dabiaoAndLiuliang.stage  .fore .content .pump_box .pump_status span.status1 {  
+    background-position: -100px 0;    
+  }
+  .dabiaoAndLiuliang.stage .fore .content .pump_box .pump_status span.status2 { 
+    background-position: 0 0;
+    
+  }
+  .dabiaoAndLiuliang.stage .fore .content .pump_box .pump_status span.status3 { 
+    background-position: -50px 0;
+    
+  }
+  /*.fore .content li:hover ,.fore .content li.active {
+    
+    background: #357ebd;
+  }*/
+ .dabiaoAndLiuliang.stage .fore_footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: url(../img/warning.png) no-repeat 20px 6px #20a6ff;
+  text-indent: 48px;
+  line-height: 30px;
+  overflow: hidden;
+  font-size: 12px;
+}
+ .dabiaoAndLiuliang.stage .fore_footer .warning_info_box {
+  width: 220px;
+  height: 30px;
+  line-height: 30px;
+}
+ .dabiaoAndLiuliang.stage .fore_footer .warning_info_box li {
+  height: 30px;
+  -ms-text-overflow:  ellipsis;
+    text-overflow:  ellipsis;
+      white-space: nowrap;
+       overflow: hidden;
+              color: #fff;
+}
+ .dabiaoAndLiuliang.stage .tab-content {
+   height: 208px;
+}
+
+.dabiaoAndLiuliang.stage .tab-content .pop {
+  width: 269px;
+  min-height: 202px;
+  border: 1px solid #dce0e3;
+  padding-bottom: 2px;
+  background: #fff;
+}
+
+.dabiaoAndLiuliang.stage .tab-content .pop ul {
+  background: #fff;
+  padding: 0 6px 3px 5px;
+}
+.dabiaoAndLiuliang.stage .tab-content .pop ul li {
+  width: 260px;
+  height: 28px;
+  padding: 6px 0;
+  color: #5fb0f8;
+  font-size: 12px;
+  border-bottom: 1px solid #dce0e3;
+}
+.dabiaoAndLiuliang.stage .tab-content .pop_left {
+  float: left;
+  height: 28px;
+  width: 28px;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  color: #fe7e00;
+  text-align: right;
+}
+.dabiaoAndLiuliang.stage .tab-content .pop_mid {
+  float: left;
+  width: 160px;
+  height: 28px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-indent: 18px;
+
+}
+.dabiaoAndLiuliang.stage .tab-content .pop_mid_bottom .max {
+  float: left;
+  display: inline-block;
+  width: 58px;
+  color: #ced3d8;
+}
+.dabiaoAndLiuliang.stage .tab-content .pop_mid_bottom .min {
+  float: left;
+  display: inline-block;
+  width: 58px;
+  color: #ced3d8;
+}
+.dabiaoAndLiuliang.stage .tab-content .pop_right {
+  float: right;
+  width: 60px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 20px;
+}
+.dabiaoAndLiuliang.stage #fire {
+  border-top: 1px solid #dce0e3;
+  
+}
+
+.dabiaoAndLiuliang.stage .back_header {
+  width: 275px;
+  height: 20px;
+  padding: 4px 0 0 5px;
+  background: #20a6ff;
+}
+.dabiaoAndLiuliang.stage .backBox {
+  cursor: pointer;
+  color: #fff;
+  padding: 2px 0 0 5px;
+  width: 19px;
+  height: 19px;
+}
+.dabiaoAndLiuliang.stage .back_top {
+  width: 280px;
+  height: 102px;  
+  margin-top: 9px;
+  padding: 0 4px 0 5px;
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info {
+  width: 268px;
+  height: 100px;
+  border: 1px solid #dce0e3;
+  font-family: "微软雅黑";
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info ul {
+  background: #fff;
+  width: 254px;
+  padding: 0 6px 0 8px;
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info ul li {
+  width: 100%;
+  height: 22px;
+  padding-top: 3px;
+  border-bottom: 1px solid #dce0e3;
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info ul li.none {
+  border-bottom: none;
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info ul .info_name {
+  float: left;
+  width: 52px;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  color: #909090;
+  -ms-text-overflow:  ellipsis;
+    text-overflow:  ellipsis;
+      white-space: nowrap;
+       overflow: hidden;
+
+}
+.dabiaoAndLiuliang.stage .back_top .pump_info ul .info_info {
+  float: right;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  width: 160px;
+  text-align: right;
+  -ms-text-overflow:  ellipsis;
+    text-overflow:  ellipsis;
+      white-space: nowrap;
+       overflow: hidden;
+              color: #43a9e0;
+}
+.dabiaoAndLiuliang.stage .back_bottom {
+  width: 280px;
+  padding: 0 4px 0 5px;
+}
+.dabiaoAndLiuliang.stage .back_bottom .pump_box {
+  width: 268px;
+  height: 73px;
+  margin-top: 7px;
+  border: 1px solid #dce0e3;
+  font-family: "微软雅黑";
+  font-size: 12px;
+  background: #fff;
+} 
+ .dabiaoAndLiuliang.stage .back_bottom .pump_box .pump_title {
+  color: #43a9e0; 
+  text-indent: 8px;
+} 
+.dabiaoAndLiuliang.stage .back_bottom .pump_box .pump_info li {
+  float: left;
+  width: 40px;
+  height: 54px;
+  margin-left: 39px;
+  background: url(../img/back_pump.png) no-repeat;
+} 
+.dabiaoAndLiuliang.stage .back_bottom .pump_box .pump_info li.aux {
+  background-position: -83px 0;
+} 
+.dabiaoAndLiuliang.stage .back_bottom .pump_box .pump_info li.pope {
+  background-position: -166px 0;
+} 
+.dabiaoAndLiuliang.stage .back_bottom .pump_box .pump_info li p {
+  color: #909090;
+  padding-top: 34px;
+} 

@@ -1,0 +1,295 @@
+﻿@{
+    ViewBag.Title = "泵房设备";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <style>
+    </style>
+
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                    .ID("Toolbar1")
+                    .Items(
+                        F.Button()
+                         .ID("btnDeleteSelected")
+                         .Icon(Icon.Delete)
+                         .Text("删除子项")
+                         .Listener("click", "onDeleteSelectedClick"),
+                        F.ToolbarFill()
+                         .ID("ToolbarFill1"),
+                        F.Button()
+                         .ID("btnNew")
+                         .Icon(Icon.Add)
+                         .Listener("click", "onCreateClick")
+                         .Text("新增设备")
+
+                    )
+         )
+         .Items(
+                  F.Form()
+                       .ID("Form3")
+                       .ShowHeader(false)
+                       .ShowBorder(false)
+                       .LabelAlign(LabelAlign.Left)
+                       .Rows(
+                          F.FormRow()
+                               .ID("FormRow2")
+                               .Items(
+                                  F.TwinTriggerBox()
+                                         .ID("ttbSearchMessage")
+                                         .ShowLabel(false)
+                                         .EmptyText("在泵房设备编号中搜索")
+                                         .Trigger1Icon(TriggerIcon.Clear)
+                                         .Trigger2Icon(TriggerIcon.Search)
+                                         .ShowTrigger1(false)
+                                         .Listener("trigger1click", "onTrigger1Click")
+                                         .Listener("trigger2click", "onTrigger2Click"),
+                                  F.HiddenField()
+                                         .ID("pumpId")
+                                         .Text(ViewBag.pumpId),
+                                   F.Label()
+                               )
+                       ),
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("GridSB")
+                       .DataIDField("ID")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .AllowPaging(true)
+                       .IsDatabasePaging(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .OnPageIndexChanged(Url.Action("GridSB_PageIndexChanged"), "GridSB",
+                                        new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()"),
+                                        new Parameter("pumpid", "F.ui.pumpId.getValue()"))
+                       .PageSize(20)
+                       .PageItems(
+                           F.ToolbarSeparator()
+                              .ID("ToolbarSeparator1"),
+                           F.ToolbarText()
+                              .ID("ToolbarText1")
+                              .Text("每页记录数："),
+                           F.DropDownList()
+                              .ID("ddlGridPageSize")
+                              .Width(80)
+                              .Listener("change", "onDropDownListJZChange")
+                              .SelectedValue("20")
+                              .Items(
+                                 F.ListItem()
+                                   .Text("10")
+                                   .Value("10"),
+                                 F.ListItem()
+                                   .Text("20")
+                                   .Value("20"),
+                                 F.ListItem()
+                                   .Text("50")
+                                   .Value("50"),
+                                 F.ListItem()
+                                   .Text("100")
+                                   .Value("100")
+                              )
+                       )
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("机组编号")
+                                    .DataField("b_number")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("机组名称")
+                                    .DataField("PumpSBName")
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("设备类型")
+                                    .DataField("MachineTypeName")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("主泵泵数")
+                                    .DataField("RunPumpNum")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("辅泵泵数")
+                                    .DataField("Auxiliarypumpcount")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("排水泵数")
+                                    .DataField("DrainPumpNum")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("所在区域")
+                                    .DataField("PumpSBAreaName")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("地址表")
+                                    .DataField("PumpSBAddressList")
+                                    .Hidden(true)
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderEditField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderDeleteField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false)
+                               )
+                               .RecordCount(ViewBag.GridSBRecordCount)
+                               .DataSource(ViewBag.GridSBDataSource)
+         )
+    )
+
+
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(500)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .Listener("close", "onWindow1Close")
+    )
+
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+
+    function doCustomPostBack(type, params) {
+        var GridSB = F.ui.GridSB;
+        var ddlGridPageSize = F.ui.ddlGridPageSize;
+        // 触发后台事件
+        F.doPostBack('@Url.Action("MyCustomJZPostBack")', {
+            type: type,
+            gridFields: GridSB.fields,
+            typeParams: params,
+            gridIndex: GridSB.getPageIndex(),
+            gridPageSize: ddlGridPageSize.getValue(),
+            pumpid: F.ui.pumpId.getValue()
+        });
+    }
+
+
+    function onTrigger1Click(event) {
+        doCustomPostBack('trigger1');
+    }
+
+    function onTrigger2Click(event) {
+        var triggerValue = this.getValue();
+        if (!triggerValue) {
+            F.alert('请输入搜索关键词！');
+            return;
+        }
+
+        doCustomPostBack('trigger2', {
+            triggerValue: triggerValue
+        });
+    }
+
+    function onDropDownListJZChange(event) {
+        doCustomPostBack('dropdownlist', {
+            ddlValue: this.getValue()
+        });
+    }
+
+    function onWindow1Close(event) {
+        doCustomPostBack('windowclose');
+    }
+
+    function renderDeleteField(value, params) {
+        return '<a href="javascript:;" class="deletefield"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/delete.png")"></a>';
+    }
+
+    function renderEditField(value, params) {
+        return '<a href="javascript:;" class="editfield"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/pencil.png")"></a>';
+    }
+
+    function onCreateClick(event) {
+        F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpSB_new")?pumpid=' + F.ui.pumpId.getValue(), '新增设备');
+    }
+
+    function deleteSelectedRows(selectedRows) {
+        var GridSB = F.ui.GridSB
+        var ddlGridPageSize = F.ui.ddlGridPageSize;
+        // 触发后台事件
+        F.doPostBack('@Url.Action("GridSB_Delete")', {
+                selectedRows: selectedRows,
+                GridSB_fields: GridSB.fields,
+                gridIndex: GridSB.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue(),
+                pumpid: F.ui.pumpId.getValue()
+            });
+        }
+
+        function onDeleteSelectedClick(event) {
+            var GridSB = F.ui.GridSB;
+
+            if (!GridSB.hasSelection()) {
+                F.alert('请至少选择一项！');
+                return;
+            }
+
+            var selectedRows = GridSB.getSelectedRows();
+            F.confirm({
+                message: '你确定要删除选中的&nbsp;<b>' + selectedRows.length + '</b>&nbsp;行数据吗？',
+                target: '_top',
+                ok: function () {
+                    deleteSelectedRows(selectedRows);
+                }
+            });
+        }
+
+        F.ready(function () {
+
+            var GridSB = F.ui.GridSB;
+
+            GridSB.el.on('click', 'a.deletefield', function (event) {
+                var rowEl = $(this).closest('.f-grid-row');
+                var rowData = GridSB.getRowData(rowEl);
+
+                F.confirm({
+                    message: '你确定要删除选中的行数据吗？',
+                    target: '_top',
+                    ok: function () {
+                        deleteSelectedRows([rowData.id]);
+                    }
+                });
+            });
+
+            GridSB.el.on('click', 'a.editfield', function (event) {
+                var rowEl = $(this).closest('.f-grid-row');
+                var rowData = GridSB.getRowData(rowEl);
+
+                F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpSB_edit")?pumpSBId=' + rowData.id, '编辑设备');
+        });
+    });
+    </script>
+}

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>上海自贸区泵房远程监控系统-基本设置</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/common.css" />
+    <!--<link rel="stylesheet" href="css/index.css" />-->
+    <link rel="stylesheet" href="css/basicSetup.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>--> 
+    <!--<script src="js/jquery-ui-1.10.4.min.js"></script>-->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script> 
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <script type="text/javascript" src="js/basicSetup.js"></script>
+</head>
+<body>
+    <div class="basicSetup" id="basic1">
+        <div class="setup_Left" id="leftScroll">
+            <!--<div class="scroll scrollUp"></div>
+            <div class="scroll scrollDown"></div>-->
+            <dl class="left-list">
+                <dd class="setupListItem">
+                    <a class="setupfoldIco"><i class="info-show"></i>设备管理</a>
+                    <ul class="info-list" id="setup">
+                        <li id="customerList" class="current"><a>客户列表</a></li>
+                        <li id="alarmConPer"><a>客户报警联系人</a></li>
+                        <li id="equipList"><a>设备列表</a></li>
+                    </ul>
+                </dd>
+                <dd class="setupListItem">
+                    <a class="setupfoldIco"><i></i>系统管理</a>
+                    <ul class="info-list" id="userManage">
+                        <li id="userManage"><a>用户管理</a></li>
+                    </ul>
+                </dd>
+
+            </dl>
+
+        </div>
+
+        <div class="setup_RightList">
+
+            <div class="setup_righterHeader">
+                <ul class="setup_RightTab">
+                    <li id="客户列表" class="current"><a>客户列表</a><i></i></li>
+                </ul>
+                <!--<button class="setup_saveBtn">保存</button>-->
+                <!--<button class="expand"></button>-->
+
+            </div>
+            <!--<ul class="copyTab">
+                <li>设备信息</li>
+                <li>设备信息</li>
+            </ul>-->
+            <!--<iframe src="" class="setupListFrame customerListFrame"></iframe>
+            <iframe src="" class="setupListFrame alarmConPerFrame"></iframe>
+            <iframe src="" class="setupListFrame equipListFrame"></iframe>
+            <iframe src="" class="setupListFrame userListFrame"></iframe>-->
+            <iframe src="setupFrame2.html" class="setupListFrame customerListFrame"></iframe>
+            <iframe src="alarmConPer.html" class="setupListFrame alarmConPerFrame"></iframe>
+            <iframe src="pumpInfoPage.html" class="setupListFrame equipListFrame"></iframe>
+            <iframe src="setFrame_userManage.html" class="setupListFrame userListFrame"></iframe>
+           <!-- <iframe src="newFilePage.html" class="setupListFrame newFilePage"></iframe>-->
+        </div>
+    </div>
+    <div class="ui-widget-content" id="newFilePgContainer" style="z-index: 10; top: 2%; left: 1.5%; border: 1px solid black; position: absolute; width: 96%; height: 96%; display: none; margin: 0 auto; background: url(./img/background.png) no-repeat fixed;background-size: cover; border-radius: 5px;">
+        <div class="times" style=" color: #fff;position: absolute; right: 0;top: 0;width: 14px;height: 14px;cursor: pointer;background: red;text-align: center;line-height: 13px;border-radius: 3px;">&times;</div>
+        <iframe src="" id="contanterShow" style="z-index: 10; top: 2%; left: 1%; position: absolute; width: 98%; height: 98%;border-radius: 5px;" frameborder="0"></iframe>
+    </div>
+</body>
+</html>
+    <script type="text/javascript">
+        $(function () {
+            (function () {
+                $('.setup_Left').mCustomScrollbar({
+                    scrollButtons: {
+                        enable: true,
+                        scrollType: "continuous",
+                        scrollSpeed: 20,
+                        scrollAmount: 40
+                    },
+                    horizontalScroll: false,
+                    set_width: false
+                });
+            })();
+            //console.log("-----start-----");
+            $('.times').click(function () {
+                $(this).parent().slideUp('fast');
+            });
+            $(document).click(function () {
+                $('#newFilePgContainer').slideUp('fast');
+            });
+            /*$(parent.document).click(function () {
+                $('#newFilePgContainer').slideUp('fast');
+            });*/
+            $('#newFilePgContainer').click(function (e) {
+                e.stopPropagation();
+            });
+        });
+       
+    </script>

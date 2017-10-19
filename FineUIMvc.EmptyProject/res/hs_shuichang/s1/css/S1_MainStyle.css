@@ -1,0 +1,748 @@
+body {
+  position: relative;
+}
+.transform50 {
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.pageLeft {
+  position: absolute;
+  top: 12px;
+  left: 52px;
+  bottom: 12px;
+  right: 724px;
+}
+.pageLeftMid {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  width: 100%;
+}
+.pageLeftMid .sCBox {
+  position: absolute;
+  right: 30px;
+  top: -20px;
+  height: 20px;
+  line-height: 14px;
+  font-size: 12px;
+  color: #666;
+  z-index: 1;
+}
+.pageLeftMid .sCBox .sCState {
+  float: left;
+  width: 14px;
+  height: 20px;
+  background: url(../img/statusItem.png) no-repeat -62px 0;
+}
+.pageLeftMid .sCBox .sCState.sCState1 {
+  background-position: -1px 0;
+}
+.pageLeftMid .sCBox .sCState.sCState0 {
+  background-position: -62px 0;
+}
+.pageLeftMid .sCBox .sCState.sCState2 {
+  background-position: -121px 0;
+}
+.pageLeftMid .sCBox .sCName {
+  float: left;
+  height: 20px;
+}
+.pageLeftMid > div {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.pageLeftMid > div.active {
+  display: block;
+}
+.pageLeftMid .highWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /*border: 1px solid #ccc;
+        border-top: none;*/
+}
+.pageLeftMid .highWrap .threeSection {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox {
+  width: 1044px;
+  margin: auto;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp {
+  position: relative;
+  width: 1044px;
+  height: 571px;
+  margin: auto 0;
+  background: url(../img/shuiChangBg.png) no-repeat rgba(255, 255, 255, 0);
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .pic1 {
+  position: absolute;
+  top: 260px;
+  left: 244px;
+  width: 20px;
+  height: 20px;
+  background: url(../../img/pumpstatus_stop.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .inPressBoxleft {
+  position: absolute;
+  left: 76px;
+  top: 8px;
+  font-size: 12px;
+  color: #fff;
+  width: 140px;
+  height: 52px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .inPressBoxleft > div {
+  width: 100%;
+  height: 26px;
+  line-height: 26px;
+  text-align: left;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .inPressBoxleft > div > div {
+  float: left;
+  text-indent: 8px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .leftShuiWei {
+  position: absolute;
+  top: 3px;
+  left: 397px;
+  font-size: 12px;
+  color: #fff;
+  width: 140px;
+  height: 26px;
+  line-height: 26px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .leftShuiWei > div {
+  float: left;
+  text-indent: 8px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .leftLv {
+  position: absolute;
+  top: 114px;
+  left: 416px;
+  font-size: 12px;
+  color: #fff;
+  width: 140px;
+  height: 26px;
+  line-height: 26px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .leftLv > div {
+  float: left;
+  text-indent: 8px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outPressRight {
+  position: absolute;
+  top: 156px;
+  right: 18px;
+  font-size: 12px;
+  color: #fff;
+  width: 140px;
+  height: 52px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outPressRight > div {
+  width: 100%;
+  height: 26px;
+  line-height: 26px;
+  text-align: left;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outPressRight > div > div {
+  float: left;
+  text-indent: 8px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outPressRight.outPressRight2 {
+  top: 360px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outRight {
+  position: absolute;
+  top: 237px;
+  right: 18px;
+  font-size: 12px;
+  color: #fff;
+  width: 140px;
+  height: 26px;
+  line-height: 26px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .outRight > div {
+  float: left;
+  text-indent: 8px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox {
+  position: absolute;
+  left: 480px;
+  top: 438px;
+  height: 24px;
+  width: 50px;
+  font-size: 12px;
+  color: #12b3ff;
+  line-height: 24px;
+  text-align: center;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox.gongLvBox2 {
+  left: 534px;
+  top: 344px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox.gongLvBox3 {
+  left: 582px;
+  top: 246px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox.gongLvBox4 {
+  left: 618px;
+  top: 174px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox.gongLvBox5 {
+  left: 653px;
+  top: 108px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .gongLvBox.gongLvBox6 {
+  left: 686px;
+  top: 48px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox {
+  position: absolute;
+  top: 526px;
+  left: 603px;
+  width: 44px;
+  height: 24px;
+  font-size: 12px;
+  color: #12b3ff;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox.dianLiangBox2 {
+  left: 648px;
+  top: 418px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox.dianLiangBox3 {
+  left: 683px;
+  top: 326px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox.dianLiangBox4 {
+  left: 717px;
+  top: 244px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox.dianLiangBox5 {
+  left: 746px;
+  top: 176px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .dianLiangBox.dianLiangBox6 {
+  left: 776px;
+  top: 110px;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun1 {
+  position: absolute;
+  width: 43px;
+  height: 37px;
+  left: 516px;
+  top: 478px;
+  z-index: 1;
+  background: url(../img/p1-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun1.stop {
+  background: url(../img/p1-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun1.run {
+  background: url(../img/p1-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun1.error {
+  background: url(../img/p1-f.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun2 {
+  position: absolute;
+  width: 41px;
+  height: 41px;
+  left: 567px;
+  top: 371px;
+  z-index: 1;
+  background: url(../img/p2-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun2.stop {
+  background: url(../img/p2-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun2.run {
+  background: url(../img/p2-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun2.error {
+  background: url(../img/p2-f.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun3 {
+  position: absolute;
+  width: 40px;
+  height: 35px;
+  left: 612px;
+  top: 279px;
+  z-index: 1;
+  background: url(../img/p3-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun3.stop {
+  background: url(../img/p3-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun3.run {
+  background: url(../img/p3-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun3.error {
+  background: url(../img/p3-f.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun4 {
+  position: absolute;
+  width: 39px;
+  height: 34px;
+  left: 650px;
+  top: 200px;
+  z-index: 1;
+  background: url(../img/p4-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun4.stop {
+  background: url(../img/p4-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun4.run {
+  background: url(../img/p4-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun4.error {
+  background: url(../img/p4-f.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun5 {
+  position: absolute;
+  width: 35px;
+  height: 31px;
+  left: 684px;
+  top: 134px;
+  z-index: 1;
+  background: url(../img/p5-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun5.stop {
+  background: url(../img/p5-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun5.run {
+  background: url(../img/p5-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun5.error {
+  background: url(../img/p5-f.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun6 {
+  position: absolute;
+  width: 34px;
+  height: 27px;
+  left: 714px;
+  top: 76px;
+  z-index: 1;
+  background: url(../img/p6-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun6.stop {
+  background: url(../img/p6-s.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun6.run {
+  background: url(../img/p6-r.gif) no-repeat;
+}
+.pageLeftMid .highWrap .threeSection .threePicBox #layoutwarp .yeLun6.error {
+  background: url(../img/p6-f.gif) no-repeat;
+}
+.pageLeftBot {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+}
+.pageLeftBot .botArrow {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #ccc;
+  background: url(../img/leftBotArrowUp.png) no-repeat 10px 14px;
+  cursor: pointer;
+}
+.pageLeftBot .botArrow:hover,
+.pageLeftBot .botArrow.active:hover {
+  background-color: #e2e3e7;
+}
+.pageLeftBot .botArrow.active {
+  background: url(../img/leftBotArrowDown.png) no-repeat 10px 14px;
+}
+.pageLeftBot .leftBotNav {
+  width: 100%;
+  height: 38px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f5f5f5;
+}
+.pageLeftBot .leftBotNav li {
+  float: left;
+  width: 106px;
+  height: 38px;
+  line-height: 38px;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+.pageLeftBot .leftBotNav li.active,
+.pageLeftBot .leftBotNav li:hover {
+  background: #fff;
+}
+.pageLeftBot .leftBotNav li .leftBotNavPic {
+  float: left;
+  width: 34px;
+  height: 100%;
+  background: url(../img/leftBotPic.png) no-repeat;
+  margin-left: 8px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(1) .leftBotNavPic {
+  background-position: 6px 10px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(2) .leftBotNavPic {
+  background-position: 6px -486px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(3) .leftBotNavPic {
+  background-position: 6px -133px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(4) .leftBotNavPic {
+  background-position: 6px -204px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(5) .leftBotNavPic {
+  background-position: 6px -346px;
+}
+.pageLeftBot .leftBotNav li:nth-of-type(6) .leftBotNavPic {
+  background-position: 6px -60px;
+}
+.pageLeftBot .leftBotNav li .leftBotNavTxt {
+  float: left;
+  font-size: 12px;
+  color: #656565;
+  margin-left: 3px;
+}
+.leftBotBox {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: url(../img/shuiyin.png) no-repeat center center #ffffff;
+}
+.leftBotBox .leftBotFrame {
+  width: 100%;
+  height: 100%;
+}
+.pageMid {
+  position: absolute;
+  right: 362px;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  border-left: 3px solid #438eb9;
+}
+.pageRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: #fff;
+  border-left: 3px solid #438eb9;
+}
+.showHideBtn {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 48px;
+  cursor: pointer;
+  background: url(../img/arrow.png) no-repeat -15px 0;
+}
+.showHideBtn.show {
+  background-position: 4px 0;
+}
+.pageMidBox {
+  width: 100%;
+  height: 100%;
+}
+.pageMidBox .pageMidTop {
+  width: 100%;
+  /*height: 350px;
+        background: url(../img/mapRightOne.png) no-repeat;*/
+}
+.pageMidBox .pageMidMid {
+  width: 100%;
+  /*height: 350px;
+        background: url(../img/mapRightTwo.png) no-repeat;*/
+}
+.pageMidBox .pageMidBot {
+  width: 100%;
+  /*height: 350px;
+        background: url(../img/mapRightThree.png) no-repeat;*/
+}
+.pageRightBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pageRightBox .pageRightTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 372px;
+  width: 100%;
+}
+.pageRightBox .pageRightTop .caiJi {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  width: 40px;
+  height: 20px;
+  background: url(../img/caijiAndShow.png) no-repeat;
+  cursor: pointer;
+}
+.pageRightBox .pageRightTop .xianShi {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  width: 40px;
+  height: 20px;
+  background: url(../img/caijiAndShow.png) no-repeat top right;
+  cursor: pointer;
+}
+.pageRightBox .pageRightTop .rightTopTab {
+  width: 100%;
+  height: 35px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.pageRightBox .pageRightTop .rightTopTab li {
+  float: left;
+  width: 70px;
+  height: 35px;
+  padding-left: 6px;
+  padding-top: 6px;
+  cursor: pointer;
+  border-right: 1px solid #e5e5e5;
+}
+.pageRightBox .pageRightTop .rightTopTab li.active,
+.pageRightBox .pageRightTop .rightTopTab li:hover {
+  background: #fff;
+  border-Bottom: 1px solid #fff;
+}
+.pageRightBox .pageRightTop .rightTopTab li .rightTopTabItemPic {
+  float: left;
+  width: 22px;
+  height: 22px;
+  background: url(../img/shebeiRightBg.png) no-repeat;
+}
+.pageRightBox .pageRightTop .rightTopTab li:nth-of-type(1) .rightTopTabItemPic {
+  background-position: 4px 6px;
+}
+.pageRightBox .pageRightTop .rightTopTab li:nth-of-type(2) .rightTopTabItemPic {
+  background-position: -168px 6px;
+}
+.pageRightBox .pageRightTop .rightTopTab li .rightTopTabItemTxt {
+  float: left;
+  color: #727272;
+  font-size: 14px;
+  line-height: 26px;
+}
+.pageRightBox .pageRightTop .rightTopMainBox {
+  width: 100%;
+  height: 562px;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .dataBox {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 8px;
+  display: none;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .dataBox.active {
+  display: block;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .dataBox .dataUl {
+  width: 100%;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .dataBox .dataUl > li {
+  width: 50%;
+  float: left;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .dataBox .dataUl > li:nth-of-type(2) > * {
+  float: right;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .setBox {
+  width: 100%;
+  min-height: 350px;
+  box-sizing: border-box;
+  padding: 0 4px;
+  display: none;
+}
+.pageRightBox .pageRightTop .rightTopMainBox .setBox.active {
+  display: block;
+}
+.pageRightBox .pageRightBot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 360px;
+  border-top: 3px solid #438eb9;
+}
+.pageRightBox .pageRightBot .mapBoxShowHide {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 8px;
+  cursor: pointer;
+  background: url(../img/arrowUpDown.png) no-repeat 0 4px;
+}
+.pageRightBox .pageRightBot .mapBoxShowHide.show {
+  background-position: 0 -15px;
+}
+.pageRightBox .pageRightBot .rightBotTab {
+  width: 100%;
+  height: 35px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.pageRightBox .pageRightBot .rightBotTab li {
+  float: left;
+  width: 70px;
+  height: 35px;
+  padding-left: 6px;
+  padding-top: 6px;
+  cursor: pointer;
+  border-right: 1px solid #e5e5e5;
+}
+.pageRightBox .pageRightBot .rightBotTab li.active,
+.pageRightBox .pageRightBot .rightBotTab li:hover {
+  background: #fff;
+  border-Bottom: 1px solid #fff;
+}
+.pageRightBox .pageRightBot .rightBotTab li .rightBotTabItemPic {
+  float: left;
+  width: 22px;
+  height: 22px;
+  background: url(../img/shebeiRightBg.png) no-repeat;
+}
+.pageRightBox .pageRightBot .rightBotTab li:nth-of-type(1) .rightBotTabItemPic {
+  background-position: -688px 6px;
+}
+.pageRightBox .pageRightBot .rightBotTab li:nth-of-type(2) .rightBotTabItemPic {
+  background-position: -515px 6px;
+}
+.pageRightBox .pageRightBot .rightBotTab li .rightBotTabItemTxt {
+  float: left;
+  color: #727272;
+  font-size: 14px;
+  line-height: 26px;
+}
+.pageRightBox .pageRightBot .rightBotMainBox {
+  width: 100%;
+  height: 325px;
+}
+.pageRightBox .pageRightBot .rightBotMainBox #mapBox {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.pageRightBox .pageRightBot .rightBotMainBox #mapBox.active {
+  display: block;
+}
+.pageRightBox .pageRightBot .rightBotMainBox .videoBox {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.pageRightBox .pageRightBot .rightBotMainBox .videoBox.active {
+  display: block;
+}
+.rightShowBtn {
+  position: absolute;
+  right: 0;
+  /*top: 90px;*/
+  top: 42%;
+  width: 36px;
+  z-index: 3;
+}
+.rightShowBtn li {
+  height: 34px;
+  background: blue;
+  cursor: pointer;
+  display: none;
+  background: url(../img/rightShowBtnPic.png) no-repeat;
+}
+.rightShowBtn li:nth-of-type(1) {
+  background-position: 8px 6px;
+  background-color: #438eb9;
+}
+.rightShowBtn li:nth-of-type(2) {
+  background-position: 8px -30px;
+  background-color: #f3a355;
+}
+.mapLabelItemWrap {
+  width: 100%;
+}
+.sanJiao {
+  position: absolute;
+  bottom: -10px;
+  left: 48%;
+  width: 13px;
+  height: 10px;
+  background: url(/res/images/map/smallTra.png) no-repeat;
+  transform: translateX(-50%);
+}
+.mapLabelItem {
+  width: 266px;
+  height: 34px;
+  line-height: 34px;
+  color: green;
+  font-size: 19px;
+  border-bottom: 1px solid #cccccc;
+  font-size: 12px;
+  margin-left: 20px;
+}
+.mapLabelItem > div {
+  float: left;
+  width: 33%;
+  text-align: left;
+  color: #767778;
+}
+.mapLabelItem > div.areaName.gray {
+  color: #767778;
+}
+.mapLabelItem > div.areaName.blue {
+  color: #188df0;
+}
+.mapLabelItem > div.areaName.red {
+  color: red;
+}
+.mapLabelItem .outPress {
+  text-indent: 4px;
+}
+.mapLabelItem .outPress .bgBox {
+  float: left;
+  width: 17px;
+  height: 34px;
+  background: url(/res/images/map/outIn.png) no-repeat 2px 6px;
+}
+.mapLabelItem .inPress {
+  text-indent: 4px;
+}
+.mapLabelItem .inPress .bgBox {
+  float: left;
+  width: 17px;
+  height: 34px;
+  background: url(/res/images/map/outIn.png) no-repeat -90px 6px;
+}
+.mapLabelItem:last-child {
+  border-bottom: none;
+}

@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "pumpJZWindow";
+    var F = @Html.F();
+}
+@section head {
+    <title>机组列表</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/pumpWindow.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/echarts.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/laydate.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+}
+@section body {
+    <div class="main_wrap clearfix">
+    <div class="list_wrap">
+        <div class="list_header .clearfix">
+            <div class="search_box">
+                <button class="searchBtn">搜索</button>
+            </div>
+            <div class="searchCriteria">
+                <input class="searchText" type="text" placeholder="机组名称" />
+            </div>
+        </div>
+        <div class="list_table">
+            <div class="table1_wrap">
+
+                <table class="myTable table1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>机组编号</th>
+                            <th>机组名称</th>
+                            <th>所属泵房</th>
+                            <th>区域</th>
+                            <th>客户</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                @*<div class="setBtn"></div>*@
+            </div>
+            <div class="table2_wrap">
+                <table class="myTable table2">
+                    <thead>
+                        <!--<tr>
+                            <th>设备编号</th><th>设备名称</th><th>最后采集时间</th><th>进/出压力(Mpa)</th><th>泵状态</th><th><i class="setBtn"></i></th>
+                        </tr>-->
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>000</td>
+                            <td class="equipName"><i class="status_0"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>001</td>
+                            <td class="equipName"><i class="status_1"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr class="active">
+                            <td></td>
+                            <td>002</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page_wrap">
+            <div class="page_box">
+                <a id="firstPage" href="#">&lt;&lt;</a>
+                <a id="prevPage" href="#">&lt;</a><a id="currentPage" href="#">1</a><a href="#">/</a><a id="totalPage" href="#">100</a><a id="nextPage" href="#">&gt;</a><a id="lastPage" href="#">&gt;&gt;</a>
+                <span>每页</span><a id="pageSize" href="#">10</a><input type="text" id="editPageIndex" /><span>条，共</span><a id="totalNum" href="#">12222</a><span>条</span>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@section script {
+<script type="text/javascript" src="~/res/YCJK/js/pumpJZWindow.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}

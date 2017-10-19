@@ -1,0 +1,259 @@
+body {
+    position: relative;
+}
+.leftNav {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    bottom: 12px;
+    width: 42px;
+    background: #fefefe;
+    border-top: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    z-index: 1;
+    li {
+        position: relative;
+        width: 100%;
+        height: 44px;
+        border-bottom: 1px solid #ececec;
+        background: url(../img/leftNavBg.png) no-repeat ;
+        cursor: pointer;
+        
+        &:nth-of-type(1) {
+            background-position: 12px 12px; 
+            &:hover,&.active {
+                background-position: -48px 12px ;
+                background-color: #438eb9;
+            }
+        }
+        &:nth-of-type(2) {
+            background-position: 12px -28px; 
+            &:hover,&.active {
+                background-position: -48px -28px ;
+                background-color: #438eb9;
+            }
+        }
+        &:nth-of-type(3) {
+            background-position: 12px -74px; 
+            &:hover,&.active {
+                background-position: -48px -74px ;
+                background-color: #438eb9;
+            }
+        }
+        &:nth-of-type(4) {
+            background-position: 12px -120px; 
+            &:hover,&.active {
+                background-position: -48px -120px;
+                background-color: #438eb9;
+            }
+        }
+        &:last-child {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 35px;
+            padding-top: 9px;
+            height: 37px;
+            padding-left: 7px;
+            background: #fff;//#04b0ee;
+            cursor: pointer;
+            div {
+                width: 26px;
+                height: 26px;
+                background: url(../img/help.png) no-repeat;
+            }
+        }
+        
+    }
+}
+
+
+//left  info´°¿Ú
+.infoShowBox {
+    width: 246px;
+    height: 97px;
+    padding-left: 12px;
+    background: url(../img/leftHoverInfoBg.png) no-repeat red;
+   
+}
+
+
+.listWrap {
+    position: absolute;
+    top: 12px;
+    left: 43px;
+    bottom: 12px;
+    width: 250px;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;    
+    background: #fff;
+    margin-left: -300px;
+}
+.numWrap {
+    width: 100%;
+    height: 42px;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    background: #f5f5f5;
+    margin-bottom: 16px;
+    li {
+        float: left;
+        width: 25%;
+        height: 42px;
+        line-height: 42px;
+        font-size: 12px;
+        .numItemPic {
+            float: left;
+            width: 20px;
+            height: 42px;
+            background: url(../img/statusItem.png) no-repeat;
+            
+        }
+        &:nth-of-type(1) .numItemPic {
+            background-position: 3px 13px;
+        }
+        &:nth-of-type(2) .numItemPic {
+            background-position: -58px 13px;
+        }
+        &:nth-of-type(3) .numItemPic {
+            background-position: -118px 13px;
+        }
+        &:nth-of-type(4) .numItemPic {
+            background: none;
+        }
+        .numItemNum {
+             width: 42px;
+             height: 42px;
+             overflow: hidden;
+             text-overflow: ellipsis;
+             word-break: keep-all;
+        }
+    }
+}
+.searchWrap {
+    width: 218px;
+    height: 36px;
+    padding: 0 16px;
+    margin-bottom: 12px;
+    .searchTxt {
+        float: left;
+        width: 180px;
+        height: 34px;
+        outline: none;
+        border: 1px solid #d9d9d9;
+        border-right: none;
+        background: transparent;
+        color: #a6a6a6;
+        text-indent: 12px;
+        font-size: 16px;
+    }
+    .listSearchBtn {
+        float: left;
+        width: 34px;
+        height: 36px;
+        border: none;
+        outline: none;
+        border-radius: 0 3px 3px 0;
+        cursor: pointer;
+        background: url(../img/searchBg.png) no-repeat 8px 8px #438eb9;
+    }
+}
+
+.statusWrap {
+    width: 216px;
+    padding: 0 16px;
+    height: 34px;
+    margin-bottom: 8px;
+    li {
+        float: left;
+        width: 53px;
+        height: 34px;
+        line-height: 32px;
+        color: #fff;
+        font-size: 12px;
+        background: url(../img/statusBg.png) no-repeat #2e3e4e;
+        cursor: pointer;
+        margin-right: 1px;
+        text-indent: 24px;
+        &:nth-of-type(1) {
+            background-position: 8px 10px; 
+            border-radius: 17px 0 0 17px;
+            
+        }
+        &:nth-of-type(2) {
+            background-position: -48px 10px; 
+            
+        }
+        &:nth-of-type(3) {
+            background-position: -100px 10px; 
+            
+        }
+        &:nth-of-type(4) {
+            background-position: -152px 10px; 
+            border-radius: 0 17px  17px 0;
+        }
+        &:hover,&.active {
+                background-color: #04b0ee;
+            }
+    }
+}
+
+.listBox {
+    width: 100%;
+    .listItemWrap {
+        width: 100%;
+        li {
+            position: relative;
+            width: 100%;
+            height: 42px;
+            line-height: 41px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #2e3e4e;
+            &:hover {
+                background: #e2f4fe;
+            }
+            .listItemPic {
+                float: left;
+                width: 31px;
+                height: 41px;
+                line-height: 41px;
+                background: url(../img/statusItem.png) -1112px 13px no-repeat;
+                &.listItemPicSta1 {
+                    background-position: 12px 13px;
+                };
+                &.listItemPicSta0 {
+                    background-position: -50px 13px;
+                }
+                &.listItemPicSta2 {
+                    background-position: -110px 13px;
+                }
+            }
+            .listAddStatu {
+                 float: left;
+                width: 218px;
+                height: 41px;
+                border-bottom: 1px solid #ececec;
+            }
+            .listItemAddress {
+                float: left;
+                width: 170px;
+                height: 41px;
+            }
+            .listItemStatus {
+               float: right;  
+               margin-right: 10px;      
+               color: #a4a4a4;
+            }
+        }
+    }
+}
+
+.mainIframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

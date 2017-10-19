@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>压力项 添加表单</title>
+    <script src="js/jquery-2.1.0.js"></script>  
+    <script src="js/jquery-validate.js"></script>
+    <style type="text/css">
+        body,p,h1,h2,h3,h4,h5,h6,input{
+            margin: 0;
+            padding: 0;
+        }
+        .clearfix {
+            zoom: 1;
+        }
+
+        .clearfix:after {
+            content: '';
+            height: 0;
+            display: block;
+            clear: both;
+        } 
+        body, p, input, label {
+            font-size: 12px;
+            font-family:"微软雅黑";
+        }
+    
+        .main_wrap{
+            margin-top: 20px;
+            height:272px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .form_header {
+            width: 394px;
+            color: #2d8cec;
+            padding: 5px 0;
+            border-bottom: 1px solid #2d8cec;
+            position:relative;
+        }
+            .form_header p {
+                font-size: 22px;
+                text-indent: 10px;
+                line-height: 22px;
+            }
+        .actBtn {
+            padding: 6px 14px;
+            background-color: #36a9ff;
+            font-size: 12px;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            margin-left: 9px;
+            cursor: pointer;
+           position: absolute;
+           top: 0;
+           right: 0;
+        }
+        .form_wrap{
+            width: 434px;
+            padding-left: 40px;
+            padding-top: 10px;
+        }
+       .line_box{
+           height: 30px;
+           margin-top: 12px;
+       }
+        .line_box label{
+            line-height: 30px;
+            padding-right: 10px;
+        }
+        .line_box input {
+            line-height: 26px;
+            height: 26px;
+            /*width: 208px;*/
+            border: 1px solid #d8cfcf;
+            border-radius: 2px;
+            text-indent: 6px;
+            box-shadow: 0 0 2px #b1adad;
+        }
+       .equip_nameBox input{
+           width:180px;
+        }
+        .press_upBox input, .press_downBox input {
+            width: 80px;
+        }
+        .line_box  .error{
+            border: 1px solid #ff0000;
+            color: #ff0000;
+        }
+        .valid_message {
+            color: #32BC61;
+            /*position: absolute;
+            left: 325px;
+            top: 5px;
+            width: 200px;*/
+        }
+        .error .valid_message {
+            color: #ff0000;
+        }
+       .sucess  .valid_message {
+            background: url(img/sucess.png) no-repeat;
+            left: auto;
+            right: 5px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+        }
+        .img_box {
+            height: 292px;
+            width: 210px;
+            background-color: #f5f5f5;
+            background-image: url(img/midFormBg.png);
+            background-repeat:no-repeat;
+            background-position: 0 68px;
+            position: absolute;
+            top: -20px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main_wrap">
+        <div class="form_header">
+            <p>新增设备</p>
+            <button type="button" class="actBtn">确定</button>
+        </div>
+        <div class="form_wrap">
+            <form>
+                <div class=" line_box equip_numBox" >
+                    <label>设备编号：</label><input type="text" data-field="FDTUCode" class="required data-key" data-tip="请输入设备编号" data-valid="isNonEmpty" data-error="不能为空！" />
+                </div>
+                <div class="line_box equip_nameBox">
+                    <label>设备名称：</label><input type="text" data-field="FName" class="required data-key" data-tip="请输入设备名称" data-valid="isNonEmpty" data-error="不能为空！" />
+                </div>
+                <div class="line_box press_upBox">
+                    <label>压力上限：</label><input type="text" data-field="FMpaUp" class="required data-key" data-tip="请输入数字" data-valid="isNonEmpty||onlyNum" data-error="不能为空！|| 压力值为数值" />
+                </div>
+                <div class="line_box press_downBox">
+                    <label>压力下限：</label><input type="text" data-field="FMpaDown" class="required data-key" data-tip="请输入数字" data-valid="isNonEmpty||onlyNum" data-error="不能为空！||压力值为数值" />
+                </div>
+            </form>
+        </div>
+        <div class="img_box"></div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {           
+            $('form').validate({              
+              onFocus: function () {
+                    this.parent().addClass('active');
+                    return false;
+                },
+                onBlur: function () {
+                    var $parent = this.parent();
+                    var _status = parseInt(this.attr('data-status'));
+                    $parent.removeClass('active');                  
+                    if (!_status) {
+                        $parent.addClass('error');
+                    }
+                    return false;
+                }
+            });
+            var dataJson = {};
+            getOldValue();
+            var opType = parseUrl();
+            if (opType.opType == 2) {
+                $(".form_header p").html('修改设备');
+            }
+            function parseUrl() {
+                var url = window.location.href;
+                console.log(url);
+                var i = url.indexOf('?');
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+                    arr2[tar[0]] = tar[1];
+                };
+                console.log(arr2);
+                return arr2;
+
+            }
+            function getOldValue() {
+                var $curLineLen =parent.$("tr.current td");
+               for (var i = 2; i <= $curLineLen.length - 2; i++) {
+                   var tempstr = $curLineLen.eq(i).attr("data-id");
+                   console.log(tempstr);
+                   console.log($curLineLen.eq(i).html());
+                   dataJson[tempstr] = $curLineLen.eq(i).html();
+               }
+           }
+            setOldValue();
+            function setOldValue() {
+                $(".data-key").each(function () {
+                    var data_field = $(this).attr("data-field");
+                    $(this).val(dataJson[data_field]);
+                });
+            }
+            //确定
+           $(".actBtn").click(function () {
+               console.log($(".form_wrap div.error"));
+                var tempFlag = true;
+                $(".form_wrap input").each(function () {
+                    if($(this).val()=='')
+                    {
+                        tempFlag = false;
+                        return;
+                    }
+                });
+              //  alert($(".form_wrap div.error").length);
+             //   alert(tempFlag);
+                if (!$(".form_wrap div.error").length && tempFlag) {
+                    //提交保存
+                    var dtuCode = $(".equip_numBox input").val();
+                    var fName = $(".equip_nameBox input").val();
+                    var mpaUp = $(".press_upBox input").val();
+                    var mpaDown = $(".press_downBox input").val();
+                    console.log();
+                    if (opType.opType == 1) {
+                        //新增
+                        addEquip(dtuCode, fName, mpaUp, mpaDown);
+                    } else if (opType.opType == 2) {
+                        //修改
+                        modifyEquip(dtuCode, fName, mpaUp, mpaDown);
+                    }
+                  
+                  
+                } else {
+                    alert("数据填写不正确");
+                    return;
+                }
+           });
+            //新增
+           function addEquip(dtuCode, fName, mpaUp, mpaDown) {
+               $.ajax({
+                   type: 'POST',
+                   url: '../../Service/Data_YaLi.ashx?method=insertyali',
+                     data: {
+                         'FDTUCode': dtuCode,
+                         'FName': fName,
+                         'FMpaUp': mpaUp,
+                         'FMpaDown': mpaDown
+                     },
+                   dataType: "json",
+                   success: function (data) {
+                       console.log(data);
+                       if (data.result == 1) {
+                           var index = parent.layer.getFrameIndex(window.name);
+                           parent.layer.close(index);
+                       } else if (data.result == 0) {
+                           alert(data.msg);
+                           return;
+                       }
+                   },
+                   error: function (data) {
+                       console.log('错误：' + data.responseText);
+                   }
+               });
+           }
+            //修改
+           function modifyEquip(dtuCode, fName, mpaUp, mpaDown) {
+               $.ajax({
+                   type: 'POST',
+                   url: '../../Service/Data_YaLi.ashx?method=updyali',
+                     data: {
+                         'oldFDTUCode':dataJson.FDTUCode,
+                         'FDTUCode': dtuCode,
+                         'FName': fName,
+                         'FMpaUp': mpaUp,
+                         'FMpaDown': mpaDown,
+                         'ID': opType.id
+                     },
+                   dataType: "json",
+                   success: function (data) {                     
+                       if (data.result == 1) {
+                           var index = parent.layer.getFrameIndex(window.name);
+                           parent.layer.close(index);
+                       } else if (data.result == 0) {
+                           alert(data.msg);
+                           return;
+                       }
+                   },
+                   error: function (data) {
+                       console.log('错误：' + data.responseText);
+                   }
+               });
+           }
+        });
+    </script>
+</body>
+</html>

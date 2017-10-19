@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "BasicInfo/AddressScheme";
+    var F = @Html.F();
+}
+
+@section body {
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .Layout(LayoutType.Region)
+        .IsViewPort(true)
+        .Items(
+        F.Panel()
+                .Layout(LayoutType.Fit)
+                .Collapsed(false)
+                .EnableCollapse(false)
+                .Title("地址方案")
+                .ShowHeader(true)
+                .Width(180)
+                .ShowBorder(true)
+                .RegionSplitIcon(false)
+                .RegionSplitWidth(3)
+                .RegionSplit(true)
+                .RegionPosition(Position.Left)
+                .CssClass("leftregion")
+                .ID("leftPanel")
+                .Items(
+                    F.Tree()
+                        .ID("Tree1")
+                        .ShowBorder(false)
+                        .ShowHeader(false)
+                        .EnableSingleClickExpand(true)
+                        .EnableCollapse(true)
+                        .Nodes((TreeNode[])ViewBag.Tree1Nodes)
+                )
+                .Tools(
+                    F.Tool()
+                     .IconFont(IconFont.PlusCircle)
+                     .ID("leftPanelToolCollapse")
+                     .Enabled(ViewBag.CoreAddressAdd)
+                     .Listener("click", "onCreateClick"),
+                   F.Tool()
+                    .IconFont(IconFont.Pencil)
+                    .ID("leftPanelToolCollapse")
+                    .Enabled(ViewBag.CoreAddressEdit)
+                    .Listener("click", "onEditClick"),
+                    F.Tool()
+                     .IconFont(IconFont.MinusCircle)
+                     .ID("leftPanelToolCollapse")
+                     .Enabled(ViewBag.CoreAddressDelete)
+                     .Listener("click", "onDeleteClick")
+                        ),
+
+        F.Panel()
+           .ID("Region3")
+           .ShowHeader(false)
+           .EnableIFrame(true)
+           .ShowBorder(false)
+           .IFrameName("treemainframe")
+           .RegionPosition(Position.Center)
+        )
+    )
+    @(F.Window()
+        .ID("Window1")
+        .Width(500)
+        .Height(320)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .OnClose(Url.Action("Window1_Close"))
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+    function onCreateClick() {
+        F.ui.Window1.show('@Url.Content("~/BasicInfo/AddressScheme/AddressScheme_new")', '新增地址方案');
+        }
+        function onEditClick() {
+
+            var result = '';
+            var selectedNode = F.ui.Tree1.getSelectedNode(true);
+            if (selectedNode) {
+                result = {
+                    id: selectedNode.id,
+                    text: selectedNode.text
+                };
+            }
+            if (result.id != undefined || result.id != null) {
+                F.ui.Window1.show('@Url.Content("~/BasicInfo/AddressScheme/AddressScheme_edit")?ID='+result.id, '编辑地址方案');
+            }
+        }
+        function onDeleteClick() {
+            var result = '';
+
+            var selectedNode = F.ui.Tree1.getSelectedNode(true);
+            if (selectedNode) {
+                result = {
+                    id: selectedNode.id,
+                    text: selectedNode.text
+                };
+            }
+            if (result.id != undefined || result.id!=null) {
+                F.doPostBack('@Url.Action("btnGetSelectedNode_Click")', {
+                selectedNode: result
+            });
+        }
+
+    }
+
+    </script>
+}

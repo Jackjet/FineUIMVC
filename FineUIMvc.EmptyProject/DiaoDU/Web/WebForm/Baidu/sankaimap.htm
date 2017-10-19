@@ -1,0 +1,2371 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" href="../FTZ/css/jquery.mCustomScrollbar.css">
+    <!--<link href="Css/base.css?v=1.1.1" rel="stylesheet" type="text/css" />
+    <link href="Css/public.css?v=1.1.1" rel="stylesheet" type="text/css" />-->
+    <link href="css/loginCss.css" rel="stylesheet" type="text/css" />
+    <link href="./css/animate.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="assets/css/sangarSlider.css" type="text/css" media="all">
+    <link rel="stylesheet" href="assets/themes/default/default.css" type="text/css" media="all">
+
+    <script type="text/javascript" src="../FTZ/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="./layer/layer.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/radialIndicator.min.js"></script>
+    
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>-->
+   <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer.js"></script>
+    <script src="./nav/jquery.nivo.slider.js"></script>
+    <script src="./js/BMapInfobox.js"></script>
+    <title>百度地图</title>
+
+    <style type="text/css">
+        .map {
+            /*
+        background:rgb(226,244,253);
+        */
+        }
+
+
+        #loadingBox {
+            position: absolute;
+            width: 100px;
+            border-radius: 5px;
+            padding: 30px;
+            margin-left: -80px;
+            height: 50px;
+            margin-top: -55px;
+            left: 50%;
+            top: 50%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .aniBtn {
+            position: absolute;
+            left: 5px;
+            top: 80px;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+
+    <script language="javascript" type="text/javascript">
+        function setparentheight() {
+            parent.document.all(self.name).height = window.screen.availHeight - 150;
+        }
+    </script>
+    <style type="text/css">
+                * {
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                /*a {
+                    color: black;
+                }
+        */
+                #keleyislide {
+                    width: 300px;
+                    height: 200px;
+                    border: 1px solid #000;
+                    position: fixed;
+                    bottom: 2px;
+                    right: 2px;
+                    display: none;
+                    background-color: White;
+                    z-index: 9999;
+                }
+
+                    #keleyislide a {
+                        position: absolute;
+                        top: 8px;
+                        right: 8px;
+                        font-size: 12px;
+                        text-decoration: none;
+                        color: Blue;
+                    }
+
+                    #keleyislide h2 {
+                        font-size: 24px;
+                        text-align: center;
+                        font-family: "微软雅黑";
+                    }
+
+                #reshow {
+                    position: fixed;
+                    right: 2px;
+                    bottom: 2px;
+                    font-size: 12px;
+                    display: none;
+                    cursor: pointer;
+                    border: 1px solid #000;
+                }
+    </style>
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+        .map_tube {
+            position: absolute;
+            bottom: 40px;
+            left: 30px;
+            width: 190px;
+            height: 90px;
+            padding-bottom: 14px;
+            padding-left: 8px;
+            border-radius: 6px;
+            background: rgba(0,0,0,.4);
+        }
+        .map_tube div {
+           float: left;
+            width: 80px;
+            height: 20px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+            .map_tube span {
+                margin-top: 8px;
+                display: block;
+                float: left;
+                font-size: 12px;
+                margin-right: 3px;
+                color: #fff;
+            }
+
+            .map_tube .normal_tube_bg {
+                margin-top: 10px;
+                width: 18px;/*20*/
+                height: 8px;/*10*/
+                border: 1px solid gray;
+                background: #621d60;
+                /* #e8c8b9;*/
+            }
+            .map_tube .normal_tube_bg2 {
+                margin-top: 10px;
+                width: 18px; /*20*/
+                height: 8px; /*10*/
+                border: 1px solid gray;
+                background: #0000ff;
+                /* #e8c8b9;*/
+            }
+            .map_tube .normal_tube_bg3 {
+                margin-top: 10px;
+                width: 18px; /*20*/
+                height: 8px; /*10*/
+                border: 1px solid gray;
+                background: #008000;
+                /* #e8c8b9;*/
+            }
+            .map_tube .press_tube_bg {
+                margin-top: 10px;
+                width: 18px;/*20*/
+                border: 1px solid gray;
+                height: 8px;/*10*/
+                background: rgb(0,255,255);
+            }
+            .map_tube .meterPic_bg {
+                width: 20px;
+                height: 18px;
+                background: url(Images/flow2.png) no-repeat;
+            }
+            .map_tube .onOffPic_bg {
+                width: 20px;
+                height: 18px;
+                background: url(Images/onOff.png) no-repeat;
+            }
+         .show_box {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            width: 200px;
+            height: 40px;
+        }
+        .show_box {
+            width: 300px;
+            height: 40px;
+        }
+        .show_box div {
+            float: left;
+            width: 80px;
+            height: 40px;
+            margin: 0 10px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+            background: rgba(0,0,0,.6);
+            cursor: pointer;
+        }
+            .show_box div:hover {              
+                background: rgba(0,0,0,.8);
+            }
+
+
+        .rightSet {
+            position: absolute;
+            right: 1px;
+            top: 80px;
+            width: 198px;
+            height: 68px;
+            background: url(Images/btnBtg.png) no-repeat right top;
+        }
+        .rightSetTop, rightSetBottom {
+            width: 100%;
+            height: 34px;
+        }
+        
+         .cityCheck {
+            width: 73px;
+            height: 21px;
+            background: url(Images/noCheckedBg.png) no-repeat;
+            color: #fff;
+            text-align: center;
+            font-size: 10px;
+            line-height: 21px;
+            margin: 6px 14px 6px 33px;
+            float: left;
+            cursor: pointer;
+        }
+        .cityCheck.active {
+          
+            background-image: url(Images/checkedBg.png);
+           
+        }
+        .pressWaterCheck {
+            width: 73px;
+            height: 21px;
+            background: url(Images/noCheckedBg.png) no-repeat;
+            color: #fff;
+            text-align: center;
+            font-size: 10px;
+            line-height: 21px;
+            margin: 6px 0;
+            float: left;
+            cursor: pointer;
+        }
+        .pressWaterCheck.active {
+         
+            background-image: url(Images/checkedBg.png);
+          
+        }
+        .rightSetBottom span {
+            display: inline-block;
+            text-align: left;
+            -moz-transform: scale(.8);
+            -ms-transform: scale(.8);
+            -o-transform: scale(.8);
+            -webkit-transform: scale(.8);
+            transform: scale(.8);
+        }
+        
+         .waterPress {
+            width: 39px;
+            height: 16px;
+            line-height: 16px;
+            border-radius: 2px;
+            color: #FFF;
+            font-size: 12px;
+            text-indent: 5px;
+            background: url(Images/smallBgNormal.png) no-repeat;
+            float: left;
+            margin: 10px 2px 0px 30px;
+            cursor: pointer;
+        }
+        .waterPress.active {
+          
+            background-image: url(Images/smallBgActive.png);
+           
+        }
+        .currentFlow {
+            width: 59px;
+            height: 16px;
+            line-height: 16px;
+            border-radius: 2px;
+            color: #FFF;
+            font-size: 12px;
+            text-indent: 5px;
+            
+            background: url(Images/bigBgNormal.png) no-repeat;
+            float: left;
+            margin: 10px 2px 0px 0px;
+            cursor: pointer;
+        }
+        .currentFlow.active {
+          
+            background-image: url(Images/bigBgActive.png) ;
+         
+        }
+        .allFlow {
+            width: 59px;
+            height: 16px;
+            line-height: 16px;
+            border-radius: 2px;
+            color: #FFF;
+            font-size: 12px;
+            text-indent: 5px;
+            
+            background: url(Images/bigBgNormal.png) no-repeat;
+            float: left;
+            margin: 10px 2px 0px 0px;
+            cursor: pointer;
+        }
+        .allFlow.active {
+          
+            background-image: url(Images/bigBgActive.png);
+       
+        }
+        .setBtn {
+            position: absolute;
+            right: 181px;
+            top: 98px;
+            width: 26px;
+            height: 26px;
+            background: url(Images/setBg.png) no-repeat;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="setparentheight();">
+    <div id="allmap">
+    </div>
+    <div class="map_tube">
+        <div class="meterPic"><span class="meterPic_bg"></span><span class="flow_meter">流量表</span></div>
+        <div class="onOffPic"><span class="onOffPic_bg"></span><span class="ele_onOff">电动阀</span></div>
+        <div><span class="normal_tube_bg"></span><span class="normer_water">一级管网</span></div>
+        <div><span class="normal_tube_bg2"></span><span class="press_water">二级管网</span></div>
+        <div><span class="normal_tube_bg3"></span><span class="normer_water">三级管网</span></div>
+        <div><span class="press_tube_bg"></span><span class="press_water">二次加压</span></div>
+    </div>
+    <div class="show_box">
+        <div class="show_water">渗水演示</div>
+        <div class="show_plore">爆管演示</div>       
+        <div class="normal_state">正常状态</div>
+       
+    </div>
+
+    <div class="rightSet active">
+        
+        <div class="rightSetTop">
+            <div class="cityCheck active">市政供水</div>
+            <div class="pressWaterCheck active">二次加压</div>
+        </div>
+        <div class="rightSetBottom">
+            <div class=" waterPress"><span>压力</span></div>
+            <div class=" currentFlow"><span>瞬时流量</span></div>
+            <div class=" allFlow active"><span>累积流量</span></div>
+        </div>
+    </div>
+    <div class="setBtn"></div>
+
+    <script type="text/javascript">
+        $(function () {
+           
+            var z;
+
+            var map = new BMap.Map("allmap", { mapType: BMAP_SATELLITE_MAP }); // new BMap.Map("allmap");            // 创建Map实例
+            var point = new BMap.Point(121.191705, 31.166028);    // 创建点坐标
+            map.centerAndZoom(point, 19);                     // 初始化地图,设置中心点坐标和地图级别。
+            map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+           // map.setZoom(19);
+          
+           /* var polyArray = [new BMap.Point(121.190429, 31.167198),
+		            new BMap.Point(121.191044, 31.165147),
+		            new BMap.Point(121.193083, 31.16563),
+                    new BMap.Point(121.192895, 31.166275),
+                    new BMap.Point(121.191925, 31.166047),
+                    new BMap.Point(121.191911, 31.16602)];
+          
+            var polyline1 = new BMap.Polyline(
+                polyArray, { strokeColor: "#3c3d37", strokeWeight: 10, strokeOpacity: 1 });   //创建折线*/
+                //[
+		           // new BMap.Point(121.190429, 31.167198),
+		           // new BMap.Point(121.191044, 31.165147),
+		           // new BMap.Point(121.193083, 31.16563),
+                    //new BMap.Point(121.192895, 31.166275),
+                    //new BMap.Point(121.191925, 31.166047),
+                   // new BMap.Point(121.191911, 31.16602)
+           // ], { strokeColor: "#3c3d37", strokeWeight: 10, strokeOpacity: 1 });   //创建折线
+          //  map.addOverlay(polyline1);   //增加折线
+
+
+          //  var polyline2 = new BMap.Polyline(
+          //      polyArray, { strokeColor: "#ae968a", strokeWeight: 3, strokeOpacity: 0.5 });   //创建折线
+                //[
+		           // new BMap.Point(121.190429, 31.167198),
+		           // new BMap.Point(121.191044, 31.165147),
+		           // new BMap.Point(121.193083, 31.16563),
+                   // new BMap.Point(121.192895, 31.166275),
+                   // new BMap.Point(121.191925, 31.166047),
+                    //new BMap.Point(121.191911, 31.16602)
+          //  ], { strokeColor: "#ae968a", strokeWeight: 3, strokeOpacity: 0.5 });   //创建折线
+          //  map.addOverlay(polyline2);   //增加折线
+
+
+          /*  var polyline1_1 = new BMap.Polyline([
+                   new BMap.Point(121.193079, 31.165784),
+                   new BMap.Point(121.193128, 31.165746),
+                   new BMap.Point(121.192836, 31.166835),
+                   new BMap.Point(121.19298, 31.166854),
+                   new BMap.Point(121.192962, 31.166592),
+                   new BMap.Point(121.193506, 31.166684),
+                   new BMap.Point(121.193586, 31.166588)
+            ], { strokeColor: "#3c3d37", strokeWeight: 10, strokeOpacity: 1 });   //创建折线
+            map.addOverlay(polyline1_1);   //增加折线
+                */
+           // var pointArray = [];
+            //map.addEventListener('click', function (e) {
+                //alert(e.point.lng + "," + e.point.lat);
+                //console.log(e.point.lng + "," + e.point.lat);
+               // pointArray.push(new BMap.Point(e.point.lng, e.point.lat));
+                //console.log(pointArray);
+                //$.ajax({
+                //    url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+                //    async: false,
+                //    cache: false,
+                //    success: function (data) {
+                //        console.log(data);
+                //        var data = JSON.parse(data);
+                //        data = data.data[0];
+                       
+
+                //        //console.log($('.pump_sys .type1').eq(0).find('.pump_ry').length + "dddddddddddaaaaaaa");
+
+
+                //    }
+                //});
+               
+              
+            //});
+            
+
+
+            //数据获取函数
+
+            function getData(pId) {
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                    data: { 'FPumpID': pId },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                       // console.log(data+"dafdsfs");
+                        var data = JSON.parse(data);
+                        data = data.data[0];
+                        showContent(data, pId);////
+                        pumpName(pId);////
+                    }
+                });
+            }
+           
+            //泵房名称获取函数
+            function pumpName(id) {
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=get',
+                    data: { 'id': id },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                       // console.log(data +"dddfasdfsdfsafsa");
+                       // alert(data+'dddddddddddddddddddd');
+                        var data = JSON.parse(data);
+                       
+                        $('.number_box .pump_name').html(data.FName);
+                        $('.number_box .pump_number').html(data.FNumber);
+                        $('.item_bg1').parent().parent().find('.item_content').html(data.FName);
+                        $('.item_bg2').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg3').parent().parent().find('.item_content').html(data.FMaintenancePeriod);
+                        $('.item_bg4').parent().parent().find('.item_content').html(data.FChangePeriod);
+                        $('.item_bg5').parent().parent().find('.item_content').html(data.FMaterial);
+                        //$('.item_bg6').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg7').parent().parent().find('.item_content').html(data.FPumpType);
+                        $('.item_bg8').parent().parent().find('.item_content').html(data.FStatus);
+                        $('.item_bg9').parent().parent().find('.item_content').html(data.FPipeSize);
+                        $('.item_bg10').parent().parent().find('.item_content').html(data.FCaliber);
+
+                        window.setTimeout(function () {
+                            pic_show();////
+                           
+                              
+                           info_show();////
+                        }, 400);
+                    }
+                });
+            }
+            //编号获取函数
+            var numJson = [];
+            var onOff;
+            var myLabel;
+            var $kaiSet;
+            var pressLabel;
+            var press;
+            var timerCurrentNum;
+            $(window).ready(function () {
+                
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=SearchAll',                   
+                    //async: false,
+                    cache: false,
+                    success: function (data) {
+                      
+                        //console.log(data);
+                        var data = JSON.parse(data);
+                        data = data.data;
+                       
+                        numJson = data;
+                        
+                        //console.log(numJson);
+                        markersDraw();
+                        colorChange();
+
+                        timerCurrentNum = setInterval(function () {
+                            getCurrentNumberFn();
+                            //alert(111);
+                        },4000);
+                       // map.addEventListener('dblclick', function () {
+                            //alert(0);
+                           // colorChange()
+                          //  getCurrentNumberFn()
+                           
+                        //});
+                        //kaiSetAlert()
+
+                        kaiduShow();
+                        $('.show_plore').click(function () {
+                            press = 4;
+                            if (myLabel) {
+                               
+                                map.removeOverlay(myLabel);
+                            }
+                            threeTubeTest(press);
+                        });
+                        $('.show_water').click(function () {
+                            press = 8;
+                            if (myLabel) {
+                               
+                                map.removeOverlay(myLabel);
+                            }
+                            threeTubeTest(press);
+                        });
+                        $('.normal_state').click(function () {
+
+                            if (myLabel) {
+                                map.removeOverlay(myLabel);
+                            }
+                          
+                            polyline1Side2_1.setStrokeColor("blue");
+                            polyline1Side2_1.setStrokeWeight(3);
+                            polyline1Side2_1.setStrokeOpacity(1);
+                            clearInterval(lineTimer);
+                           
+                        });
+                      
+                    }
+                });
+               
+            });
+           
+            
+            //var myIcon_blue = new BMap.Icon("Images/markers.png", new BMap.Size(23, 25), {
+            //    offset: new BMap.Size(10, 25), // 指定定位位置
+            //    imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+            //});
+            
+            //var myIcon_red = new BMap.Icon("Images/markers.png", new BMap.Size(23, 25), {
+            //    offset: new BMap.Size(10, 25), // 指定定位位置
+            //    imageOffset: new BMap.Size(0, 0 - 11 * 25) // 设置图片偏移
+            //});
+            var myIcon_flow = new BMap.Icon("Images/flow2.png", new BMap.Size(30, 30)
+            );
+
+            var myIcon_onOff = new BMap.Icon("Images/onOff.png",new BMap.Size(30,30));
+           
+            //点线数据
+
+
+
+            //pointArray1的各个分支
+
+            //pointArray1_1
+            var pointArray1_1 = [];
+            pointArray1_1.push(new BMap.Point(121.190386, 31.167229));
+            pointArray1_1.push(new BMap.Point(121.190476, 31.166959));//18q
+
+            //pointArray1_2
+            var pointArray1_2 = [];
+            pointArray1_2.push(new BMap.Point(121.190476, 31.166959));
+            pointArray1_2.push(new BMap.Point(121.190596, 31.166569));//2q
+
+            //pointArray1_3
+            var pointArray1_3 = [];
+            pointArray1_3.push(new BMap.Point(121.190596, 31.166569));
+            pointArray1_3.push(new BMap.Point(121.190616, 31.166495));//5q
+
+            //pointArray1_4
+            var pointArray1_4 = [];
+            pointArray1_4.push(new BMap.Point(121.190616, 31.166495));
+            pointArray1_4.push(new BMap.Point(121.190891, 31.165637));//6q
+
+            //pointArray1_5
+            var pointArray1_5 = [];
+            pointArray1_5.push(new BMap.Point(121.190891, 31.165637));
+            pointArray1_5.push(new BMap.Point(121.191048, 31.165138));
+            pointArray1_5.push(new BMap.Point(121.192014, 31.165374));//9q
+
+            //pointArray1_6
+            var pointArray1_6 = [];
+            pointArray1_6.push(new BMap.Point(121.192014, 31.165374));
+      /*mark*/      pointArray1_6.push(new BMap.Point(121.192504, 31.165492));//19q
+
+            //pointArray1_7
+            var pointArray1_7 = [];
+            pointArray1_7.push(new BMap.Point(121.192504, 31.165492));
+            pointArray1_7.push(new BMap.Point(121.192914, 31.165588));//21q
+
+            //pointArray1_8
+            var pointArray1_8 = [];
+            pointArray1_8.push(new BMap.Point(121.192914, 31.165588));
+
+            //缺失1
+            pointArray1_8.push(new BMap.Point(121.193098, 31.165638));// 随意加的
+
+            //pointArray1_9
+            var pointArray1_9 = [];
+            //缺失1
+            pointArray1_9.push(new BMap.Point(121.193098, 31.165638));
+            pointArray1_9.push(new BMap.Point(121.193068, 31.165748));//大分支q
+
+            //pointArray1_10
+            var pointArray1_10 = [];
+            pointArray1_10.push(new BMap.Point(121.193068, 31.165748));//大分支q
+            pointArray1_10.push(new BMap.Point(121.192891, 31.166298));
+            pointArray1_10.push(new BMap.Point(121.192725, 31.166258));//14q
+            
+            //pointArray1_11
+            var pointArray1_11 = [];
+            pointArray1_11.push(new BMap.Point(121.192725, 31.166258));//14q
+            pointArray1_11.push(new BMap.Point(121.191917, 31.166060));
+            pointArray1_11.push(new BMap.Point(121.191927, 31.166030));//1终点
+
+            //pointArray1
+            var pointArray1 = [];
+            pointArray1.push(new BMap.Point(121.190386, 31.167229));
+            pointArray1.push(new BMap.Point(121.191048, 31.165138));
+            pointArray1.push(new BMap.Point(121.193096, 31.165638));
+
+            pointArray1.push(new BMap.Point(121.192891, 31.166298));
+
+            pointArray1.push(new BMap.Point(121.191916, 31.166063));
+
+            pointArray1.push(new BMap.Point(121.191927, 31.166030));
+
+
+
+
+           
+
+            //pointArray1Side1  分点
+
+            //pointArray1Side1_1
+            var pointArray1Side1_1 = [];
+            pointArray1Side1_1.push(new BMap.Point(121.193079, 31.165748));
+
+            pointArray1Side1_1.push(new BMap.Point(121.193134, 31.165762));
+            pointArray1Side1_1.push(new BMap.Point(121.192782, 31.166842));
+            pointArray1Side1_1.push(new BMap.Point(121.192853, 31.16688));//13q
+
+            //pointArray1Side1_2
+            var pointArray1Side1_2 = [];         
+            pointArray1Side1_2.push(new BMap.Point(121.192853, 31.16688));//13q
+            pointArray1Side1_2.push(new BMap.Point(121.192899, 31.166871));
+            pointArray1Side1_2.push(new BMap.Point(121.192990, 31.166592));
+            pointArray1Side1_2.push(new BMap.Point(121.193498, 31.166712));
+            pointArray1Side1_2.push(new BMap.Point(121.193542, 31.166560));
+
+            //pointArray1Side1
+            var pointArray1Side1 = [];
+            pointArray1Side1.push(new BMap.Point(121.193079, 31.165748));
+
+            pointArray1Side1.push(new BMap.Point(121.193134, 31.165762));
+            pointArray1Side1.push(new BMap.Point(121.192782, 31.166842));
+            pointArray1Side1.push(new BMap.Point(121.192899, 31.166871));
+            pointArray1Side1.push(new BMap.Point(121.192990, 31.166592));
+            pointArray1Side1.push(new BMap.Point(121.193498, 31.166712));
+            pointArray1Side1.push(new BMap.Point(121.193542, 31.166560));
+
+
+
+
+
+            //pointArray1Side2 分点
+
+            //pointArray1Side2_1
+
+            var pointArray1Side2_1 = [];
+            pointArray1Side2_1.push(new BMap.Point(121.190590, 31.166569));
+            pointArray1Side2_1.push(new BMap.Point(121.190550, 31.166559));
+            pointArray1Side2_1.push(new BMap.Point(121.190534, 31.166623));
+            pointArray1Side2_1.push(new BMap.Point(121.190277, 31.16656));
+            pointArray1Side2_1.push(new BMap.Point(121.190493, 31.165851));  //3q
+
+
+            //pointArray1Side2_2
+            var pointArray1Side2_2 = [];
+            pointArray1Side2_2.push(new BMap.Point(121.190493, 31.165851));
+            pointArray1Side2_2.push(new BMap.Point(121.190578, 31.165572));
+
+
+            //pointArray1Side2_3
+            var pointArray1Side2_3 = [];
+            pointArray1Side2_3.push(new BMap.Point(121.190578, 31.165572));
+            pointArray1Side2_3.push(new BMap.Point(121.190353, 31.165522));
+
+
+
+
+          
+
+            //pointArray1Side2
+
+            var pointArray1Side2 = [];
+         
+            pointArray1Side2.push(new BMap.Point(121.190590, 31.166569));
+            pointArray1Side2.push(new BMap.Point(121.190550, 31.166559));
+            pointArray1Side2.push(new BMap.Point(121.190534, 31.166623));
+            pointArray1Side2.push(new BMap.Point(121.190277, 31.16656));
+            pointArray1Side2.push(new BMap.Point(121.190578, 31.165572));
+            pointArray1Side2.push(new BMap.Point(121.190353, 31.165522));
+
+
+            //pointArray1Side2Branch
+            var pointArray1Side2Branch = [];
+
+            pointArray1Side2Branch.push(new BMap.Point(121.190480, 31.165851));
+            pointArray1Side2Branch.push(new BMap.Point(121.190274, 31.1658));
+           
+           
+            //pointArray1Side3
+            var pointArray1Side3 = [];
+            pointArray1Side3.push(new BMap.Point(121.192504, 31.165478));
+            pointArray1Side3.push(new BMap.Point(121.192522, 31.165421));
+            pointArray1Side3.push(new BMap.Point(121.19184, 31.165254));
+
+
+            //pointArray1L1
+            var pointArray1L1 = [];
+            pointArray1L1.push(new BMap.Point(121.190384, 31.166959));
+            pointArray1L1.push(new BMap.Point(121.190422, 31.166839));
+            pointArray1L1.push(new BMap.Point(121.190484, 31.166856));
+           
+            
+            //pointArray1L2
+            var pointArray1L2 = [];
+            pointArray1L2.push(new BMap.Point(121.190640, 31.166495));
+            pointArray1L2.push(new BMap.Point(121.190802, 31.166534));
+            pointArray1L2.push(new BMap.Point(121.190830, 31.166444));
+
+            //pointArray1L3
+            var pointArray1L3 = [];
+            pointArray1L3.push(new BMap.Point(121.190901, 31.165637));
+            pointArray1L3.push(new BMap.Point(121.191063, 31.165676));
+
+            //pointArray1L4
+            var pointArray1L4 = [];
+            pointArray1L4.push(new BMap.Point(121.192914, 31.165588));
+            pointArray1L4.push(new BMap.Point(121.19288,  31.165686));
+
+            //pointArray1L5
+            var pointArray1L5 = [];
+            pointArray1L5.push(new BMap.Point(121.192725, 31.16624));
+            pointArray1L5.push(new BMap.Point(121.192752,  31.16616));
+
+            //pointArray1L6
+            var pointArray1L6 = [];
+            pointArray1L6.push(new BMap.Point(121.192014,31.165374));
+            pointArray1L6.push(new BMap.Point(121.192049,31.165267));
+
+            //pointArray2
+            var pointArray2 = [];
+            pointArray2.push(new BMap.Point(121.192526, 31.165284));
+            pointArray2.push(new BMap.Point(121.192536, 31.165255));
+
+            pointArray2.push(new BMap.Point(121.193198, 31.165421));
+
+            pointArray2.push(new BMap.Point(121.192899, 31.166368));
+
+            pointArray2.push(new BMap.Point(121.191965, 31.166136));
+
+            pointArray2.push(new BMap.Point(121.191954, 31.166171));
+
+
+            //pointArray2Side
+            var pointArray2Side = [];
+            pointArray2Side.push(new BMap.Point(121.192546, 31.165360));
+            pointArray2Side.push(new BMap.Point(121.193148, 31.165511));
+
+
+
+            //pointArray3
+            var pointArray3 = [];
+            pointArray3.push(new BMap.Point(121.192749, 31.165578));
+
+            pointArray3.push(new BMap.Point(121.192764, 31.1655292));
+
+            pointArray3.push(new BMap.Point(121.193200, 31.165638));
+
+            pointArray3.push(new BMap.Point(121.193176, 31.165707));
+
+            pointArray3.push(new BMap.Point(121.193866, 31.165870));
+
+            pointArray3.push(new BMap.Point(121.193790, 31.165590));
+
+            pointArray3.push(new BMap.Point(121.193722, 31.165578));
+
+            //pointArray3Side
+            var pointArray3Side = [];
+            pointArray3Side.push(new BMap.Point(121.192959, 31.165563));
+            pointArray3Side.push(new BMap.Point(121.192972, 31.165528));
+            pointArray3Side.push(new BMap.Point(121.193134, 31.165568));
+           
+            //pointArray3Side_2
+            var pointArray3Side_2 = [];
+            pointArray3Side_2.push(new BMap.Point(121.192854, 31.165533));
+            pointArray3Side_2.push(new BMap.Point(121.192872, 31.165478));
+            pointArray3Side_2.push(new BMap.Point(121.193596, 31.165648));
+
+            //pointArray4
+            var pointArray4 = [];
+
+            pointArray4.push(new BMap.Point(121.193047, 31.165618));
+
+            pointArray4.push(new BMap.Point(121.193060, 31.1655756));
+
+            pointArray4.push(new BMap.Point(121.193236, 31.165620));
+
+            pointArray4.push(new BMap.Point(121.193216, 31.165687));
+
+            pointArray4.push(new BMap.Point(121.193834, 31.165840));
+
+            pointArray4.push(new BMap.Point(121.193768, 31.165608));
+
+            pointArray4.push(new BMap.Point(121.193718, 31.16560));
+
+
+
+
+
+
+
+            var polyline3_bg = new BMap.Polyline(
+              pointArray3, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3_bg);   //增加折线  
+
+            var polyline3 = new BMap.Polyline(
+               pointArray3, { strokeColor: "rgb(0,255,255)", /*violet*/strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3);   //增加折线
+
+            
+
+            var polyline3Side_2_bg = new BMap.Polyline(
+             pointArray3Side_2, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3Side_2_bg);   //增加折线  
+
+            var polyline3Side_2 = new BMap.Polyline(
+               pointArray3Side_2, { strokeColor: "rgb(0,255,255)", /*violet*/ strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3Side_2);   //增加折线
+
+
+            var polyline4_bg = new BMap.Polyline(
+               pointArray4, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline4_bg);   //增加折线
+            var polyline4 = new BMap.Polyline(
+               pointArray4, { strokeColor: "#e8c8b9",/*red*/ strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline4);   //增加折线
+
+
+            var polyline1_bg = new BMap.Polyline(
+              pointArray1, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: .8 });   //创建折线*/
+            map.addOverlay(polyline1_bg);   //增加折线
+            //var polyline1 = new BMap.Polyline(
+            //   pointArray1, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            //map.addOverlay(polyline1);   //增加折线
+           //// var publicJson = [{ "line": obj, "lineS": "5", "LineE": "6" }
+             ////   , { "line": obj, "lineS": "5", "LineE": "6" }];
+
+
+            // line-point web
+            //pointArray1_1
+            //var pointArray1_1 = [];
+            //pointArray1_1.push(new BMap.Point(121.190386, 31.167229));
+            //pointArray1_1.push(new BMap.Point(121.190476, 31.166959));//18q
+
+            ////pointArray1_2
+            //var pointArray1_2 = [];
+            //pointArray1_2.push(new BMap.Point(121.190476, 31.166959));
+            //pointArray1_2.push(new BMap.Point(121.190596, 31.166569));//2q
+
+            ////pointArray1_3
+            //var pointArray1_3 = [];
+            //pointArray1_3.push(new BMap.Point(121.190596, 31.166569));
+            //pointArray1_3.push(new BMap.Point(121.190616, 31.166495));//5q
+
+            ////pointArray1_4
+            //var pointArray1_4 = [];
+            //pointArray1_4.push(new BMap.Point(121.190616, 31.166495));
+            //pointArray1_4.push(new BMap.Point(121.190891, 31.165637));//6q
+
+            ////pointArray1_5
+            //var pointArray1_5 = [];
+            //pointArray1_5.push(new BMap.Point(121.190891, 31.165637));
+            //pointArray1_5.push(new BMap.Point(121.191048, 31.165138));
+            //pointArray1_5.push(new BMap.Point(121.192014, 31.165374));//9q
+
+            ////pointArray1_6
+            //var pointArray1_6 = [];
+            //pointArray1_6.push(new BMap.Point(121.192014, 31.165374));
+            ///*mark*/      pointArray1_6.push(new BMap.Point(121.192504, 31.165492));//19q
+
+            ////pointArray1_7
+            //var pointArray1_7 = [];
+            //pointArray1_7.push(new BMap.Point(121.192504, 31.165492));
+            //pointArray1_7.push(new BMap.Point(121.192914, 31.165588));//21q
+
+            ////pointArray1_8
+            //var pointArray1_8 = [];
+            //pointArray1_8.push(new BMap.Point(121.192914, 31.165588));
+
+            ////缺失1
+
+            ////pointArray1_9
+            //var pointArray1_9 = [];
+            ////缺失1
+            //pointArray1_9.push(new BMap.Point(121.193098, 31.165638));
+            //pointArray1_9.push(new BMap.Point(121.193068, 31.165748));//大分支q
+
+            ////pointArray1_10
+            //var pointArray1_10 = [];
+            //pointArray1_10.push(new BMap.Point(121.193068, 31.165748));//大分支q
+            //pointArray1_10.push(new BMap.Point(121.192891, 31.166298));
+            //pointArray1_10.push(new BMap.Point(121.192725, 31.166258));//14q
+
+            ////pointArray1_11
+            //var pointArray1_11 = [];
+            //pointArray1_11.push(new BMap.Point(121.192725, 31.166258));//14q
+            //pointArray1_11.push(new BMap.Point(121.191917, 31.166060));
+            //pointArray1_11.push(new BMap.Point(121.191927, 31.166030));//1终点
+
+
+
+
+            var line_poinet_web = [
+                { 'line': 'polyline1_1', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_1  // point:1
+                { 'line': 'polyline1_2', 'lineCurrentPoint': '121.190457,31.166867', 'biaoTitle': 18 },// polyline1_2  // point:18
+                { 'line': 'polyline1_3', 'lineCurrentPoint': '121.190606,31.1665375', 'biaoTitle': 2 },// polyline1_3  // point:2
+                { 'line': 'polyline1_4', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_4  // point:1
+                { 'line': 'polyline1_5', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_5  // point:1
+                { 'line': 'polyline1_6', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_6  // point:1
+                { 'line': 'polyline1_7', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_7  // point:1
+                { 'line': 'polyline1_8', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_8  // point:1
+                { 'line': 'polyline1_9', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_9  // point:1
+                { 'line': 'polyline1_10', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_10  // point:1
+                { 'line': 'polyline1_11', 'lineCurrentPoint': '121.1904700,31.167008', 'biaoTitle': 1 },// polyline1_11  // point:1
+            ];
+
+            //map.addEventListener('click',function () {
+            //    for (var i in line_poinet_web) {
+            //        if (line_poinet_web[i].title == this.getTitle) {
+            //            line_poinet_web[i].line.setStrokColor("red");
+            //        }
+            //    }
+                
+            //});
+
+           
+            var lineTimer;
+            var onOff = false;
+
+
+           
+            var polyline1_1 = new BMap.Polyline(
+               pointArray1_1, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_1);   //增加折线
+          ////  publicJson[0].line = polyline1_1;
+            var polyline1_2 = new BMap.Polyline(
+             pointArray1_2, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_2);   //增加折线
+
+            var polyline1_3 = new BMap.Polyline(
+             pointArray1_3, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_3);   //增加折线
+
+            var polyline1_4 = new BMap.Polyline(
+             pointArray1_4, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_4);   //增加折线
+
+            var polyline1_5 = new BMap.Polyline(
+             pointArray1_5, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_5);   //增加折线
+
+            var polyline1_6 = new BMap.Polyline(
+             pointArray1_6, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_6);   //增加折线
+
+            var polyline1_7 = new BMap.Polyline(
+             pointArray1_7, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_7);   //增加折线
+
+            var polyline1_8 = new BMap.Polyline(
+             pointArray1_8, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_8);   //增加折线
+
+            var polyline1_9 = new BMap.Polyline(
+             pointArray1_9, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_9);   //增加折线
+
+            var polyline1_10 = new BMap.Polyline(
+             pointArray1_10, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_10);   //增加折线
+
+            var polyline1_11 = new BMap.Polyline(
+             pointArray1_11, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1_11);   //增加折线
+
+            ///////////
+
+            var polyline1Side1_bg = new BMap.Polyline(
+             pointArray1Side1, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: .8 });   //创建折线*/
+            map.addOverlay(polyline1Side1_bg);   //增加折线
+            var polyline1Side1 = new BMap.Polyline(
+               pointArray1Side1, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1Side1);   //增加折线
+
+            var polyline1Side2_bg = new BMap.Polyline(
+             pointArray1Side2, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: .8 });   //创建折线*/
+            map.addOverlay(polyline1Side2_bg);   //增加折线
+
+////////////////
+            var polyline1Side2_1 = new BMap.Polyline(
+             pointArray1Side2_1, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1Side2_1);   //增加折线]
+            var polyline1Side2_2 = new BMap.Polyline(
+                           pointArray1Side2_2, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1Side2_2);   //增加折线]
+            var polyline1Side2_3 = new BMap.Polyline(
+                           pointArray1Side2_3, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline1Side2_3);   //增加折线]
+///////////////
+
+            //var polyline1Side2 = new BMap.Polyline(
+            //   pointArray1Side2, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            //map.addOverlay(polyline1Side2);   //增加折线]
+
+             var polyline1Side2Branch_bg = new BMap.Polyline(
+             pointArray1Side2Branch, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: .8 });   //创建折线*/
+             map.addOverlay(polyline1Side2Branch_bg);   //增加折线
+             var polyline1Side2Branch = new BMap.Polyline(
+                pointArray1Side2Branch, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1Side2Branch);   //增加折线]
+
+
+            var polyline1Side3_bg = new BMap.Polyline(
+             pointArray1Side3, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: .8 });   //创建折线*/
+            map.addOverlay(polyline1Side3_bg);   //增加折线
+            var polyline1Side3 = new BMap.Polyline(
+               pointArray1Side3, { strokeColor: "#e8c8b9", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1Side3);   //增加折线
+
+            
+             var polyline1L1 = new BMap.Polyline(
+                pointArray1L1, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L1);   //增加折线
+             var polyline1L2 = new BMap.Polyline(
+                 pointArray1L2, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L2);   //增加折线
+             var polyline1L3 = new BMap.Polyline(
+                 pointArray1L3, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L3);   //增加折线
+             var polyline1L4 = new BMap.Polyline(
+                 pointArray1L4, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L4);   //增加折线
+             var polyline1L5 = new BMap.Polyline(
+                 pointArray1L5, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L5);   //增加折线
+             var polyline1L6 = new BMap.Polyline(
+                 pointArray1L6, { strokeColor: "#e8c8b9", strokeWeight: 2, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline1L6);   //增加折线
+
+
+            var polyline2_bg = new BMap.Polyline(
+               pointArray2, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline2_bg);   //增加折线
+            var polyline2 = new BMap.Polyline(
+               pointArray2, { strokeColor: "rgb(0,255,255)", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline2);   //增加折线
+
+            var polyline2Side_bg = new BMap.Polyline(
+              pointArray2Side, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+             map.addOverlay(polyline2Side_bg);   //增加折线
+            var polyline2Side = new BMap.Polyline(
+               pointArray2Side, { strokeColor: "rgb(0,255,255)", strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline2Side);   //增加折线
+
+
+
+            var polyline3Side_bg = new BMap.Polyline(
+              pointArray3Side, { strokeColor: "#3c3d37", strokeWeight: 7, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3Side_bg);   //增加折线  
+
+            var polyline3Side = new BMap.Polyline(
+               pointArray3Side, { strokeColor: "rgb(0,255,255)", /*violet*/ strokeWeight: 3, strokeOpacity: 1 });   //创建折线*/
+            map.addOverlay(polyline3Side);   //增加折线
+          
+
+
+            //一级二级 三级 分段数组
+
+            var one_line = [polyline1_1];
+            var two_line = [polyline1_2, polyline1_3, polyline1_4, polyline1_5, polyline1_6, polyline1_7, polyline1_8, polyline1_9, polyline1_10, polyline1_11,polyline1Side3, polyline1L1, polyline1L2, polyline1L3, polyline1L1, polyline1L4, polyline1L5, polyline1L6,polyline4, polyline1Side1, polyline1Side2_1, polyline1Side2_2];
+            var three_line = [polyline1Side2Branch, polyline1Side2_3];
+            
+            function colorChange() {
+                
+                var one_len = one_line.length, two_len = two_line.length,three_len=three_line.length;
+              
+                for (var i = 0; i < one_len; i++) {
+                   
+                    one_line[i].setStrokeColor("purple");
+                   
+                }
+                for (var j = 0; j < two_len; j++) {
+                    two_line[j].setStrokeColor("blue");
+                }
+                for (var k = 0; k < three_len; k++) {
+                    three_line[k].setStrokeColor("GREEN");
+                }
+            }
+           
+            //map.addEventListener('dblclick', function () {
+             
+            //    onOff = true;
+            //    colorOpacityFun();
+            //});
+
+            var colorOpacity = false;
+
+
+        
+            function colorOpacityFun(color, str, percent) {
+                if (onOff == true) {
+                    clearInterval(lineTimer);
+                    //alert(onOffMarker[0]);
+                    //console.log(onOffMarker[0]);
+                    //console.log(point1);
+                     myLabel = new BMap.Label('<div><div style="position: absolute;top: 54px;left: 66px;width: 64px;height: 18px;color: '+color+';font-size: 12px; rgba(255,0,0,.6)">'+str+'提示！</div><div style="position: absolute;top: 84px;left: 18px;color: #2d2d2d;text-align: left;">2-3管路可能出现'+str+'，<br />建议阀门开度调至'+percent+'！</div><div class="closeBTN" style="position: absolute; top: 40px;right: 9px;width: 20px;height: 20px;cursor: " "></div></div>', //为lable填写内容
+               {
+                   offset: new BMap.Size(-68,-45),                  //label的偏移量，为了让label的中心显示在点上
+                   position: onOffPoint[0]
+               });                                //label的位置
+                    myLabel.setStyle({                                   //给label设置样式，任意的CSS都是可以的     
+                        color:"white",
+                        fontSize: "14px",               //字号
+                        border: "0",                    //边
+                        width: "200px",          //宽
+                        height: "160px",
+                        textAlign: "center",             //行高，文字垂直居中显示
+                                        
+                        background: "url(./Images/alarm_out.png) no-repeat",    //背景图片！
+                        cursor: "pointer"
+                    });
+                    myLabel.setTitle("明天会更好！");               //为label添加鼠标提示
+                    map.addOverlay(myLabel);                             //把label添加到地图上
+
+
+
+
+                    $('body').delegate('.closeBTN', 'click', function () {
+                        map.removeOverlay(myLabel);
+                    });
+                    //onOffMarker[0].openInfoWindow(new BMap.InfoWindow('建议关闭此阀门！'));
+                    lineTimer = setInterval(function () {
+                        if (!colorOpacity) {
+                            polyline1Side2_1.setStrokeColor("red");
+                            polyline1Side2_1.setStrokeWeight(3);
+                            polyline1Side2_1.setStrokeOpacity(1);
+                           
+                        } else {
+                            polyline1Side2_1.setStrokeColor("yellow");
+                            polyline1Side2_1.setStrokeWeight(8);
+                            polyline1Side2_1.setStrokeOpacity(.6);
+                           
+                        }
+                        colorOpacity = !colorOpacity;
+                        
+
+                    },600);
+                }
+            }
+            
+
+            
+          //  var markers = [];
+//
+           // var myIcon_blue = new BMap.Icon("Images/markers.png", new BMap.Size(23, 25), {
+           //     offset: new BMap.Size(10, 25), // 指定定位位置
+           //     imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+           // });
+
+           // var myIcon_red = new BMap.Icon("Images/markers.png", new BMap.Size(23, 25), {
+           //     offset: new BMap.Size(10, 25), // 指定定位位置
+           //     imageOffset: new BMap.Size(0, 0 - 11 * 25) // 设置图片偏移
+           // });
+           // for (var j = 0; j < i; j++) {
+           //     var marker = new BMap.Marker(new BMap.Point(121.19104, 31.166920), { icon: myIcon_blue });
+           //     map.addOverlay(marker);
+           //     markers.push(marker);
+           // }
+          //  1 ,2 , 5,3,4 
+            var pointerArray = [
+                '121.1904700,31.167008',//1
+                '121.190506,31.1665795',//2   121.190606,31.1665375
+                '121.19083,31.166478',//5
+                '121.190442,31.165827',//3
+                '121.190520,31.165541',//4
+                '121.190457,31.166867',//18
+                '121.191078,31.165639',//6
+                '121.191039,31.165747',//7
+                '121.192046,31.165324',//9
+                '121.192519,31.165434',//19
+                '121.193142,31.165391',//10
+                '121.193107,31.165470',//11
+                '121.192743,31.165349',//22
+                '121.192901,31.165640',//20
+                '121.192962,31.165612',//21
+                '121.19337,31.165562',//12
+                '121.192853,31.16686',//13
+                '121.192082,31.166162',//17
+                '121.192823,31.166365',//16
+                '121.192754,31.166181'];//14
+            //var pointerArray = ['121.193079, 31.165748', '121.192782, 31.166842', '121.192782, 31.166842', '121.192899, 31.166871', '121.192990, 31.166592', '121.193498, 31.166712', '121.193542, 31.166560'];
+
+            var title = [1, 2, 5, 3, 4, 18, 6, 7, 9, 19, 10, 11, 22, 20, 21, 12, 13, 17, 16, 14];
+
+            var markers = [];
+
+            var pointOnoff = [
+                //'121.1904700,31.167008',//1
+                '121.190606,31.1665375',//2   121.190606,31.1665375
+               // '121.19083,31.166478',//5
+               // '121.190512,31.165867',//3
+                //'121.190600,31.165581',//4
+                //'121.190457,31.166867',//18
+                //'121.191078,31.165639',//6
+                //'121.191039,31.165747',//7
+                //'121.192014,31.165374',//9
+               // '121.192519,31.165434',//19
+                //'121.193142,31.165391',//10
+                //'121.193107,31.165470',//11
+                //'121.192743,31.165349',//22
+                //'121.192901,31.165640',//20
+                //'121.192962,31.165612',//21
+                //'121.19337,31.165562',//12
+                //'121.192853,31.16686',//13
+                //'121.192082,31.166162',//17
+                //'121.192823,31.166365',//16
+                //'121.192789,31.166251'//14
+            ];
+
+
+            function kaiduShow() {
+                for (var m = 0; m < onOffMarker.length; m++) {
+                    var markerNow = onOffMarker[m];
+                    markerNow.addEventListener('click', function () {
+                       // alert(23423432);
+                        infoBox(this);
+                       // alert(0)
+
+                    });
+                }
+            }
+
+            
+                var info = '<div class="pressWra" ><div></div class="kaiduTitle">1号阀门开度<br/><br /><div id="kaiSet" style="float: left; width: 100px;height: 100px;"></div><div class="inputB" style="float: right;text-align: center;"><input class="kaiInp" type="text" placeholder="请输入开度" style="width: 90px;height: 24px;border: none;border-bottom: 1px solid gray; margin: 10px 0 18px 0;"><br/><button class="kaiBtn" style="cursor: pointer;width: 80px;height: 30px;background: #7eaf2a;border: none;color: #fff;">设定开度</button></div></div>';
+                  var tempInfoBox = "";
+                  function infoBox(marker) {                                                 
+                      
+                      var infoBo = new BMapLib.InfoBox(map, info, {
+                        boxStyle: {
+                            background: "#fff"
+                            , borderRadius: "6px"
+                            , padding: "4px"
+                            ,boxShadow:"0 0 2px gray"
+                            ,textAlign: "center"
+                            , width: "200px"
+                            , height: "160px"
+                        }
+                            , closeIconMargin: "6px 10px 0 0"
+                           , closeIconUrl: "Images/closeBtn.png"
+                            , enableAutoPan: true
+                            ,align: INFOBOX_AT_TOP
+                            
+                    });
+                 
+                     
+                      if (tempInfoBox != "") {
+                          tempInfoBox.close();
+                      }
+                      tempInfoBox = infoBo;
+                      infoBo.open(marker);
+
+                      var $kaiSet = $('#kaiSet').radialIndicator({
+                          radius: 40,
+                          barWidth: 10,
+                          initValue: 40,
+                          roundCorner: true,
+                          percentage: true
+                      }).data('radialIndicator');
+
+                      $('.kaiBtn').click(function () {
+
+                          var val = $.trim($('.kaiInp').val());
+
+                          if (val != '') {
+                              //alert(val);
+                              $kaiSet.animate(val);
+                          } else {
+                              alert('请输入开度！');
+                          }
+                         
+                      });
+ 
+                }
+
+
+            //baidu   INfoBox
+
+            
+
+
+
+            //function kaiSetAlert() {
+            //    alert(onOffMarker.length);
+            //    for (var k = 0; k < onOffMarker.length; k++) {
+            //        var markerNow = onOffMarker[k];
+            //        markerNow.addEventListener('click', function () {
+            //            // pressLabel = new BMap.Label('<div class="pressWra" ><div></div class="kaiduTitle">1号阀门开度<br/><br/><br/><div id="kaiSet" style="float: left;"></div><div class="inputB" style="float: right;text-align: center;"><div style="background: red;width: 90px;height: 24px;padding: 4px;"><input class="kaiInp" type="text" style="width: 90px;height: 24px;border: 1px solid gray;"></div><br/><button class="kaiBtn" style="cursor: pointer;width: 80px;height: 30px;background: #7eaf2a;border: none;color: #fff;">设定开度</button></div></div>', {
+            //            pressLabel=new BMap.Label('<input type="text" style="position: relative;z-index: 1000000;">',{
+            //            offset: new BMap.Size(-88, -159),
+            //                position: onOffPoint[0]
+            //            });
+            //            pressLabel.setStyle({
+            //                color: "#5b4303",
+            //                fontSize: "8px",               //字号
+            //                border: "0",
+            //                borderRadius: "6px",
+            //                width: "200px",
+            //                height: "160px",
+            //                textAlign: "center",         //行高，文字垂直居中显示
+            //                fontWeight: "bold",
+            //                padding: "5px 5px 0 3px",
+            //                borderRadius: "3px",
+            //                background: " #fff",
+            //                backgroundSizing: "cover",
+            //                cursor: "pointer"
+            //            });
+            //            pressLabel.setZIndex(122);
+            //            markerNow.setLabel(pressLabel);
+            //           $kaiSet = $('#kaiSet').radialIndicator({
+            //                barColor: '#87CEEB',
+            //                radius: 40,
+            //                barWidth: 10,
+            //                initValue: 40,
+            //                roundCorner: true,
+            //                percentage: true
+            //           }).data('radialIndicator');
+                      
+                        
+                        
+            //        });
+            //    }
+            //}
+
+            //$('body').delegate('.kaiBtn', 'click', function () {
+            //    alert(12321);
+            //   var val= $('.kaiInp').val();
+            //   $kaiSet.value(val);
+            //});
+            var onOffMarker = [];
+            var onOffPoint = [];
+            var idBox = [];
+            var pA_length = pointerArray.length;
+            function markersDraw() {
+                //alert(pointerArray.length);
+
+                for (var i = 0; i < pA_length; i++) {
+                    var str = pointerArray[i].split(",");
+                    var marker = new BMap.Marker(new BMap.Point(str[0], str[1]), { icon: myIcon_flow });
+                    var point = new BMap.Point(str[0], str[1]);
+                    onOffPoint.push(point);
+                    marker.setTitle(title[i]);
+                    markers.push(marker);
+                    map.addOverlay(marker);
+
+
+                    for (var n in numJson) {
+                        //alert(numJson[n].FFlag+'qqq');
+                        if (numJson[n].FFlag == title[i]) {
+                            idBox[i] = numJson[n].ID;
+                            //alert(numJson[n].FFlag + 'qqq');
+                            // alert(numJson[n].ID);
+                            $.ajax({
+                                url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                                data: { 'FPumpID': numJson[n].ID },
+                                async: false,
+                                cache: false,
+                                success: function (data) {
+                                   // console.log(data);
+                                    var data = JSON.parse(data);
+                                    data = data.data[0];
+                                    // + data.P01 + 'm³&nbsp;'
+                                    var label = new BMap.Label(data.P01 + 'm³', { offset: new BMap.Size(18, -10) });
+                                    label.setStyle({                                   //给label设置样式，任意的CSS都是可以的     
+                                        color: "#5b4303",
+                                        fontSize: "8px",               //字号
+                                        border: "0",
+                                        textAlign: "center",         //行高，文字垂直居中显示
+                                       fontWeight: "bold",
+                                        padding: "5px 5px 0 3px",
+                                        borderRadius: "3px",
+                                        background: "url(./Images/text_bg1.png) repeat-x",
+                                        backgroundSizing:"cover",
+                                        cursor: "pointer",
+                                        transform: "scale(.9)"
+                                    });
+                                    marker.setLabel(label);
+                                   
+                                }
+                            });
+                        }
+                    }
+                    
+                }
+
+                for (var o = 0; o < pointOnoff.length; o++) {
+                    var str1 = pointOnoff[o].split(",");
+                    var marker = new BMap.Marker(new BMap.Point(str1[0], str1[1]), { icon: myIcon_onOff});
+                    marker.setTitle(2);
+                    onOffMarker.push(marker);
+                    map.addOverlay(marker);
+                    //marker.addEventListener('click', function () {
+                    //    var pressLabel = new BMap.Label('<div class="pressWra"><div></div class="kaiduTitle">1号阀门开度<br/><br/><br/><div id="kaiSet" style="float: left;"></div><div class="inputB" style="float: right;text-align: center;"><input type="text" style="width: 100px;height: 24px;border: none;border-bottom: 1px solid gray;margin-bottom: 18px;"><br/><button style="cursor: pointer;width: 80px;height: 30px;background: #7eaf2a;border: none;color: #fff;">设定开度</button></div></div>', {
+                    //        offset: new BMap.Size(18, -10),
+                    //        position: new BMap.Point(str1[0], str1[1])
+                    //    });
+                    //    pressLabel.setStyle({
+                    //        color: "#5b4303",
+                    //        fontSize: "8px",               //字号
+                    //        border: "0",
+                    //        borderRadius: "6px",
+                    //        width: "200px",
+                    //        height: "160px",
+                    //        textAlign: "center",         //行高，文字垂直居中显示
+                    //        fontWeight: "bold",
+                    //        padding: "5px 5px 0 3px",
+                    //        borderRadius: "3px",
+                    //        backgroundSizing: "cover",
+                    //        cursor: "pointer",
+                    //        zIndex: "10"
+                    //    });
+                    //    marker.setLabel(pressLabel);
+                    //    var $kaiSet= $('#kaiSet').radialIndicator({
+                    //        barColor: '#87CEEB',
+                    //        radius:40,
+                    //        barWidth: 10,
+                    //        initValue: 40,
+                    //        roundCorner: true,
+                    //        percentage: true
+                    //    });
+
+                    //});
+                }
+
+                //for (var k = 0; k < onOffMarker.length; k++) {
+                //    onOffMarker[k].addEventListener('click', function () {
+
+                //    });
+                //}
+
+               
+             
+                for (var j = 0; j < markers.length; j++) {
+                    markers[j].addEventListener('click', function (e) {
+                        // alert(this.getTitle());
+                        if ($('.stage')) {
+                            $('.stage').remove();
+                        }
+                        var position = this.getPosition();
+                        map.setCenter(position);
+                        for (var n in numJson) {
+                            //alert(numJson[n].FFlag+'qqq');
+                            if (numJson[n].FFlag == this.getTitle()) {
+                                //alert(numJson[n].FFlag + 'qqq');
+                               // alert(numJson[n].ID);
+                                getData(numJson[n].ID);
+                                return;
+                            }
+                        }
+
+                    });
+                }
+               
+
+              
+                
+
+            }
+           
+            //根据 点击的 结果 显示  不同类型的数据
+
+            function currentNumberShowType() {
+                $('.rightSetBottom div').click(function () {
+
+                    var index = $(this).index();
+                    if ($(this).hasClass('active')) {
+
+                        return;
+                    }
+                    clearInterval(timerCurrentNum);
+                    $(this).addClass('active').siblings().removeClass('active');
+
+                
+                   
+                    getCurrentNumberFn(index);
+
+
+                    timerCurrentNum = setInterval(function () {
+                        getCurrentNumberFn(index);
+                        //alert(222);
+                    }, 4000);
+
+                });
+            }
+            currentNumberShowType();
+            ///定时获取得数据
+            function getCurrentNumberFn(inde) {
+                var typeStr;
+                for (var j = 0; j < markers.length; j++) {
+                    //console.log(markers[j]+'111');
+                    for (var n in numJson) {
+                      // console.log(markers[j].getTitle());
+                        if (numJson[n].FFlag == markers[j].getTitle()) {
+                            var markerNow = markers[j];
+                           // console.log(numJson[n].FFlag);
+                            $.ajax({
+                                url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                                data: { 'FPumpID': numJson[n].ID },
+                                async: false,
+                                cache: false,
+                                success: function (data) {
+                                   // console.log(data);
+                                    var data = JSON.parse(data);
+                                    data = data.data[0];                                   
+                                    //alert(markerNow.getLabel().content);
+                                   map.removeOverlay(markerNow.getLabel());
+                                   
+                                   if (inde == 0) {
+                                       typeStr = Number(data.A03).toFixed(2) + 'Mpa';
+                                   } else if (inde == 1) {
+                                       typeStr = data.A01 + 'm³';
+                                   } else if (inde == 2) {
+                                       typeStr = data.P01+ 'm³';
+                                   } else {
+                                       typeStr = data.P01 + 'm³';
+                                   }
+
+                                   //alert(typeStr);
+                                    // + data.P01 + 'm³&nbsp;'
+                                   var label = new BMap.Label(typeStr, { offset: new BMap.Size(18, -10) });
+                                    label.setStyle({                                   //给label设置样式，任意的CSS都是可以的     
+                                        color: "#5b4303",
+                                        fontSize: "8px",               //字号
+                                        border: "0",
+                                        textAlign: "center",         //行高，文字垂直居中显示
+                                        fontWeight: "bold",
+                                        padding: "5px 5px 0 3px",
+                                        borderRadius: "3px",
+                                        background: "url(./Images/text_bg1.png) repeat-x",
+                                        backgroundSizing: "cover",
+                                        cursor: "pointer",
+                                        transform:"scale(.9)"
+                                    });
+                                    markerNow.setLabel(label);
+
+                                }
+                            });
+                        }
+                    }
+                }
+
+            }
+
+            function threeTubeTest(press) {
+
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                    data: { 'FPumpID': 191 },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                       // console.log(data);
+                        var data = JSON.parse(data);
+                        data = data.data[0];
+                        onOff = true;
+                        //var press = data.A03;
+                      
+                        if (press < 5) {
+                            colorOpacityFun('red','爆管','0%');
+                        }else if(press<10){
+                            colorOpacityFun('#f49132', '渗水','50%');
+                        }
+                    }
+                });
+               
+            }
+            //var pt = new BMap.Point(121.19104, 31.166920);
+            //var myIcon = new BMap.Icon("./Images/marker.png", new BMap.Size(300, 157));
+            //var marker3 = new BMap.Marker(pt, { icon: myIcon_blue });  // 创建标注
+          // map.addOverlay(marker3);
+
+         //  marker3.addEventListener('click', function (e) {
+          //     var position = this.getPosition();
+          //     map.setCenter(position);
+           //    showContent();
+           // });
+
+            /*var pt = new BMap.Point(121.190344, 31.16721);
+           
+            var marker2 = new BMap.Marker(pt, { icon: myIcon_red });  // 创建标注
+            map.addOverlay(marker2);
+
+            var pt = new BMap.Point(121.191058, 31.165124);
+            var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300, 157));
+            var marker3 = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
+            map.addOverlay(marker3);*/
+
+
+          
+
+
+
+            // 动画函数
+
+            $('body').delegate('.camera', 'click', function () {
+                var id = (parseInt)(Math.random() * 3 + 1);
+               //top.aaa($id);
+               //layer.open({
+               //    type: 2,
+               //    anim: 3,
+               //    shade: .6,
+               //    title: false,
+               //    shadeClose: true, //点击遮罩关闭层
+               //    area: ['70%', '60%'],
+               //    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                //});
+                   if (id == 1) {
+                       top.layer.open({
+                           type: 2,
+                           anim: 3,
+                           shade: .6,
+                           title: false,
+                           shadeClose: true, //点击遮罩关闭层
+                           area: ['70%', '60%'],
+                           content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+                       });
+                       //layer.iframeAuto(index);
+                   } else if (id == 2) {
+                       top.layer.open({
+                           type: 2,
+                           anim: 3,
+                           shade: .6,
+                           title: false,
+                           shadeClose: true, //点击遮罩关闭层
+                           area: ['70%', '60%'],
+                           content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                       });
+                       //layer.iframeAuto(index);
+                   } else if (id == 3) {
+                       top.layer.open({
+                           type: 2,
+                           anim: 3,
+                           shade: .6,
+                           title: false,
+                           shadeClose: true, //点击遮罩关闭层
+                           area: ['70%', '60%'],
+                           content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                       });
+                       //layer.iframeAuto(index);
+                   } else {
+                       top.layer.open({
+                           type: 2,
+                           closeBtn: 1,
+                           anim: 3,
+                           shade: .6,
+                           title: false,
+                           shadeClose: true, //点击遮罩关闭层
+                           area: ['70%', '60%'],
+                           content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+                       });
+                       //layer.iframeAuto(index);
+                   }
+
+
+
+
+            });
+
+            //down  animate
+           $('body').delegate('.close', 'click', function () {
+               //$('.stage').addClass('zoomOutDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+               // function () {
+               //     $(this).removeClass('zoomOutDown animated');
+                        $('.stage').remove();
+                    
+                    //$(this).removeClass('zoomOutDown animated');
+                    //$('.stage').remove();
+                //});
+           });
+           $('body').delegate('.pump_name', 'click', function () {
+               $('.fore').removeClass('clickTwo').addClass('click').css('z-index', '0');
+               $('.back').removeClass('clickTwo').addClass('click').css('z-index', '2');
+           });
+           $('body').delegate('.backBtn', 'mouseover', function () {
+               $(this).addClass('tada animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                   $(this).removeClass('tada animated');
+               });
+           });
+           $('body').delegate('.backBtn', 'click', function () {
+               $('.back').removeClass('click').addClass('clickTwo').css('z-index', '0');
+               $('.fore').removeClass('click').addClass('clickTwo').css('z-index', '2');
+           });
+
+           $('body').delegate('.back_bottom  .pump_info li', 'mouseover', function () {
+               $(this).addClass('bounce animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                   $(this).removeClass('bounce animated');
+               });
+           });
+
+              
+            //内容生成函数
+           function showContent(data, pId) {
+               if ($('.stage')) {
+                   $('.stage').remove();
+               }
+               var addTime = data.AddTime ? data.AddTime.replace('T', ' ') : ' ';
+               var infoBox =
+               '<div class="stage">'+
+           '	<div class="contentBox">'+
+           '		<div class="fore">'+
+           '			'+
+           '			'+
+           '			<div class="fore_header">'+
+           '				'+
+           '				<ul class="img-box clearfix">' +
+           '					<li><img src="img1/img1.png" /></li>' +
+           '					<li><img src="img1/img2.png" /></li>' +
+           '					<li><img src="img1/img1.png" /></li>' +
+           '					<li><img src="img1/img2.png" /></li>' +
+           '				</ul>' +
+           '				'+
+           '				<div class="time-box">'+
+           '					<p class="pump_time">采集时间：<span>'+addTime+'</span></p>					'+
+           '				</div>				'+
+           '				<div class="number_box">' + 
+           '					<p class="pump_name">泵房名称</p>'+
+           '					<p class="pump_number">23</p>'+
+           '				</div>'+
+           '				'+
+           '			</div>	'+
+           '			'+
+           '			<div class="closeBox"><span class="close">&times;</span></div>' +
+           '            <div class="camera"></div>' +
+           '			<div class="content">'+
+           '				<ul class="power_box">'+
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child1"></span>正累积流量</div><div class="number">'+(data.P01?data.P01:' ')+'</div></li>'+
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child2"></span>压力</div><div class="number">'+(data.A03?data.A03:' ')+'</div></li>'+
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child3"></span>瞬时流量</div><div class="number">' + (data.A01?data.A01:' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child4"></span>负累积流量</div><div class="number">' + (data.P02?data.P02:' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child5"></span>GPRS电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.V?data.V:' ') + '</div></li>' +
+           '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child6"></span>电池电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">'+(data.A02?data.A02:' ')+'</div></li>'+
+           '				</ul>'+
+           '			</div>						'+
+           '			<div class="fore_footer">'+
+           '				<ul class="warning_info_box">'+
+           '					<li><a href="javascript:void(0);">东泵房报警泵房水压报警1</a></li>'+
+           '					<li><a href="javascript:void(0);">泵房阀门异常报警2</a></li>'+
+           '					<li><a href="javascript:void(0);">泵房流量报警3</a></li>'+
+           '				</ul>'+
+           '			</div>				'+
+           '		</div>'+
+           '		<div class="back">' +          
+           '			<div class="closeBox"><span class="close">&times;</span></div>'+
+           '			<div class="back_header">'+
+           '				<p class="backBox"><span class="backBtn"></span></p>			' +
+           '                <div id="echart_box"></div>' +
+           '<div title="' + pId + '" class="show_list"><ul><li class="showList_li1"></li><li class="showList_li2"></li><li class="showList_li3"></li><li class="showList_li4"></li><li class="showList_li5"></li></ul></div>' +
+           '			</div>			'+
+           '			<div class="back_content">'+
+           '				<ul>'+
+           '					<li class="clearfix">' + 
+           '						<div class="item"><span class="item_bg item_bg1"></span>名称</div>'+
+           '						<div class="item_content">熊猫管网</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg2"></span>品牌</div>'+
+           '						<div class="item_content">熊猫</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg3"></span>保养周期</div>'+
+           '						<div class="item_content">6个月</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg4"></span>更换周期</div>'+
+           '						<div class="item_content">6个月</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg5"></span>材质</div>'+
+           '						<div class="item_content">PVC</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg6"></span>埋深</div>'+
+           '						<div class="item_content">0.8米</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg7"></span>设备类型</div>'+
+           '						<div class="item_content">官网监测</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg8"></span>设备状态</div>'+
+           '						<div class="item_content">使用中</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg9"></span>管径</div>'+
+           '						<div class="item_content">DF65</div>'+
+           '					</li>'+
+           '					<li class="clearfix">'+
+           '						<div class="item"><span class="item_bg item_bg10"></span>口径</div>'+
+           '						<div class="item_content">DF65</div>'+
+           '					</li>'+
+           '				</ul>'+
+           '				'+
+           '			</div>'+
+           '		</div>'+
+           '	</div>'+
+           '</div> ';
+
+               $('body').append(infoBox);
+               $('.stage').css({
+                   'top': '50%',
+                   'left': '51%',
+                   'margin-top': -270 + "px",
+               });
+               $('.stage').ready(function () {
+               }).addClass('bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                function () {
+                    $(this).removeClass('bounceInDown animated');
+                    
+                    var myChart = echarts.init($('#echart_box')[0]);
+                    myChart.setOption(option0);
+                    function chart1Request(ID) {
+                        $.ajax({
+                            url: '../../Service/T_ReportService.ashx?method=getcurvedata',
+                            data: { 'PumpID': ID },
+
+                            success: function (data) {
+                              // alert(data);
+                                var data = JSON.parse(data);
+                               // console.log(data);
+                                var xData = [];
+                                var seriesData = [];
+                                $.each(data, function (i, v) {
+                                    xData.push(v.T_Time);
+                                   // xData.push(' ');
+                                    seriesData.push(v.A03)
+                                });
+                                // console.log("xData" + xData);
+                                //    console.log("seriesData" + seriesData);
+                                var options1 = {
+                                    xAxis: {
+                                        data: xData
+                                    },
+                                    series: {
+                                        data: seriesData
+                                    },
+                                };
+                               // console.log(options1);
+                                myChart.setOption(options1);
+                            },
+                            error: function (data) {
+                               // console.log('错误：' + data.responseText);
+                            }
+                        });
+                    }
+
+                    
+                    
+                    
+                    chart1Request(193);
+                    //myChart.setOption(option);
+
+
+                });
+
+               $('body').delegate('.pump_name', 'mouseover', function () {
+                   $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                       $(this).removeClass('swing animated');
+                   });
+               });
+           };
+
+            //
+
+           $('body').delegate('.back_content ul li', 'mouseenter', function () {
+              
+               $(this).addClass('lightSpeedIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                       $(this).removeClass('lightSpeedIn animated');
+                   });               
+           });
+
+
+
+
+            //右侧setBtn 的事件
+
+           $('.setBtn').hover(function () {
+               $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                   $(this).removeClass('swing animated');
+               });
+           });
+
+           $('.setBtn').click(function () {
+               if ($('.rightSet').hasClass('active')) {
+                   $(this).removeClass('active').animate({ 'right': '10px' }, 600);;
+                   $('.rightSet').removeClass('active').animate({ 'right': '-198px' }, 600);
+               } else {
+                   $(this).addClass('active').animate({ 'right': '181px' }, 600);;
+                   $('.rightSet').addClass('active').animate({ 'right': '1px' }, 600);
+               }
+           });
+
+            //反面  小图标的点击事件
+
+       /*    $('body').delegate('.show_list ul li.showList_li1', 'click', function () {
+               var id=$(this).parent().parent().attr('title');              
+                   top.layer.open({
+                       type: 2,
+                       anim: 3,
+                       shade: .6,
+                       title: false,
+                       shadeClose: true, //点击遮罩关闭层
+                       area: ['70%', '60%'],
+                       content: '../Baidu/chartsFrame.html?id=' + id + '&bcc=333'
+                   });             
+           });*/
+
+           $('body').delegate('.show_list ul li', 'click', function (i,v) {
+               var id = $(this).parent().parent().attr('title');
+               var index = $(this).index();
+               top.layer.open({
+                   type: 2,
+                   anim: 3,
+                   shade: .6,
+                   title: false,
+                   shadeClose: true, //点击遮罩关闭层
+                   area: ['70%', '60%'],
+                   content: '../Baidu/chartsFrame.html?id=' + id + '&index='+index
+               });
+           });
+            
+            //轮播图片函数
+           
+          
+         
+           function pic_show() {
+               (function () {
+                   var pic_count = 4;
+                   var $this = $('.fore_header');
+                   var scrollTimer;
+                   var get_alerm_timer;
+
+                   $this.hover(function () {
+                       console.log(222222);
+                       clearInterval(scrollTimer);
+                       console.log(333333);
+                   },
+                   function () {
+                       scrollTimer = setInterval(function () {
+                           alerm_loop($this);
+                       }, 3500);
+                   }
+                   ).trigger('mouseout');
+
+                   //滚动动画
+                   function alerm_loop(obj) {
+                       var $self = obj.find("ul:first");
+                       var $moveWidth = $self.find("li:first").width();
+                       var $length = $self.find("li").length;
+                       if ($length <= 1) {
+                           return;
+                       } else {
+                           $self.animate({ "margin-left": -$moveWidth + "px" }, 2500, function () {
+                               $self.css("margin-left", "0px").find("li:first").appendTo($self);
+                           });
+                       }
+                   };
+               })();
+           }
+           pic_show();
+
+
+            //报警信息函数
+
+           function info_show() {
+               (function () {
+                   var $this = $('.fore_footer');
+                   var scrollTimer;
+                   var get_alerm_timer;
+                   $this.hover(function () {
+                       
+                       clearInterval(scrollTimer);
+                       
+                   },
+                   function () {
+                       scrollTimer = setInterval(function () {
+                           alerm_loop($this);
+                       }, 3000);
+                   }
+                   ).trigger('mouseout');
+
+                   //报警 滚动动画
+                   function alerm_loop(obj) {
+                       var $self = obj.find("ul:first");
+                       var lineHeight = $self.find("li:first").height();
+
+                       $self.animate({ "margin-top": -lineHeight + "px" }, 2000, function () {
+                           $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                       });
+                   };
+
+
+               })();
+           }
+           info_show();
+
+            //echart
+
+           var option0 = {
+               title: {
+                   text: '实时压力',
+                   textStyle: {
+                       color: 'rgb(255,255,255)',
+                       fontSize: '12px',
+                     
+                   },
+                   left: '40%'
+               },
+               grid: {
+                   show: true,
+                   borderWidth: .2,
+                   borderColor: 'gray',
+                   top:40,
+                   left: 10,
+                   right: 10,
+                   bottom: 10
+               },
+               tooltip: {
+                   trigger: 'axis',
+                   backgroundColor: 'rgba(28,136,151,0.6)',
+                   padding: [5, 10],
+                   axisPointer: {
+                       lineStyle: {
+                           color: 'rgba(37,211,186,0.7)'
+                       }
+                   }
+               },
+               legend: {
+                   data: [''],
+                   textStyle: {
+                       color: '#fff',
+                   },
+                   //    selected: {
+                   //        '当月': true
+                   //    }
+               },
+               xAxis: {
+                   show: true,
+                   type: 'category',
+                   name: "",
+                   axisLabel: {
+                       show:false,
+                       textStyle: {
+                           color: '#ccc'
+                       }
+                   },
+                   axisTick: {
+                       show: false
+                   },
+                   splitLine: {
+                       show: true,
+                       lineStyle: {
+                           color: 'gray',
+                           width: .4,
+                           type: 'solid',
+                       },
+                   },
+                   axisLine: {
+                       show: false,
+                       lineStyle: {
+                           color: 'gray',
+                           width: .2,
+                       },
+                   },
+                   // boundaryGap: true,
+                   //     data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                   data: []
+               },
+               yAxis: {
+                   show: true,
+                   type: 'value',
+                   name: "",
+                   axisLine: {
+                       show:false,
+                       lineStyle: {
+                           color: 'gray',
+                           width: .4,
+                       },
+                   },
+                   axisTick: {
+                       show: false
+                   },
+                   axisLabel: {
+                       show:false,
+                       textStyle: {
+                           color: 'rgb(0,0,0)',
+                           fontSize: 12,
+                       },
+                   },
+                   splitLine: {
+                       show: true,
+                       lineStyle: {
+                           color: 'gray',
+                           width: .4,
+                           type: 'solid',
+                       },
+                   },
+               },
+               series: [{
+                   name: '当天',
+                   type: 'line',
+                   itemStyle: {
+                       normal: {
+                           color: new echarts.graphic.LinearGradient(
+                               0, 0, 0, 1,
+                               [
+                                   { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                   { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                               ]
+                           )
+                       },
+                       smooth: true,
+                   },
+                   //  data: ["0.274", "0.277", "0.274", "0.281", "0.277", "0.274", "0.279", "0.282", "0.274", "0.268", "0.276", "0.266", "0.260", "0.267", "0.277", "0.278", "0.287", "0.287", "0.282", "0.287", "0.287", "0.281", "0.276", "0.275", "0.254", "0.259", "0.282", "0.283", "0.286", "0.279", "0.279", "0.282", "0.278", "0.251", "0.271", "0.281", "0.270", "0.283", "0.282", "0.285", "0.277", "0.276", "0.267", "0.267", "0.268", "0.261", "0.250", "0.240", "0.212", "0.203", "0.203", "0.214", "0.189", "0.183", "0.184", "0.208", "0.207", "0.197", "0.188", "0.207", "0.198", "0.191", "0.197", "0.198", "0.188", "0.197", "0.180", "0.176", "0.168", "0.186", "0.178"]
+                   data: []
+               }]
+           };
+
+
+           var option = {
+               title: {
+                   text: '',
+                   textStyle: {
+                       color: 'rgb(255,255,255)'
+                   }
+               },
+               grid: {
+                   
+                   left: 40,
+                   right: 20,
+                   bottom: 30
+               },
+               //              tooltip: {
+               //                  trigger: 'axis',
+               //                  backgroundColor: 'rgba(28,136,151,0.6)',
+               //                  padding: [5, 10],
+               //                  axisPointer: {
+               //                      lineStyle: {
+               //                          color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+               //                      }
+               //                  }
+               //              },
+               legend: {
+                   show: 'false',
+                   data: ['当月', '10月', '9月'],
+                   textStyle: {
+                       color: '#fff',
+                   },
+                   selected: {
+                       '当月':false
+                   }
+               },
+               xAxis: {
+                   show:false,
+                   type: 'category',
+                   axisLabel: {
+                       textStyle: {
+                           color: '#fff'
+                       }
+                   },
+                   axisTick: {
+                       show: false
+                   },
+                   axisLine: {
+                       lineStyle: {
+                           color: 'rgba(27, 131, 167,0.7)',
+                           width: 1,
+                       },
+                   },
+                   boundaryGap: true,
+                   data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                   //data: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+               },
+               yAxis: {
+                   show:false,
+                   type: 'value',
+                   axisLine: {
+                       lineStyle: {
+                           color: 'rgba(27, 131, 167,0.7)',
+                           width: 1,
+                       },
+                   },
+                   axisTick: {
+                       show: false
+                   },
+                   axisLabel: {
+                       textStyle: {
+                           color: 'rgb(255,255,255)',
+                           fontSize: 12,
+                       },
+                   },
+                   splitLine: {
+                       show: true,
+                       lineStyle: {
+                           color: ['rgba(27, 131, 167,0.7)'],
+                           width: 1,
+                           type: 'solid',
+                       },
+                   },
+               },
+               series: [{
+                   name: '10月',
+                   type: 'line',
+                   itemStyle: {
+                       normal: {
+                           color: 'rgb(179,124,250)',
+                           lineStyle: { color: 'rgb(179,124,250)' }
+                       },
+                   },
+                   smooth: true,
+                   data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+               },
+               {
+                   name: '9月',
+                   type: 'line',
+                   itemStyle: {
+                       normal: {
+                           color: 'rgb(171,222,86)',
+                           lineStyle: { color: 'rgb(171,222,86)' }
+                       },
+                   },
+                   smooth: true,
+                   data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+               },
+
+               {
+                   name: '当月',
+                   type: 'bar',
+                   itemStyle: {
+                       normal: {
+                           color: new echarts.graphic.LinearGradient(
+                               0, 0, 0, 1,
+                               [
+                                   { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                   { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                               ]
+                           )
+                       },
+                       emphasis: {
+                           color: new echarts.graphic.LinearGradient(
+                               0, 0, 0, 1,
+                               [
+                                   { offset: 0, color: '#2378f7' },
+                                   { offset: 0.7, color: '#2378f7' },
+                                   { offset: 1, color: '#83bff6' }
+                               ]
+                           )
+                       }
+                   },
+
+
+                   data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+               }]
+           };
+
+          
+
+          
+
+          
+
+        });
+      
+
+    </script>
+   
+    <script type="text/javascript" src="assets/js/imagesloaded.min.js"></script>
+ 
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarBaseClass.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSetupLayout.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSizeAndScale.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarShift.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSetupBulletNav.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSetupNavigation.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSetupSwipeTouch.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarSetupTimer.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarBeforeAfter.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarLock.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarResponsiveClass.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarResetSlider.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider/sangarTextbox.js"></script>
+    <script type="text/javascript" src="assets/js/sangarSlider.js"></script>
+</body>
+</html>

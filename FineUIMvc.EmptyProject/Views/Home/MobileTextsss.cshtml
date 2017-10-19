@@ -1,0 +1,257 @@
+﻿@{
+    ViewBag.Title = "MobileTest";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .Margin(5)
+        .BodyPadding(5)
+        .AutoScroll(true)
+        .IsViewPort(true)
+
+        .Items(
+             F.Form()
+                .ID("SimpleForm1")
+                .BodyPadding("5 5 0 5")
+                .LabelAlign(LabelAlign.Left)
+                .LabelWidth(100)
+                .ShowHeader(false)
+                .Title("表单")
+                .Rows(
+                    F.FormRow()
+                        .ID("FormRow5")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_name")
+                                .Label("机组名称")
+                                .Text(ViewBag.txt_name)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow6")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_time")
+                                .Label("采集时间")
+                                .Text(ViewBag.txt_time)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow7")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_jinchuWat")
+                                .Label("进/出水压")
+                                .Text(ViewBag.txt_jinchuWat)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_jinchuShun")
+                                .Label("进/出瞬")
+                                .Text(ViewBag.txt_jinchuShun)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_jinchuXian")
+                                .Label("进/出上下限")
+                                .Text(ViewBag.txt_jinchuXian)
+                        )
+                ),
+                F.Form()
+                .ID("SimpleForm2")
+                .BodyPadding("5 5 0 5")
+                .LabelAlign(LabelAlign.Left)
+                .Title("表单")
+                .ShowHeader(false)
+                .Rows(
+                    F.FormRow()
+                        .ID("FormRow5")
+                        .ColumnWidths("15% 15% 15% 55%")
+                        .Items(
+                            F.Button()
+                                .ID("btnZD")
+                                .Listener("click", "autoControl")
+                                .Text("自动控制"),
+                            F.Button()
+                                .ID("btnSD")
+                                .Listener("click", "menufControl")
+                                .Text("手动控制"),
+                            F.Button()
+                                .ID("btnYZD")
+                                .Listener("click", "remoteAuto")
+                                .Text("远程自动控制"),
+                            F.TextBox()
+                                .ID("txt_User")
+                                .Label("登陆用户")
+                                .Text("panda")
+                        ),
+                    F.FormRow()
+                        .ID("FormRow6")
+                        .Items(
+                            F.TextBox()
+                                .ID("txt_YS1")
+                                .LabelWidth(110)
+                                .Label("时段1压力上限"),
+                            F.TextBox()
+                                .ID("txt_YX1")
+                                .LabelWidth(50)
+                                .Label("下限"),
+                            F.Button()
+                                .ID("btnQueD1")
+                                .CssClass("btn-in-form")
+                                .Listener("click", "btnQueDClick(1)")
+                                .Text("确定")
+                        ),
+                   F.FormRow()
+                   .ID("FormRow6")
+                   .Items(
+                       F.TextBox()
+                           .ID("txt_YS2")
+                                   .LabelWidth(110)
+                           .Label("时段2压力上限"),
+                       F.TextBox()
+                           .ID("txt_YX2")
+                                   .LabelWidth(50)
+                           .Label("下限"),
+                       F.Button()
+                           .ID("btnQueD2")
+                           .CssClass("btn-in-form")
+                           .Listener("click", "btnQueDClick(2)")
+                           .Text("确定")
+                   )
+                ),
+                F.Form()
+                .ID("SimpleForm3")
+                .BodyPadding("5 5 0 5")
+                .LabelAlign(LabelAlign.Left)
+                .LabelWidth(100)
+                .ShowHeader(false)
+                .Title("表单")
+                .Rows(
+                    F.FormRow()
+                        .ID("FormRow7")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable1)
+                                .Text(ViewBag.Text1)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable2)
+                                .Text(ViewBag.Text2)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable3)
+                                .Text(ViewBag.Text3)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable4)
+                                .Text(ViewBag.Text4)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable5)
+                                .Text(ViewBag.Text5)
+                        ),
+                    F.FormRow()
+                        .ID("FormRow8")
+                        .Items(
+                            F.TextBox()
+                                .Label(ViewBag.Lable6)
+                                .Text(ViewBag.Text6)
+                        )
+                )
+        )
+
+    )
+
+}
+
+
+@section script {
+
+    <script>
+        var dataJson = {};
+
+        function getCommand() {
+            dataJson.dtu = "03170519236";
+            dataJson.user = F.ui.txt_User.getValue();
+            $.ajax({
+                url: '/V_YCJK/GetCommandText',
+                data: dataJson,
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log('泵房数据获取出错');
+                }
+            });
+        }
+
+        function autoControl() {
+            dataJson.text = 1;
+            dataJson.FPLCAddress = 'V40003';
+            getCommand();
+        }
+        function menufControl() {
+            dataJson.text = 0;
+            dataJson.FPLCAddress = 'V40003';
+            getCommand();
+        }
+        function remoteAuto() {
+            dataJson.text = 2;
+            dataJson.FPLCAddress = 'V40003';
+            getCommand();
+        }
+
+        function btnQueDClick(type) {
+            var upText1 = F.ui.txt_YS1.getValue();
+            var downText1 = F.ui.txt_YX1.getValue();
+            var upText2 = F.ui.txt_YS2.getValue();
+            var downText2 = F.ui.txt_YX2.getValue();
+            if (type == 1) {
+                if (upText1) {
+                    dataJson.text = upText1;
+                    dataJson.FPLCAddress = 'V40074';
+                    getCommand();
+                }
+                if (downText1) {
+                    dataJson.text = downText1;
+                    dataJson.FPLCAddress = 'V40073';
+                    getCommand();
+                }
+            }
+            else (type == 2)
+            {
+                if (upText2) {
+                    dataJson.text = upText2;
+                    dataJson.FPLCAddress = 'V40076';
+                    getCommand();
+                }
+                if (downText2) {
+                    dataJson.text = downText2;
+                    dataJson.FPLCAddress = 'V40075';
+                    getCommand();
+                }
+            }
+        }
+    </script>
+}

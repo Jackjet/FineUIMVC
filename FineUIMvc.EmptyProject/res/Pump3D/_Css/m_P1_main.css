@@ -1,0 +1,61 @@
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+body{ font-family:微软雅黑;
+}
+
+.div_center,.div_center div,img{
+	position: absolute;
+	z-index: -1;
+	
+
+	
+}
+
+.div_center,.div_top{
+	position:relative; 
+	text-align:left; 
+	margin:0px auto;
+	width:900px;
+    height:auto;
+}
+
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 6px;
+	height:6px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(255,255,255,0.3);
+    -webkit-box-shadow: inset 0 0 3px rgba(255,255,255,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
+}
+
+
+
+.frm_Main{
+	position: absolute;
+	width: 900px;
+	height: 500px;
+	top: 140px;
+}
+.frm_Content{position:absolute;width:900px;height:500px;}
+

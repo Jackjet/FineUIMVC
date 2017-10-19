@@ -1,0 +1,337 @@
+.textDot {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  background: #A6A6A6;
+}
+.liuLiangBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 332px;
+  height: 558px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-left: -166px;
+  margin-top: -1000888px;
+  background: url(../img/warnNodataBg.png) no-repeat #ffffff center center;
+  -webkit-box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+}
+.liuLiangA,
+.liuLiangB {
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: left;
+  width: 332px;
+  height: 558px;
+  background: #f2f2f6;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+}
+.liuLiangA {
+  z-index: 3;
+}
+.liuLiangA .aHeader {
+  position: relative;
+  width: 332px;
+  height: 220px;
+  border-radius: 8px 8px 0 0;
+}
+.liuLiangA .aHeader .imgBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: #0f699e;
+}
+.liuLiangA .aHeader .timeBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 332px;
+  height: 42px;
+  font-size: 12px;
+  border-radius: 8px 8px 0 0;
+}
+.liuLiangA .aHeader .timeBox .caiJiTime {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  padding: 12px 0 0 18px;
+  width: 220px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.liuLiangA .aHeader .numberBox {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 332px;
+  height: 30px;
+  line-height: 30px;
+}
+.liuLiangA .aHeader .numberBox .pumpName {
+  float: left;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 18px;
+  width: 180px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.liuLiangA .aHeader .numberBox .pumpNumber {
+  float: right;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 18px;
+  width: 100px;
+  overflow: hidden;
+}
+.closeBox {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.8s ease-in;
+  -o-transition: all 0.8s ease-in;
+  transition: all 0.8s ease-in;
+  -webkit-transform-origin: 17px 18px;
+  -moz-transform-origin: 17px 18px;
+  -ms-transform-origin: 17px 18px;
+  -o-transform-origin: 17px 18px;
+  transform-origin: 17px 18px;
+}
+.closeBox:hover {
+  -webkit-transform: rotateZ(700deg);
+  -ms-transform: rotateZ(700deg);
+  -o-transform: rotateZ(700deg);
+  transform: rotateZ(700deg);
+}
+.closeBox .close {
+  font-size: 34px;
+  z-index: 1;
+  font-weight: bold;
+  color: #fff;
+}
+.liuLiangA .aContentList {
+  margin-top: 10px;
+  width: 332px;
+  height: 316px;
+  background: #fff;
+  border-top: 1px solid #d9d8d9;
+  border-bottom: 1px solid #d9d8d9;
+}
+.liuLiangA .aContentList .power_box {
+  width: 332px;
+}
+.liuLiangA .aContentList .power_box > li {
+  width: 324px;
+  height: 39px;
+  line-height: 39px;
+  font-size: 12px;
+  margin-left: 8px;
+  border-bottom: 1px solid #d9d8d9;
+}
+.liuLiangA .aContentList .power_box > li .power_name {
+  float: left;
+  height: 39px;
+  padding: 0 6px 0 3px;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList {
+  float: left;
+  padding-top: 10px;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList > li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  background: url(../img/liuLiangPopABg.png) no-repeat;
+  margin-right: 4px;
+  cursor: pointer;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList > li.bingtu {
+  background-position: 2px -212px;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList > li.quxian {
+  background-position: 2px -141px;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList > li.zhuxing {
+  background-position: 2px -70px;
+}
+.liuLiangA .aContentList .power_box > li .tubiaoList > li.set {
+  background-position: 2px -356px;
+}
+.liuLiangA .aContentList .power_box > li .number {
+  width: 70px;
+  padding-right: 20px;
+  float: right;
+  text-align: right;
+  color: #aeaeae;
+}
+.liuLiangB .bHeader {
+  position: relative;
+  width: 332px;
+  height: 142px;
+  padding: 4px 0 0 5px;
+  background: #3a86b2;
+}
+.liuLiangB .bHeader .backBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+}
+.liuLiangB .bHeader .backBox .backBtn {
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  background: url(../img/backBtn.png) no-repeat 5px 10px;
+}
+.liuLiangB .bHeader #echart_box {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 332px;
+  height: 84px;
+}
+.liuLiangB .bRightUl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 280px;
+  height: 412px;
+  font-size: 12px;
+}
+.liuLiangB .bRightUl .bRightItem {
+  width: 100%;
+  border-bottom: 1px solid #d9d8d9;
+  height: 39px;
+  line-height: 39px;
+  cursor: pointer;
+}
+.liuLiangB .bRightUl .bRightItem .bRightItemName {
+  max-width: 60px;
+  float: left;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.liuLiangB .bRightUl .bRightItem .bRightItemNumber {
+  max-width: 200px;
+  float: right;
+  padding-right: 16px;
+  color: #aeaeae;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.liuLiangB .bContentBox {
+  height: 412px;
+  width: 332px;
+  background: #fff;
+}
+.liuLiangB .bContentBox .cotentLeftNav {
+  float: left;
+  width: 36px;
+  height: 100%;
+  background: #f2f2f2;
+}
+.liuLiangB .bContentBox .cotentLeftNav > li {
+  width: 36px;
+  height: 36px;
+  border-bottom: 1px solid #dadada;
+  background: url(../img/mapShowNav.png) no-repeat;
+  cursor: pointer;
+}
+.liuLiangB .bContentBox .cotentLeftNav > li:hover,
+.liuLiangB .bContentBox .cotentLeftNav > li.active {
+  background-color: #fff;
+}
+.liuLiangB .bContentBox .cotentLeftNav > li.info {
+  background-position: 10px -22px;
+}
+.liuLiangB .bContentBox .cotentLeftNav > li.baobiao {
+  background-position: 10px -56px;
+}
+.liuLiangB .bContentBox .cotentLeftNav > li.baojing {
+  background-position: 10px -88px;
+}
+.liuLiangB .bContentBox .bRightContentWrap {
+  position: relative;
+  float: right;
+  width: 280px;
+  height: 412px;
+  background: #fff;
+}
+.liuLiangB .bContentBox .bRightContentWrap .bRightUl.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  z-index: 2;
+}
+.baoBiaoBox {
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.baoBiaoBox .baoBiaoUl {
+  width: 100%;
+  cursor: pointer;
+  font-size: 12px;
+}
+.baoBiaoBox .baoBiaoUl > li {
+  height: 36px;
+  width: 100%;
+  line-height: 36px;
+  text-indent: 18px;
+  border-bottom: 1px solid #ddd;
+}
+.baoBiaoBox .baoBiaoUl > li .leftBG {
+  margin: 11px;
+  display: block;
+  float: left;
+  width: 14px;
+  height: 14px;
+  background: #f2f2f2;
+}
+.baoBiaoBox .baoBiaoUl > li .rightName {
+  float: left;
+}
+.baoBiaoBox .baoBiaoUl > li:hover {
+  background: #eee;
+}

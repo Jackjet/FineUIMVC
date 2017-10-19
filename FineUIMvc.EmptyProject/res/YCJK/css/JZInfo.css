@@ -1,0 +1,128 @@
+﻿    a,a:active {
+    text-decoration: none;
+}
+.main_wrap{
+	width: 100%;
+	height: 100%;
+    border-top: 2px solid #438eb9;
+	position: relative;
+	overflow: auto;
+     background-color: #f5f5f5;
+     padding: 15px 22px;
+}
+
+.pumpInfo_title{
+    height: 14px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+     text-indent: 5px;
+    border-left: 4px solid #438eb9;
+    color: #000;
+}
+.infoMode1{
+  
+    background-color: #fff;
+    margin-top: 12px;
+     padding:16px  34px;
+   
+}
+.ul_pumpInfo1 li,.ul_pumpInfo2 li,.ul_equipInfo1 li,.ul_mainPump li,.ul_auxPump li{
+    padding: 0px 5px;
+    float: left;
+}
+.ul_pumpInfo1 li.col1{
+    width: 268px;
+}
+.ul_pumpInfo1 li.col2{
+    width: 248px;
+}
+.ul_pumpInfo1 li.col3{
+    width: 180px;
+}
+.ul_pumpInfo1 li.col4{
+    width: 160px;
+}
+.ul_pumpInfo2 li.col1{
+    width: 68px;
+    padding: 0;
+}
+
+.ul_pumpInfo2 li.col1 span.fieldName{
+    color: #438eb9;
+}
+.ul_pumpInfo2 li.col2{
+    width: 180px;
+}
+.ul_pumpInfo2 li.col3{
+    width: 180px;
+}
+.ul_pumpInfo2 li.col4{
+    width: 208px;
+}
+.ul_pumpInfo2 li.col5{
+    width: 208px;
+}
+.ul_pumpInfo1 li span,.ul_pumpInfo2 li span,.ul_equipInfo1 li span,.ul_mainPump li span,.ul_auxPump li span{
+    display: inline-block;
+    padding: 9px 2px;
+     color: #000;
+     font-family: "微软雅黑";
+     font-size: 12px;
+}
+li span.fieldValue{
+    color: #7b7c7d;
+}
+.infoMode2{
+    background-color: #fff;
+    margin-top: 6px;
+    padding:0px  34px;
+}
+
+.equipInfo{
+    margin-top: 16px;
+}
+
+.equipInfo .infoMode3{
+    background-color: #fff;
+    margin-top: 6px;
+    padding-left: 34px;
+}
+.equipInfo_title{
+    height: 14px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    border-left: 4px solid #f3953a;
+    text-indent: 5px;
+     color: #666666;
+}
+
+.ul_equipInfo1 li.col1{
+    width: 190px;
+}
+.ul_equipInfo1 li.col2{
+    width: 140px;
+}
+.ul_equipInfo1 li.col3{
+    width: 166px;
+}
+.ul_equipInfo1 li.col4{
+    width: 200px;
+}
+.ul_equipInfo1 li.col5{
+    width: 144px;
+}
+
+.ul_mainPump li,.ul_auxPump li{
+    width: 194px;
+}
+.ul_mainPump li span.mainAuxPump,.ul_auxPump li span.mainAuxPump{
+    color: #f3953a;
+}
+/*.images_wrap{
+    height: 488px;
+     border-top: 2px solid #438eb9;
+     background-color: #f2f3f7;
+    padding: 12px;
+   overflow: auto;
+}*/
+

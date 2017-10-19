@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Customer_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.Panda_Customer
+
+@section body {
+
+    @(F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .BodyPadding(10)
+                .AutoScroll(true)
+                .IsViewPort(true)
+                .Toolbars(
+                    F.Toolbar()
+                        .Items(
+                            F.Button()
+                                .Icon(Icon.SystemClose)
+                                .Text("关闭")
+                                .Listener("click", "F.activeWindow.hide();"),
+                            F.ToolbarSeparator(),
+                            F.Button()
+                                .ValidateForms("SimpleForm1")
+                                .Icon(Icon.SystemSaveClose)
+                                .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                                .Text("保存后关闭")
+                        )
+                )
+                .Items(
+                    F.HiddenFieldFor(x => x.ID)
+                       .ID("tbxID"),
+                    F.TextBoxFor(x=>x.Name)
+                       .Label("客户名称")
+                       .EmptyText("请输入客户")
+                       .ID("tbxName")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBoxFor(x => x.FContactName)
+                       .Label("联系人")
+                       .EmptyText("请输入联系人")
+                       .ID("tbxContactName")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBoxFor(x => x.FContactPhone)
+                       .Label("联系人电话")
+                       .EmptyText("请输入电话")
+                       .ID("tbxContactPhone")
+                       .Regex("^\\d{11}$")
+                       .RegexMessage("手机号码位数不是11位")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBoxFor(x => x.FBGAddress)
+                       .Label("办公地址")
+                       .EmptyText("请输入办公地址")
+                       .ID("tbxAddress"),
+                    F.TriggerBoxFor(x => x.FAddress)
+                        .ID("tbSelectedAddress")
+                        .EnableEdit(false)
+                        .Required(true)
+                        .ShowRedStar(true)
+                        .TriggerIcon(TriggerIcon.Search)
+                        .OnClientTriggerClick("OnClientAddressSelect();")
+                        .Label("地理位置"),
+                    F.DropDownListFor(x => x.FCompanyNumber)
+                       .ID("ddlCompany")
+                       .Label("分公司")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .DataTextField("Fengongsi")
+                       .DataValueField("U8number")
+                       .DataSource(ViewBag.ddlCompanyDataSource)
+                       .SelectedValue(ViewBag.ddlCompanySelect),
+                    F.DropDownListFor(x => x.CustomerType)
+                       .ID("ddlType")
+                       .Label("类型")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .DataTextField("FName")
+                       .DataValueField("FValue")
+                       .DataSource(ViewBag.ddlTypeDataSource)
+                       .SelectedValue(ViewBag.ddlTypeSelect),
+                    F.DropDownListFor(x => x.CustomerLevel)
+                       .ID("ddlGrade")
+                       .Label("等级")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .DataTextField("FName")
+                       .DataValueField("FValue")
+                       .DataSource(ViewBag.ddlLevelDataSource)
+                       .SelectedValue(ViewBag.ddlLevelSelect),
+                    F.NumberBoxFor(x => x.MessageCount)
+                       .ID("tbxMsgNumber")
+                       .Label("短信条数")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.HiddenFieldFor(x => x.FLngLat)
+                       .Label("经纬度")
+                       .ID("tbxLngLat"),
+                    F.HiddenFieldFor(x => x.Name)
+                       .ID("tbxOldName"),
+                    F.HiddenFieldFor(x => x.FMapTempID)
+                       .ID("tbxFMapTempID")
+               )
+    )
+
+@(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+)
+}
+@section script {
+
+    <script>
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl,"坐标地址选择");
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+    </script>
+}

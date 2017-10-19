@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "dayHourElec";
+    var F = @Html.F();
+}
+@section head {
+    <title>日时段电量</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/TF_reportWaterInOutPress.css" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/js/echarts.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/laydate.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+    <script src="~/res/layer/layer.js"></script>
+}
+@section body {
+    <div class="chart_mainWrap">
+        <div class="header_wrap clearfix">
+            <div class="searchCriteria">
+                <div class="select_wrap sPump_wrap"><input type="text" class="pumpName" placeholder="泵房名称" readonly="readonly" /><i class="selectBtn"></i></div>
+                <div class="select_wrap sJZ_wrap"><input type="text" class="JZname" placeholder="机组" readonly="readonly" /><i class="selectBtn"></i></div>
+            </div>
+
+            <button class="chart_searchBtn">搜索</button>
+            <div class="searchTime">
+                <input id="startTime" type="text" />
+                <span>- -</span>
+                <input id="endTime" type="text" />
+            </div>
+            <div class="selectDiagWrap">
+                <div class="selectedWrap">
+                    <input type="text" />
+                    <div class="triangleWrap"></div>
+                </div>
+                <ul class="selectMenu hide">
+                    <li class="active" data-key="today"><a href="#">今天</a></li>
+                    <li data-key="yestoday"><a href="#">昨天</a></li>
+                    <li data-key="bYestoday"><a href="#">前天</a></li>
+                    <li data-key="today0-6"><a href="#">今日(0-6时)</a></li>
+                    <li data-key="today6-12"><a href="#">今日(6-12时)</a></li>
+                    <li data-key="today12-y0"><a href="#">今日(12-次日凌晨)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="chart_wrap">
+            <div class="chartItem_wrap">
+                <div class="chartItem_title">进出水压力曲线</div>
+                <div class="chartItem_body" id="chart_waterInOutPress"></div>
+            </div>
+        </div>
+    </div>
+}
+@section script {
+    <script type="text/javascript" src="~/res/YCJK/js/dayHourElec.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}

@@ -1,0 +1,1327 @@
+﻿@{
+    ViewBag.Title = "EGBFSB";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <title>泵房设备</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/YCJK/js/lowCan.js"></script>
+    <link rel="stylesheet" href="~/res/YCJK/css/bengfangSheBei.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/MidChart.css" />
+    <link href="~/res/YCJK/css/pageRightDataBox.css" rel="stylesheet" />
+    <link href="~/res/YCJK/css/pageRightSetBox.css" rel="stylesheet" />
+    <link href="~/res/css/radialindicator.css" rel="stylesheet" />
+    <link href="~/res/YCJK/css/jquery.gritter.css" rel="stylesheet" />
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <script src="~/res/layer/layer.js"></script>
+    <script src="~/res/js/echarts.min.js"></script>
+
+}
+
+@section body {
+    <div class="pageLeft">
+        <div class="pumpNameBox clearfix">
+            <div class="pumpNamePicBox"></div>
+            <div class="pumpNameTxtBox">泵房名称</div>
+        </div>
+        <ul class="pageLeftTop clearfix">
+            @*<li class="high clearfix active">
+                <div class="leftNavPicBox"></div>
+                <div class="leftNavTxtBox">高区</div>
+            </li>
+            <li class="middle clearfix">
+                <div class="leftNavPicBox"></div>
+                <div class="leftNavTxtBox">中区</div>
+            </li>
+            <li class="low clearfix">
+                <div class="leftNavPicBox"></div>
+                <div class="leftNavTxtBox">低区</div>
+            </li>*@
+
+        </ul>
+        <div class="pageLeftMid">
+            @*<iframe class="shebeiFrame" src="" frameborder="0"></iframe>*@
+            <div class="highWrap active"> 
+                <div class="jzBox clearfix">
+                    <div class="jzState"></div>
+                    <div class="jzName"></div>
+                </div>              
+                <div class="threeToTwo clearfix">
+                    <div class="threeToTwoWrap clearfix">
+                        <div class="threeBtn">3D</div>
+                        <div class="threeToTwoPic"></div>
+                        <div class="twoBtn">2D</div>
+                    </div>
+                </div>
+                <div class="threeSection">
+                    <div class="threePicBox">
+                        <div class="layoutwarp" id="layoutwarp">
+                            <div class="statePicBox">@*<div class="pic1"></div>*@</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="twoSection">
+                    <div class="twoPicBox">
+                        <div class="twolayout" id="twolayout">
+                            @*水箱种类*@
+                            <div class="shuiXiangClass">
+                                <div class="xiangLeft"></div>
+                                <div class="xiangRight"></div>
+                            </div>
+                            <div class="shuiGuanClass"></div>
+                            @*阀门和  压力表等等*@
+                            <div class="inPress">
+                                <div class="pressNum"><span class="pressN"></span>Mpa</div>
+                            </div>
+                            <div class="outPress">
+                                <div class="pressNum"><span class="pressN"></span>Mpa</div>
+                            </div>
+                            <div class="inFamen"></div>
+                            <div class="outFamen"></div>
+                            <div class="liuLiangBiao">
+                                <div class="leiJiLiu">
+                                    <span>累：</span><span class="liuLiangNum"></span>m³
+                                </div>
+                                <div class="shunShiLiu">
+                                    <span>瞬：</span><span class="liuLiangNum"></span>m³
+                                </div>
+                            </div>
+                            <div class="dianRong"></div>
+                            @*水流方向*@
+                            <div class="flow flowHT1"></div>
+                            <div class="flow flowHT2"></div>
+                            <div class="flow flowVR1"></div>
+                            <div class="flow flowH2"></div>
+                            <div class="flow flowH3"></div>
+                            <div class="flow flowH4"></div>
+                            <div class="flow flowH5"></div>
+                            <div class="flow flowVL1"></div>
+                            <div class="flow flowHB1"></div>
+                            <div class="flow flowHB2"></div>
+
+                            @*水流中间框*@
+                            <div class="flow flowT"></div>
+                            <div class="flow flowR1"></div>
+                            <div class="flow flowR2"></div>
+                            <div class="flow flowB"></div>
+                            <div class="flow flowL1"></div>
+                            <div class="flow flowL2"></div>
+                            <div class="mainContentBox">
+                                <ul class="pumpWrap clearfix">
+                                    <li class="pumpItem">
+                                        <div class="downL "></div>
+                                        <div class="downR "></div>
+                                        <div class="horizon ">
+                                            <div class="pump ">
+                                                <div class="pumpState1">
+                                                    <div class="pumpNum">1#</div>
+                                                    <div class="pumpTime"></div>
+                                                    <div class="pumpDian"></div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>                                               
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                    <li class="pumpItem">
+                                        <div class="downL"></div>
+                                        <div class="downR"></div>
+                                        <div class="horizon">
+                                            <div class="pump">
+                                                <div class="pumpState2">
+                                                    <div class="pumpNum">2#</div>
+                                                    <div class="pumpTime">@*45min*@</div>
+                                                    <div class="pumpDian">@*0.24A*@</div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                    <li class="pumpItem">
+                                        <div class="downL "></div>
+                                        <div class="downR "></div>
+                                        <div class="horizon ">
+                                            <div class="pump ">
+                                                <div class="pumpState2">
+                                                    <div class="pumpNum">3#</div>
+                                                    <div class="pumpTime">@*45min*@</div>
+                                                    <div class="pumpDian">@*0.24A*@</div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                    <li class="pumpItem">
+                                        <div class="downL"></div>
+                                        <div class="downR"></div>
+                                        <div class="horizon">
+                                            <div class="pump ">
+                                                <div class="pumpState0">
+                                                    <div class="pumpNum">4#</div>
+                                                    <div class="pumpTime">@*45min*@</div>
+                                                    <div class="pumpDian">@*0.24A**@</div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                    <li class="pumpItem">
+                                        <div class="downL"></div>
+                                        <div class="downR"></div>
+                                        <div class="horizon">
+                                            <div class="pump ">
+                                                <div class="pumpState1">
+                                                    <div class="pumpNum">5#</div>
+                                                    <div class="pumpTime">@*45min*@</div>
+                                                    <div class="pumpDian">@*0.24A*@</div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                    <li class="pumpItem">
+                                        <div class="downL"></div>
+                                        <div class="downR"></div>
+                                        <div class="horizon">
+                                            <div class="pump ">
+                                                <div class="pumpState1">
+                                                    <div class="pumpNum">6#</div>
+                                                    <div class="pumpTime">@*45min*@</div>
+                                                    <div class="pumpDian">@*0.24A*@</div>
+                                                    <div class="pumpSatrt">启动</div>
+                                                    <div class="pumpStop">停止</div>
+                                                </div>
+                                            </div>
+                                            <div class="curL"></div>
+                                            <div class="curR"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="middleWrap">
+                <div class="threeToTwo clearfix">
+                    <div class="threeToTwoWrap clearfix">
+                        <div class="threeBtn">3D</div>
+                        <div class="threeToTwoPic"></div>
+                        <div class="twoBtn">2D</div>
+                    </div>
+                </div>
+                <div class="threeSection">m11</div>
+                <div class="twoSection">m22</div>
+            </div>
+            <div class="lowWrap">
+                <div class="threeToTwo clearfix">
+                    <div class="threeToTwoWrap clearfix">
+                        <div class="threeBtn">3D</div>
+                        <div class="threeToTwoPic"></div>
+                        <div class="twoBtn">2D</div>
+                    </div>
+                </div>
+                <div class="threeSection">l11</div>
+                <div class="twoSection">l22</div>
+            </div>*@
+        </div>
+        <div class="pageLeftBot hide">
+            <div class="botArrow"></div>
+            <ul class="leftBotNav clearfix">
+                <li class="clearfix">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">机组信息</div>
+                </li>
+                <li class="clearfix">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">运行日志</div>
+                </li>
+                <li class="clearfix ">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">维护巡检</div>
+                </li>
+                <li class="clearfix">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">数据报表</div>
+                </li>
+
+                <li class="clearfix">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">预警报警</div>
+                </li>
+                <li class="clearfix">
+                    <div class="leftBotNavPic"></div>
+                    <div class="leftBotNavTxt">相关附件</div>
+                </li>
+
+            </ul>
+            <div class="leftBotBox">
+                
+                <iframe class="leftBotFrame" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="pageMid">
+        <div class="showHideBtn showHideBtn1"></div>
+        <div class="pageMidBox">
+            <div class="pageMidHead">
+                <p class="modelText">用水量和用电量</p>
+                <div class="dataCircle_wrap">                  
+                    <div class="process_wrap water_wrap">
+                        <div class="arrowUpIco_Box water_up" ></div>
+                        <div class="arrowDownIco_Box water_down"></div>
+                        <div class="proCircle water_proCircle" id="proBar1"></div>
+                        <div class="monthData water_monthData">
+                            <div class="water_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalOutLL"></span></div>
+                            <div class="water_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalOutLL"></span></div>
+                        </div>
+                    </div>
+                    <div class="process_wrap electric_wrap">
+                        <div class="arrowUpIco_Box elec_up"></div>
+                        <div class="arrowDownIco_Box elec_down"></div>
+                        <div class="proCircle electric_proCircle" id="proBar2"></div>
+                        <div class="monthData electric_monthData">
+                            <div class="elec_cur"><i></i><span class="month_text">本月</span><span class="data-key" data-field="now_FTotalDL"></span></div>
+                            <div class="elec_last"><i></i><span class="month_text">上月</span><span class="data-key" data-field="last_FTotalDL"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pageMidTop">
+                <p class="modelText">进出水压力实时曲线图</p>
+                <div class="chart_wrap chart1_wrap">
+                    <div class="echartsBox" id="echart1"></div>
+                </div>
+            </div>
+            <div class="pageMidMid">
+                <p class="modelText">近七日用水量对比图</p>
+                <div class="chart_wrap chart2_wrap">
+                    <div class="echartsBox" id="echart2"></div>
+                </div>
+            </div>
+            <div class="pageMidBot">
+                <p class="modelText">近七日用电量对比图</p>
+                <div class="chart_wrap chart2_wrap" >
+                    <div class="echartsBox" id="echart3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pageRight">
+        <div class="showHideBtn showHideBtn2"></div>
+        <div class="pageRightBox">
+            <div class="pageRightTop">
+                <div class="caiJi"></div>
+                <div class="xianShi"></div>
+                <ul class="rightTopTab clearfix">
+                    <li class="rightTopTabItem clearfix active">
+                        <div class="rightTopTabItemPic"></div>
+                        <div class="rightTopTabItemTxt">数据</div>
+                        <!--</li>
+                        <li class="rightTopTabItem clearfix">
+                            <div class="rightTopTabItemPic"></div>
+                            <div class="rightTopTabItemTxt">控制</div>
+                        </li>-->
+                    <li class="rightTopTabItem clearfix">
+                        <div class="rightTopTabItemPic"></div>
+                        <div class="rightTopTabItemTxt">设置</div>
+                    </li>
+                </ul>
+                <div class="rightTopMainBox">
+                    <div class="dataBox active">
+                        <!--1-->
+                        <div class="getDataTime">
+                            <div class="getDataPic"></div>
+                            <div class="getDataTxt"> 采集时间： <span></span></div>
+                        </div>
+
+                        <!--8-->
+
+                      
+                       
+
+                        <div class="PHAndOthers">
+                            <ul class="PHAndOthersItemBox clearfix">
+                                <li class="PHAndOthersItem F_hj_yl">
+                                    <div class="PHAndOthersPic yu"></div>
+                                    <div class="PHAndOthersName">余氯</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_zd">
+                                    <div class="PHAndOthersPic zhuo"></div>
+                                    <div class="PHAndOthersName">浊度</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_ph">
+                                    <div class="PHAndOthersPic PH"></div>
+                                    <div class="PHAndOthersName">PH</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_sw">
+                                    <div class="PHAndOthersPic shuiWen"></div>
+                                    <div class="PHAndOthersName">水温</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_rjy">
+                                    <div class="PHAndOthersPic rongJieY"></div>
+                                    <div class="PHAndOthersName">溶解氧</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_ddl">
+                                    <div class="PHAndOthersPic dianDaoLv"></div>
+                                    <div class="PHAndOthersName">电导率</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_sd">
+                                    <div class="PHAndOthersPic bShiDu"></div>
+                                    <div class="PHAndOthersName">湿度</div>
+                                    <div class="PHAndOthersTxt"></div>
+
+                                 
+                                </li>
+                                <li class="PHAndOthersItem F_hj_wd">
+                                    <div class="PHAndOthersPic bWenDu"></div>
+                                    <div class="PHAndOthersName">温度</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                                <li class="PHAndOthersItem F_hj_wsyw">
+                                    <div class="PHAndOthersPic wuYeWei"></div>
+                                    <div class="PHAndOthersName">污水液位</div>
+                                    <div class="PHAndOthersTxt"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <!--5-->
+
+
+                        <div class="everythingStateBox">
+                            <ul class="everythingIOtemBox clearfix">
+                                <li class="everythingItem F_zt_m">
+                                    <div class="everythingItemPic men "></div>
+                                    <div class="everythingItemTxt">门</div>
+                                </li>
+                                <li class="everythingItem F_zt_d">
+                                    <div class="everythingItemPic deng "></div>
+                                    <div class="everythingItemTxt">灯</div>
+                                </li>
+                                <li class="everythingItem F_zt_dy">
+                                    <div class="everythingItemPic dianYuan "></div>
+                                    <div class="everythingItemTxt">电源</div>
+                                </li>
+                                <li class="everythingItem F_zt_pc">
+                                    <div class="everythingItemPic poChuang "></div>
+                                    <div class="everythingItemTxt">破窗</div>
+                                </li>
+                                <li class="everythingItem F_zt_ups">
+                                    <div class="everythingItemPic UPS "></div>
+                                    <div class="everythingItemTxt">UPS</div>
+                                </li>
+                                <li class="everythingItem F_zt_ls">
+                                    <div class="everythingItemPic louShui "></div>
+                                    <div class="everythingItemTxt">漏水</div>
+                                </li>
+                                <li class="everythingItem F_zt_hj">
+                                    <div class="everythingItemPic huoJing "></div>
+                                    <div class="everythingItemTxt">火警</div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <ul class="dataUl clearfix">
+                            <li class="firstLine">
+                                <!--2-->
+                                <div class="waterIn clearfix">
+                                    <div class="waterInPic"></div>
+                                    <div class="waterInRight">
+                                        <div class="waterTxt">进水压力</div>
+                                        <div class="waterNum"></div>
+                                    </div>
+                                </div>
+                                
+
+                                <!--9-->
+
+                                <div class="shuiXiang clearfix">
+                                    <div class="shuiXiangLeft warn"></div>
+                                    <div class="shuiXiangRight">
+                                        <div class="shuiXiangNum"><span class="upDown down"></span></div>
+                                        <div class="shuiXiangTxt">@*1#水箱高位报警*@</div>
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+
+                                <!--9-->
+
+                                <div class="shuiXiang clearfix">
+                                    <div class="shuiXiangLeft warn"></div>
+                                    <div class="shuiXiangRight">
+                                        <div class="shuiXiangNum"><span class="upDown down"></span></div>
+                                        <div class="shuiXiangTxt">@*1#水箱高位报警*@</div>
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+
+
+                                <!--4-->
+
+                                <div class="leijiLiangBox">
+                                    <ul class="leijiItemBox">
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic leiJiYongDian"></div>
+                                            <div class="leijiItemName">累计用电量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic jinShunLiu"></div>
+                                            <div class="leijiItemName">进瞬时流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuShunLiu"></div>
+                                            <div class="leijiItemName">出瞬时流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic jinLeiLiu"></div>
+                                            <div class="leijiItemName">进累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuLeiLiu"></div>
+                                            <div class="leijiItemName">出累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuShunLiu"></div>
+                                            <div class="leijiItemName">出瞬时流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic jinLeiLiu"></div>
+                                            <div class="leijiItemName">进累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuLeiLiu"></div>
+                                            <div class="leijiItemName">出累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuShunLiu"></div>
+                                            <div class="leijiItemName">出瞬时流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic jinLeiLiu"></div>
+                                            <div class="leijiItemName">进累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+                                        <li class="leijiItem clearfix">
+                                            <div class="leijiItemPic chuLeiLiu"></div>
+                                            <div class="leijiItemName">出累计流量：</div>
+                                            <div class="leijiItemNum"></div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <!--6-->
+
+                                <div class="bianPin">
+                                    <div class="bianPinHeader clearfix">
+                                        <div class="bianPinPic">1</div>
+                                        <div class="bianPinTxt">变频器</div>
+
+                                    </div>
+                                    <ul class="bianPinItemBox ">
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunTime"></div>
+                                            <div class="bianPinItemName">运行时间：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunPin"></div>
+                                            <div class="bianPinItemName">运行频率：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic zhiLiu"></div>
+                                            <div class="bianPinItemName">直流电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic shuChu"></div>
+                                            <div class="bianPinItemName">输出电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic wenDu"></div>
+                                            <div class="bianPinItemName space">温度:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic gongLv"></div>
+                                            <div class="bianPinItemName space">功率:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                
+
+                                <!--6-->
+
+                                <div class="bianPin">
+                                    <div class="bianPinHeader clearfix">
+                                        <div class="bianPinPic">1</div>
+                                        <div class="bianPinTxt">变频器</div>
+
+                                    </div>
+                                    <ul class="bianPinItemBox ">
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunTime"></div>
+                                            <div class="bianPinItemName">运行时间：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunPin"></div>
+                                            <div class="bianPinItemName">运行频率：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic zhiLiu"></div>
+                                            <div class="bianPinItemName">直流电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic shuChu"></div>
+                                            <div class="bianPinItemName">输出电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic wenDu"></div>
+                                            <div class="bianPinItemName space">温度:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic gongLv"></div>
+                                            <div class="bianPinItemName space">功率:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!--7-->
+
+                                <div class="pumpStopStart">
+                                    <div class="pumpHeader clearfix">
+                                        <div class="pumpHeaderPic zhu warn"></div>
+                                        <div class="pumpHeaderTxt">
+                                            泵<span>1</span>(<i>主</i>)
+                                        </div>
+                                    </div>
+                                    <ul class="pumpItemBox">
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic dianLiu"></div>
+                                            <div class="pumpItemName space">电流:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic yunTime"></div>
+                                            <div class="pumpItemName">运行时间:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="pumpFoot">
+                                        <button class="pumpStart">远程启动</button>
+                                        <button class="pumpStop">远程停止</button>
+                                    </div>
+                                </div>
+
+
+                                <!--7-->
+
+                                <div class="pumpStopStart">
+                                    <div class="pumpHeader clearfix">
+                                        <div class="pumpHeaderPic zhu warn"></div>
+                                        <div class="pumpHeaderTxt">
+                                            泵<span>1</span>(<i>主</i>)
+                                        </div>
+                                    </div>
+                                    <ul class="pumpItemBox">
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic dianLiu"></div>
+                                            <div class="pumpItemName space">电流:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic yunTime"></div>
+                                            <div class="pumpItemName">运行时间:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="pumpFoot">
+                                        <button class="pumpStart">远程启动</button>
+                                        <button class="pumpStop">远程停止</button>
+                                    </div>
+                                </div>
+
+
+                               
+                                <!--10-->
+
+                                <div class="dianDongFa">
+                                    <div class="dianDongFaHeader">
+                                        <div class="dianDongFaNum"></div>
+                                        <div class="dianDongFaTxt">1#电动阀开度</div>
+                                    </div>
+                                    <div class="dianDongFaMid ">
+                                        <button class="allOpen">全开</button>
+                                        <button class="allClose">全关</button>
+                                    </div>
+                                    <div class="dianDongFaFoot">
+                                        <button class="dianDongFaSet">设置</button>
+                                        <button class="dianDongFaReset">复位</button>
+                                    </div>
+                                </div>
+
+                                <!--10-->
+
+                                <div class="dianDongFa">
+                                    <div class="dianDongFaHeader">
+                                        <div class="dianDongFaNum"></div>
+                                        <div class="dianDongFaTxt">1#电动阀开度</div>
+                                    </div>
+                                    <div class="dianDongFaMid ">
+                                        <button class="allOpen">全开</button>
+                                        <button class="allClose">全关</button>
+                                    </div>
+                                    <div class="dianDongFaFoot">
+                                        <button class="dianDongFaSet">设置</button>
+                                        <button class="dianDongFaReset">复位</button>
+                                    </div>
+                                </div>
+
+                            
+                            </li>  
+                            <li class="lastLine">
+                                <!--3-->
+                                <div class="waterOut clearfix">
+                                    <div class="waterOutSet"></div>
+                                    <div class="rightNum">234</div>
+                                    <div class="waterOutPic"></div>
+                                    <div class="waterOutRight">
+                                        <div class="waterTxt">出水压力</div>
+                                        <div class="waterNum"></div>
+                                    </div>
+                                </div>
+
+                                <!--9-->
+
+                                <div class="shuiXiang clearfix">
+                                    <div class="shuiXiangLeft warn"></div>
+                                    <div class="shuiXiangRight">
+                                        <div class="shuiXiangNum"><span class="upDown down"></span></div>
+                                        <div class="shuiXiangTxt">1#水箱高位报警</div>
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+
+                                <!--9-->
+
+                                <div class="shuiXiang clearfix">
+                                    <div class="shuiXiangLeft warn"></div>
+                                    <div class="shuiXiangRight">
+                                        <div class="shuiXiangNum"><span class="upDown down"></span></div>
+                                        <div class="shuiXiangTxt">1#水箱高位报警</div>
+                                        <div class=""></div>
+                                    </div>
+                                </div>
+
+                               
+
+                              
+
+                                <!--6-->
+
+                                <div class="bianPin">
+                                    <div class="bianPinHeader clearfix">
+                                        <div class="bianPinPic">1</div>
+                                        <div class="bianPinTxt">变频器</div>
+
+                                    </div>
+                                    <ul class="bianPinItemBox ">
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunTime"></div>
+                                            <div class="bianPinItemName">运行时间：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunPin"></div>
+                                            <div class="bianPinItemName">运行频率：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic zhiLiu"></div>
+                                            <div class="bianPinItemName">直流电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic shuChu"></div>
+                                            <div class="bianPinItemName">输出电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic wenDu"></div>
+                                            <div class="bianPinItemName space">温度:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic gongLv"></div>
+                                            <div class="bianPinItemName space">功率:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!--6-->
+
+                                <div class="bianPin">
+                                    <div class="bianPinHeader clearfix">
+                                        <div class="bianPinPic">1</div>
+                                        <div class="bianPinTxt">变频器</div>
+
+                                    </div>
+                                    <ul class="bianPinItemBox ">
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunTime"></div>
+                                            <div class="bianPinItemName">运行时间：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunPin"></div>
+                                            <div class="bianPinItemName">运行频率：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic zhiLiu"></div>
+                                            <div class="bianPinItemName">直流电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic shuChu"></div>
+                                            <div class="bianPinItemName">输出电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic wenDu"></div>
+                                            <div class="bianPinItemName space">温度:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic gongLv"></div>
+                                            <div class="bianPinItemName space">功率:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+
+
+                                <!--6-->
+
+                                <div class="bianPin">
+                                    <div class="bianPinHeader clearfix">
+                                        <div class="bianPinPic">1</div>
+                                        <div class="bianPinTxt">变频器</div>
+
+                                    </div>
+                                    <ul class="bianPinItemBox ">
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunTime"></div>
+                                            <div class="bianPinItemName">运行时间：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic yunPin"></div>
+                                            <div class="bianPinItemName">运行频率：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic zhiLiu"></div>
+                                            <div class="bianPinItemName">直流电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic shuChu"></div>
+                                            <div class="bianPinItemName">输出电压：</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic wenDu"></div>
+                                            <div class="bianPinItemName space">温度:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                        <li class="bianPinItem clearfix">
+                                            <div class="bianpinItemPic gongLv"></div>
+                                            <div class="bianPinItemName space">功率:</div>
+                                            <div class="bianPinItemNum"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+
+                                <!--7-->
+
+                                <div class="pumpStopStart">
+                                    <div class="pumpHeader clearfix">
+                                        <div class="pumpHeaderPic zhu warn"></div>
+                                        <div class="pumpHeaderTxt">
+                                            泵<span>1</span>(<i>主</i>)
+                                        </div>
+                                    </div>
+                                    <ul class="pumpItemBox">
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic dianLiu"></div>
+                                            <div class="pumpItemName space">电流:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic yunTime"></div>
+                                            <div class="pumpItemName">运行时间:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="pumpFoot">
+                                        <button class="pumpStart">远程启动</button>
+                                        <button class="pumpStop">远程停止</button>
+                                    </div>
+                                </div>
+
+                                <!--7-->
+
+                                <div class="pumpStopStart">
+                                    <div class="pumpHeader clearfix">
+                                        <div class="pumpHeaderPic zhu warn"></div>
+                                        <div class="pumpHeaderTxt">
+                                            泵<span>1</span>(<i>主</i>)
+                                        </div>
+                                    </div>
+                                    <ul class="pumpItemBox">
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic dianLiu"></div>
+                                            <div class="pumpItemName space">电流:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                        <li class="pumpItem clearfix">
+                                            <div class="pumpItemPic yunTime"></div>
+                                            <div class="pumpItemName">运行时间:</div>
+                                            <div class="pumpItemNum"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="pumpFoot">
+                                        <button class="pumpStart">远程启动</button>
+                                        <button class="pumpStop">远程停止</button>
+                                    </div>
+                                </div>
+
+                                <!--10-->
+
+                                <div class="dianDongFa">
+                                    <div class="dianDongFaHeader">
+                                        <div class="dianDongFaNum"></div>
+                                        <div class="dianDongFaTxt">1#电动阀开度</div>
+                                    </div>
+                                    <div class="dianDongFaMid ">
+                                        <button class="allOpen">全开</button>
+                                        <button class="allClose">全关</button>
+                                    </div>
+                                    <div class="dianDongFaFoot">
+                                        <button class="dianDongFaSet">设置</button>
+                                        <button class="dianDongFaReset">复位</button>
+                                    </div>
+                                </div>
+
+
+                                <!--10-->
+
+                                <div class="dianDongFa">
+                                    <div class="dianDongFaHeader">
+                                        <div class="dianDongFaNum"></div>
+                                        <div class="dianDongFaTxt">1#电动阀开度</div>
+                                    </div>
+                                    <div class="dianDongFaMid ">
+                                        <button class="allOpen">全开</button>
+                                        <button class="allClose">全关</button>
+                                    </div>
+                                    <div class="dianDongFaFoot">
+                                        <button class="dianDongFaSet">设置</button>
+                                        <button class="dianDongFaReset">复位</button>
+                                    </div>
+                                </div>
+
+                                <!--11-->
+
+                                <div class="paiShui clearfix">
+                                    <div class="paiShuiLeft">
+                                        <div class="paiShuiLeftHeader">排水泵</div>
+                                        <ul class="paiShuiList">
+                                            <li class="warn"></li>
+                                            <li></li>
+                                            <li class="run"></li>
+                                            <li></li>
+                                        </ul>
+                                    </div>
+                                    <div class="paiShuiRight">
+                                        <button class="paiShuiOpen active">开</button><button class="paiShuiClose">关</button>
+                                    </div>
+                                </div>
+                            </li>     
+                        </ul>
+                    </div>
+                    <div class="setBox  ">
+
+                        <!--1-->
+                        <div class="timeAdress">
+                            <div class="timeSetBtn">设置</div>
+                            <div class="timeBox clearfix">
+                                <div class="timeBoxPic"></div>
+                                <div class="timeBoxTxt">采集时间：<span class="timeBoxTxtContent"></span></div>
+                            </div>
+                            <div class="adressBox">
+                                <div class="adressBoxPic"></div>
+                                <div class="adressBoxTxt">泵房地址：<span class="adressBoxTxtContent">上海青浦徐泾明珠路</span></div>
+                            </div>
+                            <div class="caiJiBox"> 
+                                <div class="caiJiBoxPic clearfix"></div>
+                                <div class="caiJiTxt">采集间隔：</div>
+                                    <div class="selectBox selectB">
+                                        <div class="select_text">30s</div>
+                                        <ul class="select_ul">
+                                            <li class="" data-value="0">请选择</li>
+                                            <li data-value="1" class="">10s</li>
+                                            <li data-value="2" class="cur">30s</li>
+                                            <li data-value="3" class="">60s</li>
+                                            <li data-value="4" class="">2分钟</li>
+                                            <li data-value="5" class="">5分钟</li>
+                                            <li data-value="6" class="">10分钟</li>
+                                            <li data-value="6" class="">15分钟</li>
+                                            <li data-value="6" class="">30分钟</li>
+                                            <li data-value="6" class="">1小时</li>
+                                        </ul>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <!--2-->
+                        <ul class="menDengBox clearfix">
+
+                            <li class="menDengItem F_szmb_m" data-name="F41717">
+                                <div class="menDengItemTop">
+                                    <div class="menDengTopPic F_szmb_m"></div>
+                                    <div class="menDengTopTxt">门</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <button class="menDengOpen">开</button><button class="menDengClose">关</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem F_szmb_d" data-name="F41718">
+                                <div class="menDengItemTop">
+                                    <div class="menDengTopPic F_szmb_d"></div>
+                                    <div class="menDengTopTxt">灯</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <button class="menDengOpen">开</button><button class="menDengClose">关</button>
+                                </div>
+                            </li>
+                            
+                            <li class="menDengItem F_szmb_psb" data-name="F41719">
+                                <div class="menDengItemTop">
+                                    <div class="menDengTopPic F_szmb_psb"></div>
+                                    <div class="menDengTopTxt">排水泵</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <button class="menDengOpen active">开</button><button class="menDengClose">关</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem F_szmb_xdy" data-name="F41720">
+                                <div class="menDengItemTop">
+                                    <div class="menDengTopPic F_szmb_xdy"></div>
+                                    <div class="menDengTopTxt">消毒液</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <button class="menDengOpen">开</button><button class="menDengClose">关</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem F_szmb_fswd" data-name="F41715" data-name2="F41716">
+                                <div class="menDengItemTop">
+                                    <div class="menDengTopPic F_szmb_fswd"></div>
+                                    <div class="menDengTopTxt">风扇温度</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <button class="menDengOpen">开</button><button class="menDengClose">关</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem diandongfa F_szmb_ddf" data-name="F41709">
+                                <div class="menDengItemTop">
+                                    <div class="diandongfaPic F_szmb_ddf">
+                                        <div class="diandongfaBg"></div>
+                                    </div>
+                                    <div class="menDengTopTxt">1#电动阀</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <input class="dataValBox"><button class="dianDongFaSet">设置</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem chushuiya F_szmb_csyl" data-name="F41702">
+                                <div class="menDengItemTop">
+                                    <div class="chushuiyaPic F_szmb_csyl">
+                                        <div class="chushuiyaBg"></div>
+                                    </div>
+                                    <div class="menDengTopTxt">出水压力</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <input class="chuShuiValBox"><button class="chuShuiYaSet">设置</button>
+                                </div>
+                            </li>
+                            <li class="menDengItem dingshi F_szmb_dsqh" data-name="F41713">
+                                <div class="menDengItemTop">
+                                    <div class="dingshiPic F_szmb_dsqh">
+                                        <div class="dingshiBg"></div>
+                                    </div>
+                                    <div class="menDengTopTxt">定时切换</div>
+                                </div>
+                                <div class="menDengButtonBox">
+                                    <input class="dingShiBox"><button class="dingShiSet">设置</button>
+                                </div>
+                            </li>
+                        </ul>
+
+
+
+                        <!--3-->
+
+                        <ul class="kongzhiStop">
+                            <li class="kongzhiItem F_szmb_sbjjqt clearfix" data-name="F41701">
+                                <div class="kongzhiLeft">
+                                    控制设备急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt1 clearfix" data-name="F41703">
+                                <div class="kongzhiLeft">
+                                    控制1#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt2 clearfix" data-name="F41704">
+                                <div class="kongzhiLeft">
+                                    控制2#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt3 clearfix" data-name="F41705">
+                                <div class="kongzhiLeft">
+                                    控制3#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt4 clearfix" data-name="F41706">
+                                <div class="kongzhiLeft">
+                                    控制4#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt5clearfix" data-name="F41707">
+                                <div class="kongzhiLeft">
+                                    控制5#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                            <li class="kongzhiItem F_szmb_kzbqt6 clearfix" data-name="F41708">
+                                <div class="kongzhiLeft">
+                                    控制6#泵急起急停
+                                </div>
+                                <div class="kongzhiRight clearfix">
+                                    <button class="start">启动</button>
+                                    <button class="stop ">停止</button>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--4-->
+
+                        <div class="xianDingSet clearfix">
+                            <div class="xianDingHeader clearfix">
+                                <div class="xianDingHeaderBg clearfix"></div>
+                                <div class="xianDingHeaderName">限定设置</div>
+                                <button class="xianDingHeaderBtn">保存</button>
+                            </div>
+                            <div class="xianDingMid">
+                                <div class="shangX">上限：</div><div class="xiaX">下限：</div>
+                            </div>
+                            <ul class="xianDingList">
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">进水压力</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineName"></div>
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">出水压力</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineName"></div>
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">余氯值</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineName"></div>
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">浊度值</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineName"></div>
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">PH值</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineName"></div>
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+                                <li class="xianDingItem clearfix">
+                                    <div class="xianDingName">水箱</div>
+                                    <div class="topLineBox clearfix">
+                                         
+                                        <div class="topLineOld"></div>
+                                        <input type="text" class="topLineNew" />
+                                    </div>
+                                    <div class="bottomLineBox">
+                                        <div class="bottomLineOld"></div>
+                                        <input type="text" class="bottomLineNew" />
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pageRightBot">
+                <div class="mapBoxShowHide show"></div>
+                <ul class="rightBotTab clearfix">
+                    <li class="rightBotTabItem clearfix active">
+                        <div class="rightBotTabItemPic"></div>
+                        <div class="rightBotTabItemTxt">地图</div>
+                    </li>
+                    <li class="rightBotTabItem clearfix">
+                        <div class="rightBotTabItemPic"></div>
+                        <div class="rightBotTabItemTxt">视频</div>
+                    </li>
+                </ul>
+                <div class="rightBotMainBox">
+                    <div id="mapBox" class="mapBox active"></div>
+                    <div class="videoBox">
+                        <iframe id="videoIframe" class="videoIframe" name="videoIframe" src="" frameborder="0"></iframe>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="rightShowBtn">
+        <li class="midShow"></li>
+        <li class="rightShow"></li>
+    </ul>
+}
+@section script {
+    <script src="~/res/YCJK/js/flow.js"></script>
+<script src="~/res/YCJK/js/MidChart.js"></script>
+    <script src="~/res/YCJK/js/bengfangSheBeiMain.js"></script>
+    <script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+    <script src="~/res/js/radialIndicator.js"></script>
+    <script src="~/res/YCJK/js/jquery.gritter.min.js"></script>
+
+}

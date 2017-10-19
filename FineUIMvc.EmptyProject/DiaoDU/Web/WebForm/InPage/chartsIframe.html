@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style>
+			#myChart {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="myChart"></div>
+		<script src="js/jquery-2.1.0.js"></script>
+		<script src="js/echarts.min.js"></script>
+		<script>
+			$(function(){
+				var myChar=echarts.init(document.getElementById('myChart'));
+				
+				var  optionInit ={
+					 title: {
+                    text: '实时压力曲线图',
+                    textStyle: {
+                        color: 'rgb(0,0,0)'
+                    }
+                },
+                grid: {
+                    left: 40,
+                    right: 45,
+                    bottom: 30
+                },
+                 tooltip: {
+                        trigger: 'axis',
+                        backgroundColor: 'rgba(28,136,151,0.6)',
+                        padding: [5, 10],
+                        axisPointer: {
+                            lineStyle: {
+                                color: 'rgba(37,211,186,0.7)'   
+                            }
+                        }
+                 },
+                legend: {
+                    data: ['当天'],
+                    textStyle: {
+                        color: '#000',
+                    },
+                //    selected: {
+                //        '当月': true
+                //    }
+                },
+                xAxis: {
+                    show: 'false',
+                    type: 'category',
+                    name:"时间",
+                    axisLabel: {
+                        textStyle: {
+                            color: '#000'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                   // boundaryGap: true,
+                    data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                    //data: []
+                },
+                yAxis: {
+                    show: true,
+                    type: 'value',
+                    name:"压力值(MPa)",
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: 'rgb(0,0,0)',
+                            fontSize: 12,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['rgba(27, 131, 167,0.5)'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
+                },
+                series: [ {
+                    name: '当天',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        smooth:true,                      
+                    },                 
+                    data: ["0.274", "0.277", "0.274", "0.281", "0.277", "0.274", "0.279", "0.282", "0.274", "0.268", "0.276", "0.266", "0.260", "0.267", "0.277", "0.278", "0.287", "0.287", "0.282", "0.287", "0.287", "0.281", "0.276", "0.275", "0.254", "0.259", "0.282", "0.283", "0.286", "0.279", "0.279", "0.282", "0.278", "0.251", "0.271", "0.281", "0.270", "0.283", "0.282", "0.285", "0.277", "0.276", "0.267", "0.267", "0.268", "0.261", "0.250", "0.240", "0.212", "0.203", "0.203", "0.214", "0.189", "0.183", "0.184", "0.208", "0.207", "0.197", "0.188", "0.207", "0.198", "0.191", "0.197", "0.198", "0.188", "0.197", "0.180", "0.176", "0.168", "0.186", "0.178"]
+                    //data:[]
+                }]
+				};
+				myChar.setOption(optionInit);
+				
+			})
+		</script>
+	</body>
+</html>

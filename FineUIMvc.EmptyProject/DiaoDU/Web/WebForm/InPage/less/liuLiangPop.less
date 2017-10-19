@@ -1,0 +1,347 @@
+.textDot {
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.box {
+    width: 100%;
+    height: 100%;
+    background: #A6A6A6;
+} 
+.liuLiangBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 332px;
+    height: 558px;
+    border-radius: 8px; 
+    overflow: hidden;
+    margin-left: -166px;
+    margin-top: -1000888px;
+    //margin-top: -279px;
+    background: url(../img/warnNodataBg.png) no-repeat #fff center center;
+     -webkit-box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    
+}  
+.liuLiangA, .liuLiangB {
+    position: absolute;
+    top: 0;
+    left: 0;
+    float: left;
+    width: 332px;
+    height: 558px;
+    background: #f2f2f6;
+    overflow: hidden;
+    border-radius: 8px;
+    -webkit-box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    
+}
+.liuLiangA {
+//  margin-left: -332px;
+z-index: 3;
+}
+.liuLiangA .aHeader {
+    position: relative;
+    width: 332px;
+    height: 220px;
+    border-radius: 8px 8px 0 0;
+    .imgBox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 220px;
+        background: #0f699e;
+    }
+    .timeBox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 332px;
+        height: 42px;
+        font-size: 12px;
+        border-radius: 8px 8px 0 0;
+        .caiJiTime {
+            cursor: pointer;
+            color: #fff;
+            font-size: 12px;
+            padding: 12px 0 0 18px;
+            width: 220px;
+            .textDot;
+        }
+        
+    }
+    .numberBox {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 332px;
+        height: 30px;
+        line-height: 30px;
+        .pumpName {
+            float: left;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            padding-left: 18px;
+            width: 180px;
+            .textDot;
+        }
+        .pumpNumber {
+            float: right;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            text-align: right;
+            padding-right: 18px;
+            width: 100px;
+            overflow: hidden;
+        }
+    }
+    
+}
+
+.closeBox {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    cursor: pointer;
+        -webkit-transition: all .8s ease-in;
+             -o-transition: all .8s ease-in;
+                transition: all .8s ease-in;
+    -webkit-transform-origin: 17px 18px;
+       -moz-transform-origin: 17px 18px;
+        -ms-transform-origin: 17px 18px;
+         -o-transform-origin: 17px 18px;
+            transform-origin: 17px 18px;
+    &:hover {
+        -webkit-transform: rotateZ(700deg);
+        -ms-transform: rotateZ(700deg);
+         -o-transform: rotateZ(700deg);
+            transform: rotateZ(700deg);
+    }
+    .close {
+        font-size: 34px;
+        z-index: 1;
+        font-weight: bold; 
+        color: #fff;
+    }
+
+}
+
+.liuLiangA .aContentList {
+    margin-top: 10px;
+    width: 332px;
+    height: 316px;
+    background: #fff;
+    border-top: 1px solid #d9d8d9;
+    border-bottom: 1px solid #d9d8d9;
+    .power_box {
+        width: 332px;
+        >li {
+            width: 324px;
+            height: 39px;
+            line-height: 39px;
+            font-size: 12px;
+            margin-left: 8px;
+            border-bottom: 1px solid #d9d8d9;
+            .power_name {
+                float: left;
+                height: 39px;
+                padding: 0 6px 0 3px;
+            }
+            .tubiaoList {
+                float: left;
+                padding-top: 10px;
+                >li {
+                    float: left;
+                    width: 20px;
+                    height: 20px;
+                    background: url(../img/liuLiangPopABg.png) no-repeat   ;
+                    margin-right: 4px;
+                    cursor: pointer;
+                    &.bingtu {
+                        background-position: 2px -212px;
+                    }
+                    &.quxian {
+                        background-position: 2px -141px;
+                    }
+                    &.zhuxing {
+                        background-position: 2px -70px;
+                    }
+                    &.set {
+                        background-position: 2px -356px;
+                    }
+                }
+            }
+            .number {
+                width: 70px;
+                padding-right: 20px;
+                float: right;
+                text-align: right;
+                color: #aeaeae;
+            }
+        }
+    }
+}  
+
+.liuLiangB .bHeader {
+    position: relative;
+    width: 332px;
+    height: 142px;
+    padding: 4px 0 0 5px;
+    background: #3a86b2; //#24B9FF;
+    .backBox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        cursor: pointer;
+        color: #fff;
+        width: 34px;
+        height: 34px;
+        .backBtn {
+            color: #fff;
+            display: inline-block;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            background: url(../img/backBtn.png) no-repeat 5px 10px;
+        }
+        
+    }
+    #echart_box {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 332px;
+            height: 84px;
+           // background: red;
+        }
+}  
+
+
+//统一样式
+.liuLiangB .bRightUl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 280px;
+    height: 412px; 
+    font-size: 12px;
+    .bRightItem {
+        width: 100%;
+        border-bottom: 1px solid #d9d8d9;
+        height: 39px;
+        line-height: 39px;
+        cursor: pointer;
+        .bRightItemName {
+            max-width: 60px;
+            float: left;
+            .textDot;
+        }
+        .bRightItemNumber {
+            max-width: 200px;
+            float: right;
+            padding-right: 16px;
+            color: #aeaeae;
+            .textDot;
+        }
+    } 
+}
+
+.liuLiangB .bContentBox {
+    height: 412px;
+    width: 332px;
+    background: #fff;
+    .cotentLeftNav {
+        float: left;
+        width: 36px;
+        
+        height: 100%;
+        background: #f2f2f2;
+        >li {
+            width: 36px;
+            height: 36px;
+            border-bottom: 1px solid #dadada;
+            background: url(../img/mapShowNav.png) no-repeat;
+            cursor: pointer;
+            &:hover, &.active {
+                    background-color: #fff;
+                }
+            &.info {
+                background-position: 10px -22px;
+                
+            }
+            &.baobiao {
+                background-position: 10px -56px;
+            }
+            &.baojing {
+                background-position: 10px -88px;
+            }
+        }
+    }
+    .bRightContentWrap {
+        position: relative;
+        float: right;
+        width: 280px;
+        height: 412px;
+        background: #fff;
+        .bRightUl.info {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            z-index: 2;
+        }
+    }
+}
+
+
+
+
+.baoBiaoBox {
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+   // background: #ddd;
+   .baoBiaoUl {
+       width: 100%;
+       cursor: pointer;
+       font-size: 12px;
+       >li {
+           height: 36px;
+           width: 100%;
+           line-height: 36px;
+           text-indent: 18px;
+           border-bottom: 1px solid #ddd;
+           .leftBG {
+             
+               margin: 11px;
+              display: block;
+              float: left;
+               width: 14px; 
+               height: 14px; 
+               background: #f2f2f2;
+           }
+           .rightName {
+               float: left;
+           }
+           &:hover {
+               background: #eee;
+           }
+       }
+   }
+}

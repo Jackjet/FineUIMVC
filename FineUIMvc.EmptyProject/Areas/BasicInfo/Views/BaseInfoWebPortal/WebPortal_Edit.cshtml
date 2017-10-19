@@ -1,0 +1,56 @@
+﻿
+@model FineUIMvc.PumpMVC.Models.WebPortal
+@{
+    ViewBag.Title = "WebPortal_Edit";
+    var F = @Html.F();
+}
+@section body {
+    @(F.SimpleForm()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                                 .OnClick(Url.Action("btnWebPortalEdit_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                 F.TextBoxFor(x => x.Name)
+                    .Label("门户名称")
+                    .EmptyText("请输入门户名称")
+                    .ID("tbxName")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+                F.TextBoxFor(x => x.Address)
+                    .Label("门户地址")
+                    .EmptyText("请输入门户地址")
+                    .ID("tbxAddress")
+                    .LabelWidth(80)
+                    .Required(true)
+                    .ShowRedStar(true),
+              
+                 F.HiddenFieldFor(x => x.ID)
+                    .ID("tbxID")
+        )
+    )
+}
+
+@section script {
+    <script>
+
+
+    </script>
+}
+
+
+
+

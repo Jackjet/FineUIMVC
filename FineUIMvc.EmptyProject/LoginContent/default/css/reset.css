@@ -1,0 +1,26 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html,body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+    font-family: "Î¢ÈíÑÅºÚ";
+}
+a {
+    text-decoration: none;
+}
+li {
+	list-style: none;
+}
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after {
+	content: '';
+	height: 0;
+	display: block;
+	clear: both;
+} 
+

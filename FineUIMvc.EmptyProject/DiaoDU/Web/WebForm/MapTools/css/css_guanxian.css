@@ -1,0 +1,60 @@
+﻿
+.map_property,.ele_property{
+      border-bottom: 1px solid rgb(87,87,87);
+}
+.map_property>div,.ele_property>div{
+    height: 26px;
+    line-height:26px;
+    border-bottom: 1px solid rgb(88,88,88);
+    position: relative;
+}
+.tri_ico{
+    display:inline-block;
+    width: 0px;
+    border-top: 6px solid #fff;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    cursor: pointer;
+}
+
+.prop_title{
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 26px;
+    padding-left: 5px;
+    border-left:1px solid rgb(87,87,87);
+   
+}
+
+.map_property_list input,.property_list input{
+	display: inline-block;
+	height: 22px;	
+    width: 132px;
+	text-indent: 4px;
+    padding-right: 16px;
+	background: rgb(115,115,116);
+	border: none;
+	border-radius: 2px;
+	color: #fff;	
+}
+.map_property_list label,.property_list label{
+	display: inline-block;
+	width: 80px;
+	margin-right: 5px;
+	text-indent: 6px;
+	/*border-right: 1px solid rgba(255,255,255,0.5);*/
+}
+.map_property_list,.property_list{		
+	
+    padding-left: 26px;   
+}
+.map_property_list li,.property_list li{
+	/*height: 28px;*/
+	line-height: 28px;
+    border-left: 1px solid rgb(87,87,87);
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}

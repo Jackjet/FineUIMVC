@@ -1,0 +1,818 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: content-box;
+}
+.borderRadius5 {
+  border-radius: 5px;
+}
+.borderRadiusBotom {
+  border-radius: 0 0 5px 5px;
+}
+.borderTop2 {
+  border-top: 2px solid #438eb9;
+}
+.dataItemWrap {
+  width: 1000px;
+  height: 551px;
+  padding: 4px 4px;
+  background: #eaeaea;
+}
+.dataItemTop {
+  width: 1000px;
+  height: 420px;
+}
+.dataItemLeft {
+  float: left;
+  width: 393px;
+  height: 420px;
+  margin-right: 2px;
+  border-radius: 5px;
+  background: #fff;
+}
+.dataItemLeft .surroundingsValBox {
+  width: 100%;
+  height: 210px;
+  box-sizing: border-box;
+  padding-top: 10px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValBoxHeader {
+  height: 28px;
+  line-height: 28px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValBoxHeader .surroundingsValHeaderPic {
+  float: left;
+  width: 24px;
+  height: 28px;
+  line-height: 28px;
+  margin-left: 14px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px 8px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValBoxHeader .surroundingsValHeaderTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain {
+  height: 171px;
+  padding-top: 10px;
+  padding-left: 18px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li {
+  float: left;
+  width: 60px;
+  height: 72px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li .itemCheckBox .itemCheckPic {
+  width: 10px;
+  height: 16px;
+  margin: 3px auto 0px;
+  background: url(../img/checkPic.png) no-repeat;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(1) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: 8px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(2) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -139px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(3) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -286px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(4) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -1386px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(5) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -358px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(6) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -65px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(7) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -212px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(8) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -1532px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li:nth-of-type(9) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  background-position: -1457px 4px;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li.active {
+  background: #188df0;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li.active .surroundingsValItemBox {
+  background: #fff;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li.active .surroundingsValItemBox .surroundingsValPicWrap {
+  background: #188df0;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li .surroundingsValItemBox {
+  background: #f4f4f4;
+  padding-top: 8px;
+  width: 58px;
+  height: 48px;
+  border-radius: 5px 5px 0 0;
+  margin: 1px;
+  margin-bottom: none;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li .surroundingsValItemBox .surroundingsValPicWrap {
+  margin: 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #b9b9b9;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: url(../img/yuZhuoPh.png) no-repeat;
+}
+.dataItemLeft .surroundingsValBox .surroundingsValMain > li .surroundingsValItemBox .surroundingsValItemTxt {
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemLeft .surroundingsStateBox {
+  width: 100%;
+  height: 210px;
+  box-sizing: border-box;
+  padding-top: 10px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateBoxHeader {
+  height: 28px;
+  line-height: 28px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateBoxHeader .surroundingsStateHeaderPic {
+  float: left;
+  width: 24px;
+  height: 28px;
+  line-height: 28px;
+  margin-left: 14px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -393px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateBoxHeader .surroundingsStateHeaderTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain {
+  height: 171px;
+  padding-top: 10px;
+  padding-left: 18px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li {
+  float: left;
+  width: 60px;
+  height: 72px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li .itemCheckBox .itemCheckPic {
+  width: 10px;
+  height: 16px;
+  margin: 3px auto 0px;
+  background: url(../img/checkPic.png) no-repeat;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(1) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -798px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(2) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -945px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(3) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -1164px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(4) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -1311px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(5) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -1604px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(6) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -725px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li:nth-of-type(7) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  background-position: -1019px 4px;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li.active {
+  background: #188df0;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li.active .surroundingsStateItemBox {
+  background: #fff;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li.active .surroundingsStateItemBox .surroundingsStatePicWrap {
+  background: #188df0;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li .surroundingsStateItemBox {
+  background: #f4f4f4;
+  padding-top: 8px;
+  width: 58px;
+  height: 48px;
+  border-radius: 5px 5px 0 0;
+  margin: 1px;
+  margin-bottom: none;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li .surroundingsStateItemBox .surroundingsStatePicWrap {
+  margin: 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #b9b9b9;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+  width: 100%;
+  height: 100%;
+  background: url(../img/yuZhuoPh.png) no-repeat;
+}
+.dataItemLeft .surroundingsStateBox .surroundingsStateMain > li .surroundingsStateItemBox .surroundingsStateItemTxt {
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRight {
+  float: left;
+  width: 605px;
+  height: 420px;
+}
+.dataItemRight .dataItemRightTop {
+  width: 100%;
+  height: 170px;
+}
+.dataItemRight .dataItemRightTop .pumpBox {
+  float: left;
+  width: 124px;
+  height: 170px;
+  margin-right: 3px;
+  border-radius: 5px;
+  background: #fff;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpHeader .pumpPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -49px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpHeader .pumpTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain {
+  position: relative;
+  width: 92px;
+  height: 110px;
+  margin: 7px auto;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain.active {
+  border: 1px solid #188df0;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpMainPic {
+  width: 27px;
+  height: 27px;
+  margin: 12px auto;
+  background: #b9b9b9;
+  border-radius: 50%;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpMainPic.active {
+  background: #188df0;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpMainPic .pumpPic {
+  height: 100%;
+  width: 100%;
+  background: url(../img/paishuiPic.png) no-repeat 5px 5px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpDian {
+  color: #b3b3b3;
+  cursor: pointer;
+  background: url(../img/checkItem.png) no-repeat 19px -36px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpDian.active {
+  color: #188df0;
+  background-position: 19px 4px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpYun {
+  color: #b3b3b3;
+  cursor: pointer;
+  background: url(../img/checkItem.png) no-repeat 8px -36px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpYun.active {
+  color: #188df0;
+  background-position: 8px 4px;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpCheck {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 21px;
+  height: 16px;
+  border-radius: 0 0 5px 0;
+}
+.dataItemRight .dataItemRightTop .pumpBox .pumpMain .pumpCheck.active {
+  background: url(../img/rightCheck.png) no-repeat;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox {
+  float: left;
+  width: 173px;
+  height: 170px;
+  margin-right: 3px;
+  border-radius: 5px;
+  background: #fff;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaHeader .dianDongFaPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -106px;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaHeader .dianDongFaTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain {
+  padding: 6px 13px;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain > div {
+  position: relative;
+  float: left;
+  width: 68px;
+  height: 34px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  margin: 2px;
+  margin-bottom: 4px;
+  color: #717171;
+  cursor: pointer;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain > div > div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 3px 0;
+  width: 21px;
+  height: 16px;
+  background: url(../img/rightCheck.png) no-repeat;
+  display: none;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain > div:hover {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain > div.active {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .dianDongFaBox .dianDongFaMain > div.active > div {
+  display: block;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox {
+  float: left;
+  width: 173px;
+  height: 170px;
+  margin-right: 4px;
+  border-radius: 5px;
+  background: #fff;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangHeader .shuiXiangPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -163px;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangHeader .shuiXiangTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain {
+  padding: 6px 13px;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain > div {
+  position: relative;
+  float: left;
+  width: 68px;
+  height: 34px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  margin: 2px;
+  margin-bottom: 4px;
+  color: #717171;
+  cursor: pointer;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain > div > div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 3px 0;
+  width: 20px;
+  height: 16px;
+  background: url(../img/rightCheck.png) no-repeat;
+  display: none;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain > div:hover {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain > div.active {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .shuiXiangBox .shuiXiangMain > div.active > div {
+  display: block;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox {
+  float: left;
+  width: 124px;
+  height: 170px;
+  border-radius: 5px;
+  background: #fff;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterHeader .pressOutWaterPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -221px;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterHeader .pressOutWaterTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterMain > div {
+  position: relative;
+  width: 68px;
+  height: 34px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  margin: 4px auto ;
+  margin-bottom: 4px;
+  color: #717171;
+  cursor: pointer;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterMain > div > div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 3px 0;
+  width: 20px;
+  height: 16px;
+  background: url(../img/rightCheck.png) no-repeat;
+  display: none;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterMain > div:hover {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterMain > div.active {
+  background: #e0f4ff;
+}
+.dataItemRight .dataItemRightTop .pressOutWaterBox .pressOutWaterMain > div.active > div {
+  display: block;
+}
+.dataItemRightBot {
+  margin-top: 3px;
+  width: 605px;
+  height: 247px;
+}
+.dataItemRightBot .bianPin {
+  float: left;
+  width: 200px;
+  height: 247px;
+  background: #fff;
+  margin-right: 2px;
+}
+.dataItemRightBot .bianPin .bianPinHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRightBot .bianPin .bianPinHeader .bianPinPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -336px;
+}
+.dataItemRightBot .bianPin .bianPinHeader .bianPinTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinTop {
+  width: 100%;
+  height: 96px;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinTop > div {
+  position: relative;
+  float: left;
+  width: 42px;
+  height: 30px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 34px;
+  text-align: center;
+  margin: 10px 12px ;
+  color: #717171;
+  cursor: pointer;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinTop > div > div {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 3px 0;
+  width: 20px;
+  height: 16px;
+  background: url(../img/rightCheck.png) no-repeat;
+  display: none;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinTop > div.active {
+  background: #e0f4ff;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinTop > div.active > div {
+  display: block;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinBot {
+  width: 176px;
+  height: 96px;
+  margin: 4px auto;
+  border-radius: 3px;
+  background: #f4f4f4;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinBot > div {
+  float: left;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #b3b3b3;
+  margin-top: 8px;
+  margin-left: 6px;
+  text-indent: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  background: url(../img/checkItem.png) no-repeat 8px -35px;
+}
+.dataItemRightBot .bianPin .bianPinMain .bianPinBot > div.active {
+  color: #188df0;
+  background-position: 8px 5px;
+}
+.dataItemRightBot .others {
+  float: left;
+  width: 403px;
+  height: 247px;
+  background: #fff;
+}
+.dataItemRightBot .others .othersHeader {
+  width: 124px;
+  height: 30px;
+  padding-top: 6px;
+  line-height: 30px;
+}
+.dataItemRightBot .others .othersHeader .othersPic {
+  float: left;
+  width: 24px;
+  height: 30px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -278px;
+}
+.dataItemRightBot .others .othersHeader .othersTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemRightBot .others .othersMain .otherBox {
+  padding: 8px;
+}
+.dataItemRightBot .others .othersMain .otherBox li {
+  float: left;
+  width: 110px;
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: center;
+  color: #717171;
+  background: #f4f4f4;
+  cursor: pointer;
+  margin: 4px;
+  border-radius: 3px;
+}
+.dataItemRightBot .others .othersMain .otherBox li.active,
+.dataItemRightBot .others .othersMain .otherBox li:hover {
+  background: #e0f4ff;
+}
+.dataItemBot {
+  margin-top: 8px;
+  width: 1000px;
+  height: 122px;
+}
+.dataItemBot .dataItemBotLeft {
+  float: left;
+  width: 875px;
+  height: 120px;
+  margin-right: 3px;
+  background: #fff;
+  border-top: 2px solid #438eb9;
+  border-radius: 0 0 5px 5px;
+}
+.dataItemBot .dataItemBotLeft .panalHeader {
+  position: relative;
+  width: 875px;
+  height: 31px;
+  border-bottom: 1px solid #ededed;
+  line-height: 31px;
+}
+.dataItemBot .dataItemBotLeft .panalHeader .panalHeaderPic {
+  float: left;
+  width: 24px;
+  height: 31px;
+  margin-left: 14px;
+  background: url(../img/dataItemSmallPic.png) no-repeat 5px -450px;
+}
+.dataItemBot .dataItemBotLeft .panalHeader .panalHeaderTxt {
+  float: left;
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox {
+  width: 967px;
+  height: 78px;
+  padding-top: 10px;
+  padding-left: 33px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li {
+  float: left;
+  width: 60px;
+  height: 72px;
+  margin-right: 45px;
+  text-align: center;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li .itemCheckBox .itemCheckPic {
+  width: 10px;
+  height: 16px;
+  margin: 3px auto 0px;
+  background: url(../img/checkPic.png) no-repeat;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(1) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -798px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(2) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -945px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(3) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -1237px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(4) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background: url(../img/paishuiPic.png) no-repeat 5px 5px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(5) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -432px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(6) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -506px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(7) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -578px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li:nth-of-type(8) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  background-position: -651px 4px;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li.active {
+  background: #188df0;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li.active .panalItemPicBox {
+  background: #fff;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li.active .panalItemPicBox .panalItemPicWrap {
+  background: #188df0;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li .panalItemPicBox {
+  background: #f4f4f4;
+  padding-top: 8px;
+  width: 58px;
+  height: 48px;
+  border-radius: 5px 5px 0 0;
+  margin: 1px;
+  margin-bottom: none;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li .panalItemPicBox .panalItemPicWrap {
+  margin: 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #b9b9b9;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li .panalItemPicBox .panalItemPicWrap .panalItemPic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: url(../img/yuZhuoPh.png) no-repeat;
+}
+.dataItemBot .dataItemBotLeft .panalItemBox > li .panalItemPicBox .panalItemTxt {
+  font-size: 12px;
+  color: #333333;
+}
+.dataItemBot .dataItemBotRight {
+  float: left;
+  width: 122px;
+  height: 120px;
+  border-top: 2px solid #438eb9;
+  border-radius: 0 0 5px 5px;
+  background: #fff;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing {
+  width: 122px;
+  height: 120px;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing li {
+  position: relative;
+  width: 110px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-size: 12px;
+  color: #717171;
+  margin: 5px auto;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing li .checkBg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 21px;
+  height: 16px;
+  border-radius: 0 0 5px 0;
+  background: url(../img/rightCheck.png) no-repeat;
+  display: none;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing li:hover {
+  background: #e0f4ff;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing li.active {
+  background: #e0f4ff;
+}
+.dataItemBot .dataItemBotRight .sheBeiQiTing li.active .checkBg {
+  display: block;
+}
+.checkAll {
+  float: right;
+  width: 56px;
+  height: 31px;
+  margin-right: 14px;
+  text-indent: 24px;
+  font-size: 12px;
+  color: #969696;
+  cursor: pointer;
+  background: url(../img/checkAll.png) no-repeat 7px 9px;
+}
+.checkAll.active {
+  background-position: 7px -32px;
+  color: #188df0;
+}

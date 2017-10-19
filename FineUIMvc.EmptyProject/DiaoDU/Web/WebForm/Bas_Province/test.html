@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title></title>    
+        <script src="jquery-1.6.2.min.js"></script>
+        <script language="javascript" type="text/javascript">
+
+            var json = "[{\"id\": \"1\",\"FName\": \"F7-10号厂房喷淋泵房\",\"FLifeOutNum\": \"3\",\"FFireOutNum\": \"4\",\"FSprayOutNum\": \"5\"}]";
+
+            $.ajax({
+                url: "../../Service/T_DataMainService.ashx?method=GetCurrentAll&FPumpID=1&FPassword=admin",
+                data: { data: json },
+                success: function (text) {
+                
+                    $("#output").html(text);
+                },
+                error: function () {
+                }
+            });
+
+        </script>
+    </head>
+<body>
+    <div id="output">
+    </div>
+</body>
+</html>

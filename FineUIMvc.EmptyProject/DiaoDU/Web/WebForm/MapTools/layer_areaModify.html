@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>修改所属区域</title>
+    <script src="js/jquery-2.1.0.js"></script>
+    <style type="text/css">
+        body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .select_wrap {
+            width: 580px;
+            height: 300px;
+            border: 0px solid red;
+            margin: 30px auto;
+            padding: 10px;
+            position: relative;
+        }
+
+        .styleSelect {
+            width: 200px;
+            height: 260px;
+            overflow: auto;
+            float: left;
+            border: 1px solid #048da3;
+            border-radius: 2px;
+        }
+        .styleSelect  li{
+            padding: 8px;
+            font-size: 12px;
+            font-family: "微软雅黑";
+            cursor: pointer;
+            margin-bottom: 2px;
+        }
+            .styleSelect li:hover {
+                background-color: #b3d5ee;
+            }
+            .styleSelect li.current {
+                background-color: #b3d5ee;
+            }
+        .rightSelect {
+                float: right;
+            }
+        .btnBox {
+            width: 80px;
+            border: 0px solid red;
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            margin-left: -40px;
+        }
+        .btnStyle {
+            padding: 6px 8px;
+            width: 80px;
+            border: 1px solid #969090;
+            border-radius: 4px;
+            margin-top: 8px;
+            cursor: pointer;
+            background-color: #4cabc7;
+            color: #fff;
+        }
+       
+     
+        /*#acBtn {
+            position: absolute;
+            bottom: 100px;
+            right: 0px;
+        }*/
+    </style>
+</head>
+<body>
+    <div class="select_wrap">
+        <ul class="styleSelect leftSelect" >
+            <li data-areaid="11">区域1</li>
+            <li data-areaid="22">区域2</li>
+            <li data-areaid="33">区域3</li>
+            <li data-areaid="44">区域4</li>
+            <li data-areaid="55">区域5</li>
+            <li data-areaid="66">区域6</li>
+        </ul>
+        <ul class="styleSelect rightSelect" >
+            
+        </ul>
+        <div class="btnBox">
+            <button id="toRight" class="btnStyle">向右</button>
+            <button id="toLeft" class="btnStyle">向左</button>
+            <button id="acBtn" class="btnStyle">确认</button>
+        </div>
+        
+        
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".styleSelect").on('click','li',function () {
+                $(this).toggleClass("current");
+            });
+            $("#toRight").click(function () {
+                var leftCurJson = {};
+                $(".leftSelect li.current").each(function () {
+                    var key=$(this).attr("data-areaid");
+                    leftCurJson[key] = $(this).html();
+                    $(this).remove();
+                });
+                for (var i in leftCurJson) {
+               //     console.log($('.rightSelect li[data-areaid="' + i + '"]').length);              
+                    $(".rightSelect").append('<li data-areaid="' + i + '">' + leftCurJson[i] + '</li>');
+                }
+                areaJson();
+                console.log(leftCurJson);
+            });
+            $("#toLeft").click(function () {
+                var rightCurJson = {};
+                $(".rightSelect li.current").each(function () {
+                    var key = $(this).attr("data-areaid");
+                    rightCurJson[key] = $(this).html();
+                    $(this).remove();
+                });
+                for (var i in rightCurJson) {
+                    $(".leftSelect").append('<li data-areaid="' + i + '">' + rightCurJson[i] + '</li>');
+                }
+                areaJson();           
+            });
+            var belongArea = {};
+            function areaJson() {
+                belongArea = {};
+                $(".rightSelect li").each(function () {
+                    belongArea[$(this).attr("data-areaid")] = $(this).html();
+                });
+            }
+            $("#acBtn").click(function () {
+                var mapAreaID = '';
+                for (var i in belongArea)
+                {
+                    mapAreaID += i + ',';
+                }
+                console.log('kkkkk');
+
+                mapAreaID = mapAreaID.slice(0, -1);
+                console.log(mapAreaID);          
+               var index = parent.layer.getFrameIndex(window.name);
+             //   parent.layer.close(index);        
+               parent.saveBelongArea(mapAreaID, index, belongArea);
+                console.log(belongArea);
+            })
+
+            console.log($('.rightSelect').attr('data-value'));
+        });
+    </script>
+</body>
+</html>

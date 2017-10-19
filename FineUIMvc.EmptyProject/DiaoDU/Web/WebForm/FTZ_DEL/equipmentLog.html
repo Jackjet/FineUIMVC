@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>equipmentLog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <link rel="stylesheet" href="css/dataAnalysis.css" />-->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="css/jquery.cxcalendar.css">
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="js/jquery.cxcalendar.min.js"></script>
+    <script src="js/jquery.cxcalendar.languages.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /*background:rgba(0,0,0,0.4);*/
+        }
+
+        body {
+            background: rgba(14,70,112,0.4);
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+            .clearfix:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+        .main {
+            position: relative;
+        }
+
+        .changePageMain {
+            color: #42abf7;
+        }
+
+            .changePageMain i {
+                display: inline-block;
+                cursor: pointer;
+            }
+
+
+                .changePageMain i.firstPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningFront.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.prevlPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningLeft.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.nextPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningRight.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.finallyPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningLast.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+            .changePageMain .currentPage {
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                font-size: 12px;
+                /*width: 15px;*/
+                height: 15px;
+                cursor: pointer;
+            }
+
+            .changePageMain .totalPages {
+                color: white;
+                font-size: 12px;
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                /*width: 15px;*/
+                height: 15px;
+                cursor: pointer;
+            }
+
+        .tableBox {
+            position: relative;
+            /*background: rgba(16,80,91,.4);*/
+            box-sizing: border-box;
+            min-height: 400px;
+        }
+
+            .tableBox .pump_status {
+                vertical-align: top;
+                width: 30px;
+                height: 32px;
+                display: inline-block;
+                background: url(./img/images/inline.png) no-repeat;
+            }
+
+            .tableBox .pump_name {
+                font-size: 12px;
+                height: 32px;
+                line-height: 32px;
+                display: inline-block;
+            }
+
+            .tableBox .pump_status.status0 {
+                background-position: -90px 0;
+            }
+
+            .tableBox .pump_status.status1 {
+                background-position: -4px 0;
+            }
+
+            .tableBox .pump_status.status2 {
+                background-position: -50px 0;
+            }
+
+        .table.table1 {
+            position: absolute;
+            border-bottom: 2px solid #257393;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            /*background: rgba(15,88,114,1);*/
+            height: 36px;
+            overflow: hidden;
+        }
+            .table.table1 thead {
+                background: rgb(3, 66, 113);
+            }
+        .table.table2 thead {
+            visibility:hidden;
+        
+        }
+            
+         #mCSB_1 .mCSB_container_wrapper {
+                margin-right: 10px;
+            }
+
+        #mCSB_1 .mCSB_container {
+            padding-right: 0;
+        }
+
+        #mCSB_1_scrollbar_horizontal .mCSB_draggerRail {
+            height: 2px;
+        }
+
+        .table1 tbody {
+            max-height: 1px;
+        }
+
+        .table tr {
+            height: 32px;
+        }
+
+        .table {
+            width: 99.4%;
+            color: #fff;
+            overflow: auto;
+            border-collapse: collapse;
+        }
+
+            .table th {
+                min-width: 140px;
+                height: 36px;
+                font-weight: normal;
+                font-size: 12px;
+                text-align: center;
+            }
+
+            .table td {
+                white-space: nowrap;
+                height: 32px;
+                font-size: 12px;
+                padding-left: 50px;
+                border-bottom:  1px dashed rgba(255,255,255,0.2);
+                text-align: left;
+            }
+            .table td  div{
+                padding-top: 6px;
+            }
+                .table td.currentStatus {
+                    text-align: left;
+                    padding-left: 66px;
+                }
+
+        .tableBox .state {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background: url(./img/images/bump_status.png) no-repeat left top;
+        }
+
+            .tableBox .state.status1 {
+                background-position: right top;
+            }
+
+            .tableBox .state.status2 {
+                background-position: left top;
+            }
+
+            .tableBox .state.status3 {
+                background-position: -50px top;
+            }
+
+        .tableBoxT {
+            position: absolute;
+            width: 99.2%;
+            box-sizing: border-box;
+            margin-right: 15px;
+            height: 36px;
+            overflow: hidden;
+            /*background: rgba(15,88,114,1);*/
+            border-bottom: 1px solid rgba(255,255,255,.2);
+            z-index: 10;
+        }
+        /*.contentBox {
+            border-top: 1px solid rgba(255,255,255,.2);
+        }*/
+
+        .tableBox .press {
+            width: 38px;
+            font-size: 12px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 1px 1px 1px 2px rgba(0,0,0,.4);
+            box-shadow: 1px 1px 1px rgba(0,0,0,.4);
+            color: #fff;
+            background: rgba(0,0,0,.3);
+        }
+
+        .mainBottom {
+            position: absolute;
+            left: 10px;
+            bottom: 8px;
+            font-size: 12px;
+        }
+        .main #searchDiary {
+            height: 30px;
+            border: 1px solid #295275;
+            /*margin-left: 2px;*/
+            position: relative;
+            right: 0px;
+        }
+        .main #searchDiary .wTime {
+            float:right;
+       }
+       .main #searchDiary .searchBox {
+            float: right;
+            height:26px;
+            margin: 0px 2px 0px 20px;
+            border: 1px solid rgb(15,105,149);
+       }
+
+        .main #searchDiary input {
+            display: inline-block;
+            height: 26px;
+            vertical-align: middle;
+            background: none;
+            color: #fff;
+        }
+            .main #searchDiary input.searchText {
+                width: 300px;
+                border: none;
+                background:rgba(0,0,0,0.15);
+                padding-left:10px;
+            }
+        #searchDiary .to {
+            color: rgb(15,105,149);
+        }
+        .main #searchDiary input.startEndTime {
+            border: 1px solid rgb(15,105,149);
+            text-align: center;
+            width: 150px;
+        }
+
+       .main #searchDiary i {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin: 1px 0px;
+            border: 0px solid blue;
+            vertical-align: middle;
+            background: url(img/searchBtn.png) no-repeat 0px 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="searchDiary">
+            <span class="searchBox">
+                <input type="text" class="searchText" />
+                <i class="searchBtn"></i>
+            </span>
+            <span class="wTime">
+                <input class="startEndTime startTime" id="startTime" type="text" value="" placeholder="开始时间"  />
+                <span class="to">- -</span>
+                <input class="startEndTime endTime" type="text" value="" placeholder="结束时间"  />
+            </span>
+           
+            
+        </div>
+        <div class="tableBox">
+            <div class="tableBoxT clearfix">
+                <table class="table table1">
+                    <thead>
+                        <tr>
+                            <th>泵房名称</th>
+                            <th>采集时间</th>
+                            <th>生活泵状态</th>
+                            <th>消防泵状态</th>
+                            <th>喷淋泵状态</th>
+                            <th>消防出水压力</th>
+                            <th>喷淋出水压力</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+            </div>
+
+
+
+            <div class="tableBox2">
+                <table class="table table2">
+                    <thead>
+                        <tr>
+                            <th>泵房名称</th>
+                            <th>采集时间</th>
+                            <th>生活泵状态</th>
+                            <th>消防泵状态</th>
+                            <th>喷淋泵状态</th>
+                            <th>消防出水压力</th>
+                            <th>喷淋出水压力</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="contentBox">
+                        <!-- <tr>
+                             <td class="currentStatus"><span class="pump_status status1"></span><span class="pump_name">F7-10号厂房喷淋泵房</span></td>
+                             <td class="pumpSt lifeSt">
+                                 <span class="state status3"></span>
+                                 <span class="state status2"></span>
+                                 <span class="state status1"></span>
+                                 <span class="state status2"></span>
+
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td class="pumpSt spraySt">
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                             </td>
+                             <td class="pumpPr firePr">
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.28</span>
+                                 <span class="press">0.56</span>
+                             </td>
+                             <td class="pumpPr sprayPr">
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>2016-8-25 12:34:28</td>
+                             <td>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.28</span>
+                                 <span class="press">0.56</span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>2016-8-25 12:34:28</td>
+                             <td>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.28</span>
+                                 <span class="press">0.56</span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>2016-8-25 12:34:28</td>
+                             <td>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.28</span>
+                                 <span class="press">0.56</span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>2016-8-25 12:34:28</td>
+                             <td>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                             </td>
+                             <td class="pumpSt fireSt">
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                                 <span class="state run"></span>
+                             </td>
+                             <td>
+                                 <span class="state run"></span>
+                                 <span class="state"></span>
+                                 <span class="state error"></span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.28</span>
+                                 <span class="press">0.56</span>
+                             </td>
+                             <td>
+                                 <span class="press">0.24</span>
+                                 <span class="press">0.27</span>
+                                 <span class="press">0.58</span>
+                             </td>
+                         </tr>-->
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+        <div class="mainBottom">
+            <div class="changePageMain">
+                <i class="firstPage"></i>
+                <i class="prevlPage"></i>
+                <a class="currentPage">1</a>
+                <span>/</span>
+                <span class="totalPages">0</span>
+                <i class="nextPage"></i>
+                <i class="finallyPage"></i>
+                <span>每页</span>
+                <a class="pageSize">10</a>
+                <span>条，共</span>
+                <a class="total">0</a>
+                <span>条</span>
+            </div>
+        </div>
+    </div>
+    <script src="js/equipmentLog.js"></script>
+</body>
+</html>

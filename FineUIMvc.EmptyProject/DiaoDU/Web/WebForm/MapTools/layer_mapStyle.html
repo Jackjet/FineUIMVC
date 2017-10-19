@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="js/jquery-2.1.0.js"></script>
+    <title>地图样式弹层</title>
+    <style type="text/css">
+        body,p{
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            font-family: Arial,"微软雅黑"
+        }
+        .style_mainBox{
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 690px;
+            height: 570px;
+            margin-left: -335px;                        
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            height:0;
+            clear:both;
+        }
+        .clearfix{
+            zoom:1;
+        }
+       .style_styleBox img {
+            width: 160px;
+            height: 160px;       
+        }
+        .style_styleBox {
+            width: 160px;
+            height: 182px;
+            float: left;
+            margin:  5px;
+            cursor: pointer;
+        }
+
+            .style_styleBox.current, .style_styleBox:hover {
+                box-shadow: 0 0 10px 6px #a69894;
+            }
+        p.style_caption{
+            text-align: center;
+        }
+        p.style_caption:hover{
+            color: #ff6a00;
+        }
+    </style>
+</head>
+<body>
+    <div class="style_mainBox clearfix">
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/normal.png" alt="normal" />
+            </div>
+            <p class="style_caption">默认地图样式(normal)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/light.png" alt="light" />
+            </div>
+            <p class="style_caption">清新蓝风格(light)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/dark.png" alt="dark" />
+            </div>
+            <p class="style_caption">黑夜风格(dark)</p>
+        </div>
+
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/redalert.png" alt="redalert" />
+            </div>
+            <p class="style_caption">红色警戒风格(redalert)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/googlelite.png" alt="googlelite" />
+            </div>
+            <p class="style_caption">精简风格(googlelite)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/grassgreen.png" alt="grassgreen" />
+            </div>
+            <p class="style_caption">自然绿风格(grassgreen)</p>
+        </div>
+
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/midnight.png" alt="midnight" />
+            </div>
+            <p class="style_caption">午夜蓝风格(midnight)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/pink.png" alt="pink" />
+            </div>
+            <p class="style_caption">浪漫粉风格(pink)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/darkgreen.png" alt="darkgreen" />
+            </div>
+            <p class="style_caption"> 青春绿风格(darkgreen)</p>
+        </div>
+
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/bluish.png" alt="bluish" />
+            </div>
+            <p class="style_caption">清新蓝绿风格(bluish)</p>
+        </div>
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/grayscale.png" alt="grayscale" />
+            </div>
+            <p class="style_caption">高端灰风格(grayscale)</p>
+        </div>
+
+        <div class="style_styleBox">
+            <div class="style_imgBox">
+                <img src="img/hardedge.png" alt="hardedge" />
+            </div>
+            <p class="style_caption">强边界风格(hardedge)  </p>
+        </div>     
+    </div>   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".style_styleBox").click(function () {
+                var styleText = $(this).children("p").html();
+                var styleValue = $(this).find(".style_imgBox img").attr("alt");
+                console.log(styleText+ '  '+ styleValue);
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                parent.setMapStyle(styleValue,styleText);
+            });
+        });
+    </script>    
+</body>
+</html>

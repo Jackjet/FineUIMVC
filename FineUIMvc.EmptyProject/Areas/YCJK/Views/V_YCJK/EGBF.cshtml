@@ -1,0 +1,372 @@
+﻿@{
+    ViewBag.Title = "EGBF";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link href="~/res/YCJK/css/EGBF.css" rel="stylesheet" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+
+}
+
+
+
+@section body {
+
+    <iframe class="mainIframe" src='@Url.Content("~/YCJK/V_YCJK/Map")' frameborder="0"></iframe>
+
+    <ul class="leftNav">
+        <li data-cla="bengfang" class="bengfang" title="泵房列表"></li>
+        <li data-cla="shebei" class="shebei" title="设备列表"></li>
+        <li data-cla="ditu" class="ditu active" title="地图监控"></li>
+        <li data-cla="lieBiao" class="lieBiao" title="列表监控"></li>
+        <li data-cla="lunXun" class="lunXun" title="设备轮询"></li>
+        <li data-cla="baobiao" class="baobiao" title="报表展示"></li>
+        <li data-cla="baojing" class="baojing" title="报警预警"></li>
+        <li data-cla="help" class="help" title="帮助"><div class="helpBg"></div></li>
+    </ul>
+
+    
+    <div class="infoShowBox clearfix"></div>
+    <div class="bengfangListWrap">
+        <ul class="numWrap clearfix">
+            @*<li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum online">12321</div>
+            </li>
+            <li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum offline">12321</div>
+            </li>
+            <li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum baojing">12321</div>
+            </li>*@
+            <li class="numItem clearfix right">
+                <div class="numItemPic">总:</div>
+                <div class="numItemNum all"></div>
+            </li>
+        </ul>
+        <div class="searchWrap clearfix">
+            <input class="searchTxt" type="text" />
+            <button class="listSearchBtn"></button>
+        </div>
+        <div class="listBox">
+            <ul class="listItemWrap">
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1">
+
+                        </div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic hide">
+                        <div class="listItemPicBg"></div>
+                    </div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+<div class="bengfangListWrap2">
+    <ul class="numWrap clearfix">
+        @*<li class="numItem clearfix">
+            <div class="numItemPic"></div>
+            <div class="numItemNum online">12321</div>
+        </li>
+        <li class="numItem clearfix">
+            <div class="numItemPic"></div>
+            <div class="numItemNum offline">12321</div>
+        </li>
+        <li class="numItem clearfix">
+            <div class="numItemPic"></div>
+            <div class="numItemNum baojing">12321</div>
+        </li>*@
+        <li class="numItem clearfix right">
+            <div class="numItemPic">总:</div>
+            <div class="numItemNum all">12321</div>
+        </li>
+    </ul>
+    <div class="searchWrap clearfix">
+        <input class="searchTxt" type="text" />
+        <button class="listSearchBtn"></button>
+    </div>
+    <div class="listBox">
+        <ul class="listItemWrapZu">
+            <li class="listItem clearfix">
+                <div class="listItemPic">
+                    <div class="listItemPicBg"></div>
+                </div>
+                <div class="listAddStatu clearfix">
+                    <div class="listItemAddress"></div>
+                    <div class="listItemStatus">
+                        <div class="arrowUpDown"></div>
+                    </div>
+                </div>
+                <ul class="childList">
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="listItem clearfix">
+                <div class="listItemPic">
+                    <div class="listItemPicBg"></div>
+                </div>
+                <div class="listAddStatu clearfix">
+                    <div class="listItemAddress"></div>
+                    <div class="listItemStatus">
+                        <div class="arrowUpDown"></div>
+                    </div>
+                </div>
+                <ul class="childList">
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                    <li class="childListItem">
+                        <div class="childListItemPic"></div>
+                        <div class="childListName"></div>
+                        <div class="childListWin"></div>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+    <div class="listWrap">
+        <ul class="numWrap clearfix">
+            <li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum online">12321</div>
+            </li>
+            <li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum offline">12321</div>
+            </li>
+            <li class="numItem clearfix">
+                <div class="numItemPic"></div>
+                <div class="numItemNum baojing">12321</div>
+            </li>
+            <li class="numItem clearfix">
+                <div class="numItemPic">总:</div>
+                <div class="numItemNum all">12321</div>
+            </li>
+        </ul>
+        <div class="searchWrap clearfix">
+            <input class="searchTxt" type="text" />
+            <button class="listSearchBtn"></button>
+        </div>
+        <ul class="statusWrap">
+            <li class="online">在线</li>
+            <li class="offline">离线</li>
+            <li class="warn">报警</li>
+            <li class="all active">全部</li>
+        </ul>
+        <div class="listBox">
+            <ul class="listItemWrap">
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1">
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+                <li class="listItem clearfix">
+                    <div class="listItemPic listItemPicSta1"></div>
+                    <div class="listAddStatu clearfix">
+                        <div class="listItemAddress"></div>
+                        <div class="listItemStatus listItemStatus1"></div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+}
+@section script {
+    <script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+    <script src="~/res/YCJK/js/EGBF.js"></script>
+
+}

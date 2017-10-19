@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <link rel="stylesheet" href="css/loginStyle.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/flexible.js" ></script>
+        <script type="text/javascript" src="js/tokenLogin.js"></script>
+		<title>熊猫厂区管网监控系统</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;				
+			}						
+			li {
+				list-style: none;
+			}
+			img {
+				display: block;
+				max-width: 100%;
+			}
+
+			a {
+				text-decoration: none;
+			}
+			.clearfix {
+				zoom: 1;
+			}
+			.clearfix:after {
+				content: " ";
+				display: block;
+				height: 0;
+				clear: both;
+			}
+
+            #loginIco1 {
+                position: relative;
+                top: 2.6rem;
+            }
+            #Ico1Img {
+                position: absolute;
+                -webkit-animation: circle 8s infinite linear;
+            }
+            #loginIco1 p {
+                position: absolute;
+                bottom: .2rem;
+            }
+
+            @-webkit-keyframes circle {
+
+                0% {
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                50% {
+                    -moz-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+
+                    transform-origin: 52% 52%;
+                }
+                100% {
+                    -moz-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    -o-transform: rotate(360deg);
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
+		</style>
+		 
+	</head>
+	<body>
+		<div id="loginIco1">
+			<img id="Ico1Img" src="img/loginImg/login-ico1.png"/>
+            <p>系统登录成功...</p>		
+		</div>
+        
+		
+	</body>
+</html>

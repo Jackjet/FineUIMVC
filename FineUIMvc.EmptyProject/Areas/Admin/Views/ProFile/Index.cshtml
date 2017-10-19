@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Admin/ProFile";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .IsViewPort(true)
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBox()
+                       .Label("当前密码")
+                       .EmptyText("请输入当前密码")
+                       .ID("tbxOldPassword")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBox()
+                       .Label("新密码")
+                       .EmptyText("请输入新密码")
+                       .ID("tbxNewPassword")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBox()
+                       .Label("确认新密码")
+                       .ID("tbxConfirmNewPassword")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.Button()
+                       .ValidateForms("SimpleForm1")
+                       .Icon(Icon.SystemSaveClose)
+                       .OnClick(Url.Action("btnSave_OnClick"), "SimpleForm1")
+                       .Text("修改密码")
+               )
+        )
+    )
+
+}

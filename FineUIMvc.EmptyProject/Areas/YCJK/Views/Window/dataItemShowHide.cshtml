@@ -1,0 +1,467 @@
+﻿
+@{
+    ViewBag.Title = "dataItem";
+    var F = @Html.F();
+}
+
+@section head {
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+
+        <link rel="stylesheet" href="~/res/YCJK/css/jquery-ui.min.css" />
+        <link rel="stylesheet" href="~/res/YCJK/css/dataItemShowHideMain.css" />
+        <link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+        <script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+        <script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+}
+@section body {
+		<div class="dataItemWrap">
+			<div class="dataItemTop clearfix">
+				<div class="dataItemLeft">
+					<div class="surroundingsValBox">
+						<div class="surroundingsValBoxHeader clearfix">
+							<div class="surroundingsValHeaderPic"></div>
+							<div class="surroundingsValHeaderTxt">泵房环境值</div>
+                            <div class="checkAll bfhj checkAllVal">全选</div>
+						</div>
+						<ul class="surroundingsValMain">
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">余氯</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">浊度</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">PH值</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">水温</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">溶解氧</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem ">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">电导率</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">湿度</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsValItem active">
+								<div class="surroundingsValItemBox">
+									<div class="surroundingsValPicWrap">
+										<div class="surroundingsValItemPic"></div>
+									</div>
+									<div class="surroundingsValItemTxt">温度</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+                            <li class="surroundingsValItem active">
+                                <div class="surroundingsValItemBox">
+                                    <div class="surroundingsValPicWrap">
+                                        <div class="surroundingsValItemPic"></div>
+                                    </div>
+                                    <div class="surroundingsValItemTxt">污水液位</div>
+                                </div>
+
+                                <div class="itemCheckBox">
+                                    <div class="itemCheckPic"></div>
+                                </div>
+                            </li>
+						</ul>
+					</div>
+					<div class="surroundingsStateBox">
+						<div class="surroundingsStateBoxHeader clearfix">
+							<div class="surroundingsStateHeaderPic"></div>
+							<div class="surroundingsStateHeaderTxt">泵房状态值</div>
+                            <div class="checkAll bfzt checkAllVal">全选</div>
+						</div>
+						<ul class="surroundingsStateMain clearfix">
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">门</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">灯</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">电源</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">破窗</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">UPS</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">漏水</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							<li class="surroundingsStateItem active">
+								<div class="surroundingsStateItemBox">
+									<div class="surroundingsStatePicWrap">
+										<div class="surroundingsStateItemPic"></div>
+									</div>
+									<div class="surroundingsStateItemTxt">火警</div>
+								</div>
+							
+								<div class="itemCheckBox">
+									<div class="itemCheckPic"></div>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+				<div class="dataItemRight">
+						<div class="dataItemRightTop clearfix">
+							<div class="pumpBox">
+								<div class="pumpHeader clearfix">
+									<div class="pumpPic "></div>
+									<div class="pumpTxt">水泵</div>
+								</div>
+								<div class="pumpMain active">
+                                    <div class="pumpMainPic active">
+                                        <div class="pumpPic">
+                                        </div>
+                                    </div>
+									<div class="pumpDian">电流</div>
+									<div class="pumpYun active">运行时间</div>
+									<div class="pumpCheck active"></div>
+								</div>
+								
+							</div>
+							<div class="dianDongFaBox">
+								<div class="dianDongFaHeader clearfix">
+									<div class="dianDongFaPic"></div>
+									<div class="dianDongFaTxt">电动阀</div>
+								</div>
+								<div class="dianDongFaMain  clearfix">
+									<div class="dianDongOne active">1#电阀<div></div></div>
+									<div class="dianDongTwo">2#电阀<div></div></div>
+									<div class="dianDongThree active">3#电阀<div></div></div>
+									<div class="dianDongFour">4#电阀<div></div></div>
+								</div>
+							</div>
+							<div class="shuiXiangBox">
+								<div class="shuiXiangHeader clearfix">
+									<div class="shuiXiangPic"></div>
+									<div class="shuiXiangTxt">水箱</div>
+								</div>
+								<div class="shuiXiangMain ">
+									<div class="shuiXiangOne active">1#水箱<div></div></div>
+									<div class="shuiXiangTwo">2#水箱<div></div></div>
+									<div class="shuiXiangThree">3#水箱<div></div></div>
+									<div class="shuiXiangFour">4#水箱<div></div></div>
+								</div>
+							</div>
+							<div class="pressOutWaterBox">
+								<div class="pressOutWaterHeader clearfix">
+									<div class="pressOutWaterPic"></div>
+									<div class="pressOutWaterTxt">压力、排水泵</div>
+								</div>
+								<div class="pressOutWaterMain">
+									<div class="inPress active">进水压力<div></div></div>
+									<div class="outPress">出水压力<div></div></div>
+									<div class="paiShui">排水泵<div></div></div>
+								</div>
+							</div>
+						</div>
+						<div class="dataItemRightBot clearfix">
+							<div class="bianPin">
+								<div class="bianPinHeader clearfix">
+									<div class="bianPinPic"></div>
+									<div class="bianPinTxt">变频器</div>
+								</div>
+								<div class="bianPinMain">
+									<div class="bianPinTop clearfix">
+										<div class="active">1#<div></div></div>
+                                        <div>2#<div></div></div>
+                                        <div>3#<div></div></div>
+                                        <div>4#<div></div></div>
+                                        <div>5#<div></div></div>
+                                        <div>6#<div></div></div>
+									</div>
+									<div class="bianPinBot">
+										<div class="runTime active">运行时间</div>
+										<div class="runTime">运行频率</div>
+										<div class="runTime">直流电压</div>
+										<div class="runTime">输出电压</div>
+										<div class="runTime">温度</div>
+										<div class="runTime">功率</div>
+									</div>
+								</div>
+							</div>
+							<div class="others">
+								<div class="othersHeader clearfix">
+									<div class="othersPic"></div>
+									<div class="othersTxt">其他</div>
+								</div>
+								<div class="othersMain ">
+									<ul class="otherBox">
+										<li>1#进瞬流量</li>
+										<li>1#出瞬流量</li>
+										<li>1#进累流量</li>
+										<li>1#出累流量</li>
+										<li>累计电量</li>
+                                        <li>2#进瞬流量</li>
+                                        <li>2#出瞬流量</li>
+                                        <li>2#进累流量</li>
+                                        <li>2#出累流量</li>
+                                        <li>Ua电压</li>
+                                        <li>Ub电压</li>
+                                        <li>Uc电压</li>
+                                        <li>Ia电流</li>
+                                        <li>Ib电流</li>
+                                        <li>Ic电流</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			
+			<div class="dataItemBot clearfix">
+				<div class="dataItemBotLeft">
+					<div class="panalHeader clearfix">
+						<div class="panalHeaderPic"></div>
+						<div class="panalHeaderTxt">设置面板显示隐藏</div>
+                        <div class="checkAll szmb checkAllPanal active">
+                            全选
+                        </div>
+					</div>
+					<ul class="panalItemBox clearfix">
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">门</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">灯</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">风扇温度</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">排水泵</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">消毒仪</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">定时切换</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem active">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">出水压力</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+						<li class="panalItem">
+							<div class="panalItemPicBox">
+								<div class="panalItemPicWrap">
+									<div class="panalItemPic"></div>
+								</div>
+								<div class="panalItemTxt">电动阀</div>
+							</div>
+							
+							<div class="itemCheckBox">
+								<div class="itemCheckPic"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="dataItemBotRight">
+					<ul class="sheBeiQiTing">
+						<li class="jinJiQiTing">
+						设备紧急启停
+						<div class="checkBg"></div>
+						</li>
+						<li class="kongZhiBeng active">控制泵启停<div class="checkBg"></div></li>
+						<li class="xianDingSet">限定设置<div class="checkBg"></div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+}
+@section script {
+<script type="text/javascript" src="~/res/YCJK/js/dataItemShowHide.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}
+
+

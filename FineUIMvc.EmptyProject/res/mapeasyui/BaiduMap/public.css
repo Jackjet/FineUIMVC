@@ -1,0 +1,428 @@
+BODY {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DIV {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+INPUT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+HTML {
+	OVERFLOW: hidden
+}
+BODY {
+	OVERFLOW: hidden
+}
+BODY {
+	FONT: 12px/160% arial,sans-serif
+}
+
+LI {
+	LIST-STYLE-TYPE: none
+}
+IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+FIELDSET {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+IFRAME {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+INPUT {
+	FONT-FAMILY: inherit; FONT-SIZE: 100%
+}
+BUTTON {
+	FONT-FAMILY: inherit; FONT-SIZE: 100%
+}
+TEXTAREA {
+	FONT-FAMILY: inherit; FONT-SIZE: 100%
+}
+SELECT {
+	FONT-FAMILY: inherit; FONT-SIZE: 100%
+}
+INPUT {
+	VERTICAL-ALIGN: middle
+}
+SELECT {
+	VERTICAL-ALIGN: middle
+}
+IMG {
+	VERTICAL-ALIGN: middle
+}
+EM {
+	FONT-STYLE: normal
+}
+A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #f00; TEXT-DECORATION: underline
+}
+.clear {
+	CLEAR: both; OVERFLOW: hidden; -zoom: 1
+}
+.clear:after {
+	DISPLAY: block; HEIGHT: 0px; CLEAR: both; CONTENT: "."
+}
+.clear_ {
+	HEIGHT: 0px; CLEAR: both; OVERFLOW: hidden
+}
+.left {
+	FLOAT: left
+}
+.center {
+	FLOAT: left
+}
+.right {
+	FLOAT: right
+}
+.pos_rel {
+	POSITION: relative
+}
+.content {
+	MARGIN: auto; WIDTH: 100%; HEIGHT: 100%;
+
+}
+.LogoCon {
+	MARGIN: 0px 0px
+}
+.LogoCon .logo {
+	WIDTH: 160px; FLOAT: left
+}
+.LogoCon .search {
+	FLOAT: left; PADDING-TOP: 0px;	color:#c0c0c0;
+}
+.LogoCon .map_search {
+	padding-left:10px;POSITION: relative; MARGIN-TOP: 0px; FONT: 14px arial,sans-serif; BACKGROUND: url(../../../../js/BaiduMap/tabimg.gif) no-repeat 0px -65px; HEIGHT: 28px; PADDING-TOP: 0px
+}
+.LogoCon .map_search .text {
+	BORDER-BOTTOM: #cfd3d2 1px solid; BORDER-LEFT: #cfd3d2 1px solid; PADDING-BOTTOM: 3px; MARGIN: 3px 0px 0px 3px; PADDING-LEFT: 3px; WIDTH: 400px; PADDING-RIGHT: 3px; HEIGHT: 0px; COLOR: #8c8c8c; BORDER-TOP: #cfd3d2 1px solid; BORDER-RIGHT: #cfd3d2 1px solid; PADDING-TOP: 3px
+}
+.LogoCon .map_search .button {
+	MARGIN: 3px 0px 0px 7px; WIDTH: 76px; HEIGHT: 26px; FONT-SIZE: 14px
+}
+.dt_nav {
+	LINE-HEIGHT: 23px; PADDING-LEFT: 8px; PADDING-RIGHT: 10px; BACKGROUND: #e5ecf9; HEIGHT: 23px; COLOR: #333; OVERFLOW: hidden
+}
+.dt_nav .result {
+	FLOAT: right; COLOR: #7797d3
+}
+.dt_nav .nav LI {
+	MARGIN: 3px 10px 0px 0px; PADDING-LEFT: 6px; BACKGROUND: url(../../../../js/BaiduMap/map_bj1.gif) #fff no-repeat left top; FLOAT: left; HEIGHT: 20px
+}
+.dt_nav .nav LI .l {
+	FLOAT: left
+}
+.dt_nav .nav LI .r {
+	WIDTH: 6px; DISPLAY: block; BACKGROUND: url(../../../../js/BaiduMap/map_bj1.gif) no-repeat right -20px; FLOAT: left; HEIGHT: 20px
+}
+.dt_nav .nav LI B {
+	FONT-SIZE: 14px
+}
+.dt_nav .nav LI A {
+	COLOR: #00c; CURSOR: pointer; TEXT-DECORATION: underline
+}
+.dt_nav .nav LI A:hover {
+	COLOR: #00c; TEXT-DECORATION: underline
+}
+#wrapper {
+	POSITION: relative; WIDTH: 100%; OVERFLOW: hidden
+}
+#MapInfo {
+	Z-INDEX: 10; POSITION: absolute; PADDING-BOTTOM: 10px; OVERFLOW-X: hidden; OVERFLOW-Y: auto; PADDING-LEFT: 8px; WIDTH: 265px; PADDING-RIGHT: 7px; BACKGROUND: #fff; COLOR: #333; RIGHT: 0px; PADDING-TOP: 10px; TOP: 0px
+}
+#MapHolder {
+	Z-INDEX: 0; POSITION: relative; MARGIN-TOP: 2px; BACKGROUND: #ccc; MARGIN-RIGHT: 280px; LEFT: 0px
+}
+#MapInfo .city_list {
+	LINE-HEIGHT: 18px
+}
+#MapInfo .city_list LI {
+	WIDTH: 24%; FLOAT: left
+}
+#shad DIV {
+	POSITION: absolute
+}
+#shad_v {
+	WIDTH: 5px; BACKGROUND: url(../../../../js/BaiduMap/shad_v.png) repeat-y 0px 0px; FONT-SIZE: 0px; RIGHT: 280px; TOP: 2px; -filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale",src="../../../../js/BaiduMap/shad_v.png"); -background: none
+}
+#shad_h {
+	WIDTH: 100%; BACKGROUND: url(../../../../js/BaiduMap/shad_h.png) repeat-x 0px 0px; HEIGHT: 5px; FONT-SIZE: 0px; TOP: 2px; LEFT: 0px; -filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="scale",src="../../../../js/BaiduMap/shad_h.png"); -background: none
+}
+#copyButton {
+	POSITION: relative
+}
+#copyButton INPUT {
+	POSITION: absolute; WIDTH: 50px; HEIGHT: 25px; CURSOR: pointer; TOP: 6px; LEFT: 3px
+}
+.local_s {
+	
+}
+.local_s LI {
+	POSITION: relative; MIN-HEIGHT: 30px; PADDING-LEFT: 22px; MARGIN-BOTTOM: 3px; -zoom: 1; -height: 30px
+}
+.local_s LI SPAN {
+	POSITION: absolute; WIDTH: 19px; DISPLAY: block; BACKGROUND: url('../../../../images/markers.png') no-repeat 0px 0px; HEIGHT: 25px; CURSOR: pointer; TOP: 3px; LEFT: 0px
+}
+.local_s LI DIV {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 3px; PADDING-RIGHT: 10px; PADDING-TOP: 2px
+}
+.local_s LI DIV EM {
+	WIDTH: 100%; WORD-WRAP: break-word; OVERFLOW: visible
+}
+.local_s LI A {
+	OUTLINE-STYLE: none; COLOR: #00c; TEXT-DECORATION: underline
+}
+.local_s LI#no0 SPAN {
+	BACKGROUND-POSITION: -23px 0px
+}
+.local_s LI#no1 SPAN {
+	BACKGROUND-POSITION: -23px -25px
+}
+.local_s LI#no2 SPAN {
+	BACKGROUND-POSITION: -23px -50px
+}
+.local_s LI#no3 SPAN {
+	BACKGROUND-POSITION: -23px -75px
+}
+.local_s LI#no4 SPAN {
+	BACKGROUND-POSITION: -23px -100px
+}
+.local_s LI#no5 SPAN {
+	BACKGROUND-POSITION: -23px -125px
+}
+.local_s LI#no6 SPAN {
+	BACKGROUND-POSITION: -23px -150px
+}
+.local_s LI#no7 SPAN {
+	BACKGROUND-POSITION: -23px -175px
+}
+.local_s LI#no8 SPAN {
+	BACKGROUND-POSITION: -23px -200px
+}
+.local_s LI#no9 SPAN {
+	BACKGROUND-POSITION: -23px -225px
+}
+.local_s .hover {
+	BACKGROUND: #f0f0f0; CURSOR: pointer
+}
+.page {
+	TEXT-ALIGN: center; MARGIN: 30px auto
+}
+.page A {
+	MARGIN: 0px 3px
+}
+.page SPAN {
+	MARGIN: 0px 3px
+}
+.page A {
+	OUTLINE-STYLE: none; OUTLINE-WIDTH: medium; COLOR: #0000cc; TEXT-DECORATION: underline
+}
+.page .text {
+	TEXT-ALIGN: center; WIDTH: 20px; MARGIN-RIGHT: 5px
+}
+.page .button {
+	CURSOR: pointer
+}
+.SearchList {
+	MARGIN: 5px 0px 8px 8px; CLEAR: both; OVERFLOW: hidden
+}
+.SearchList LI {
+	WIDTH: 33%; FLOAT: left
+}
+.SearchList LI A {
+	OUTLINE-STYLE: none; COLOR: #0000cc; TEXT-DECORATION: underline
+}
+#moreCityPop {
+	POSITION: relative; MARGIN-TOP: 5px; PADDING-LEFT: 8px
+}
+#moreCityPop .resultMore {
+	MARGIN-TOP: 8px; PADDING-RIGHT: 11px; BACKGROUND: url(../../../../js/BaiduMap/list_more.gif) no-repeat right 6px
+}
+#moreCityPop A {
+	OUTLINE-STYLE: none; COLOR: #0000cc; CURSOR: pointer; TEXT-DECORATION: underline
+}
+.iwTitle {
+	WHITE-SPACE: nowrap; COLOR: #cc5522; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.iwContent {
+	
+}
+.iwContent P {
+	POSITION: absolute; PADDING-LEFT: 50px
+}
+.iwContent EM {
+	POSITION: relative; TOP: 0px; LEFT: 0px
+}
+.map_popup {
+	Z-INDEX: 200000; POSITION: absolute; LEFT: 0px
+}
+.map_popup .popup_main {
+	Z-INDEX: 2; BORDER-BOTTOM: #8ba4d8 1px solid; POSITION: absolute; BORDER-LEFT: #8ba4d8 1px solid; WIDTH: 100%; BACKGROUND: #fff; HEIGHT: 100%; OVERFLOW: hidden; BORDER-TOP: #8ba4d8 1px solid; BORDER-RIGHT: #8ba4d8 1px solid
+}
+.map_popup .poput_shadow {
+	Z-INDEX: 1; BORDER-BOTTOM: #505050 1px solid; POSITION: absolute; FILTER: alpha(opacity=40); BORDER-LEFT: #505050 1px solid; WIDTH: 100%; BACKGROUND: #505050; HEIGHT: 100%; BORDER-TOP: #505050 1px solid; BORDER-RIGHT: #505050 1px solid; TOP: 3px; LEFT: 2px; opacity: 0.4
+}
+.map_popup .title {
+	LINE-HEIGHT: 25px; PADDING-LEFT: 7px; BACKGROUND: url(../../../../js/BaiduMap/popup_title.gif); HEIGHT: 24px; COLOR: #6688cc; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+.map_popup BUTTON {
+	POSITION: absolute; BORDER-RIGHT-WIDTH: 0px; WIDTH: 12px; BACKGROUND: url(../../../../js/BaiduMap/popup_close.gif) no-repeat; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 12px; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer; RIGHT: 4px; TOP: 6px
+}
+.sel_city A {
+	COLOR: #00c; CURSOR: pointer; MARGIN-RIGHT: 8px; TEXT-DECORATION: underline
+}
+.sel_city A:hover {
+	COLOR: #00c; TEXT-DECORATION: underline
+}
+.sel_city A.black {
+	COLOR: #000
+}
+.sel_city A.black:hover {
+	COLOR: #000
+}
+.selCityInput {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+.selCityInput INPUT {
+	MARGIN-RIGHT: 5px
+}
+.selCityInputT {
+	COLOR: #8c8c8c
+}
+.pointLabel {
+	MARGIN: 5px 0px 0px; FONT-SIZE: 12px; CURSOR: pointer
+}
+.pointLabel INPUT {
+	MARGIN-RIGHT: 0px
+}
+.searchTip {
+	POSITION: absolute; BOTTOM: -18px; COLOR: #f00; FONT-SIZE: 12px; LEFT: 10px
+}
+#txtPanel H3 {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-SIZE: 12px; FONT-WEIGHT: 700; PADDING-TOP: 10px
+}
+#txtPanel .tip_info {
+	PADDING-LEFT: 20px
+}
+#txtPanel .tip_info_em {
+	PADDING-LEFT: 20px; DISPLAY: block
+}
+
+
+
+
+
+
+   body
+        {
+            background: #fff;
+            font-family: "ËÎÌו" , "Arial Narrow";
+            font: 12px/150% arial,sans-serif;
+        }
+        div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td
+        {
+            padding: 0;
+            margin: 0;
+        }
+        a
+        {
+            color: #323232;
+        }
+        a:hover
+        {
+            color: #008500;
+            text-decoration: underline;
+        }
+        
+        .map_tcc
+        {
+            width: 240px;
+            height: 150px;
+            overflow: auto;
+            background-color: #FFF;
+            border: 1px solid #e1e1e1;
+        }
+        .map_tcc h5
+        {
+            color: #629b16;
+            font: bold 14px/30px "ËÎÌו";
+            padding: 0 10px;
+        }
+        .map_tcc h5 .close_a
+        {
+            float: right;
+            color: #676767;
+        }
+        .map_tcc h5 .close_a:hover
+        {
+            color: #F27B03;
+            text-decoration: none;
+        }
+        .map_tcc h5 .tcc_a
+        {
+            color: #629B16;
+        }
+        .map_p1
+        {
+            line-height: 22px;
+            color: #676767;
+            padding: 0 10px;
+        }
+        .map_p1 span
+        {
+            color: #323232;
+        }
+        .map_p2
+        {
+            line-height: 22px;
+            color: #676767;
+            padding: 0 10px;
+        }
+        .map_p2 a
+        {
+            color: #629b16;
+        }
+        body, html, #form1
+        {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 2px;
+        }
+        #map_container
+        {
+            width: 70%;
+            height: 98%;
+            overflow: hidden;
+            margin: 2px;
+        }
+        #MapInfo
+        {
+            height: 98%;
+            width: 29%;
+            float: left;
+            border: #c0c0c0 1px solid;
+            margin-bottom: 1px;
+        }
+         #WarnInfo
+        {
+            height: 98%;
+            width: 29%;
+            float: left;
+            border: #c0c0c0 1px solid;
+            margin-bottom: 1px;
+        }

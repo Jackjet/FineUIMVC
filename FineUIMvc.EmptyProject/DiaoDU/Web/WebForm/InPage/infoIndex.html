@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css" />
+    <link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/infoIndex.css" />
+
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="layer/layer.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="js/infoIndex.js"></script>
+    <title></title>
+</head>
+<body>
+    <header class="pageHeader">
+        <!--<div class="logoPic"></div>-->
+
+        <ul class="headerNav">
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">首页</span>
+               
+            </li>
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">地图监控</span>
+            </li>
+            <li class="li_liebiao">
+                <div class="picBox"></div>
+                <span class="picTxt">列表监控</span>
+                <ul class="childList">
+                    <li><a href="#">压力列表</a></li>
+                    <li><a href="#">水厂列表</a></li>
+                    <li><a href="#">泵站列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">智能调度</span>
+            </li>
+            <li class="li_fenqu">
+                <div class="picBox" ></div>
+                <span class="picTxt">分区计量</span>
+                <ul class="childList">
+                    <li><a href="#">分区视图</a></li>
+                    <li><a href="#">分级视图</a></li>
+                    <li><a href="#">报表视图</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">调峰SCADA</span>
+            </li>
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">阀控SCADA</span>
+            </li>
+            <li>
+                <div class="picBox"></div>
+                <span class="picTxt">能耗分析</span>
+            </li>
+            <li class="li_xitong">
+                <div class="picBox"></div>
+                <span class="picTxt">系统设置</span>
+                <ul class="childList">
+                    <li><a href="#">压力管理</a></li>
+                    <li><a href="#">水厂管理</a></li>
+                    <li><a href="#">泵站管理</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <section class="adminBox">
+            <div class="adminPic"></div>
+            <div class="adminInfo">
+                <div class="adminName">管理员</div>
+                <div class="changePwd">更改密码</div>
+            </div>
+            <div class="exitBtn"></div>
+        </section>
+    </header>
+    <section class="pageMain">
+        <iframe src="qingpuMapShow.html" class="mapIframe" frameborder="0"></iframe>
+        <section class="pageMainLeft">
+            <ul class="leftNav">
+                <li class="active">
+                    <div class="anaPic"></div>
+                    <span class="anaTxt">分析</span>
+                </li>
+                <li>
+                    <div class="searchPic"></div>
+                    <span class="searchTxt">搜索</span>
+                </li>
+                <li>
+                    <div class="popPic"></div>
+                    <span class="popTxt">管网</span>
+                </li>
+
+            </ul>
+            <div class="navContentBox">
+                <div class="charBox">
+                    <ul class="objType clearfix">
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">管线</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">泵站</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">阀门</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">流量</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">水厂</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">水源</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">大表</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">压力</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">调峰</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                        <li>
+                            <div class="pupMarkerPic"></div>
+                            <span class="pupMarkerTxt">水质</span>
+                            <span class="pupMarkerNum">54</span>
+                        </li>
+                    </ul>
+
+                    <div class="charPicContainer">
+                        <div class="barChar">
+                            <div id="myChar1">123</div>
+                        </div>
+                        <div class="lineChar">
+                            <div id="myChar2">12312</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchBox hide">123</div>
+                <div class="popBox hide">
+                      <div class="popHeader clearfix">
+                          <div class="popTitle">管网模板</div>
+                          <ul class="newAndDel">
+                             <li class="newFile"></li>
+                             <li class="copyFile"></li>
+                             <li class="deleteFile"></li>
+                             <li class="changeFile"></li>
+                              <li class="preView"></li>
+                          </ul>
+                    </div>
+                    <div class="popMainWrap">
+                        <ul class="popMain">
+                            <li class="popItem clearfix">
+                                <div class="checkMark"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">膜版地图名称</div>
+                                    <div class="itemState">使用中</div>
+                                </div>
+                            </li>
+                            <li class="popItem clearfix">
+                                <div class="checkMark noChecked"></div>
+                                <div class="itemContent clearfix">
+                                    <div class="itemName">膜版地图名称</div>
+                                    <div class="itemState noChecked">未使用</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            
+            <div class="showHide show">></div>
+        </section>
+    </section>
+</body>
+</html>

@@ -1,0 +1,786 @@
+﻿ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>熊猫园区管网监控</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <!--<link rel="stylesheet" href="css/warningInfo.css" />-->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <script src="js/jquery.min.js"></script>
+  
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="../Baidu/js/echarts.min.js"></script>
+    <script type="text/javascript" src="../Baidu/layer/layer.js"></script>
+    <script type="text/javascript">
+        function aaa(id) {
+           
+            if (id == 1) {
+               layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade:.6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+               });
+               //layer.iframeAuto(index);
+            } else if(id==2) {
+               layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+               });
+               //layer.iframeAuto(index);
+            } else if (id == 3) {
+                layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                });
+                //layer.iframeAuto(index);
+            } else {
+               var index= layer.open({
+                    type: 2,
+                    closeBtn: 1,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+               });
+               //layer.iframeAuto(index);
+            }
+
+           
+
+
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+
+    <div class="background">
+
+        <div class="header">
+
+            <!--<img src="images/title.png" width="100%" height="87px" />-->
+            <a class="markTitle" href="index.html" target="_parent"><img src="img/pandaLog.png" /></a>
+        
+        </div>
+        <div class="bgmodi" style="width: 200px;position: absolute;background: url(./img/bgModi.png) repeat-x ;height: 23px;top: 0;right: 0;"></div>
+        <a class="exitBtn" href="login.html"></a>
+        <iframe class="mainContent" id="iframe1" name="ifr" title="currentData1.html" src="listIndex.html" frameborder="0" scrolling="no"></iframe>
+
+        <ul id="ul1 " class="nav">
+            <li class="fun_5 fun">
+                <a href="javascript:void(0);"><i></i><span>地图监控</span></a>
+            </li>
+            <li class="fun_4 fun">
+                <a href="javascript:void(0);"><i></i><span>实景监控</span></a>
+
+            </li>
+            <li class="fun_1 fun">
+                <a href="javascript:void(0);"><i></i><span>列表监控</span></a>
+            </li>
+
+            <li class="fun_2 fun">
+                <a href="javascript:void(0);"><i></i><span>数据分析</span></a>
+
+            </li>
+            <li class="fun_3 fun">
+                <a href="javascript:void(0);"><i></i><span>报警分析</span></a>
+            </li>
+        </ul>
+      
+
+        <!-- 上侧右侧新增信息 -->
+            
+        
+            <div class="yNewTop">
+                <!--<marquee>-->
+                    <ul class="topLou clearfix">                      
+                        <li class="clearfix"> 
+                            <span class="li_bg li_bg1"></span><span class="tube_class">1</span><span>级 &nbsp;流量 &nbsp;</span><span class="folw_num">1200</span><span>&nbsp; ,&nbsp;漏损&nbsp; </span><span class="floor_num">125 </span><span> &nbsp;,&nbsp;&nbsp; </span><span class="li_percent">56</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="li_bg li_bg2"></span><span class="tube_class">2</span><span>级 &nbsp;流量 &nbsp;</span><span class="folw_num">1200</span><span> &nbsp;,&nbsp;漏损&nbsp; </span><span class="floor_num">125 </span><span>&nbsp; , &nbsp;&nbsp;</span><span class="li_percent">56</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="li_bg li_bg3"></span><span class="tube_class">用</span><span>户 &nbsp;流量 &nbsp;</span><span class="folw_num">1200</span><!--<span>&nbsp; ,&nbsp;漏损&nbsp;</span><span class="floor_num">125 </span><span> &nbsp;,&nbsp;&nbsp; </span><span class="li_percent">56</span>-->
+                        </li>
+                    </ul>
+                <!--</marquee>-->
+</div>
+        
+        <div class="yNewRght">
+            <div class="top_btn">
+                <div class="decision_btn"></div>
+                <div>决策</div>
+                <div class="decision_caret"></div>
+            </div>
+            <div class="content">
+                <div class="content_header">
+                    <ul>
+                        <li class="cost clearfix">
+                            <div class="cost_bg cost_bg1 clearfix"></div>
+                            <div class="cost_content">
+                                <span class="cost_text">漏水总量</span>
+                                <span class="cost_num costLou">98</span>
+                            </div>
+                        </li>
+                        <li class="cost clearfix">
+                            <div class="cost_bg cost_bg2 clearfix"></div>
+                            <div class="cost_content">
+                                <span class="cost_text">损失成本</span>
+                                <span class="cost_num costMon">98</span>
+                            </div>
+                        </li>  
+                    </ul>
+                </div>
+                <div class="content_mid">
+                    <div class="content_chart1" id="content_chart1"></div>
+                    <div class="content_chart2" id="content_chart2"></div>
+                </div>
+                <div class="content_bottom">
+                    <ul>
+                        <li>
+                            <p class="pic_li_bg pic_li_bg1"></p>
+                            <p>饼行列表</p>
+                            <p class="more_details"></p>
+                        </li>
+                        <li>
+                            <p class="pic_li_bg pic_li_bg2"></p>
+                            <p>饼行列表</p>
+                            <p class="more_details"></p>
+                        </li>
+                        <li>
+                            <p class="pic_li_bg pic_li_bg3"></p>
+                            <p>饼行列表</p>
+                            <p class="more_details"></p>
+                        </li>
+                        <li>
+                            <p class="pic_li_bg pic_li_bg4"></p>
+                            <p>饼行列表</p>
+                            <p class="more_details"></p>
+                        </li>
+                        <li>
+                            <p class="pic_li_bg pic_li_bg5"></p>
+                            <p>饼行列表</p>
+                            <p class="more_details"></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="conent_close">&times;</div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="alert_chart_box"></div>
+    <script type="text/javascript">
+        function createUrl(url, current_id) {
+            return url + '?id=' + current_id + '&v=' + Math.random();
+        }
+
+
+        var list_timer = null;
+        
+
+            
+        
+        //$('.list_box').ready(function () {
+        //    load_list();
+        //});
+
+        //list_timer = setInterval(load_list, 1000 * 60);
+        //$('.list_box').delegate('li', 'click', function () {
+          
+        //    $('#hideList').trigger('click');
+        //});
+        /* $('body').click(function(){
+             alert(0);
+             $.ajax({
+                 url: '../../Service/T_AlarmService.ashx?method=searchall',
+                 success: function (data) {
+                     console.log(data);
+                 },
+                 error: function (data) {
+                     alert('错误：'+data.responseText);
+                 }
+             });
+         });*/
+
+
+
+        //背景补足函数
+        function bgModify() {
+            var $w=$(window).width();
+            $('.bgmodi').width($w-1860);
+        };
+        bgModify();
+        $(window).resize(function () {
+            bgModify();
+        });
+        
+            //右侧  历史按钮 内容
+            //$('.timeLineOpen').ready(function () {
+            //    $.ajax({
+            //        url: '../../Service/T_AlarmService.ashx?method=searchall',
+            //        success: function (data) {
+            //            //alert(data);
+            //            //console.log(data);
+            //            $('.timeLineBlock .timeContent').empty();
+            //            var data = JSON.parse(data);
+            //            $.each(data.data, function (i, v) {
+            //                var FAlarmDate = v.FAlarmDate ? v.FAlarmDate.replace(/T/, " ") : null;
+            //                $('.timeLineBlock .timeContent').append('<li><i></i><span class="timeDotTitle">' + v.FName + '</span><p class="timeDotContent">' + v.FContent + '</p><div class="Date">' + FAlarmDate + '</div></li>');
+            //            });
+            //        },
+            //        error: function (data) {
+            //            alert('错误：' + data.responseText);
+            //        }
+            //    });
+            //});
+
+        
+            // 定时刷新及时报警
+            // 1.加载及时报警数据
+            //$('.timeLineOpen').ready(function () {
+            //    loadAlarmData();
+            //    var getAlarmTimer = setInterval(function () {
+            //        var oldTime = $('.timeLineBlock .timeContent li:first .Date').html();
+            //        var oldTimeMs = changeDate(oldTime);
+            //       // console.log(oldTime);
+            //       // console.log(oldTimeMs);
+                    
+
+            //        //loadAlarmData();
+            //        $.ajax({
+            //            url: '../../Service/T_AlarmService.ashx?method=searchall',
+            //            success: function (data) {                       
+            //                //alert(data);
+            //                //console.log(data);
+            //                $('.timeLineBlock .timeContent').empty();
+            //                var data = JSON.parse(data);
+            //                $.each(data.data, function (i, v) {
+            //                    var FAlarmDate = v.FAlarmDate ? v.FAlarmDate.replace(/T/, " ") : null;
+            //                    $('.timeLineBlock .timeContent').append('<li><i></i><span class="timeDotTitle">' + v.FName + '</span><p class="timeDotContent">' + v.FContent + '</p><div class="Date">' + FAlarmDate + '</div></li>');
+            //                });
+
+            //                var newTime = $('.timeLineBlock .timeContent li:first .Date').html();
+            //                var newTimeMs = changeDate(newTime);
+            //                //console.log(newTime);
+            //                // console.log(newTimeMs);
+            //                // console.log(newTimeMs - oldTimeMs);
+            //                if (newTimeMs - oldTimeMs > 0) {
+            //                    $('.Time').slideToggle();
+            //                }
+            //            },
+            //            error: function (data) {
+            //                console.log('刷新及时报警错误：' + data.responseText);
+            //            }
+            //        });
+
+            //    }, 2000);
+            //    clearInterval(getAlarmTimer);
+            //});
+            //function loadAlarmData() {
+            //    $.ajax({
+            //        url: '../../Service/T_AlarmService.ashx?method=searchall',
+            //        success: function (data) {
+            //            //alert(data);
+            //            //console.log(data);
+            //            $('.timeLineBlock .timeContent').empty();
+            //            var data = JSON.parse(data);
+            //            $.each(data.data, function (i, v) {
+            //                var FAlarmDate = v.FAlarmDate ? v.FAlarmDate.replace(/T/, " ") : null;
+            //                $('.timeLineBlock .timeContent').append('<li><i></i><span class="timeDotTitle">' + v.FName + '</span><p class="timeDotContent">' + v.FContent + '</p><div class="Date">' + FAlarmDate + '</div></li>');
+            //            });
+            //            //for (var i = 0; i < json.data.length; i++) {
+            //            //    json.data[i].FAlarmDate ? json.data[i].FAlarmDate.replace(/T/, " ") : null;
+            //            //    console.log(json.data[i].FAlarmDate);
+            //            //    $('.timeLineBlock .timeContent').prepend('<li><i></i><span class="timeDotTitle">' + json.data[i].FName + '</span><p class="timeDotContent">' + json.data[i].FContent + '</p><div class="Date">' + json.data[i].FAlarmDate + '</div></li>');
+            //            //    console.log(json.data[i].ID);
+            //            //}
+            //        },
+            //        error: function (data) {
+            //            console.log('及时报警错误：' + data.responseText);
+            //        }
+            //    });
+            //}
+       
+      
+            function changeDate(str) {
+                //var TimeMs = new Date(str.replace('-', '/').replace('-', '/'));
+                var timeMs = Date.parse(str);
+                return timeMs;
+            };
+
+            //通过搜索获得泵房
+            //$('.searchBtn').click(function () {
+            //    clearInterval(list_timer);
+            //    //alert(1);
+            //    var $search_text = $.trim($('.searchDiag').val());
+            //    if ($search_text) {
+            //        // alert(2);
+            //        clearInterval(list_timer);
+            //        if ($('.defaultContainer').html() == '名称') {
+            //            //alert($search_text);
+            //            $.ajax({
+            //                url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+            //                data: { 'FName': $search_text },
+            //                success: function (data) {
+            //                    $('.list_box').empty();
+            //                    // console.log(data);
+            //                    var data = JSON.parse(data);
+            //                    $('.onlineStatus .all').html(data.total);
+            //                    $('.onlineStatus .online').html(data.oncount);
+            //                    $('.onlineStatus .offline').html(data.offcount);
+
+            //                    $.each(data.data, function (i, v) {                          
+            //                        $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));                             
+            //                        // console.log(v.FName);
+            //                        // console.log(v.ID);
+            //                    });
+            //                },
+            //                error: function (data) {
+            //                    console.log('错误' + data);
+            //                    //alert('搜索错误！请查询重试');
+            //                }
+            //            });
+            //        } else {
+            //            $.ajax({
+            //                url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+            //                data: { 'FNumber': $search_text },
+            //                success: function (data) {
+            //                    //console.log(data);
+            //                    $('.list_box').empty();
+            //                    var data = JSON.parse(data);
+            //                    $('.onlineStatus .all').html(data.total);
+            //                    $('.onlineStatus .online').html(data.oncount);
+            //                    $('.onlineStatus .offline').html(data.offcount);
+
+            //                    $.each(data.data, function (i, v) {
+            //                        $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));                          
+            //                        // console.log(v.FName);
+            //                        // console.log(v.ID);
+            //                    });
+            //                },
+            //                error: function (data) {
+            //                    console.log('错误' + data);
+            //                    //alert('搜索错误！请查询重试');
+            //                }
+            //            });
+            //        }
+
+            //    } else {
+            //        clearInterval(list_timer);
+            //        load_list();
+            //        list_timer = setInterval(load_list, 1000 * 60);
+                
+                
+            //    }
+            //});
+
+            //获取用户名
+
+            (function () {
+                var getUserTimer;
+                getUserTimer = setInterval(getUser(),5000);
+                function getUser() {
+                    $.ajax({
+                        url: '../../Service/Sys_UserService.ashx?method=getcurrentuser',
+                        success: function (data) {
+                            var data = JSON.parse(data);
+                            if (data.FName) {
+                                var FName = data.FName;
+                                //$('.userName').html(FName);
+                                return;
+                            } else {
+                                window.location.href = './login.html';
+                            }
+
+                        },
+                        error: function (data) {
+                            console.log('错误：' + data.responseText);
+                        }
+                    });
+                }
+            
+            })();
+            ////修改用户密码
+            //(function () {
+            //    //根据ID获得用户
+            //    function getUser(ID, oldPsd, newPsd) {
+            //        $.ajax({
+            //            url: '../../Service/Sys_UserService.ashx?method=get',
+            //            data: { 'id': ID },
+            //            success: function (data) {
+            //                var data = JSON.parse(data);
+            //                var psw = data.FPassword;
+            //                if (psw != oldPsd) {
+            //                    alert("原始密码错误！");
+            //                    return;
+            //                }
+            //                var json = "[{\"id\":\"" + ID + "\",\"FPassword\":\"" + newPsd + "\"}]";
+            //                //var json = "[{id:" + ID + ",FPassword:" + newPsd + "}]";
+            //                $.ajax({
+            //                    url: '../../Service/Sys_UserService.ashx?method=save',
+            //                    data: { data: json },
+            //                    success: function (data) {
+            //                        var data = JSON.parse(data);
+            //                        if (data.result == 1) {
+            //                            alert('密码修改成功！');
+            //                            $('#oldPassword').val("");
+            //                            $('#newPassword1').val("");
+            //                            $('#newPassword2').val("");
+            //                            $(".userDataSet").show();
+            //                            $(".changePsd").hide();
+
+            //                        } else {
+            //                            alert('密码修改失败！');
+            //                        }
+            //                    },
+            //                    error: function (data) {
+            //                        console.log("error" + data.responseText + "hahaha");
+            //                    }
+            //                });
+
+            //            }
+            //        });
+            //    };
+            //    $('.ack').click(function () {
+            //        var oldPsd = $('#oldPassword').val();
+            //        var newPsd1 = $.trim($('#newPassword1').val());
+            //        var newPsd2 = $.trim($('#newPassword2').val());
+
+            //        if (newPsd1 != "" || newPsd2 != "") {
+            //            if (newPsd1 != newPsd2) {
+            //                alert('新改密码两次输入不一致！');
+            //                return;
+            //            };
+            //            var newPsd = newPsd1;
+            //            $.ajax({
+            //                url: '../../Service/Sys_UserService.ashx?method=getcurrentuser',
+            //                success: function (data) {
+            //                    var data = JSON.parse(data);
+            //                    var ID = data.ID;
+            //                    getUser(ID, oldPsd, newPsd);
+            //                },
+            //                error: function (data) {
+            //                    alert('错误：' + data.responseText);
+            //                }
+            //            });
+            //        } else {
+            //            alert('新改密码不能为空！');
+            //        };
+
+            //    });
+            //})();
+            //function load_list() {
+            //    $('.list_box').html('');
+            //    $('.blue').trigger('click');
+            //    $.ajax({
+            //        url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+            //        success: function (data) {
+            //            // console.log(data);
+            //            var data = JSON.parse(data);
+            //            $('.onlineStatus .all').html(data.total);
+            //            $('.onlineStatus .online').html(data.oncount);
+            //            $('.onlineStatus .offline').html(data.offcount);
+
+            //            $.each(data.data, function (i, v) {
+                        
+            //                if (v.FPumpType) {
+            //                    $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./' + v.FURL + '.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+            //                } else {
+            //                    $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+            //                }
+            //                // console.log(v.FName);
+            //                // console.log(v.ID);
+            //            });
+            //        },
+            //        error: function (data) {
+            //            console.log('错误：' + data.responseText);
+            //        }
+            //    });
+            //}
+
+
+            /* load_list 从这里删除*/
+        
+
+        // 上侧的漏损数据处理函数
+
+            function topLabelGet() {
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=gettoplabledata',
+
+                    success: function (data) {
+                       // alert(data);
+                        //console.log(data + 'hhhhhh');
+                        var data = JSON.parse(data);
+
+                        // topLou   folw_num   floor_num li_percent
+                        data.Lev1_Miss_P = data.Lev1_Miss_P.toFixed(2) + '%';
+                        data.Lev2_Miss_P = data.Lev2_Miss_P.toFixed(2) + '%';
+                        data.LevZ_Miss_P = data.LevZ_Miss_P.toFixed(2) + '%';
+                        data.Mount = data.Mount.toFixed(2);
+                        data.Mount1 = data.Mount1.toFixed(2);
+                        //   $(".li1-totalNum .text  p")[0].firstChild.nodeValue = data.Lev1_P01;
+
+                        $('.topLou li').eq(0).find('.folw_num').html(data.Lev1_P01);
+                        $('.topLou li').eq(0).find('.floor_num').html(data.Lev1_Miss);
+                        $('.topLou li').eq(0).find('.li_percent').html(data.Lev1_Miss_P);
+
+                        $('.topLou li').eq(1).find('.folw_num').html(data.Lev2_P01);
+                        $('.topLou li').eq(1).find('.floor_num').html(data.Lev2_Miss);
+                        $('.topLou li').eq(1).find('.li_percent').html(data.Lev2_Miss_P);
+
+                        $('.topLou li').eq(2).find('.folw_num').html(data.Lev3_P01);
+                        $('.topLou li').eq(2).find('.floor_num').html(data.LevZ_Miss);
+                        $('.topLou li').eq(2).find('.li_percent').html(data.LevZ_Miss_P);
+
+                        $('.costLou').html(data.LevZ_Miss + 'm³');
+                        $('.costMon').html(data.Mount1 + '元');
+                    },
+                    error: function (data) {
+                        alert('错误：' + data.responseText);
+                    }
+                });
+            }
+            topLabelGet();
+
+            window.setInterval(function () {
+                topLabelGet();
+                //alert(1);
+            },4000);
+
+            
+
+
+        //new Top  js
+        
+
+            $('.content .conent_close').click(function () {
+                $('.top_btn').trigger('click');
+            });
+            $('.top_btn').click(function (e) {
+                if ($(this).hasClass('active')) {
+                    $(this).next('.content').stop().slideUp(200);
+                    $(this).removeClass('active').find('.decision_caret').removeClass('active');
+                    
+                } else {
+                    $(this).next('.content').stop().slideDown(200);
+                    $(this).addClass('active').find('.decision_caret').addClass('active');
+                    
+                }
+                e.stopPropagation();
+            });
+            $('.content').click(function (e) {
+                e.stopPropagation();
+
+            });
+            $(document).click(function () {
+                $('.top_btn').removeClass('active').find('.decision_caret').removeClass('active');
+                $('.top_btn').next('.content').slideUp();
+
+            });
+            $('.content_bottom li').click(function () {
+                top.layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: '../Baidu/chartsFrame.html?abx=2&bcc=333'
+                });
+            });
+
+            var option = {
+                title: {
+                    text: '',
+                    textStyle: {
+                        color: 'rgb(255,255,255)'
+                    }
+                },
+                grid: {
+
+                    left: 40,
+                    right: 20,
+                    bottom: 30
+                },
+                //              tooltip: {
+                //                  trigger: 'axis',
+                //                  backgroundColor: 'rgba(28,136,151,0.6)',
+                //                  padding: [5, 10],
+                //                  axisPointer: {
+                //                      lineStyle: {
+                //                          color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                //                      }
+                //                  }
+                //              },
+                legend: {
+                    data: ['当月', '10月', '9月'],
+                    textStyle: {
+                        color: '#fff',
+                    },
+                    selected: {
+                        '当月': false
+                    }
+                },
+                xAxis: {
+                    show: 'false',
+                    type: 'category',
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                    boundaryGap: true,
+                    data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                    //data: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+                },
+                yAxis: {
+                    show: false,
+                    type: 'value',
+                    axisLine: {
+                        lineStyle: {
+                            color: 'rgba(27, 131, 167,0.7)',
+                            width: 1,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: 'rgb(255,255,255)',
+                            fontSize: 12,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['rgba(27, 131, 167,0.7)'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
+                },
+                series: [{
+                    name: '10月',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(179,124,250)',
+                            lineStyle: { color: 'rgb(179,124,250)' }
+                        },
+                    },
+                    smooth: true,
+                    data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+                },
+                {
+                    name: '9月',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(171,222,86)',
+                            lineStyle: { color: 'rgb(171,222,86)' }
+                        },
+                    },
+                    smooth: true,
+                    data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+                },
+
+                {
+                    name: '当月',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: '#2378f7' },
+                                    { offset: 0.7, color: '#2378f7' },
+                                    { offset: 1, color: '#83bff6' }
+                                ]
+                            )
+                        }
+                    },
+
+
+                    data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+                }]
+            };
+
+            //function (){
+            //}
+            var myChart1 = echarts.init($('#content_chart1')[0]);
+            var myChart2 = echarts.init($('#content_chart2')[0]);
+            myChart1.setOption(option);
+            myChart2.setOption(option);
+
+
+
+            $(".pumpList").bind("mouseover mouseout", function () {
+                $(this).children('.rightBtn').css('display', 'block');
+            });
+            $().ready(function () {
+                $(".List").mCustomScrollbar({
+                    axis: "y",
+                    theme: "dark-thin",
+                    autoExpandScrollbar: false,
+                    advanced: { autoExpandHorizontalScroll: true }
+                });
+                $(".Time").mCustomScrollbar({
+                    axis: "y",
+                    theme: "dark-thin",
+                    autoExpandScrollbar: false,
+                    advanced: { autoExpandHorizontalScroll: true }
+                });
+            });
+    </script>
+</body>
+</html>

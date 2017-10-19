@@ -1,0 +1,195 @@
+﻿@{
+    ViewBag.Title = "video";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+    li {
+        list-style: none;
+    }
+    body {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+       
+        background: #000;
+    }
+
+    video {
+        width: 100%;
+        height: 90%;
+    }
+    .videoBox {
+        width: 100%;
+        height: 32px;
+        padding: 5px 0;
+        background: #000;
+        margin: 0;
+        color: #fff;
+    }
+    .videoBox li {
+        width: 22px;
+        height: 22px;
+        background: #000;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        margin: 0 8px;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+        float: left;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .videoBox li.active, .videoBox li:hover {
+        background: #f60;
+        border: 1px solid #f60;
+    }
+    /*max-width: 1200px;*/
+
+</style>
+
+<script src="https://open.ys7.com/sdk/js/1.1/ezuikit.js"></script>
+}
+
+
+
+@section body {
+    <ul class="videoBox">
+       
+    </ul>
+<video id="myPlayer" poster="" controls playsinline webkit-playsinline autoplay>
+    <source src="rtmp://rtmp.open.ys7.com/openlive/1a1b0c337b254fcc939ea9a1c7436f16" type="" />
+    <source src="http://hls.open.ys7.com/openlive/1a1b0c337b254fcc939ea9a1c7436f16.m3u8" type="application/x-mpegURL" />
+</video>
+   
+}
+@section script {
+   <script>
+       //function getVal() {
+       //    var url = window.location.href;
+       //    alert(url);
+       //    var i = url.indexOf('?');
+       //    var valStr = {};
+       //    if (i === -1) {
+       //        return;
+       //    }
+
+       //    var str = url.substr(i + 1).split('&');
+
+       //    for (var j = 0; j < str.length; j++) {
+       //        var subStr = str[j].split('=');
+       //        console.log(subStr);
+       //        console.log(subStr[0]);
+       //        console.log(subStr[1]);
+       //        valStr[subStr[0]] = decodeURIComponent(subStr[1]);
+       //    }
+       //    console.log(valStr);
+       //    return valStr;
+
+       //}
+       //console.log(JSON.parse((getVal().videoPanals)));
+       //console.log(12);
+
+       //子级panals 的 参数获得函数
+       var  childPanels=parent.videoDeal();
+
+       EZUIPlayer.prototype.changeUrl = function (url1,url2) {
+           var me = this;
+           this.opt.sources = [];
+           if (url1 == 'null') {
+               url1 = 'rtmp://rtmp.open.ys7.com/openlive/1a1b0c337b254fcc939ea9a1c7436f16';
+           }
+           if (url2 == 'null') {
+               url2 = 'http://hls.open.ys7.com/openlive/1a1b0c337b254fcc939ea9a1c7436f16.m3u8';
+           }
+           this.opt.sources.push(url1,url2);
+           this.opt.currentSource = this.opt.sources[this.opt.cur];
+           console.log(this.opt.sources);
+           console.log(this.opt.currentSource);
+           this.initCKPlayer();
+
+
+
+       }
+       var player = new EZUIPlayer('myPlayer');
+       
+        player.on('error', function () {
+            console.log('error');
+        });
+        player.on('play', function () {
+            console.log('play');
+        });
+        player.on('pause', function () {
+            console.log('pause');
+        });
+   
+       //通道 按钮生成 函数
+      
+    function panelCreate() {
+        var str = '', childPanels2=[];
+        console.log(childPanels);
+        console.log('qinqin');
+       
+        for (var j in childPanels) {
+            if (childPanels[j].QuipmentType === "萤石云") {
+                childPanels2.push(childPanels[j]);
+            } else {
+
+                //childPanels.splice(j, 1);
+                
+            }
+        }
+        for (var i = 0; i < childPanels2.length; i++) {
+
+            if (i == 0) {
+                str += '<li class="active" url1="' + childPanels[i].Rtmp + '" url2="' + childPanels[i].Hls + '" title="' +  childPanels[i].Type + '">' + (i + 1) + '</li>';
+            } else {
+              
+                str += '<li url1="' + childPanels[i].Rtmp + '" url2="' + childPanels[i].Hls + '" title="' + childPanels[i].Type + '">' + (i + 1) + '</li>';
+            }
+           
+        }
+       
+        if (childPanels2.length < 1) {
+            $('#myPlayer').remove();
+            $('.videoBox').html('暂无视频');
+            return;
+        }
+       
+        $('.videoBox').append(str);
+    }
+       // 通道 的点击 函数
+
+       (function panelClick() {
+           panelCreate();
+        $('.videoBox').delegate('li', 'click', function () {
+            if ($(this).hasClass('active')) {
+                return;
+            }
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+          
+            
+            player.changeUrl($(this).attr('url1'),$(this).attr('url2'));
+           
+          
+        });
+        $('.videoBox li:last').trigger('click');
+
+    })();
+</script>
+
+}

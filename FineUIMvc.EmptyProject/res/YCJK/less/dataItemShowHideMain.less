@@ -1,0 +1,873 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: content-box;
+}
+.borderRadius5 {
+    border-radius: 5px;
+}
+.borderRadiusBotom {
+    border-radius: 0 0 5px 5px;
+}
+.borderTop2 {
+    border-top: 2px solid #438eb9;
+}
+.dataItemWrap {
+    width: 1000px;
+    height: 551px;
+    padding: 4px 4px;
+    background: #eaeaea;
+}
+.dataItemTop {
+    width: 1000px;
+    height: 420px; 
+}
+.dataItemLeft {
+    float: left;
+    width: 393px;
+    height: 420px;
+    margin-right: 2px;
+    .borderRadius5;
+    background: #fff;
+    .surroundingsValBox {
+        width:  100%;
+        height: 210px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        .surroundingsValBoxHeader {
+            height: 28px;
+            line-height: 28px;
+            .surroundingsValHeaderPic {
+                float: left;
+                width: 24px;
+                height: 28px;
+                line-height: 28px;
+                margin-left: 14px;
+                 background: url(../img/dataItemSmallPic.png) no-repeat 5px 8px;
+            }
+            .surroundingsValHeaderTxt {
+                float: left;
+                font-size: 12px;
+                color: #333333;
+            }
+        }
+        .surroundingsValMain {
+        
+            height: 171px; 
+            padding-top: 10px;
+            padding-left: 18px;
+            >li {
+              float: left;
+              width: 60px;
+              height: 72px;
+              margin-right: 12px;
+              margin-bottom: 10px;
+              text-align: center;
+              background: #f4f4f4;
+              cursor: pointer;
+              .borderRadius5;
+              .itemCheckBox{
+                 .itemCheckPic{
+                 width:10px;
+                 height:16px;
+                 margin:3px auto 0px;
+                 background:url(../img/checkPic.png) no-repeat;
+                 }
+              }
+              &:nth-of-type(1) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: 8px 4px;
+              }
+              &:nth-of-type(2) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                     background-position: -139px 4px;
+              }
+              &:nth-of-type(3) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -286px 4px;
+              }
+              &:nth-of-type(4) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                   background-position: -1386px 4px;
+              }
+              &:nth-of-type(5) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -358px 4px;
+              }
+              &:nth-of-type(6) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -65px 4px;
+              }
+              &:nth-of-type(7) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -212px 4px;
+              }
+              &:nth-of-type(8) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -1532px 4px;
+              }
+              &:nth-of-type(9) .surroundingsValItemBox .surroundingsValPicWrap .surroundingsValItemPic {
+                    background-position: -1457px 4px;
+              }
+              
+                            
+              &.active {
+                  background: #188df0;
+                  .surroundingsValItemBox {
+                        background: #fff;
+                        .surroundingsValPicWrap {
+                           background: #188df0; 
+                        }
+                    }
+                }
+                .surroundingsValItemBox {
+                      background: #f4f4f4;
+                      padding-top: 8px;
+                      width: 58px;
+                      height: 48px;
+                      border-radius: 5px 5px 0 0;
+                      margin: 1px;
+                      margin-bottom: none;
+                    .surroundingsValPicWrap {
+                      margin: 0 auto;
+                      width: 27px;
+                      height: 27px;
+                      border-radius: 50%;
+                      background: #b9b9b9;
+                      .surroundingsValItemPic {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            background:  url(../img/yuZhuoPh.png) no-repeat ;
+                            
+                      }
+                      
+                    }
+                    
+                    .surroundingsValItemTxt {
+                        font-size: 12px;
+                        color: #333333;
+                    }
+                } 
+                
+                
+              
+            }
+        }
+        
+    }
+    .surroundingsStateBox {
+        width:  100%;
+        height: 210px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        .surroundingsStateBoxHeader {
+            height: 28px;
+            line-height: 28px;
+            .surroundingsStateHeaderPic {
+                float: left;
+                width: 24px;
+                height: 28px;
+                line-height: 28px;
+                margin-left: 14px;
+                background: url(../img/dataItemSmallPic.png) no-repeat 5px -393px;
+               
+            }
+            .surroundingsStateHeaderTxt {
+                float: left;
+                font-size: 12px;
+                color: #333333;
+            }
+        }
+        .surroundingsStateMain {
+        
+            height: 171px; 
+            padding-top: 10px;
+            padding-left: 18px;
+            >li {
+              float: left;
+              width: 60px;
+              height: 72px;
+              margin-right: 12px;
+              margin-bottom: 10px;
+              text-align: center;
+              background: #f4f4f4;
+              cursor: pointer;
+              .borderRadius5;
+              .itemCheckBox{
+                  .itemCheckPic{
+                     width:10px;
+                     height:16px;
+                     margin:3px auto 0px;
+                     background:url(../img/checkPic.png) no-repeat;
+                  }
+              }
+              &:nth-of-type(1) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                    background-position: -798px 4px;
+              }
+              &:nth-of-type(2) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                     background-position: -945px 4px;
+              }
+              &:nth-of-type(3) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                    background-position: -1164px 4px;
+              }
+              &:nth-of-type(4) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                   background-position: -1311px 4px;
+              }
+              &:nth-of-type(5) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                    background-position: -1604px 4px;
+              }
+              &:nth-of-type(6) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                    background-position: -725px 4px;
+              }
+              &:nth-of-type(7) .surroundingsStateItemBox .surroundingsStatePicWrap .surroundingsStateItemPic {
+                    background-position: -1019px 4px;
+              }
+              
+              &.active {
+                  background: #188df0;
+                  .surroundingsStateItemBox {
+                        background: #fff;
+                        .surroundingsStatePicWrap {
+                           background: #188df0; 
+                        }
+                    }
+                }
+                .surroundingsStateItemBox {
+                      background: #f4f4f4;
+                      padding-top: 8px;
+                      width: 58px;
+                      height: 48px;
+                      border-radius: 5px 5px 0 0;
+                      margin: 1px;
+                      margin-bottom: none;
+                    .surroundingsStatePicWrap {
+                      margin: 0 auto;
+                      width: 27px;
+                      height: 27px;
+                      border-radius: 50%;
+                      background: #b9b9b9;
+                      .surroundingsStateItemPic {
+                            width: 100%;
+                            height: 100%;
+                            background:  url(../img/yuZhuoPh.png) no-repeat ;
+                      }
+                    }
+                    .surroundingsStateItemTxt {
+                        font-size: 12px;
+                        color: #333333;
+                    }
+                } 
+              
+            }
+        }
+    }
+    
+}
+.dataItemRight {
+    float: left;
+    width: 605px;
+    height: 420px;
+   
+    .dataItemRightTop {
+        width: 100%;
+        height: 170px;
+        .pumpBox {
+            float: left;
+            width: 124px;
+            height: 170px;
+            margin-right: 3px;
+            .borderRadius5 ;
+            background: #fff;
+            .pumpHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .pumpPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -49px ;
+                }
+                .pumpTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+            .pumpMain {
+                position: relative;
+                width: 92px;
+                height: 110px;
+                margin: 7px auto;
+                text-align: center;
+                font-size: 12px;                
+                border: 1px solid #fff;
+                .borderRadius5;
+                cursor: pointer;
+                &.active {
+                    border: 1px solid #188df0;
+                }
+                .pumpMainPic {
+                    width: 27px;
+                    height: 27px;
+                    margin: 12px auto;
+                    background: #b9b9b9;
+                    border-radius: 50%;
+                    &.active {
+                        background: #188df0;
+                    }
+                    .pumpPic{
+                        height:100%;
+                        width:100%;
+                        background:url(../img/paishuiPic.png) no-repeat 5px 5px;
+
+                    }
+
+                }
+                .pumpDian {
+                    color: #b3b3b3;
+                    cursor: pointer;
+                    background:url(../img/checkItem.png) no-repeat 19px -36px;
+                    &.active {
+                        color: #188df0;
+                        background-position:19px 4px;
+                    }
+                }
+                .pumpYun {
+                    color: #b3b3b3;
+                    cursor: pointer;
+                    background:url(../img/checkItem.png) no-repeat 8px -36px;
+                    &.active {
+                        color: #188df0;
+                        background-position:8px 4px;
+                    }
+                }
+                .pumpCheck {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    width: 21px;
+                    height: 16px;
+                   
+                    border-radius: 0 0 5px 0;
+                    &.active {
+                         background: url(../img/rightCheck.png) no-repeat;
+                    }
+                }
+            }
+        }
+        .dianDongFaBox {
+            float: left;
+            width: 173px;
+            height: 170px;
+            margin-right: 3px;
+            .borderRadius5 ;
+            background: #fff;
+            
+            .dianDongFaHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .dianDongFaPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -106px ;
+                }
+                .dianDongFaTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+            
+            .dianDongFaMain {
+                padding: 6px 13px;
+                >div {
+                    position: relative;
+                    float: left;
+                    width: 68px;
+                    height: 34px;
+                    background: #f4f4f4;
+                    border-radius: 3px;
+                    font-size: 12px;
+                    line-height: 34px;
+                    text-align: center;
+                    margin: 2px;
+                    margin-bottom: 4px;
+                    color: #717171;
+                    cursor: pointer;
+                    >div {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 0 0 3px 0;
+                        width: 21px;
+                        height: 16px;
+                        background: url(../img/rightCheck.png) no-repeat;
+                        display: none;
+                        
+                    }
+                    &:hover {
+                         background: #e0f4ff;
+                    }
+                    &.active {
+                        background: #e0f4ff;
+                        >div {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        .shuiXiangBox  {
+            float: left;
+            width: 173px;
+            height: 170px;
+            margin-right: 4px;
+            .borderRadius5 ;
+            background: #fff;
+            
+            .shuiXiangHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .shuiXiangPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -163px;
+                }
+                .shuiXiangTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+            
+            .shuiXiangMain {
+                padding: 6px 13px;
+                >div {
+                    position: relative;
+                    float: left;
+                    width: 68px;
+                    height: 34px;
+                    background: #f4f4f4;
+                    border-radius: 3px;
+                    font-size: 12px;
+                    line-height: 34px;
+                    text-align: center;
+                    margin: 2px;
+                    margin-bottom: 4px;
+                    color: #717171;
+                    cursor: pointer;
+                    >div {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 0 0 3px 0;
+                        width: 20px;
+                        height: 16px;
+                        background: url(../img/rightCheck.png) no-repeat;
+                        display: none;
+                        
+                    }
+                    &:hover {
+                         background: #e0f4ff;
+                    }
+                    &.active {
+                        background: #e0f4ff;
+                        >div {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+        .pressOutWaterBox {
+             float: left;
+            width: 124px;
+            height: 170px;
+            .borderRadius5 ;
+            background: #fff;
+            
+            .pressOutWaterHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .pressOutWaterPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -221px;
+                }
+                .pressOutWaterTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+            .pressOutWaterMain {
+                >div {
+                    position: relative;
+                    width: 68px;
+                    height: 34px;
+                    background: #f4f4f4;
+                    border-radius: 3px;
+                    font-size: 12px;
+                    line-height: 34px;
+                    text-align: center;
+                    margin: 4px auto ;
+                    
+                    margin-bottom: 4px;
+                    color: #717171;
+                    cursor: pointer;
+                    >div {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 0 0 3px 0;
+                        width: 20px;
+                        height: 16px;
+                        background: url(../img/rightCheck.png) no-repeat;
+                        display: none;
+                        
+                    }
+                    &:hover {
+                        background: #e0f4ff;
+                    }
+                    &.active {
+                        background: #e0f4ff;
+                        >div {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+.dataItemRightBot {
+    margin-top: 3px;
+    width: 605px;
+    height: 247px;
+    .bianPin {
+        float: left;
+        width: 200px;
+        height: 247px;
+        background: #fff;
+        margin-right: 2px;
+        
+        .bianPinHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .bianPinPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -336px;
+                }
+                .bianPinTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+            }
+            
+            .bianPinMain {
+                .bianPinTop {
+                    width: 100%;
+                    height: 96px;
+                    >div {
+                        position: relative;
+                        float: left;
+                        width: 42px;
+                        height: 30px;
+                        background: #f4f4f4;
+                        border-radius: 3px;
+                         font-size: 12px;
+                         line-height: 34px;
+                        text-align: center;
+                        margin: 10px 12px ;  
+                        color: #717171;
+                        cursor: pointer;
+                        >div {
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                            border-radius: 0 0 3px 0;
+                            width: 20px;
+                            height: 16px;
+                            background: url(../img/rightCheck.png) no-repeat;
+                            display: none;
+                            
+                        }
+                        &.active {
+                            background: #e0f4ff;
+                            >div {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                
+                .bianPinBot {
+                    width: 176px;
+                    height: 96px;
+                    margin: 4px auto;
+                    border-radius: 3px;
+                    background: #f4f4f4;
+                    >div {
+                        float: left;
+                        width: 80px;
+                        height: 20px;
+                        line-height: 20px;
+                        font-size: 12px;
+                        color: #b3b3b3;
+                        margin-top: 8px;
+                        margin-left: 6px; 
+                        text-indent: 20px;
+                        border-radius: 3px;
+                        cursor: pointer;
+                        background: url(../img/checkItem.png) no-repeat 8px -35px;
+                        &.active {
+                            color: #188df0;
+                            background-position: 8px 5px;
+                        }
+                    }
+                }
+            }
+    }
+    .others {
+        float: left;
+        width: 403px;
+        height: 247px;
+        background: #fff;
+        
+        .othersHeader {
+                width: 124px;
+                height: 30px;
+                padding-top: 6px;
+                line-height: 30px;
+                .othersPic {
+                    float: left;
+                    width: 24px;
+                    height: 30px;
+                    background: url(../img/dataItemSmallPic.png) no-repeat 5px -278px;
+                }
+                .othersTxt {
+                    float: left;                   
+                    font-size: 12px;
+                    color: #333333;
+                }
+        }
+        .othersMain {
+            .otherBox {
+                padding: 8px;
+                li {      
+                    float: left;         
+                    width: 110px;
+                    height: 28px;
+                    font-size: 12px;
+                    line-height: 28px;
+                    text-align: center;
+                    color: #717171;
+                    background: #f4f4f4;
+                    cursor: pointer;
+                    margin: 4px;
+                    border-radius: 3px;
+                    &.active,&:hover {
+                        background:  #e0f4ff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dataItemBot {
+    margin-top: 8px;
+    width: 1000px;
+    height: 122px;
+    .dataItemBotLeft {
+        float: left;
+        width: 875px;
+        height: 120px;
+        margin-right: 3px;
+        background:#fff;
+        .borderTop2; 
+        .borderRadiusBotom;
+        .panalHeader {
+            position: relative;
+            width: 875px;
+            height: 31px;
+            border-bottom: 1px solid #ededed;
+            line-height: 31px;
+            .panalHeaderPic {
+                float: left;
+                width: 24px;
+                height: 31px;
+                margin-left: 14px;
+                background: url(../img/dataItemSmallPic.png) no-repeat 5px -450px;
+            }
+            .panalHeaderTxt {
+                float: left;
+                font-size: 12px;
+                color: #333333;
+            }
+            
+        }
+        
+        .panalItemBox {
+            width: 967px;
+            height: 78px; 
+            padding-top: 10px;
+            padding-left: 33px;
+            >li {
+              float: left;
+              width: 60px;
+              height: 72px;
+              margin-right: 45px;
+              text-align: center;
+              background: #f4f4f4;
+              cursor: pointer;
+              .borderRadius5;
+              .itemCheckBox{
+                 .itemCheckPic{
+                    width:10px;
+                    height:16px;
+                    margin:3px auto 0px;
+                    background:url(../img/checkPic.png) no-repeat;
+                 }
+              }
+              &:nth-of-type(1) .panalItemPicBox .panalItemPicWrap .panalItemPic  {
+                    background-position: -798px 4px;
+              }
+              &:nth-of-type(2) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                     background-position: -945px 4px;
+              }
+              &:nth-of-type(3) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                    background-position: -1237px 4px;
+              }
+              &:nth-of-type(4) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                   background: url(../img/paishuiPic.png) no-repeat 5px 5px;
+              }
+              &:nth-of-type(5) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                    background-position: -432px 4px;
+              }
+              &:nth-of-type(6) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                    background-position: -506px 4px;
+              }
+              &:nth-of-type(7) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                    background-position: -578px 4px;
+              }
+              &:nth-of-type(8) .panalItemPicBox .panalItemPicWrap .panalItemPic {
+                    background-position: -651px 4px;
+              }
+              
+              &.active {
+                  background: #188df0;
+                  .panalItemPicBox {
+                        background: #fff;
+                        .panalItemPicWrap {
+                           background: #188df0; 
+                        }
+                    }
+                }
+                .panalItemPicBox {
+                      background: #f4f4f4;
+                      padding-top: 8px;
+                      width: 58px;
+                      height: 48px;
+                      border-radius: 5px 5px 0 0;
+                      margin: 1px;
+                      margin-bottom: none;
+                    .panalItemPicWrap {
+                      margin: 0 auto;
+                      width: 27px;
+                      height: 27px;
+                      border-radius: 50%;
+                      background: #b9b9b9;
+                      .panalItemPic {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            background:  url(../img/yuZhuoPh.png) no-repeat ;
+                      }
+                    }
+                    .panalItemTxt {
+                        font-size: 12px;
+                        color: #333333;
+                    }
+                } 
+              
+            }
+        }
+    }
+    .dataItemBotRight {
+        float: left;
+        width: 122px;
+        height: 120px;
+        .borderTop2; 
+        .borderRadiusBotom;
+        background:#fff;
+        
+        .sheBeiQiTing {
+            width: 122px;
+            height: 120px;
+            li {
+                position: relative;
+                width: 110px;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                font-size: 12px;
+                color: #717171;
+                margin: 5px auto;
+                background: #f4f4f4;
+                cursor: pointer;
+                .borderRadius5;
+                .checkBg {
+                    position:absolute;
+                    right: 0;
+                    bottom: 0;
+                    width: 21px;
+                    height: 16px;
+                    border-radius: 0 0 5px 0;
+                    background: url(../img/rightCheck.png) no-repeat;
+                    display: none;
+                }
+                &:hover {
+                    background: #e0f4ff;
+                }
+                &.active {
+                    background: #e0f4ff;
+                    .checkBg {                       
+                        display: block;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+
+
+.checkAll {
+    float: right;
+    width: 56px;
+    height: 31px;
+    margin-right: 14px;
+    text-indent: 24px;
+    font-size: 12px;
+    color: #969696;
+    cursor: pointer;
+    background:url(../img/checkAll.png) no-repeat 7px 9px;
+    &.active {
+       background-position:7px -32px; 
+       color:#188df0;
+    }
+}

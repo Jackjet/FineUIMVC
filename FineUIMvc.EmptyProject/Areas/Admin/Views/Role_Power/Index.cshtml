@@ -1,0 +1,261 @@
+﻿@{
+    ViewBag.Title = "Admin/Role_Power";
+    var F = @Html.F();
+}
+
+@model IEnumerable<FineUIMvc.PumpMVC.Models.GroupPowerViewModel>
+
+@section head {
+
+    <style>
+        ul.powers {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.powers li {
+            margin: 5px 15px 5px 0;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        ul.powers li input {
+            vertical-align: middle;
+        }
+
+        ul.powers li label {
+            margin-left: 5px;
+        }
+
+        /* 自动换行，放置权限列表过长 */
+        .f-grid-row .f-grid-cell-inner {
+            white-space: normal;
+        }
+    </style>
+
+}
+
+@section body {
+
+    @(F.RegionPanel()
+        .ID("RegionPanel1")
+        .ShowBorder(false)
+        .Margin(5)
+        .IsViewPort(true)
+        .Regions(
+            F.Region()
+                .ID("Region1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .RegionPosition(Position.Left)
+                .BodyPadding("0 5 0 0")
+                .Width(200)
+                .Layout(LayoutType.Fit)
+                .Items(
+                        F.Grid()
+                                .EnableCollapse(true)
+                                .Title("表格")
+                                .ShowHeader(false)
+                                .ShowBorder(true)
+                                .ID("Grid1")
+                                .DataIDField("ID")
+                                .Width(200)
+                                .PageSize(1000)
+                                .AutoScroll(true)
+                                         .SelectedRowID(ViewBag.Grid1SelectedRowID)
+                                .EnableMultiSelect(false)
+                                .Listener("rowclick", "RolePower_Grid2_DoPostBack();")
+                                .Toolbars(
+                                    F.Toolbar()
+                                        .ID("Toolbar1")
+                                        .Items(
+                                               F.TriggerBox()
+                                                 .ID("ttbSearchCustomer")
+                                                 .EnableEdit(false)
+                                                 .LabelWidth(80)
+                                                 .EmptyText("在所属客户中搜索")
+                                                 .TriggerIcon(TriggerIcon.Search)
+                                                 .OnClientTriggerClick("OnClientCustomerSelect();")
+                                                 .Hidden(ViewBag.Hidden)
+                                                 .ShowLabel(false)
+                                                 .Label("客户名称")
+                                             //F.TwinTriggerBox()
+                                             //   .ID("ttbSearchCustomer")
+                                             //   .ShowLabel(false)
+                                             //   .Hidden(ViewBag.Hidden)
+                                             //   .EmptyText("在所属客户中搜索")
+                                             //   .Trigger1Icon(TriggerIcon.Clear)
+                                             //   .Trigger2Icon(TriggerIcon.Search)
+                                             //   .ShowTrigger1(false)
+                                             //   .Listener("trigger1click", "RolePower_Grid2_DoPostBack('trigger1');")
+                                             //   .Listener("trigger2click", "RolePower_Grid2_DoPostBack('trigger2');")
+                                        )
+                                )
+                                .Columns(
+                                        F.RenderField()
+                                             .HeaderText("角色名称")
+                                             .ColumnID("Name")
+                                             .DataField("Name")
+                                             .Width(175)
+                                        )
+                                .DataSource(ViewBag.Grid1DataSource)
+                ),
+            F.Region()
+                .ID("Region2")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .RegionPosition(Position.Center)
+                .Layout(LayoutType.VBox)
+                .BoxConfigAlign(BoxLayoutAlign.Stretch)
+                .Items(
+                    F.Grid()
+                        .ID("Grid2")
+                        .BoxFlex(1)
+                        .ShowBorder(true)
+                        .ShowHeader(false)
+                        .Toolbars(
+                            F.Toolbar()
+                                .ID("Toolbar1")
+                                .Items(
+                                    F.Button()
+                                        .ID("btnSelectAll")
+                                        .Text("全选")
+                                        .Listener("click", "selectPowerCheckboxs(true);"),
+                                    F.Button()
+                                        .ID("btnUnSelectAll")
+                                        .Text("反选")
+                                        .Listener("click", "selectPowerCheckboxs(false);"),
+                                    F.ToolbarSeparator(),
+                                    F.Button()
+                                        .ID("btnGroupUpdate")
+                                        .Icon(Icon.GroupEdit)
+                                        .Text("更新当前角色的权限")
+                                        .Enabled(ViewBag.CoreRolePowerEdit)
+                                        .Listener("click", "RolePower_Grid2_DoPostBack('saveall');")
+                                )
+                        )
+                        .Columns(
+                            F.RowNumberField(),
+                           
+                            F.RenderFieldFor(m => m.GroupName, true)
+                                .Width(120),
+                            F.RenderFieldFor(m => m.Powers)
+                                .ExpandUnusedSpace(true)
+                                .RendererFunction("renderPowers")
+                        )
+                        .DataSource(Model)
+                )
+        )
+    )
+
+@(F.Window()
+        .ID("Window1")
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .Width(900)
+        .Height(500)
+        .Listener("close", "RolePower_Grid2_DoPostBack();")
+)
+}
+
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+    <script>
+        function renderPowers(value, params) {
+            var html = ['<ul class="powers">'];
+            $.each(value, function (index, item) {
+                var itemId = 'power_checkbox_' + item.id;
+                var itemHtml = F.formatString('<li><span data-qtip="{0}">', item.name);
+                itemHtml += F.formatString('<input id="{0}" type="checkbox" value="{1}">', itemId, item.id);
+                itemHtml += F.formatString('<label for="{0}">{1}</label>', itemId, item.title);
+                itemHtml += '</span></li>';
+                html.push(itemHtml);
+            });
+            html.push('</ul>');
+            return html.join('');
+        }
+
+        function getAllCheckboxEls() {
+            return F.ui.Grid2.el.find('.powers input[type=checkbox]');
+        }
+
+        function selectPowerCheckboxs(checked) {
+            getAllCheckboxEls().prop('checked', checked);
+        }
+
+        function updateRolePowers(powerIds) {
+            getAllCheckboxEls().each(function () {
+                var checkboxEl = $(this), checkboxValue = parseInt(checkboxEl.val(), 10);
+                if ($.inArray(checkboxValue, powerIds) >= 0) {
+                    checkboxEl.prop('checked', true);
+                } else {
+                    checkboxEl.prop('checked', false);
+                }
+            });
+        }
+
+        // 在 RowDataBound 中改变行CSS类
+        function grid2RowDataBound(rowData) {
+            var GroupName = rowData.values['GroupName'];
+            var grid2 = F.ui.Grid2;
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Grid2RowDataBound")', {
+                GroupName: GroupName,
+                Grid2_fields: grid2.fields
+            });
+        }
+
+        function RolePower_Grid2_DoPostBack(actionType) {
+            var params = {
+                selectedRoleId: F.ui.Grid1.getSelectedRow() == null ? 0 : F.ui.Grid1.getSelectedRow(),
+                Grid1_fields: F.ui.Grid1.fields,
+                ttbSearchCustomer: F.ui.ttbSearchCustomer.getValue()
+            };
+
+            // 加入扩展参数
+            if (actionType) {
+                params.actionType = actionType;
+            }
+
+            // saveall
+            if (actionType === 'saveall') {
+                var selectedPowerIds = [];
+                getAllCheckboxEls().each(function () {
+                    var checkboxEl = $(this), checkboxValue = parseInt(checkboxEl.val(), 10);
+                    if (checkboxEl.prop('checked')) {
+                        selectedPowerIds.push(checkboxValue);
+                    }
+                });
+                params.selectedPowerIds = selectedPowerIds;
+            }
+
+            // 触发后台事件
+            F.doPostBack('@Url.Action("RolePower_Grid2_DoPostBack")', 'Region2', params);
+        }
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.ttbSearchCustomer.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function updateCustomer(id, text, tepmid) {
+            F.ui.ttbSearchCustomer.setValue(text);
+            RolePower_Grid2_DoPostBack("ttbSearchCustomer", {
+               // ttbSearchCustomer: text
+            });
+        }
+
+        F.ready(function () {
+            updateRolePowers(@ViewBag.RolePowerIds);
+        });
+
+    </script>
+}

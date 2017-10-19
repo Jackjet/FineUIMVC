@@ -1,0 +1,401 @@
+﻿@{
+    ViewBag.Title = "PumpJZ";
+    var F = @Html.F();
+}
+
+@section head {
+
+    <style>
+        .f-grid-colheader-RunPumpNum, .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-Auxiliarypumpcount .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-DrainPumpNum .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .f-grid-colheader-PumpJZAreaName .f-grid-colheader-text {
+            white-space: normal;
+            word-break: break-all;
+        }
+    </style>
+
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                    .ID("Toolbar1")
+                    .Items(
+                        F.Button()
+                         .ID("btnDeleteSelected")
+                         .Icon(Icon.Delete)
+                         .Text("删除子项")
+                         .Enabled(ViewBag.CorePumpJZDelete)
+                         .Listener("click", "onDeleteSelectedClick"),
+                        F.ToolbarFill()
+                         .ID("ToolbarFill1"),
+                        F.Button()
+                         .ID("btnNew")
+                         .Icon(Icon.Add)
+                         .Listener("click", "onCreateClick")
+                         .Text("新增机组")
+                         .Enabled(ViewBag.CorePumpJZNew)
+                    )
+         )
+         .Items(
+                  F.Form()
+                       .ID("Form3")
+                       .ShowHeader(false)
+                       .ShowBorder(false)
+                       .LabelAlign(LabelAlign.Left)
+                       .Rows(
+                          F.FormRow()
+                               .ID("FormRow2")
+                               .Items(
+                                  F.TwinTriggerBox()
+                                         .ID("ttbSearchMessage")
+                                         .ShowLabel(false)
+                                         .EmptyText("在泵房机组名称中搜索")
+                                         .Trigger1Icon(TriggerIcon.Clear)
+                                         .Trigger2Icon(TriggerIcon.Search)
+                                         .ShowTrigger1(false)
+                                         .Listener("trigger1click", "onTrigger1Click")
+                                         .Listener("trigger2click", "onTrigger2Click"),
+                                  F.HiddenField()
+                                         .ID("pumpId")
+                                         .Text(ViewBag.pumpId),
+                                   F.Label()
+                               )
+                       ),
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("GridJZ")
+                       .DataIDField("ID")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .AllowPaging(true)
+                       .IsDatabasePaging(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .OnPageIndexChanged(Url.Action("GridJZ_PageIndexChanged"), "GridJZ",
+                                        new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()"),
+                                        new Parameter("pumpid", "F.ui.pumpId.getValue()"),
+                                        new Parameter("searchMessage", "F.ui.ttbSearchMessage.getValue()"))
+                       .PageSize(20)
+                       .PageItems(
+                           F.ToolbarSeparator()
+                              .ID("ToolbarSeparator1"),
+                           F.ToolbarText()
+                              .ID("ToolbarText1")
+                              .Text("每页记录数："),
+                           F.DropDownList()
+                              .ID("ddlGridPageSize")
+                              .Width(80)
+                              .Listener("change", "onDropDownListJZChange")
+                              .SelectedValue("20")
+                              .Items(
+                                 F.ListItem()
+                                   .Text("10")
+                                   .Value("10"),
+                                 F.ListItem()
+                                   .Text("20")
+                                   .Value("20"),
+                                 F.ListItem()
+                                   .Text("50")
+                                   .Value("50"),
+                                 F.ListItem()
+                                   .Text("100")
+                                   .Value("100")
+                              )
+                       )
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("机组编号")
+                                    .DataField("b_number")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("机组名称")
+                                    .DataField("PumpJZName")
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("设备类型")
+                                    .DataField("MachineTypeName")
+                                    .Width(100),
+                               F.RenderField()
+                                    .HeaderText("主泵泵数")
+                                    .DataField("RunPumpNum")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("辅泵泵数")
+                                    .DataField("Auxiliarypumpcount")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("排水泵数")
+                                    .DataField("DrainPumpNum")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("供水区域")
+                                    .DataField("PumpJZAreaName")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("地址表")
+                                    .DataField("PumpJZAddressList")
+                                    .Hidden(true)
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("客户id")
+                                    .DataField("FCustomerID")
+                                    .Hidden(true)
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("联系人组id")
+                                    .DataField("PumpJZContactGroup")
+                                    .Hidden(true)
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("报警设置")
+                                    .Width(50)
+                                    .RendererFunction("renderAlarmField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("报警联系")
+                                    .Width(50)
+                                    .Hidden(ViewBag.Hidden)
+                                    .RendererFunction("renderAlarmContactField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("泵房变更")
+                                    .Width(50)
+                                    .RendererFunction("renderMoveField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderEditField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                               F.RenderField()
+                                    .HeaderText("")
+                                    .Width(40)
+                                    .RendererFunction("renderDeleteField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false)
+                               )
+                               .RecordCount(ViewBag.GridJZRecordCount)
+                               .DataSource(ViewBag.GridJZDataSource)
+         )
+    )
+
+
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(800)
+        .Height(700)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .Listener("close", "onWindow1Close")
+    )
+
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+        var CorePumpJZDelete = @Convert.ToString(ViewBag.CorePumpJZDelete).ToLower();
+        var CorePumpJZEdit = @Convert.ToString(ViewBag.CorePumpJZEdit).ToLower();
+        var CorePumpJZAlermSet = @Convert.ToString(ViewBag.CorePumpJZAlermSet).ToLower();
+
+        function doCustomPostBack(type, params) {
+            var GridJZ = F.ui.GridJZ;
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            // 触发后台事件
+            F.doPostBack('@Url.Action("MyCustomJZPostBack")', {
+                type: type,
+                gridFields: GridJZ.fields,
+                typeParams: params,
+                gridIndex: GridJZ.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue(),
+                pumpid: F.ui.pumpId.getValue()
+            });
+        }
+
+        function onTrigger1Click(event) {
+            doCustomPostBack('trigger1');
+        }
+
+        function onTrigger2Click(event) {
+            var triggerValue = this.getValue();
+            if (!triggerValue) {
+                F.alert('请输入搜索关键词！');
+                return;
+            }
+
+            doCustomPostBack('trigger2', {
+                triggerValue: triggerValue
+            });
+        }
+
+        function onDropDownListJZChange(event) {
+            doCustomPostBack('dropdownlist', {
+                ddlValue: this.getValue()
+            });
+        }
+
+        function onWindow1Close(event) {
+            doCustomPostBack('windowclose');
+        }
+
+        function renderAlarmField(value, params) {
+            var disabledCls = CorePumpJZAlermSet ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" data-qtip="报警设置" class="action-btn alerm' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/images/tb/alarm.png")"></a>';
+        }
+
+        function renderAlarmContactField(value, params) {
+            var disabledCls = CorePumpJZAlermSet ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" data-qtip="报警联系人" class="action-btn alermContact' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/user_alert.png")"></a>';
+        }
+
+        function renderDeleteField(value, params) {
+            var disabledCls = CorePumpJZDelete ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" data-qtip="删除" class="action-btn delete' + disabledCls + '" ><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/delete.png")"></a>';
+        }
+
+        function renderEditField(value, params) {
+            var disabledCls = CorePumpJZEdit ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" data-qtip="编辑" class="action-btn edit' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/pencil.png")"></a>';
+        }
+
+        function renderMoveField(value, params) {
+            var disabledCls = CorePumpJZEdit ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" data-qtip="所属泵房变更" class="action-btn move' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/shape_move_forwards.png")"></a>';
+        }
+
+        function onCreateClick(event) {
+            F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpJZ_new")?pumpid=' + F.ui.pumpId.getValue(), '新增机组');
+        }
+
+        function deleteSelectedRows(selectedRows) {
+            var GridJZ = F.ui.GridJZ
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            // 触发后台事件
+            F.doPostBack('@Url.Action("GridJZ_Delete")', {
+                selectedRows: selectedRows,
+                GridJZ_fields: GridJZ.fields,
+                gridIndex: GridJZ.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue(),
+                pumpid: F.ui.pumpId.getValue()
+            });
+        }
+
+        function onDeleteSelectedClick(event) {
+            var GridJZ = F.ui.GridJZ;
+
+            if (!GridJZ.hasSelection()) {
+                F.alert('请至少选择一项！');
+                return;
+            }
+
+            var selectedRows = GridJZ.getSelectedRows();
+            F.confirm({
+                message: '你确定要删除选中的&nbsp;<b>' + selectedRows.length + '</b>&nbsp;行数据吗？',
+                target: '_top',
+                ok: function () {
+                    deleteSelectedRows(selectedRows);
+                }
+            });
+        }
+
+        function updatePump(id, text) {
+            var GridJZ = F.ui.GridJZ
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            F.doPostBack('@Url.Action("GridJZ_Move")', {
+                'GridJZ_fields': GridJZ.fields,
+                'gridIndex': GridJZ.getPageIndex(),
+                'gridPageSize': ddlGridPageSize.getValue(),
+                'selectedRows': F.ui.GridJZ.getSelectedRow(),
+                'selectPumpId': id,
+                'pumpid': F.ui.pumpId.getValue()
+            });
+        }
+
+        F.ready(function () {
+
+            var GridJZ = F.ui.GridJZ;
+            GridJZ.el.on('click', 'a.action-btn', function (event) {
+                var cnode = $(this);
+                var rowData = GridJZ.getRowData(cnode.closest('.f-grid-row'));
+
+                // 是否禁用
+                if (cnode.hasClass('ui-state-disabled')) {
+                    return;
+                }
+                if (cnode.hasClass('delete')) {
+                    F.confirm({
+                        message: '确定删除此记录？',
+                        target: '_top',
+                        ok: function () {
+                            deleteSelectedRows([rowData.id]);
+                        }
+                    });
+                }
+                else if (cnode.hasClass('edit')) {
+                    F.ui.Window1.show('@Url.Content("~/YCJK/V_BFGL/PumpJZ_edit")?pumpJZId=' + rowData.id, '编辑机组');
+                }
+                else if (cnode.hasClass('alerm')) {
+                    F.ui.Window1.show('@Url.Content("~/OpenWindow/AlarmWindow")?typeId=1&baseID=' + rowData.id, '报警设置', 600, 500);
+                }
+                else if (cnode.hasClass('move')) {
+                    F.ui.Window1.show('@Url.Content("~/OpenWindow/PumpWindow")?type=radio&page=PumpJZ&baseID=' + rowData.id, '所属泵房变更', 600, 500);
+                }
+                else if(cnode.hasClass('alermContact')){
+                    F.ui.Window1.show('@Url.Content("~/OpenWindow/AlarmContactWindow")?type=1&FCustomerID='+rowData.values.FCustomerID+'&PumpJZContactGroup='+rowData.values.PumpJZContactGroup, '报警联系人组', 600, 500);
+                }
+            });
+        });
+
+        function updateContactGroup(id, text)
+        {
+            var GridJZ = F.ui.GridJZ
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            F.doPostBack('@Url.Action("GridJZ_ContactGroup")', {
+                'selectedRows': F.ui.GridJZ.getSelectedRow(),
+                'ContactGroup': id,
+                'GridJZ_fields': GridJZ.fields,
+                'gridIndex': GridJZ.getPageIndex(),
+                'gridPageSize': ddlGridPageSize.getValue(),
+                'pumpid': F.ui.pumpId.getValue()
+            });
+        }
+    </script>
+}

@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "OpenWindow/PGroupWindow";
+    var F = @Html.F();
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                    .ID("Toolbar1")
+                    .Items(
+                        F.Button()
+                         .ID("btnClose")
+                         .Icon(Icon.SystemClose)
+                         .Text("关闭")
+                         .Listener("click", "F.activeWindow.hide();"),
+                        F.Button()
+                         .ID("btnSaveClose")
+                         .Icon(Icon.SystemSaveClose)
+                         .Listener("click", "onSaveCloseClick")
+                         .Text("保存后关闭"),
+                        F.ToolbarFill()
+                         .ID("ToolbarFill1")
+
+
+                                          )
+                               )
+         .Items(
+                  F.Form()
+                       .ID("Form3")
+                       .ShowHeader(false)
+                       .ShowBorder(false)
+                       .LabelAlign(LabelAlign.Left)
+                       .Rows(
+                          F.FormRow()
+                               .ID("FormRow2")
+                               .Items(
+                                  F.TwinTriggerBox()
+                                         .ID("ttbSearchMessage")
+                                         .ShowLabel(false)
+                                         .EmptyText("在泵房组名称中搜索")
+                                         .Trigger1Icon(TriggerIcon.Clear)
+                                         .Trigger2Icon(TriggerIcon.Search)
+                                         .ShowTrigger1(false)
+                                         .Listener("trigger1click", "onTrigger1Click")
+                                         .Listener("trigger2click", "onTrigger2Click"),
+                                   F.Label()
+                               )
+                       ),
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("Grid1")
+                       .DataIDField("GroupID")
+                       .DataTextField("GroupName")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .EnableMultiSelect(false)
+                       .ShowPagingMessage(false)
+                       .AllowPaging(true)
+                       .IsDatabasePaging(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1",
+                                        new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()")
+                                      , new Parameter("searchMessage", "F.ui.ttbSearchMessage.getValue()"))
+                       .PageSize(20)
+                       .PageItems(
+                           F.ToolbarSeparator()
+                              .ID("ToolbarSeparator1"),
+                           F.ToolbarText()
+                              .Hidden(true)
+                              .ID("ToolbarText1")
+                              .Text("每页记录数："),
+                           F.DropDownList()
+                              .ID("ddlGridPageSize")
+                              .Width(50)
+                              .Hidden(true)
+                              .Listener("change", "onDropDownList1Change")
+                              .SelectedValue("20")
+                              .Items(
+                                 F.ListItem()
+                                   .Text("10")
+                                   .Value("10"),
+                                 F.ListItem()
+                                   .Text("20")
+                                   .Value("20"),
+                                 F.ListItem()
+                                   .Text("50")
+                                   .Value("50"),
+                                 F.ListItem()
+                                   .Text("100")
+                                   .Value("100")
+                              )
+                       )
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("泵房组名称")
+                                    .DataField("GroupName")
+                                    .Width(300)
+                               )
+                               .RecordCount(ViewBag.Grid1RecordCount)
+                               .DataSource(ViewBag.Grid1DataSource)
+         )
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+
+        function doCustomPostBack(type, params) {
+            var grid1 = F.ui.Grid1;
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            // 触发后台事件
+            F.doPostBack('@Url.Action("MyCustomPostBack")', {
+                type: type,
+                gridFields: grid1.fields,
+                typeParams: params,
+                gridIndex: grid1.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue()
+            });
+        }
+
+
+        function onTrigger1Click(event) {
+            doCustomPostBack('trigger1');
+        }
+
+        function onTrigger2Click(event) {
+            var triggerValue = this.getValue();
+            if (!triggerValue) {
+                F.alert('请输入搜索关键词！');
+                return;
+            }
+
+            doCustomPostBack('trigger2', {
+                triggerValue: triggerValue
+            });
+        }
+
+        function onDropDownList1Change(event) {
+            doCustomPostBack('dropdownlist', {
+                ddlValue: this.getValue()
+            });
+        }
+
+        function onSaveCloseClick(event)
+        {
+            var grid = F.ui.Grid1;
+
+            if (!grid.hasSelection()) {
+                F.alert('没有选中项！');
+                return;
+            }
+
+            $.each(grid.getSelectedRows(true), function (index, row) {
+                var activeWindow = F.getActiveWindow();
+                activeWindow.window.updatePGroup(row.id, row.text);
+                activeWindow.hide();
+            })
+        }
+    </script>
+}

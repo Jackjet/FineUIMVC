@@ -1,0 +1,508 @@
+﻿@rex: 1rem/28;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
+img {
+    border: none;
+}
+
+
+
+* {
+  outline: 0;
+  font-family: "微软雅黑";
+}
+li { 
+   list-style: none;
+ }
+  .stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    -webkit-perspective: 1200;
+       -moz-perspective: 1200;
+      -ms-perspective: 1200;
+          perspective: 1200;
+
+       -ms-transform: perspective(1200px);
+      -moz-transform: perspective(1200px);
+          -moz-transform-style: preserve-3d; 
+           -ms-transform-style: preserve-3d; 
+    
+
+  }
+  .close {
+      width: 40*@rex;
+      height: 100%;
+      display: inline-block;
+    font-size: 24*@rex;
+    font-weight: bold; 
+    color: #fff;
+    margin-top: 2*@rex;
+  
+  }
+  .contentBox {
+    
+    position: relative;
+    
+    width: 100%;//280px;
+    height: 100%;//384px;
+      -webkit-transition: .6s;
+      -webkit-transform-style: preserve-3d;
+      -ms-transition: .6s;
+
+      -moz-transition: .6s;
+      -moz-transform: perspective(1200px);
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+
+      transition: .6s;
+      transform-style: preserve-3d;
+  }
+  .fore, .back {
+    border-radius: 2*@rex;
+    -webkit-box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+    box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+     -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+       -ms-backface-visibility: hidden;
+           backface-visibility: hidden;
+
+             -webkit-transition: .9s;
+        -webkit-transform-style: preserve-3d;
+              -webkit-transform: rotateY(0deg);
+
+             -moz-transition: .9s;
+        -moz-transform-style: preserve-3d;
+              -moz-transform: rotateY(0deg);
+
+        -o-transition: .9s;
+        -o-transform-style: preserve-3d;
+        -o-transform: rotateY(0deg);
+
+             -ms-transition: .9s;
+        -ms-transform-style: preserve-3d;
+              -ms-transform: rotateY(0deg);
+
+             transition: .9s;
+        transform-style: preserve-3d;
+              transform: rotateY(0deg);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;//280px;
+      height: 100%;//384px;
+  }
+  .fore { 
+    background: #eaeff3;
+      -webkit-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+            z-index: 2;     
+  }
+  .fore.click {
+    -webkit-transform: rotateY(180deg);
+         -moz-transform: rotateY(180deg);
+             -o-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+  }
+  .fore.clickTwo {
+    -webkit-transform: rotateY(0deg);
+         -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+  }
+  .back {   
+               background: #eaeff3;
+        -webkit-transform: rotateY(-180deg);
+           -moz-transform: rotateY(-180deg);
+             -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+                padding-bottom: 6*@rex;    
+  }
+  .back.click {
+    -webkit-transform: rotateY(0deg);
+           -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+  }
+  .back.clickTwo {
+    -webkit-transform: rotateY(-180deg);
+           -moz-transform: rotateY(-180deg);
+             -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+  }
+  .fore_header {
+        position: relative;
+        width: 100%;
+        height: 180*@rex;
+        overflow: hidden;
+    }
+    
+    
+    
+    
+    .img-box {
+        position: relative;
+        width: 400%;
+        height: 180*@rex;
+    }
+    .img-box li {
+        float: left;
+        height: 180*@rex;
+        width: 25%;
+    }
+    .img-box li img {
+        display: block;
+        border: none;
+        height: auto;
+        width: 100%;
+    }
+    
+    .time-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 42*@rex;
+        font-size: 12*@rex;
+    }
+    .pump_time {
+        cursor: pointer;
+        color: #fff;
+        font-size: 12*@rex;
+        padding: 12*@rex 0 0 18*@rex;
+        width: 220*@rex;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .number_box {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 332*@rex;
+        height: 30*@rex;
+        line-height: 30*@rex;
+    }
+    .pump_name {
+        float: left;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14*@rex;
+        padding: 4*@rex;
+        width: 200*@rex;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .pump_number {
+        float: right;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14*@rex;
+        text-align: left;
+        padding-left: 14*@rex;
+        width: 100*@rex;
+        overflow: hidden;
+    }
+    
+    .closeBox {
+    
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        width: 34*@rex;
+        height: 34*@rex;
+        line-height: 34*@rex;
+        text-align: center;
+        cursor: pointer;
+            
+    }
+    
+    .backBtn {
+        color: #fff;
+        display: inline-block;
+        cursor: pointer;
+        width: 24*@rex;
+        height: 22*@rex;
+        background: url(../img/backBtn.png) no-repeat  ;
+        background-size: cover; 
+    }
+    .clearfix {
+        zoom: 1;
+    }
+    .clearfix:after {
+        content: " ";
+        display: block;
+        clear: both;
+    }
+    
+    .fore .content .power_box {
+        width: 98%;
+        height: 406*@rex;
+        padding-right: 13*@rex;
+        background: #fff;
+    }
+    .fore .content .power_box li {
+        width: 98%;
+        height: 30*@rex;
+        line-height: 30*@rex;
+        padding:0 13*@rex 0 10*@rex;
+        border-bottom: 1*@rex solid #f4f4f4;
+        color: #3ca7ff;
+    }
+    
+    .fore .content .power_box .power_name {
+        width: 42%;
+        height: 30*@rex;
+        float: left;
+        font-size: 12*@rex;
+    }
+    
+    .fore .content .power_box .power_name_bg {
+        width: 20*@rex;
+        height: 20*@rex;
+        margin-top: 12*@rex;
+        padding-right: 4*@rex;
+        display: inline-block;
+        float: left;
+       
+        background: url(../img/power.png) no-repeat;
+        background-size: cover; 
+    }
+    .fore .content .power_box .power_name_bg.child1 {
+        
+        background-position: -184*@rex 0;
+    }
+    .fore .content .power_box .power_name_bg.child2 {
+        
+        background-position: -244*@rex 0;
+    }
+    .fore .content .power_box .power_name_bg.child3 {
+        
+        background-position: -60*@rex 0;
+    }
+    .fore .content .power_box .power_name_bg.child4 {
+        
+        background-position: -184*@rex 0;
+    }
+    .fore .content .power_box .power_name_bg.child5 {
+        
+        background-position: -308*@rex 0;
+    }
+    .fore .content .power_box .power_name_bg.child6 {
+        
+        background-position: 0 0;
+    }
+    /*.fore .content .power_box .battery_box {
+        width: 20%;
+        height: 30*@rex;
+        line-height: 30*@rex;
+        float: left;
+        padding-right: 10*@rex;
+        text-align: right;
+        background: url(../img/battery.png) no-repeat 50*@rex 16*@rex ;
+        background-size: conver;
+    }
+    .fore .content .power_box .battery_box .battery_progress {
+        width: 26*@rex;
+        height: 16*@rex;
+        display: block;
+        margin: 4*@rex 0 0 0;      
+        background: #21a0ff;
+    }*/
+    .fore .content .power_box .number {
+        width: 58*@rex;
+        height: 30*@rex;
+        float: right;
+        text-align: right;
+        font-size: 10*@rex;
+
+    }
+    
+      
+.fore_footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30*@rex;
+    /*background: url(../img/warning.png) no-repeat 10*@rex 5*@rex #20a6ff;*/
+    background:  #20a6ff;
+    text-indent: 28*@rex;
+    line-height: 30*@rex;
+    overflow: hidden;
+    font-size: 12*@rex;
+}
+.fore_footer .warning_info_box {
+    width: 220*@rex;
+    height: 30*@rex;
+    line-height: 30*@rex;
+}
+.fore_footer .warning_info_box li {
+    height: 30*@rex;
+    -ms-text-overflow:  ellipsis;
+        text-overflow:  ellipsis;
+          white-space: nowrap;
+             overflow: hidden;
+                color: #fff;
+}
+
+
+
+.back_header {
+    position: relative;
+    width: 100%;
+    height: 142*@rex;
+    padding: 4*@rex 0 0 5*@rex;
+    background: url(../img/bg.png) no-repeat ;
+    overflow: hidden;
+}
+#echart_box {
+    position: absolute;
+    top: 0;
+    left: 0;
+        width: 100%;
+        height: 126*@rex;
+}
+    .show_list {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 20*@rex;
+       
+        width: 100%;
+    }
+    .show_list ul {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 18*@rex;
+       
+        width: 100%;
+    }
+    .show_list ul li {
+        float: left;     
+        width: 24*@rex;
+        height: 18*@rex;
+        margin: 0 14*@rex 0 16*@rex;
+        cursor: pointer;
+        background: url(../../FTZ/img/pic_li_bg.png) no-repeat;  
+        background-size: cover;   
+       
+    }
+    .show_list ul li.showList_li2 {
+     
+        background-position: -158*@rex 0;     
+       
+    }
+    .show_list ul li.showList_li3 {
+     
+          background-position: -318*@rex 0;     
+       
+    }
+    .show_list ul li.showList_li4 {
+     
+        background-position: -479*@rex 0;    
+       
+    }
+    .show_list ul li.showList_li5 {
+     
+         background-position: -637*@rex 0;    
+       
+    }
+.backBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    color: #fff;
+    width: 44*@rex;
+    height: 44*@rex;
+}
+.back_content {
+    width: 100%;
+    padding: 0 11*@rex 0 11*@rex;
+    box-sizing: border-box;
+}
+.back_content ul {
+    width: 100%;
+}
+.back_content ul li {
+    height: 34*@rex;
+    width: 100%;
+    line-height: 34*@rex;
+    border-bottom: 1*@rex solid #e6e6e6;
+}
+.back_content ul li .item {
+    float: left;
+    color: #000;
+}
+.back_content ul li .item .item_bg {
+    width: 18*@rex;
+    height: 26*@rex;
+    margin-right: 8*@rex;
+    display: block;
+    float: left;
+    background: url(../img/item_bg.png) no-repeat;
+    background-size: cover;
+}
+.back_content ul li .item .item_bg.item_bg1 {
+    background-position: -44*@rex 4*@rex;
+}
+.back_content ul li .item .item_bg.item_bg2 {
+    background-position: -168*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg3 {
+    background-position: -293*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg4 {
+    background-position: -125*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg5 {
+    background-position: -249*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg6 {
+    background-position: -208*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg7 {
+    background-position: -83*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg8 {
+    background-position: -333*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg9 {
+    background-position: -375*@rex 12*@rex;
+}
+.back_content ul li .item .item_bg.item_bg10 {
+    background-position: 0 12*@rex;
+}
+.back_content ul li .item_content {
+    float: right;
+    color: #3ca7ff;
+}
+ 

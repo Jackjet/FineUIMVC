@@ -1,0 +1,457 @@
+﻿@{
+    ViewBag.Title = "设备档案";
+    var F = @Html.F();
+}
+
+@section head {
+    <meta name="sourcefiles" content="/resashx/pumpDA.ashx" />
+    <style>
+        .webuploader-element-invisible {
+            position: absolute !important;
+            clip: rect(0px,0px,0px,0px);
+        }
+
+        .webuploader-pick-disable {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .pumpimg{
+            width:30px;
+            height:30px;
+        }
+    </style>
+
+}
+
+@section body {
+    @(F.Form()
+         .ID("Form3")
+         .ShowHeader(false)
+         .ShowBorder(false)
+         .LabelAlign(LabelAlign.Left)
+         .Toolbars(
+            F.Toolbar()
+            .Hidden(true)
+                .Items(
+                       F.HiddenField()
+                         .ID("baseId")
+                         .Text(ViewBag.baseId),
+                          F.HiddenField()
+                         .ID("pageType")
+                         .Text(ViewBag.pageType)
+                )
+        )
+         .Rows(
+            F.FormRow()
+                 .ID("FormRow2")
+                 .Items(
+                      F.Grid()
+                         .ID("Grid1")
+                         .ShowHeader(false)
+                         .ShowBorder(true)
+                         .Height(260)
+                         .EnableCollapse(false)
+                         .EnableCheckBoxSelect(false)
+                         .EmptyText("尚未上传文件")
+                         .DataIDField("id")
+                         .Toolbars(
+                              F.Toolbar()
+                                  .Items(
+                                      F.DropDownList()
+                                          .ID("ddlFile1Type")
+                                          .Required(true)
+                                          .Label("文件类型")
+                                          .DataTextField("FName")
+                                          .DataValueField("FValue")
+                                          .DataSource(ViewBag.ddlFile1TypeDataSource)
+                                          .SelectedValue("0"),
+                                      F.ToolbarFill(),
+                                      F.Button()
+                                          .IconFont(IconFont.Plus)
+                                          .ID("btnSelectFiles")
+                                          .Text("上传文件")
+                                          .Enabled(ViewBag.CorePumpDAUpLoad)
+                                  )
+                          )
+                         .Columns(
+                                F.RenderField()
+                                    .HeaderText("文件名称")
+                                    .ColumnID("FileName")
+                                    .DataField("FileName")
+                                    .ExpandUnusedSpace(true)
+                                    .Width(200),
+                                F.RenderField()
+                                    .HeaderText("文件类型")
+                                    .ColumnID("TypeName")
+                                    .DataField("TypeName")
+                                    .Width(80),
+                                F.RenderField()
+                                    .HeaderText("大小")
+                                    .ColumnID("FileSize")
+                                    .DataField("FileSize")
+                                    .Renderer(Renderer.FileSize)
+                                    .Width(80),
+                                F.RenderField()
+                                    .HeaderText("状态")
+                                    .ColumnID("FileStatus")
+                                    .DataField("status")
+                                    .NullDisplayText("已完成")
+                                    .Width(80),
+                                F.RenderField()
+                                    .HeaderText("")
+                                    .Width(30)
+                                    .RendererFunction("renderDeleteField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false),
+                                F.RenderField()
+                                    .HeaderText("")
+                                    .Width(30)
+                                    .RendererFunction("renderDownLoadField")
+                                    .TextAlign(TextAlign.Center)
+                                    .EnableHeaderMenu(false)
+                         )
+                         .DataSource(ViewBag.Grid1DataSource)
+                 ),
+            F.FormRow()
+                .ID("FormRow3")
+                .MarginTop(5)
+                .Items(
+                F.Grid()
+                        .ID("Grid2")
+                        .ShowHeader(false)
+                        .ShowBorder(true)
+                        .Height(390)
+                        .EnableCollapse(false)
+                        .EnableCheckBoxSelect(false)
+                        .EmptyText("尚未上传图片")
+                        .DataIDField("id")
+                        .Toolbars(
+                              F.Toolbar()
+                                  .Items(
+                                      F.DropDownList()
+                                         .ID("ddlFile2Type")
+                                         .Required(true)
+                                         .Label("图片类型")
+                                         .DataTextField("FName")
+                                         .DataValueField("FValue")
+                                         .DataSource(ViewBag.ddlFile2TypeDataSource)
+                                         .SelectedValue("0"),
+                                      F.ToolbarFill(),
+                                      F.Button()
+                                         .IconFont(IconFont.Plus)
+                                         .ID("btnSelectFiles2")
+                                         .Text("上传图片")
+                                         .Enabled(ViewBag.CorePumpDAUpLoad)
+                                  )
+                          )
+                        .Columns(
+                              F.RenderField()
+                                    .HeaderText("图片")
+                                    .ColumnID("img")
+                                    .DataField("img")
+                                    .RendererFunction("renderImgField")
+                                    .Width(80),
+                              F.RenderField()
+                                    .HeaderText("图片名称")
+                                    .ColumnID("FileName")
+                                    .DataField("FileName")
+                                    .Width(330),
+                              F.RenderField()
+                                    .HeaderText("文件类型")
+                                    .ColumnID("TypeName")
+                                    .DataField("TypeName")
+                                    .Width(80),
+                              F.RenderField()
+                                    .HeaderText("大小")
+                                    .ColumnID("FileSize")
+                                    .DataField("FileSize")
+                                    .Renderer(Renderer.FileSize)
+                                    .Width(100),
+                              F.RenderField()
+                                    .HeaderText("状态")
+                                    .ColumnID("FileStatus")
+                                    .DataField("status")
+                                    .NullDisplayText("已完成")
+                                    .Width(80),
+                              F.RenderField()
+                                  .HeaderText("")
+                                  .Width(30)
+                                  .RendererFunction("renderDeleteField")
+                                  .TextAlign(TextAlign.Center)
+                                  .EnableHeaderMenu(false)
+                               )
+                        .DataSource(ViewBag.Grid2DataSource)
+                )
+         )
+    )
+
+    @(F.Window()
+        .ID("WinPicView")
+        .Width(900)
+        .Height(700)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+    <script src="~/res/webuploader/webuploader.nolog.min.js" type="text/javascript"></script>
+    <script>
+        var CorePumpDADown = @Convert.ToString(ViewBag.CorePumpDADown).ToLower();
+        var CorePumpDADelete = @Convert.ToString(ViewBag.CorePumpDADelete).ToLower();
+
+        function renderDeleteField(value, params) {
+            var disabledCls = CorePumpDADelete ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" class="action-btn delete' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/delete.png")"></a>';
+        }
+
+        function renderDownLoadField(value, params) {
+            var disabledCls = CorePumpDADown ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" class="action-btn download' + disabledCls + '"><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/disk_download.png")"></a>';
+        }
+
+        function renderImgField(value, params) {
+            params.tdCls = 'imgClass';
+        }
+
+        var BASE_URL = "~/";//'<%= ResolveUrl("~/") %>';
+        var SERVER_URL = '/resashx/pumpDA.ashx';
+
+        // sizeLimit： 单个文件大小限制，单位为MB
+        function initUploader(gridId, pickerId, ownerId, accept, sizeLimit, success) {
+            var grid = F(gridId);
+            var filetype1 = F.ui.ddlFile1Type.getValue();
+            var filetype2 = F.ui.ddlFile2Type.getValue();
+            var uploaderOptions = {
+                // swf文件路径
+                swf: BASE_URL + 'res/webuploader/Uploader.swf',
+                // 文件接收服务端。
+                server: SERVER_URL,
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#' + pickerId,
+                // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                resize: false,
+                // 自动上传
+                auto: true,
+                // 文件上传参数表，用来标记文件的所有者（如果是一篇文章的附件，就是文章的ID）
+                formData: {
+                    owner: ownerId,
+                    filetype1: filetype1,
+                    filetype2:filetype2
+                },
+                // 单个文件大小限制（单位：byte），这里限制为 10M
+                fileSingleSizeLimit: sizeLimit * 1024 * 1024
+            };
+
+            if (accept) {
+                $.extend(uploaderOptions, {
+                    accept: accept
+                });
+            }
+
+            var uploader = WebUploader.create(uploaderOptions);
+
+            // 添加到上传队列
+            uploader.on('fileQueued', function (file) {
+                if (grid.id == "Grid1")
+                {
+                    if(F.ui.ddlFile1Type.getValue()=="0")
+                    {
+                        F.notify("请选择文件类型");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (F.ui.ddlFile2Type.getValue() == "0") {
+                        F.notify("请选择图片类型");
+                        return;
+                    }
+                }
+                uploader.options.formData.filetype1 = F.ui.ddlFile1Type.getValue();
+                uploader.options.formData.filetype2 = F.ui.ddlFile2Type.getValue();
+                grid.addNewRecord(file.id, {
+                    'FileName': file.name,
+                    'FileSize': file.size,
+                    'FileStatus': '等待上传'
+                }, true);
+            });
+
+            uploader.on('uploadProgress', function (file, percentage) {
+                var cellEl = grid.getCellEl(file.id, 'FileStatus').find('.f-grid-cell-inner');
+
+                var barEl = cellEl.find('.ui-progressbar-value');
+
+                // 避免重复创建
+                if (!barEl.length) {
+                    cellEl.html('<div class="ui-progressbar ui-widget ui-widget-content ui-corner-all" style="height:12px;">' +
+                      '<div class="ui-progressbar-value ui-widget-header ui-corner-left" style="width:0%">' +
+                      '</div></div>');
+                    barEl = cellEl.find('.ui-progressbar-value');
+                }
+
+                barEl.css('width', percentage * 100 + '%');
+            });
+
+            uploader.on('uploadSuccess', function (file) {
+                var cellEl = grid.getCellEl(file.id, 'FileStatus').find('.f-grid-cell-inner');
+                cellEl.text('上传成功');
+            });
+
+            uploader.on('uploadError', function (file) {
+                var cellEl = grid.getCellEl(file.id, 'FileStatus').find('.f-grid-cell-inner');
+                cellEl.text('上传出错');
+            });
+
+            // 不管上传成功还是失败，都会触发 uploadComplete 事件
+            uploader.on('uploadComplete', function (file) {
+                uploader.removeFile(file, true);
+            });
+
+
+            // 所有文件上传成功
+            uploader.on('uploadFinished', function () {
+                if (success) {
+                    success.call(uploader);
+                }
+            });
+
+
+            uploader.on('error', function (type, arg, file) {
+                if (type === 'F_EXCEED_SIZE') {
+                    F.alert('文件[' + file.name + ']大小超出限制值（' + F.format.fileSize(arg) + '）');
+                }
+            });
+        }
+
+        function delete1SelectedRows(selectedRows) {
+            var Grid1 = F.ui.Grid1
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Grid_Delete")', {
+                selectedRows: selectedRows,
+                Grid_fields: Grid1.fields,
+                type: "pumpattach",
+                baseId: F.ui.baseId.getValue(),
+                pageType:F.ui.pageType.getValue()
+            });
+        }
+        function delete2SelectedRows(selectedRows) {
+            var Grid2 = F.ui.Grid2
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Grid_Delete")', {
+                selectedRows: selectedRows,
+                Grid_fields: Grid2.fields,
+                type: "pumppic",
+                baseId: F.ui.baseId.getValue(),
+                pageType:F.ui.pageType.getValue()
+            });
+        }
+
+        function downloadSelected(selectedRows)
+        {
+            window.location.href='@Url.Action("Grid_DownLoad")?selectedRows='+selectedRows
+        }
+
+        var btnSelectFiles1ClientID = "btnSelectFiles";
+        var btnSelectFiles2ClientID = "btnSelectFiles2";
+        var grid1ClientID ="Grid1";
+        var grid2ClientID = "Grid2";
+
+        function openBigPic1() {
+            var imgPic = "img";
+            $('.f-grid-cell-' + imgPic + ' img').on('click', function () { F.ui.WinPicView.show(this.src, '大图'); });
+        }
+
+        F.ready(function () {
+            $(".imgClass img").addClass("pumpimg");
+            openBigPic1();
+            var baseId = F.ui.baseId.getValue();
+            var pageType = F.ui.pageType.getValue();
+            var Grid1 = F.ui.Grid1;
+            var Grid2 = F.ui.Grid2;
+            initUploader(grid1ClientID, btnSelectFiles1ClientID, '{"uploadPageType":"pumpattach","baseId":"' + baseId + '","pageType":"' + pageType + '"}', undefined, 10, function () {
+                F.doPostBack('@Url.Action("RebindGrid1")', {
+                    Grid1_fields: Grid1.fields,
+                    baseId: F.ui.baseId.getValue(),
+                    pageType:pageType
+                });
+            });
+
+            initUploader(grid2ClientID, btnSelectFiles2ClientID, '{"uploadPageType":"pumppic","baseId":"' + baseId + '","pageType":"' + pageType + '"}', {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }, 1, function () {
+                F.doPostBack('@Url.Action("RebindGrid2")', {
+                    Grid2_fields: Grid2.fields,
+                    baseId: F.ui.baseId.getValue(),
+                    pageType:pageType
+                });
+            });
+
+            Grid1.el.on('click', 'a.action-btn', function (event) {
+                var cnode = $(this);
+                var rowData = Grid1.getRowData(cnode.closest('.f-grid-row'));
+
+                // 是否禁用
+                if (cnode.hasClass('ui-state-disabled')) {
+                    return;
+                }
+                if (cnode.hasClass('delete')) {
+                    F.confirm({
+                        message: '确定删除此记录？',
+                        target: '_top',
+                        ok: function () {
+                            delete1SelectedRows([rowData.id]);
+                        }
+                    });
+                }
+                else if (cnode.hasClass('download')) {
+                    F.confirm({
+                        message: '你确定要下载选中的文件吗？',
+                        target: '_top',
+                        ok: function () {
+                            downloadSelected([rowData.id]);
+                        }
+                    });
+                }
+            });
+
+            Grid2.el.on('click', 'a.action-btn', function (event) {
+                var cnode = $(this);
+                var rowData = Grid2.getRowData(cnode.closest('.f-grid-row'));
+
+                // 是否禁用
+                if (cnode.hasClass('ui-state-disabled')) {
+                    return;
+                }
+                if (cnode.hasClass('delete')) {
+                    F.confirm({
+                        message: '确定删除此记录？',
+                        target: '_top',
+                        ok: function () {
+                            delete2SelectedRows([rowData.id]);
+                        }
+                    });
+                }
+                else if (cnode.hasClass('download')) {
+                    F.confirm({
+                        message: '你确定要下载选中的文件吗？',
+                        target: '_top',
+                        ok: function () {
+                            downloadSelected([rowData.id]);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

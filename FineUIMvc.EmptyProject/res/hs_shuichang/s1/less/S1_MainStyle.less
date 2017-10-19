@@ -1,0 +1,843 @@
+﻿body {
+    position: relative;
+}
+
+.transform50 {
+     -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+       -o-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.pageLeft {
+    position: absolute;
+    top: 12px;
+    left: 52px;
+    bottom: 12px;
+    right: 724px;
+}
+
+
+
+.pageLeftMid {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    bottom: 48px;
+    width: 100%;
+
+    .sCBox {
+        position: absolute;
+        right: 30px;
+        top:-20px;
+        height: 20px;
+        line-height: 14px;
+        font-size: 12px;
+        color: #666;
+        z-index: 1;
+
+        .sCState {
+            float: left;
+            width: 14px;
+            height: 20px;
+            background: url(../img/statusItem.png) no-repeat -62px 0 ;
+            &.sCState1 {
+                background-position: -1px 0;
+            }
+            &.sCState0 {
+                background-position: -62px 0;
+            }
+            &.sCState2 {
+                background-position: -121px 0;
+            }
+        }
+
+        .sCName {
+            float: left;
+            height: 20px;
+        }
+    }
+
+    & > div {
+        width: 100%;
+        height: 100%;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+    
+    .highWrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        /*border: 1px solid #ccc;
+        border-top: none;*/
+
+        .threeSection {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            // background: url(../img/shuiChangBg.png) no-repeat center center #fff;
+            //background: rgba(70, 185, 251, 0.50);
+
+            .threePicBox {
+                width: 1044px;
+                margin: auto;
+               // padding-top: 10px;
+
+                #layoutwarp {
+                    position: relative;
+                    width: 1044px;
+                    height: 571px;
+                    margin: auto 0;
+                    //background: url(../img/load.gif) no-repeat rgba(255,255,255,.0) 50% 30% ;
+                     background: url(../img/shuiChangBg.png) no-repeat rgba(255,255,255,.0)   ;
+                    .pic1 {
+                        position: absolute;
+                        top: 260px;
+                        left: 244px;
+                        width: 20px;
+                        height: 20px;
+                        background: url(../../img/pumpstatus_stop.gif) no-repeat;
+                    }
+
+                    .inPressBoxleft {
+                        position: absolute;
+                        left: 76px;
+                        top: 8px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 140px;
+                        height: 52px;
+                        >div {
+                            width: 100%;
+                            height: 26px;
+                            line-height: 26px;
+                            text-align: left;
+                            >div {
+                                float: left;
+                                text-indent: 8px;
+
+                            }
+                        }
+                    }
+                    .leftShuiWei {
+                        position: absolute;
+                        top: 3px;
+                        left: 397px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 140px;
+                        height: 26px;
+                        line-height: 26px;
+                          >div {
+                                float: left;
+                                text-indent: 8px;
+
+                            }
+                    }
+                    .leftLv {
+                         position: absolute;
+                        top: 114px;
+                        left: 416px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 140px;
+                        height: 26px;
+                        line-height: 26px;
+                          >div {
+                                float: left;
+                                text-indent: 8px;
+
+                            }
+                    }
+                    .outPressRight {
+                        position: absolute;
+                        top: 156px;
+                        right: 18px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 140px;
+                        height: 52px;
+                        >div {
+                            width: 100%;
+                            height: 26px;
+                            line-height: 26px;
+                            text-align: left;
+                            >div {
+                                float: left;
+                                text-indent: 8px;
+
+                            }
+                        }
+                        &.outPressRight2 {
+                            top: 360px;
+                        }
+                    }
+                    .outRight {
+                        position: absolute;
+                        top: 237px;
+                        right: 18px;
+                        font-size: 12px;
+                        color: #fff;
+                        width: 140px;
+                        height: 26px;
+                        line-height: 26px;
+                        >div {
+                                float: left;
+                                text-indent: 8px;
+
+                            }
+                    }
+                    
+                    
+
+                    .gongLvBox {
+                        position: absolute;
+                        left: 480px;
+                        top: 438px;
+                        height: 24px;
+                        width: 50px;
+                        font-size: 12px;
+                        color: #12b3ff;
+                        line-height: 24px;
+                        text-align: center;
+                        &.gongLvBox2 {
+                            left:534px;
+                            top: 344px;
+                        }
+                        &.gongLvBox3 {
+                            left: 582px;
+                            top: 246px;
+                        }
+                        &.gongLvBox4 {
+                             left: 618px;
+                             top:  174px;
+                        }
+                        &.gongLvBox5 {
+                             left:653px;
+                             top:  108px;
+                        }
+                        &.gongLvBox6 {
+                             left:686px;
+                             top:  48px;
+                        }
+                    }
+
+
+                    .dianLiangBox {
+                        position: absolute;
+                        top: 526px;
+                        left: 603px;
+                        width: 44px;
+                        height: 24px;
+                        font-size: 12px;
+                        color: #12b3ff;
+                        &.dianLiangBox2 {
+                            left: 648px;
+                            top: 418px;
+                        }
+                        &.dianLiangBox3 {
+                            left:683px;
+                            top:  326px;
+                        }
+                        &.dianLiangBox4 {
+                            left:717px;
+                            top:  244px;
+                        }
+                        &.dianLiangBox5 {
+                            left:746px;
+                            top:  176px;
+                        }
+                        &.dianLiangBox6 {
+                            left:776px;
+                            top:  110px;
+                        }
+                         
+                    }
+
+                    
+                    .yeLun1 {
+                        position: absolute;
+                       width:43px; 
+                       height:37px; 
+                       left:516px; 
+                       top:478px;
+                       z-index: 1;
+                        background:url(../img/p1-s.gif) no-repeat;
+                       &.stop {
+                            background:url(../img/p1-s.gif) no-repeat;
+
+                        }
+                       &.run {
+                            background:url(../img/p1-r.gif) no-repeat;
+
+                        }
+                        &.error {
+                            background:url(../img/p1-f.gif) no-repeat;
+
+                        }
+
+                    }
+                    .yeLun2 {
+                       position: absolute;
+                       width:41px; 
+                       height:41px; 
+                       left:567px; 
+                       top:371px;
+                       z-index: 1;
+                        background:url(../img/p2-s.gif) no-repeat;
+                       &.stop {
+                            background:url(../img/p2-s.gif) no-repeat;
+
+                        }
+                       &.run {
+                            background:url(../img/p2-r.gif) no-repeat;
+                                                
+                        }                       
+                        &.error {                
+                            background:url(../img/p2-f.gif) no-repeat;
+
+                        }
+
+                    }
+                    .yeLun3 {
+                         position: absolute;
+                       width:40px;
+                        height:35px;
+                        left:612px; 
+                        top:279px;
+                        z-index: 1;
+                         background:url(../img/p3-s.gif) no-repeat;
+                       &.stop {
+                            background:url(../img/p3-s.gif) no-repeat;
+
+                        }
+                       &.run {
+                            background:url(../img/p3-r.gif) no-repeat;
+
+                        }
+                        &.error {
+                            background:url(../img/p3-f.gif) no-repeat;
+
+                        }
+
+                    }
+                    .yeLun4 {
+                         position: absolute;
+                      width:39px; 
+                      height:34px; 
+                      left:650px; 
+                      top:200px;
+                      z-index: 1;
+                       background:url(../img/p4-s.gif) no-repeat;
+                        &.stop {
+                            background:url(../img/p4-s.gif) no-repeat;
+
+                        }
+                        &.run {
+                            background:url(../img/p4-r.gif) no-repeat;
+
+                        }
+                        &.error {
+                            background:url(../img/p4-f.gif) no-repeat;
+
+                        }
+
+                    }
+                    .yeLun5 {
+                         position: absolute;
+                       width:35px; 
+                       height:31px; 
+                       left:684px; 
+                       top:134px;
+                       z-index: 1;
+                        background:url(../img/p5-s.gif) no-repeat;
+                       &.stop {
+                            background:url(../img/p5-s.gif) no-repeat;
+
+                        }
+                       &.run {
+                            background:url(../img/p5-r.gif) no-repeat;
+
+                        }
+                        &.error {
+                            background:url(../img/p5-f.gif) no-repeat;
+
+                        }
+
+                    }
+                    .yeLun6 {
+                       position: absolute;
+                       width:34px; 
+                       height:27px; 
+                       left:714px; 
+                       top:76px;
+                       z-index: 1;
+                        background:url(../img/p6-s.gif) no-repeat;
+                       &.stop {
+                            background:url(../img/p6-s.gif) no-repeat;
+
+                        }
+                       &.run {
+                            background:url(../img/p6-r.gif) no-repeat;
+
+                        }
+                        &.error {
+                            background:url(../img/p6-f.gif) no-repeat;
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+     
+    }
+}
+.pageLeftBot {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    .botArrow {
+        position: absolute;
+        top: 2px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        border-radius: 4px;
+        box-shadow: 0 0 3px #ccc;
+        background: url(../img/leftBotArrowUp.png) no-repeat 10px 14px ;
+        cursor: pointer;
+        &:hover, &.active:hover{
+            background-color: #e2e3e7; 
+        }
+        &.active {
+            background: url(../img/leftBotArrowDown.png) no-repeat 10px 14px;
+        }
+    }
+   .leftBotNav {
+       width: 100%;
+       height: 38px;
+       border-top: 1px solid #e5e5e5;
+       border-bottom: 1px solid #e5e5e5;
+       background: #f5f5f5;
+       li {
+           float: left;
+           width: 106px;
+           height: 38px;
+           line-height: 38px;
+           border-left: 1px solid #e5e5e5;
+           border-right: 1px solid #e5e5e5;
+           cursor: pointer;
+           &.active, &:hover{
+               background: #fff;
+           }
+           .leftBotNavPic {
+               float: left;
+               width: 34px;
+               height: 100%;
+               background: url(../img/leftBotPic.png) no-repeat;
+               margin-left: 8px;
+           }
+           &:nth-of-type(1) .leftBotNavPic {
+               background-position: 6px 10px;
+           }
+           &:nth-of-type(2) .leftBotNavPic {
+               
+                background-position: 6px -486px;
+           }
+           &:nth-of-type(3) .leftBotNavPic {
+               background-position: 6px -133px;
+           }
+           &:nth-of-type(4) .leftBotNavPic {
+               background-position: 6px -204px;
+           }
+           &:nth-of-type(5) .leftBotNavPic {
+//             background-position: 6px -273px;
+               background-position: 6px -346px;
+           }
+           &:nth-of-type(6) .leftBotNavPic {
+              background-position: 6px -60px;
+//              background-position: 6px -346px;
+           }
+//         &:nth-of-type(7) .leftBotNavPic {
+//             background-position: 6px -416px;
+//         }
+//         &:nth-of-type(8) .leftBotNavPic {
+//             background-position: 6px -486px;
+//         }
+//         &:nth-of-type(9) .leftBotNavPic {
+//             background-position: 6px -558px;
+//         }
+           .leftBotNavTxt {
+               float: left;
+               font-size: 12px;
+               color: #656565;
+               margin-left: 3px;
+           }
+       }
+   }
+}
+
+.leftBotBox {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: url(../img/shuiyin.png) no-repeat center center #fff;
+    .leftBotFrame {
+
+        width: 100%;
+        height: 100%;
+        
+    }
+}
+ 
+//中部
+.pageMid {
+    position: absolute;
+    right: 362px;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: #fff;
+    border-left: 3px solid #438eb9;     
+}
+.pageRight {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: #fff;
+    border-left: 3px solid #438eb9;     
+}
+.showHideBtn {
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 48px;
+    cursor: pointer;
+    background: url(../img/arrow.png) no-repeat -15px 0;
+    &.show {
+        background-position: 4px 0; 
+    }
+}
+
+//中间部分的  样式
+.pageMidBox {
+     width: 100%;
+     height: 100%;
+    .pageMidTop {
+        width: 100%;
+        /*height: 350px;
+        background: url(../img/mapRightOne.png) no-repeat;*/
+    }
+    .pageMidMid {
+        width: 100%;
+        /*height: 350px;
+        background: url(../img/mapRightTwo.png) no-repeat;*/
+    }
+    .pageMidBot {
+        width: 100%;
+        /*height: 350px;
+        background: url(../img/mapRightThree.png) no-repeat;*/
+    }
+ }
+ 
+//右侧部分的样式
+.pageRightBox {
+    position: relative;
+     width: 100%;
+     height: 100%;
+    .pageRightTop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 372px;
+        width: 100%;   
+        .caiJi {
+           position: absolute;
+           top: 8px;
+           right: 20px;//60px;
+           width: 40px;
+           height: 20px;
+           background: url(../img/caijiAndShow.png) no-repeat;
+           cursor: pointer;
+        }   
+        .xianShi {
+           position: absolute;
+           top: 8px;
+           right: 20px;
+           width: 40px;
+           height: 20px;
+           background: url(../img/caijiAndShow.png) no-repeat top right;
+           cursor: pointer;
+        }  
+        .rightTopTab {
+                width: 100%;
+                height: 35px;
+                background: #f5f5f5;
+                border-bottom: 1px solid #e5e5e5;
+                li {
+                    float: left;
+                    width: 70px;
+                    height: 35px;
+                    padding-left: 6px;
+                    padding-top: 6px;
+                    cursor: pointer;
+                    border-right: 1px solid #e5e5e5; 
+                    
+                    
+                    &.active ,&:hover{
+                        background: #fff;
+                        border-Bottom: 1px solid #fff;
+                    }
+                    .rightTopTabItemPic {
+                        float: left;
+                        width: 22px;
+                        height: 22px;
+                        background: url(../img/shebeiRightBg.png) no-repeat;
+                    }
+                    &:nth-of-type(1) .rightTopTabItemPic {
+                        background-position: 4px 6px;
+                    }
+//                  &:nth-of-type(2) .rightTopTabItemPic {
+//                      background-position: -342px 6px;
+//                  }
+                    &:nth-of-type(2) .rightTopTabItemPic {
+                       background-position: -168px 6px;
+                    }
+                    .rightTopTabItemTxt {
+                        float: left;
+                        color: #727272;
+                        font-size: 14px;
+                        line-height: 26px;
+                    }
+                }
+        }
+        .rightTopMainBox {
+            width: 100%;
+            height: 562px;
+            .dataBox {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 8px; 
+                display: none;
+                &.active {
+                    display: block;
+                }
+                .dataUl {
+                    width: 100%;
+                    >li {
+                        width: 50%;
+                        float: left;
+                        &:nth-of-type(2)>*{
+                            float: right;
+                        }
+                    }
+                }
+            }
+            .setBox {
+                width: 100%;
+                min-height: 350px;
+                box-sizing: border-box;
+                padding: 0 4px; 
+                display: none;
+                &.active {
+                    display: block;
+                }
+            }
+        }
+    }
+    
+    .pageRightBot {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 360px;
+        border-top: 3px solid #438eb9;
+        .mapBoxShowHide {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%); 
+            width: 48px;
+            height: 8px;
+            cursor: pointer;
+            background: url(../img/arrowUpDown.png) no-repeat 0 4px;
+            &.show {
+                background-position: 0 -15px; 
+            }
+        }
+        .rightBotTab {
+                width: 100%;
+                height: 35px;
+                background: #f5f5f5;
+                border-bottom: 1px solid #e5e5e5;
+                li {
+                    float: left;
+                    width: 70px;
+                    height: 35px;
+                    padding-left: 6px;
+                    padding-top: 6px;
+                    cursor: pointer;
+                    border-right: 1px solid #e5e5e5; 
+                    &.active,&:hover {
+                        background: #fff;
+                        border-Bottom: 1px solid #fff;
+                    }
+                    .rightBotTabItemPic {
+                        float: left;
+                        width: 22px;
+                        height: 22px;
+                        background: url(../img/shebeiRightBg.png) no-repeat;
+                    }
+                    &:nth-of-type(1) .rightBotTabItemPic {
+                        background-position: -688px 6px;
+                    }
+                    &:nth-of-type(2) .rightBotTabItemPic {
+                        background-position: -515px 6px;
+                    }
+                    
+                    .rightBotTabItemTxt {
+                        float: left;
+                        color: #727272;
+                        font-size: 14px;
+                        line-height: 26px;
+                    }
+                }
+        }
+        .rightBotMainBox {         
+            width: 100%;
+            height: 325px;
+            #mapBox {
+                width: 100%;
+                height: 100%;
+               display: none;
+               &.active {
+                   display: block;
+               } 
+            }
+            .videoBox {
+                width: 100%;
+                height: 100%;
+               display: none;
+               &.active {
+                   display: block;
+               } 
+            }
+        }
+    }
+ }
+ 
+.rightShowBtn {
+    position: absolute;
+    right: 0;
+    /*top: 90px;*/
+    top: 42%;
+    width: 36px;
+    z-index: 3;
+    li {
+        height: 34px;
+        background: blue;
+        cursor: pointer;
+        display: none;
+        background: url(../img/rightShowBtnPic.png) no-repeat;
+        &:nth-of-type(1) {
+            background-position: 8px 6px;
+            background-color: #438eb9;
+        }
+        &:nth-of-type(2) {
+            background-position: 8px -30px;
+            background-color: #f3a355;
+        }
+        
+    }
+}
+
+
+
+
+//mapLabel  style
+
+
+.mapLabelItemWrap {
+    width: 100%;
+}
+
+.sanJiao {
+    position: absolute;
+    bottom: -10px;
+    left: 48%;
+    width: 13px;
+    height: 10px;
+    background: url(/res/images/map/smallTra.png) no-repeat;
+    transform: translateX(-50%);
+}
+.mapLabelItem {
+    width: 266px;
+    height: 34px;
+    line-height: 34px;
+    color: green;
+    font-size: 19px;
+    border-bottom: 1px solid #cccccc;
+    font-size: 12px;
+    margin-left: 20px;
+   >div{
+       float: left;
+       width: 33%;
+       text-align:left;
+       color: #767778;
+       &.areaName {
+       &.gray {
+           color: #767778;
+       }
+       &.blue {
+           color: #188df0;
+       }
+       &.red {
+           color: red;
+       }
+   }
+   }
+   
+   .outPress {
+      
+       text-indent: 4px;
+       .bgBox {
+           float: left;
+           width: 17px;
+           height: 34px;
+           background: url(/res/images/map/outIn.png) no-repeat 2px 6px;
+       }
+   }
+   .inPress {
+      text-indent: 4px;
+       .bgBox {
+           float: left;
+           width: 17px;
+           height: 34px;
+           background: url(/res/images/map/outIn.png) no-repeat -90px 6px;
+       }
+   }
+    &:last-child {
+        border-bottom: none;
+    }
+}

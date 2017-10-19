@@ -1,0 +1,463 @@
+body {
+  padding: 0px;
+  position: relative;
+}
+.leftNav {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  bottom: 12px;
+  width: 42px;
+  background: #fefefe;
+  border-top: 1px solid #ececec;
+  border-right: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  z-index: 1;
+}
+.leftNav li {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  border-bottom: 1px solid #ececec;
+  background: url(../img/leftNavBg.png) no-repeat;
+  cursor: pointer;
+  /*  &.baobiao {
+            background: url(../img/reportIco.png) no-repeat 10px  12px; 
+            &:hover,&.active {
+                 background-position:-52px  12px; 
+                background-color: #438eb9;
+            }
+        } */
+}
+.leftNav li.yali {
+  background: url(../img/pressIco.png) no-repeat 10px 12px;
+}
+.leftNav li.yali:hover,
+.leftNav li.yali.active {
+  background: url(../img/pressHoverIco.png) no-repeat 10px 12px;
+  background-color: #438eb9;
+}
+.leftNav li.famen {
+  background: url(../img/famenIco.png) no-repeat 10px 14px;
+}
+.leftNav li.famen:hover,
+.leftNav li.famen.active {
+  background: url(../img/famenHIco.png) no-repeat 10px 14px;
+  background-color: #438eb9;
+}
+.leftNav li.liuliang {
+  background: url(../img/flowIco.png) no-repeat 10px 12px;
+}
+.leftNav li.liuliang:hover,
+.leftNav li.liuliang.active {
+  background: url(../img/flowHoverIco.png) no-repeat 10px 12px;
+  background-color: #438eb9;
+}
+.leftNav li.tiaofeng {
+  background: url(../img/waterBoxIco.png) no-repeat 10px 14px;
+}
+.leftNav li.tiaofeng:hover,
+.leftNav li.tiaofeng.active {
+  background: url(../img/waterBoxhIco.png) no-repeat 10px 14px;
+  background-color: #438eb9;
+}
+.leftNav li:last-child {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 35px;
+  padding-top: 9px;
+  height: 37px;
+  padding-left: 7px;
+  background: #fff;
+  cursor: pointer;
+}
+.leftNav li:last-child div {
+  width: 26px;
+  height: 26px;
+  background: url(../img/help.png) no-repeat;
+}
+.infoShowBox {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  width: 258px;
+  height: 97px;
+  display: none;
+  background: url(../img/leftHoverInfoBg.png) no-repeat;
+}
+.infoShowBox .leftInfoBox {
+  float: right;
+  width: 246px;
+  height: 94px;
+  padding-left: 8px;
+  border-top: 2px solid #4387b0;
+}
+.infoShowBox .leftInfoBox li {
+  width: 100%;
+  height: 29px;
+  line-height: 29px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.infoShowBox .leftInfoBox li:last-child {
+  border-bottom: none;
+}
+.infoShowBox .leftInfoBox li .infoLeft {
+  position: relative;
+  float: left;
+  width: 80px;
+  height: 100%;
+}
+.infoShowBox .leftInfoBox li .infoLeft .infoPic {
+  position: absolute;
+  top: 10px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  background: #4387b0;
+}
+.infoShowBox .leftInfoBox li .infoLeft .infoName {
+  color: #8e8e8e;
+  font-size: 12px;
+  text-indent: 14px;
+}
+.infoShowBox .leftInfoBox li .infoRight {
+  float: right;
+  width: 140px;
+  color: #2e3d4d;
+  margin-right: 4px;
+  text-align: right;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.bengfangListWrap {
+  position: absolute;
+  top: 12px;
+  left: 43px;
+  bottom: 12px;
+  width: 250px;
+  border-right: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+  margin-left: -300px;
+  display: none;
+}
+.bengfangListWrap2 {
+  position: absolute;
+  top: 12px;
+  left: 43px;
+  bottom: 12px;
+  width: 250px;
+  border-right: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+  margin-left: -300px;
+  display: none;
+}
+.listWrap {
+  position: absolute;
+  top: 12px;
+  left: 43px;
+  bottom: 12px;
+  width: 250px;
+  border-right: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  background: #fff;
+  margin-left: -300px;
+}
+.numWrap {
+  width: 100%;
+  height: 42px;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  background: #f5f5f5;
+  margin-bottom: 8px;
+}
+.numWrap li {
+  float: left;
+  width: 25%;
+  height: 42px;
+  line-height: 42px;
+  font-size: 12px;
+}
+.numWrap li .numItemPic {
+  float: left;
+  width: 20px;
+  height: 42px;
+  background: url(../img/statusItem.png) no-repeat;
+}
+.numWrap li:nth-of-type(1) .numItemPic {
+  background-position: 3px 13px;
+}
+.numWrap li:nth-of-type(2) .numItemPic {
+  background-position: -58px 13px;
+}
+.numWrap li:nth-of-type(3) .numItemPic {
+  background-position: -118px 13px;
+}
+.numWrap li:last-child {
+  text-indent: 16px;
+}
+.numWrap li:last-child.right {
+  text-indent: 6px;
+  text-align: center;
+  float: right;
+}
+.numWrap li:last-child .numItemPic {
+  background: none;
+}
+.numWrap li .numItemNum {
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.searchWrap {
+  height: 30px;
+  padding: 0 16px;
+  margin-bottom: 6px;
+}
+.searchWrap .searchTxt {
+  float: left;
+  width: 180px;
+  height: 28px;
+  outline: none;
+  border: 1px solid #d9d9d9;
+  border-right: none;
+  background: transparent;
+  color: #a6a6a6;
+  text-indent: 12px;
+  font-size: 16px;
+}
+.searchWrap .listSearchBtn {
+  float: left;
+  width: 34px;
+  height: 28px;
+  border: none;
+  outline: none;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  background: url(../img/searchBg.png) no-repeat 8px 4px #438eb9;
+}
+.statusWrap {
+  padding: 0 16px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+.statusWrap li {
+  float: left;
+  width: 53px;
+  height: 24px;
+  line-height: 22px;
+  color: #fff;
+  font-size: 12px;
+  background: url(../img/statusBg.png) no-repeat #2e3e4e;
+  cursor: pointer;
+  margin-right: 1px;
+  text-indent: 24px;
+}
+.statusWrap li:nth-of-type(1) {
+  background-position: 8px 6px;
+  border-radius: 12px 0 0 12px;
+}
+.statusWrap li:nth-of-type(2) {
+  background-position: -48px 5px;
+}
+.statusWrap li:nth-of-type(3) {
+  background-position: -100px 5px;
+}
+.statusWrap li:nth-of-type(4) {
+  background-position: -152px 5px;
+  border-radius: 0 12px  12px 0;
+}
+.statusWrap li:hover,
+.statusWrap li.active {
+  background-color: #04b0ee;
+}
+.listBox {
+  width: 100%;
+  overflow: auto;
+}
+.listBox .listItemWrap {
+  width: 100%;
+}
+.listBox .listItemWrap li {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  line-height: 31px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #2e3e4e;
+}
+.listBox .listItemWrap li:hover {
+  background: #e2f4fe;
+}
+.listBox .listItemWrap li .listItemPic {
+  float: left;
+  width: 31px;
+  height: 31px;
+  line-height: 31px;
+  background: url(../img/statusItem.png) -1112px 8px no-repeat;
+}
+.listBox .listItemWrap li .listItemPic.listItemPicSta1 {
+  background-position: 12px 8px;
+}
+.listBox .listItemWrap li .listItemPic.listItemPicSta0 {
+  background-position: -50px 8px;
+}
+.listBox .listItemWrap li .listItemPic.listItemPicSta2 {
+  background-position: -110px 8px;
+}
+.listBox .listItemWrap li .listItemPic.hide {
+  background: none;
+}
+.listBox .listItemWrap li .listItemPic .listItemPicBg {
+  margin: 11px;
+  width: 8px ;
+  height: 8px;
+  background: #188df0;
+}
+.listBox .listItemWrap li .listAddStatu {
+  float: left;
+  width: 218px;
+  height: 31px;
+  border-bottom: 1px solid #ececec;
+}
+.listBox .listItemWrap li .listItemAddress {
+  float: left;
+  width: 170px;
+  height: 31px;
+}
+.listBox .listItemWrap li .listItemStatus {
+  position: relative;
+  top: 8px;
+  width: 20px;
+  height: 18px;
+  float: right;
+  margin-right: 14px;
+  color: #a4a4a4;
+  background: url(../img/hoverInfoWin.png) no-repeat -67px 2px;
+}
+.listBox .listItemWrap li .listItemStatus:hover {
+  background-position: 3px 2px;
+}
+.listBox .listItemWrapZu {
+  width: 100%;
+}
+.listBox .listItemWrapZu > li {
+  position: relative;
+  width: 100%;
+  min-height: 32px;
+  line-height: 31px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #2e3e4e;
+  overflow: auto;
+  /*&:hover {
+                background: #e2f4fe;
+            }*/
+}
+.listBox .listItemWrapZu > li.active .listItemAddress,
+.listBox .listItemWrapZu > li:hover .listItemAddress {
+  color: #438eb9;
+}
+.listBox .listItemWrapZu > li .childList {
+  margin-top: 32px;
+  width: 100%;
+  background: red;
+  background: #e0f4ff;
+  display: none;
+}
+.listBox .listItemWrapZu > li .childList.active {
+  display: block;
+}
+.listBox .listItemWrapZu > li .childList > li {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  cursor: pointer;
+}
+.listBox .listItemWrapZu > li .childList > li:hover {
+  background: #bbd7e7;
+}
+.listBox .listItemWrapZu > li .childList > li .childListItemPic {
+  margin: 12px 0 12px 30px;
+  float: left;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5ac0f8;
+}
+.listBox .listItemWrapZu > li .childList > li .childListName {
+  float: left;
+  margin-left: 1px;
+  width: 170px;
+  height: 32px;
+  color: #2e3e4e;
+}
+.listBox .listItemWrapZu > li .childList > li .childListWin {
+  float: left;
+  position: relative;
+  top: 8px;
+  width: 20px;
+  height: 18px;
+  float: right;
+  margin-right: 14px;
+  color: #a4a4a4;
+  background: url(../img/hoverInfoWin.png) no-repeat -67px 2px;
+}
+.listBox .listItemWrapZu > li .childList > li .childListWin:hover {
+  background-position: 3px 2px;
+}
+.listBox .listItemWrapZu > li .listItemPic {
+  float: left;
+  width: 31px;
+  height: 31px;
+  line-height: 31px;
+}
+.listBox .listItemWrapZu > li .listItemPic .listItemPicBg {
+  margin: 11px;
+  width: 8px ;
+  height: 8px;
+  background: #188df0;
+}
+.listBox .listItemWrapZu > li .listAddStatu {
+  float: left;
+  width: 218px;
+  height: 31px;
+  border-bottom: 1px solid #ececec;
+}
+.listBox .listItemWrapZu > li .listItemAddress {
+  float: left;
+  width: 170px;
+  height: 31px;
+}
+.listBox .listItemWrapZu > li .listItemStatus {
+  position: relative;
+  top: 8px;
+  width: 20px;
+  height: 18px;
+  float: right;
+  margin-right: 14px;
+  color: #a4a4a4;
+}
+.listBox .listItemWrapZu > li .listItemStatus .arrowUpDown {
+  margin: 2px 0;
+  width: 16px;
+  height: 10px;
+  background: url(../img/leftBotArrowDown.png) no-repeat;
+}
+.listBox .listItemWrapZu > li .listItemStatus .arrowUpDown.active {
+  background: url(../img/leftBotArrowUp.png) no-repeat;
+}
+.mainIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

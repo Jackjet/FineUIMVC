@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "WebP_User_new";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .BodyPadding(10)
+                .AutoScroll(true)
+                .IsViewPort(true)
+                .Toolbars(
+                    F.Toolbar()
+                        .Items(
+                            F.Button()
+                                .Icon(Icon.SystemClose)
+                                .Text("关闭")
+                                .Listener("click", "F.activeWindow.hide();"),
+                            F.ToolbarSeparator(),
+                            F.Button()
+                                .ValidateForms("SimpleForm1")
+                                .Icon(Icon.SystemSaveClose)
+                                .OnClick(Url.Action("btnCreate_Click"), "SimpleForm1")
+                                .Text("保存后关闭")
+                        )
+                )
+                .Items(
+                        F.DropDownList()
+                           .ID("ddlType")
+                           .Label("用户类型")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlTypeDataSource)
+                           .Listener("change", "onddlTypeChange")
+                           .SelectedValue(ViewBag.SelectValue),
+                        F.TriggerBox()
+                           .ID("tbSelectedCustomer")
+                           .Label("选择客户")
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .OnClientTriggerClick("OnClientCustomerSelect();"),
+                         F.TriggerBox()
+                           .ID("tbSelectedUser")
+                           .Label("选择其他")
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .OnClientTriggerClick("OnClientPumpGroupSelect();"),
+                        F.DropDownList()
+                           .ID("ddlCompany")
+                           .Label("分公司")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("Fengongsi")
+                           .DataValueField("U8number")
+                           .DataSource(ViewBag.ddlCompanyDataSource)
+                           .SelectedValue("0"),
+                        F.HiddenField()
+                           .Label("其他ID")
+                           .ID("tbxUserID"),
+                        F.HiddenField()
+                           .Label("客户ID")
+                           .ID("tbxCustomerID"),
+                        F.HiddenField()
+                           .Label("门户ID")
+                           .Text(ViewBag.WId)
+                           .ID("tbxWID")
+
+               )
+    )
+    @(F.Window()
+        .ID("Window1")
+        .Width(400)
+        .Height(400)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+
+@section script {
+
+    <script>
+        F.ready(function () {
+            F.ui.ddlCompany.setHidden(true);
+            F.ui.tbSelectedUser.setHidden(true);
+        })
+        function onddlTypeChange(event) {
+            var ddlType = F.ui.ddlType;
+            var tbSelectedCustomer = F.ui.tbSelectedCustomer;
+            var ddlCompany = F.ui.ddlCompany;
+            var tbSelectedUser = F.ui.tbSelectedUser;
+            var tbxCustomerID = F.ui.tbxCustomerID;
+            var tbxPumpGroupID = F.ui.tbxPumpGroupID;
+            if (ddlType.getValue() == "1") {  //管理员
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(true);
+                tbSelectedUser.setHidden(true);
+            }
+            else if (ddlType.getValue() == "2") { //分公司
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(false);
+                tbSelectedUser.setHidden(true);
+            }
+            else if (ddlType.getValue() == "3") { //客户
+                tbSelectedCustomer.setHidden(false);
+                ddlCompany.setHidden(true);
+                tbSelectedUser.setHidden(true);
+            }
+            else if (ddlType.getValue() == "4") { //其他
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(true);
+                tbSelectedUser.setHidden(false);
+            }
+        }
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl,"客户选择",700,500);
+        }
+
+        function OnClientPumpGroupSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/UserWindow")';
+            var openUrl = F.formatString("{0}?Type={1}", url, 0);
+
+            F.ui.Window1.show(openUrl, "用户选择", 700, 500);
+        }
+
+        function updateCustomer(id, text) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+        }
+
+        function updateUser(id, text) {
+            F.ui.tbSelectedUser.setValue(text);
+            F.ui.tbxUserID.setValue(id);
+        }
+    </script>
+}
+

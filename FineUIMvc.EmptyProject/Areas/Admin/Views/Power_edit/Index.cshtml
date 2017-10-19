@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Admin/Power_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.Power
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.HiddenFieldFor(x => x.ID),
+                    F.TextBoxFor(x => x.GroupName)
+                       .Label("分组名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxGroupName"),
+                    F.TextBoxFor(x => x.Name)
+                       .Label("名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxName"),
+                    F.TextBoxFor(x => x.Title)
+                       .Label("标题")
+                       .ID("tbxTitle")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBoxFor(x => x.Remark)
+                       .Label("备注")
+                       .ID("tbxRemark"),
+                    F.CheckBox()
+                       .ID("cboIsCustomerLook")
+                       .Label("是否客户可见")
+                       .ShowLabel(true)
+                       .Checked(ViewBag.cboIsCustomerLook)
+               )
+        )
+    )
+
+}

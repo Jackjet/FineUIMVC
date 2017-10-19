@@ -1,0 +1,358 @@
+body {
+  padding: 0px;
+}
+a,
+a:active {
+  text-decoration: none;
+}
+.main_wrap {
+  width: 100%;
+  height: 100%;
+  padding-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.list_wrap {
+  width: 1440px;
+  margin-left: 32px;
+  height: 100%;
+  /*border: 1px solid red;*/
+  padding-right: 12px;
+  padding-left: 8px;
+  background-color: #f2f3f7;
+  position: relative;
+}
+.list_header {
+  padding: 16px;
+  height: 54px;
+}
+.search_box {
+  float: right;
+}
+.search_wrap {
+  height: 30px;
+  border: 1px solid #d0d5d9;
+  border-radius: 14px;
+  padding: 2px 2px;
+  margin-right: 8px;
+  float: left;
+  background-color: #fff;
+}
+.search_wrap button {
+  border: none;
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  margin-right: 1px;
+  padding-right: 10px;
+  padding-left: 25px;
+  color: #bfc6ca;
+  cursor: pointer;
+  vertical-align: middle;
+  background: url(../img/normalOnlineAndOff.png) no-repeat #e7e7e7;
+  background-repeat: no-repeat;
+  outline: none;
+}
+button.onlineBtn {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  -moz-border-radius-topleft: 12px;
+  background-position: 5px 5px;
+}
+button.offlineBtn {
+  background-position: -48px 5px;
+}
+button.alarmBtn {
+  background-position: -101px 5px;
+}
+button.showAllBtn {
+  background-position: -156px 5px;
+}
+.onlineBtn.active,
+.offlineBtn.active,
+.alarmBtn.active,
+.showAllBtn.active {
+  background-image: url(../img/btnsIco.png);
+}
+.search_wrap button:hover {
+  background-image: url(../img/btnsIco.png);
+  background-color: #438eb9;
+  color: #fff;
+}
+button.active {
+  background-color: #438eb9;
+  color: #fff;
+}
+button.searchBtn {
+  height: 28px;
+  line-height: 28px;
+  border-radius: 14px;
+  background-color: #3683af;
+  border: none;
+  padding: 0 14px;
+  color: #fff;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  outline: none;
+  cursor: pointer;
+}
+.search_wrap input {
+  border: none;
+  height: 24px;
+  line-height: 24px;
+  outline: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  vertical-align: middle;
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+.list_table {
+  border-top: 2px solid #438eb9;
+  width: 100%;
+  border-left: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 3px;
+  position: relative;
+}
+.table1_wrap {
+  width: 100%;
+  height: 34px;
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+}
+.myTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+}
+.table1 {
+  position: relative;
+}
+.table2 {
+  width: 100%;
+}
+.table2_wrap {
+  /*height: 240px;*/
+  background-color: #fff;
+  overflow: auto;
+}
+.myTable tr {
+  width: 100%;
+  height: 34px;
+  cursor: pointer;
+}
+.myTable th {
+  /*padding-left: 5px;*/
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  color: #676767;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  text-align: left;
+  min-width: 70px;
+  width: 70px;
+}
+.myTable td {
+  text-align: left;
+  border-bottom: 1px dashed #e8e8e8;
+  background-color: #fff;
+  color: #676767;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  /*padding-left: 3px;*/
+  min-width: 70px;
+  width: 70px;
+}
+.myTable td span {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  vertical-align: middle;
+  background-color: rgba(237, 116, 80, 0.8);
+  padding: 0px 4px;
+  margin-right: 2px;
+  border-radius: 2px;
+  color: #ffffff;
+}
+.myTable td .FOut {
+  background-color: rgba(51, 152, 219, 0.8);
+}
+.myTable tr th:first-child,
+.myTable tr td:first-child,
+.myTable th.FOnLine,
+.myTable td[data-id=FOnLine] {
+  display: none;
+}
+.myTable tr th:nth-child(2),
+.myTable tr td:nth-child(2) {
+  width: 100px;
+  min-width: 100px;
+  padding-left: 5px;
+}
+.myTable tr th:nth-child(3),
+.myTable tr td:nth-child(3),
+.myTable tr th:nth-child(4),
+.myTable tr td:nth-child(4) {
+  min-width: 145px;
+}
+.myTable th.DTUCode,
+.myTable td[data-id=DTUCode] {
+  min-width: 120px;
+  width: 120px;
+}
+.myTable tr th.FlowInOut,
+.myTable tr td[data-id=FTotalInLL] {
+  min-width: 145px;
+  width: 145px;
+}
+.myTable td[data-id=FMapAddress] div {
+  width: 100%;
+  height: 100%;
+  line-height: 33px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.myTable td.equipName a {
+  display: inline-block;
+  width: 120px;
+  height: 100%;
+  line-height: 33px;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.myTable td.status i {
+  display: block;
+  width: 16px;
+  height: 34px;
+  vertical-align: middle;
+  background: url(../img/onOffAlarmIco.png) no-repeat;
+}
+td.status i.status_1 {
+  background-position: -1px 8px;
+}
+td.status i.status_0 {
+  background-position: -1px -40px;
+}
+td.status i.status_2 {
+  background-position: -1px -100px;
+}
+/*.myTable th:last-child,.myTable td:last-child{
+	width: 50px;
+}*/
+.myTable tr.active td {
+  background-color: #e0f4ff;
+}
+.myTable tr:hover td {
+  background-color: #e0f4ff;
+}
+.inOutPress span {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #ececec;
+  color: #676767;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+.setBtn {
+  width: 14px;
+  height: 14px;
+  background: url(../img/setIco.png) no-repeat 0 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  /*margin: 0 auto;*/
+}
+.page_wrap {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 44px;
+  position: absolute;
+  right: 12px;
+  bottom: 20px;
+}
+.page_box {
+  float: right;
+  margin-top: 10px;
+  padding-right: 16px;
+}
+.page_box span {
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+.page_box a {
+  display: inline-block;
+  color: #8f9092;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  text-align: center;
+  padding: 4px;
+  font-weight: bold;
+}
+.page_box a:hover {
+  color: #438eb9;
+}
+.page_box span {
+  color: #8f9092;
+}
+.page_box #lastPage {
+  margin-right: 20px;
+}
+.page_box #currentPage,
+.page_box #pageSize,
+.page_box #totalNum {
+  color: #438eb9;
+}
+#editPageIndex {
+  width: 20px;
+  font-size: 12px;
+  font-family: "微软雅黑";
+  display: none;
+}
+.chart_box {
+  width: 356px;
+  height: 100%;
+  padding-top: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 3px solid #438eb9;
+  background-color: #fff;
+  z-index: 10;
+}
+#showHideBtn {
+  width: 13px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  margin-top: -24px;
+  background-color: rgba(250, 250, 250, 0.6);
+  cursor: pointer;
+}
+#showHideBtn:after {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border: 3px solid #438eb9;
+  border-top: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  margin-top: -1px;
+}
+.sectionBox2 {
+  display: none;
+}

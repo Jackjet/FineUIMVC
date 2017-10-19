@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "BasicInfo/PumpG/FZ_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.Panda_PumpFG
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBoxFor(x=>x.G_Name)
+                       .Label("分组名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxName"),
+                    F.HiddenFieldFor(x=>x.ID)
+                       .ID("tbxID")
+               )
+        )
+    )
+}
+@section script {
+
+    <script>
+    </script>
+}

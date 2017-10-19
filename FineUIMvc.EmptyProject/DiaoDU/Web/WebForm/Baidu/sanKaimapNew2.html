@@ -1,0 +1,1097 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="./css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/loginCss.css" rel="stylesheet" type="text/css" />
+    <link href="./js/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="../FTZ/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../FTZ/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.minicolors.min.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="./layer/layer.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/radialIndicator.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <script src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js "></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            top: 90px;
+            right: 0;
+            width: 240px;
+            height: 400px;
+        }
+
+        .showHide {
+            width: 18px;
+            height: 100%;
+            text-align: center;
+            line-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #007FFF;
+        }
+
+        .overlayBox {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 10px 0;
+            width: 210px;
+            height: 180px;
+            overflow: auto;
+        }
+
+            .overlayBox input {
+                width: 80%;
+                height: 20px;
+            }
+
+            .overlayBox button {
+                width: 100px;
+                height: 30px;
+                margin-top: 4px;
+                border-radius: 4px;
+                background: #fff;
+            }
+
+        .attrBox {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 10px 0;
+            width: 210px;
+            height: 180px;
+            overflow: auto;
+        }
+
+        .attrBoxUl li {
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+            .attrBoxUl li button {
+                display: inline-block;
+                height: 30px;
+                width: 40%;
+                border-radius: 6px;
+                background: #fff;
+            }
+
+        .panelBox {
+            position: absolute;
+            left: 10px;
+            top: 20%;
+            width: 360px;
+            height: 420px;
+            
+        }
+         .panelBox .panel-body {
+            overflow: auto;
+            height: 370px;
+         } 
+            
+            .hide {
+                display: none;
+            }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <!--<button class="clearAll" onclick="clearAll()">清除</button>-->
+    <div class="wrap">
+        <div class="showHide show">>></div>
+        <div class="overlayBox"></div>
+        <div class="attrBox">
+            <ul class="attrBoxUl"></ul>
+        </div>
+    </div>
+
+    <script>
+
+    var changgeName = function () {
+        //alert(this.pointerAttrArray['depth']);
+        alert(33);
+    }
+      
+        $('.showHide').click(function () {
+            if ($(this).hasClass('show')) {
+                $('.wrap').animate({ 'right': '-220px' });
+                $(this).removeClass('show').html('<<');
+            } else {
+                $('.wrap').animate({ 'right': '0' });
+                $(this).addClass('show').html('>>');
+            }
+        });
+
+        //var clearAll;
+
+        function liShow(obj) {
+            var objIndex = $(obj).index() / 3;
+            $('.attrBoxUl li').eq(objIndex).removeClass('hide').siblings().addClass('hide');
+            alert(objIndex);
+        }
+
+
+        function clickFn(obj) {
+            var objId = $(obj).attr('nameId');
+            var inputBoxInfo = $(obj).prev().val();
+            var nameBoxInfo = $(obj).prev().prev();
+            //			    	alert(inputBoxInfo);
+            //			    	alert(objId);
+            //			    	alert(over.length)
+            for (var i = 0; i < over.length; i++) {
+
+                if (over[i].mark == objId) {
+                    console.log(1);
+                    console.log(over[i]);
+                    console.log(2);
+                    over[i].name = inputBoxInfo;
+                    nameBoxInfo.html(inputBoxInfo);
+                    //			    			alert(over[i].name);
+                    //			    			alert("Ok");
+                    return;
+                }
+            }
+        }
+        var over = [];
+        var markers = [];
+        var markersArray = [];
+        var overSettings = [];
+        // 页面载入时 进行 图像绘制
+
+
+        function drawAgain(da) {
+
+            for (var i = 0; i < da.length; i++) {
+                map.addOverlay(da[i]);
+                over.push(da[i]);
+                if (type != 'marker') {
+
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var a = ff.getPath();
+                    var sColor = ff.getStrokeColor();
+                    var fColor = ff.getFillColor();
+                    var sWeight = ff.getStrokeWeight();
+                    var sOpacity = ff.getStrokeOpacity();
+                    var fOpacity = ff.getFillOpacity();
+                    var sStyle = ff.getStrokeStyle();
+
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><input type="color" ><button class="changeColor">修改颜色</button><br><input type="range" min="3" max="20"><button class="changeWeight">修改线宽</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+
+
+                } else {
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var Lng = ff.getPosition().lng;
+                    var Lat = ff.getPosition().lat;
+
+                    ff.setIcon(myIcon_flow);
+                    markers.push(ff);
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><button class="setIcon" title="' + id + '">设置为开关</button><input type="text" ><button type="button" title="' + id + '" class="setFlag">设置Flag</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+
+                }
+            }
+        }
+        $(function () {
+           
+            var map = new BMap.Map("map", { mapType: BMAP_SATELLITE_MAP });
+            var point = new BMap.Point(121.191705, 31.166028);    // 创建点坐标
+            map.centerAndZoom(point, 19);                     // 初始化地图,设置中心点坐标和地图级别。
+            map.enableScrollWheelZoom();
+
+            var myIcon_flow = new BMap.Icon("Images/flow2.png", new BMap.Size(30, 30));
+
+            var myIcon_onOff = new BMap.Icon("Images/onOff.png", new BMap.Size(30, 30));
+
+
+            //编号获取函数
+            var numJson = [];
+            var onOff;
+            var myLabel;
+            var $kaiSet;
+            var pressLabel;
+            var press;
+            var timerCurrentNum;
+            $(window).ready(function () {
+
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+                    //async: false,
+                    cache: false,
+                    success: function (data) {
+                        // alert(data);
+                        //console.log(data);
+                        var data = JSON.parse(data);
+                        data = data.data;
+
+                        numJson = data;
+
+
+
+
+
+
+
+
+
+                    }
+                });
+
+            });
+
+            //$('.colorInp').each(function () {
+            //    $(this).minicolors();
+            //});
+            function markersArrayClick() {
+
+                for (var j = 0; j < markers.length; j++) {
+                    markers[j].addEventListener('click', function (e) {
+                        //alert(this.getTitle());
+                        if ($('.stage')) {
+                            $('.stage').remove();
+                            // alert(1);
+                        }
+
+                        var position = this.getPosition();
+                        map.setCenter(position);
+                        // alert(3);
+                        for (var n in numJson) {
+                            //alert(33);
+                            //alert(numJson[n].FFlag+'qqq');
+                            if (numJson[n].FFlag == this.getTitle()) {
+                                //alert(numJson[n].FFlag + 'qqq');
+
+                                /// alert(4444);
+                                getData(numJson[n].ID);
+                                return;
+                            }
+                        }
+
+                    });
+                }
+            }
+
+
+            //数据获取函数
+
+            function getData(pId) {
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                    data: { 'FPumpID': pId },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        console.log(data + "dafdsfs");
+                        var data = JSON.parse(data);
+                        data = data.data[0];
+                        showContent(data, pId);////
+                        pumpName(pId);////
+                    }
+                });
+            }
+
+
+
+
+            //泵房名称获取函数
+            function pumpName(id) {
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=get',
+                    data: { 'id': id },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data +"dddfasdfsdfsafsa");
+                        // alert(data+'dddddddddddddddddddd');
+                        var data = JSON.parse(data);
+
+                        $('.number_box .pump_name').html(data.FName);
+                        $('.number_box .pump_number').html(data.FNumber);
+                        $('.item_bg1').parent().parent().find('.item_content').html(data.FName);
+                        $('.item_bg2').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg3').parent().parent().find('.item_content').html(data.FMaintenancePeriod);
+                        $('.item_bg4').parent().parent().find('.item_content').html(data.FChangePeriod);
+                        $('.item_bg5').parent().parent().find('.item_content').html(data.FMaterial);
+                        //$('.item_bg6').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg7').parent().parent().find('.item_content').html(data.FPumpType);
+                        $('.item_bg8').parent().parent().find('.item_content').html(data.FStatus);
+                        $('.item_bg9').parent().parent().find('.item_content').html(data.FPipeSize);
+                        $('.item_bg10').parent().parent().find('.item_content').html(data.FCaliber);
+
+                        window.setTimeout(function () {
+                            pic_show();
+
+
+                            info_show();
+                        }, 400);
+                    }
+                });
+            }
+
+            var styleOptions = {
+                strokeColor: "red",    //边线颜色。
+                fillColor: "green",      //填充颜色。当参数为空时，圆形将没有填充效果。
+                strokeWeight: 8,       //边线的宽度，以像素为单位。
+                strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+                fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+                strokeStyle: 'solid' //边线的样式，solid或dashed。
+            }
+
+
+           
+            var drawingManager = new BMapLib.DrawingManager(map, {
+                isOpen: false, //是否开启绘制模式
+                enableDrawingTool: true, //是否显示工具栏
+                drawingToolOptions: {
+                    anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                    offset: new BMap.Size(5, 5), //偏离值
+                },
+                circleOptions: styleOptions, //圆的样式
+                polylineOptions: styleOptions, //线的样式
+                polygonOptions: styleOptions, //多边形的样式
+                rectangleOptions: styleOptions //矩形的样式
+            });
+
+
+           
+
+            var overlaycomplete = function (e) {
+                console.log(e);
+                console.log(123);
+                var ff = e.overlay;
+                var id = new Date().getTime();
+                var name = "新加";
+                ff.mark = id;
+                ff.name = name;
+              
+               
+
+                
+
+                 //ff.alertFn = function () {
+                 //    alert(this.pointerAttrArray['depth']);
+                 //};
+                var type = e.drawingMode;
+                ff.Type = type;
+
+
+                if (type == 'marker') {
+
+                    ff.pointerAttrArray = {
+                        'name':'新建'+Math.random(),//名称
+                        'markNumber': 0,//编号
+                        'position': '撒花',//位置
+                        'setDate': 0,//安装日期
+                        'fatherDomId': 0,//父节点ID
+                        'depth': Math.random().toFixed(2),//埋深
+                        'inlineNum': '22',//所在管线号
+                        'brand': '嗯嗯',//品牌
+                        'model': 'DN125',//型号
+                        'Maintenance': 'DN125',//维保周期
+                        'headwaters': 'DN125',//水源厂
+                        'caliber': '.8',//口径
+                        'collectionType': '人工采集',//   采集方式
+                        'color': 'red',//表示颜色
+                        'weight':10
+                    };
+
+                    //ff.changgeName = function () {
+                    //    alert(this.pointerAttrArray['depth']);
+                    //}
+                    ff.addEventListener('click', function () {
+                       
+                        var This = this;
+                        if ($('.panelBox')) {
+                            ($('.panelBox')).remove();
+                        }
+                        console.log(ff);
+                        var showStr = '<div class="panelBox panel panel-primary">'+
+                                        '<div class="panel-heading">' + this.pointerAttrArray['name'] + '<span class="pull-right close closeBtn bg-danger" >&times;</span></div>' +
+                                        '<div class="panel-body">'+
+                                        '<table class="table">' +
+                                           '<tr border=1>'+
+                                                '<td>名称</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['name'] + '"></td>' +
+                                                '<td><button att="name" iconId="'+this.mark+'" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>编号</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['markNumber'] + '"></td>' +
+                                                '<td><button att="markNumber" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>位置</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['position'] + '"></td>' +
+                                                '<td><button att="position" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>安装日期</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['setDate'] + '"></td>' +
+                                                '<td><button att="setDate" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                            '<tr border=1>' +
+                                                '<td>父节点ID</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['fatherDomId'] + '"></td>' +
+                                                '<td><button att="fatherDomId" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>埋深</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['depth'] + '"></td>' +
+                                                '<td><button att="depth" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>所在管线号</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['inlineNum'] + '"></td>' +
+                                                '<td><button att="inlineNum" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>品牌</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['brand'] + '"></td>' +
+                                                '<td><button att="brand" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>型号</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['model'] + '"></td>' +
+                                                '<td><button att="model" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>维保周期</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['Maintenance'] + '"></td>' +
+                                                '<td><button att="Maintenance" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>水源厂</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['headwaters'] + '"></td>' +
+                                                '<td><button att="headwaters" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>口径</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['caliber'] + '"></td>' +
+                                                '<td><button att="caliber" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>采集方式</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['collectionType'] + '"></td>' +
+                                                '<td><button att="collectionType" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>表示颜色</td>' +
+                                                '<td><input type="color" style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['color'] + '"></td>' +
+                                                '<td><button att="color" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>线条宽度</td>' +
+                                                '<td><input type="range" style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.pointerAttrArray['weight'] + '" ></td>' +
+                                                '<td><button att="weight" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                        '</table>' +
+                                        '<div class="row">' +
+                                           ' <div class="col-xs-6"><button class="editA btn btn-primary btn-block" att="' + this.mark + '">可移动</button></div>' +
+                                           ' <div class="col-xs-6"><button class="disEditD btn btn-primary btn-block" att="' + this.mark + '">不可移动</button></div>' +
+                                        '</div><br>' +
+                                        '<button class="deleteB btn btn-danger btn-block" att="' + this.mark + '">删除</button>' +
+                                        '</div>' +
+                                        '</div>';
+                       
+                        $('body').append(showStr);
+                    });
+
+
+                } else {
+
+                    ff.polonGonAttrArray = {
+                        'name': '新建'+Math.random(),//名称
+                        'markNumber': '',//编号
+                        'position': '',//位置
+                        'setDate': 0,//安装日期
+                        'fatherDomId': 0,//父节点ID
+                        'depth': Math.random(),//埋深
+                        'lineNum': '',//管线ID
+                        'pipDia': 'DN50',//管径
+                        'piPStock': '铸铁',//管材
+                        'wallThickness': '',//壁厚
+                        'headwaters': '',//水源厂
+                        'length': '1000m',//管线长度
+                        'layerType': '管线',//   层类型
+                        'color': 'red',//表示颜色
+                        'weight': 10
+                    };
+
+
+                    ff.addEventListener('click', function () {
+                       
+                        if ($('.panelBox')) {
+                            ($('.panelBox')).remove();
+                        }
+                        
+                        var showStr = '<div class="panelBox panel panel-primary">'+
+                                        '<div class="panel-heading">' + this.polonGonAttrArray['name'] + '<span class="pull-right close closeBtn bg-danger" >&times;</span></div>' +
+                                        '<div class="panel-body">'+
+                                        '<table class="table">' +
+                                           '<tr border=1>'+
+                                                '<td>名称</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['name'] + '"></td>' +
+                                                '<td><button att="name" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>编号</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['markNumber'] + '"></td>' +
+                                                '<td><button att="markNumber" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>位置</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['position'] + '"></td>' +
+                                                '<td><button att="position" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>安装日期</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['setDate'] + '"></td>' +
+                                                '<td><button att="setDate" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                            '<tr border=1>' +
+                                                '<td>父节点ID</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['fatherDomId'] + '"></td>' +
+                                                '<td><button att="fatherDomId" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>埋深</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['depth'] + '"></td>' +
+                                                '<td><button att="depth" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>管线ID</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['lineNum'] + '"></td>' +
+                                                '<td><button att="lineNum" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>管径</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['pipDia'] + '"></td>' +
+                                                '<td><button att="pipDia" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>管材</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['piPStock'] + '"></td>' +
+                                                '<td><button att="piPStock" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>壁厚</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['wallThickness'] + '"></td>' +
+                                                '<td><button att="wallThickness" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>水源厂</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['headwaters'] + '"></td>' +
+                                                '<td><button att="headwaters" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>管线长度</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['length'] + '"></td>' +
+                                                '<td><button att="length" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>曾类型</td>' +
+                                                '<td><input style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['layerType'] + '"></td>' +
+                                                '<td><button att="layerType" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>表示颜色</td>' +
+                                                '<td><input type="color" style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['color'] + '"></td>' +
+                                                '<td><button att="color" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                           '<tr border=1>' +
+                                                '<td>线条宽度</td>' +
+                                                '<td><input type="range" style="border: 1px solid #ccc;background: transparent;width: 100%;height: 100%;" value="' + this.polonGonAttrArray['weight'] + '"></td>' +
+                                                '<td><button att="weight" iconId="' + this.mark + '" class="btn">修改</button></td>' +
+                                           '</tr>' +
+                                        '</table>' +
+                                        '<div class="row">'+
+                                           ' <div class="col-xs-6"><button class="editA btn btn-primary btn-block" att="' + this.mark + '">可编辑</button></div>' +
+                                           ' <div class="col-xs-6"><button class="disEditD btn btn-primary btn-block" att="' + this.mark + '">不可编辑</button></div>' +
+                                        '</div><br>'+
+                                        '<button class="deleteB btn btn-danger btn-block" att="' + this.mark + '">删除</button>' +
+                                        '</div>' +
+                                        '</div>';
+                       
+                        $('body').append(showStr);
+                    })
+               
+                    }
+
+
+                if (type != 'marker') {
+
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var a = ff.getPath();
+                    var sColor = ff.getStrokeColor();
+                    var fColor = ff.getFillColor();
+                    var sWeight = ff.getStrokeWeight();
+                    var sOpacity = ff.getStrokeOpacity();
+                    var fOpacity = ff.getFillOpacity();
+                    var sStyle = ff.getStrokeStyle();
+
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><input type="color" ><button class="changeColor">修改颜色</button><br><input type="range" min="3" max="20"><button class="changeWeight">修改线宽</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                    //var overOPt = {
+                    //    'ID': id,
+                    //    'pointArr': a,
+                    //    'drawType': type,
+                    //    'fColor': fColor,
+                    //    'sColor': sColor,
+                    //    'sWeight': sWeight,
+                    //    'sOpacity': sOpacity,
+                    //    'fOpacity': fOpacity,
+                    //    'sStyle': sStyle
+                    //};
+
+
+                    //overOPt['fColor'] = fColor;
+
+                    //overSettings.push(overOPt);
+
+                } else {
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var Lng = ff.getPosition().lng;
+                    var Lat = ff.getPosition().lat;
+                    //var pointOp = {
+
+                    //    'ID': id,
+                    //    'lat': Lat,
+                    //    'lng': Lng
+                    //}
+                    ff.setIcon(myIcon_flow);
+                    markers.push(ff);
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><button class="setIcon" title="' + id + '">设置为开关</button><input type="text" ><button type="button" title="' + id + '" class="setFlag">设置Flag</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                    //overSettings.push(pointOp);
+                }
+
+
+
+                console.log(1);
+                console.log(overSettings);
+                console.log(2);
+
+
+                console.log(a);
+                //			    	ff.title='mark';
+                //			    	ff.name='12312';
+                //			    	ff.big=4;
+                over.push(ff);
+
+                //			    	ff.enableEditing();
+                //			    	ff.addEventListener('click',function(){
+                //			    		alert(this.big);
+                //			    		this.setStrokeColor("violet");
+                //			    		this.setStrokeWeight(10);
+                //			    	});
+                //			    	console.log(over);
+
+                chang();
+                //markersArrayClick();
+            }
+
+
+
+
+            //修改颜色
+            function changeStrokeColor() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setStrokeColor($(this).prev().val());
+                        return;
+                    }
+                }
+            }
+
+            //修改名字
+            function changeNameFn() {
+                var a = $(this).attr('title');
+                // alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].name = $(this).prev().val();
+                        // alert(over[i].name);
+                        $(this).prev().prev().html(over[i].name);
+                        //waaa
+
+                        return;
+                    }
+                }
+            }
+            //修改填充颜色
+            function changeFillColor() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setFillColor($(this).prev().val());
+                        return;
+                    }
+                }
+            }
+
+
+            //更改
+
+            function changeAttrFn() {
+                var m = $(this).attr('iconId');
+                var n = $(this).parent().prev().children('input').val();
+                var name = $(this).attr('att');
+                //alert(name);
+                //alert(n);
+
+                if (name == 'color') {
+                    for (var i = 0; i < over.length; i++) {
+                        if (over[i].mark == m) {
+                            if (over[i].Type == 'marker') {
+                                over[i].pointerAttrArray[name] = n;
+                                // alert(over[i].pointerAttrArray[name]);
+
+                            } else {
+                                over[i].polonGonAttrArray[name] = n;
+                                //  alert(over[i].polonGonAttrArray[name]);
+                                
+                                   // alert(11111);
+                                    over[i].setStrokeColor(n);
+                              
+                            }
+
+                            break;
+                        }
+                    }
+                } else if (name == 'weight') {
+                    for (var i = 0; i < over.length; i++) {
+                        if (over[i].mark == m) {
+                            if (over[i].Type == 'marker') {
+                                return;
+
+                            } else {
+                                over[i].polonGonAttrArray[name] = n;
+                                //  alert(over[i].polonGonAttrArray[name]);
+
+                                // alert(11111);
+                                over[i].setStrokeWeight(n);
+
+                            }
+
+                            break;
+                        }
+                    }
+                }else {
+                    for (var i = 0; i < over.length; i++) {
+                        if (over[i].mark == m) {
+                            if (over[i].Type == 'marker') {
+                                over[i].pointerAttrArray[name] = n;
+                                // alert(over[i].pointerAttrArray[name]);
+
+                            } else {
+                                over[i].polonGonAttrArray[name] = n;
+                                //  alert(over[i].polonGonAttrArray[name]);
+                                //if (name = 'color') {
+                                //    alert(11111);
+                                //    over[i].setStrokeColor(n);
+                                //}
+                            }
+
+
+
+                            break;
+                        }
+                    }
+                }
+                
+            }
+
+            //设置 marker的 Flag
+            function setFlag() {
+                var t = $(this).attr('title');
+                var a = $(this).prev().val();
+                //alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == t) {
+                        over[i].setTitle(a);
+                        //alert(over[i].pointerAttrArray['depth']);
+                        //over[i].pointerAttrArray['depth'] = 12;
+                        //alert(over[i].pointerAttrArray['depth']);
+                        over[i].alertFn();
+                        markersArrayClick();
+                        break;
+                    }
+                }
+                for (var n in numJson) {
+                    /// alert(numJson[n].FFlag+'qqq');
+
+                    if (numJson[n].FFlag == a) {
+                        /// alert(123);
+                        //alert(numJson[n].FFlag + 'qqq');
+                        // alert(numJson[n].ID);
+
+                        $.ajax({
+                            url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                            data: { 'FPumpID': numJson[n].ID },
+                            async: false,
+                            cache: false,
+                            success: function (data) {
+                                // console.log(data);
+                                var data = JSON.parse(data);
+                                data = data.data[0];
+                                // + data.P01 + 'm³&nbsp;'
+                                var label = new BMap.Label(data.P01 + 'm³', { offset: new BMap.Size(18, -10) });
+                                label.setStyle({                                   //给label设置样式，任意的CSS都是可以的
+                                    color: "#5b4303",
+                                    fontSize: "8px",               //字号
+                                    border: "0",
+                                    textAlign: "center",         //行高，文字垂直居中显示
+                                    fontWeight: "bold",
+                                    padding: "5px 5px 0 3px",
+                                    borderRadius: "3px",
+                                    background: "url(./Images/text_bg1.png) repeat-x",
+                                    backgroundSizing: "cover",
+                                    cursor: "pointer",
+                                    transform: "scale(.9)"
+                                });
+                                over[i].setLabel(label);
+
+                            }
+                        });
+                    }
+                }
+            }
+
+
+            //关闭按钮函数
+            function closeFn() {
+                ($('.panelBox')).remove();
+            }
+            //左侧删除内容
+
+            function deleteFn() {
+                var a = $(this).attr('att');
+                //alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        map.removeOverlay(over[i]);
+                        over.splice(i, 1);
+                        ($('.panelBox')).remove();
+                        chang();
+                        return;
+                    }
+                }
+            }
+
+            //线宽可调整
+            function weightChange() {
+                var a = $(this).attr('att');
+
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].Type != 'marker') {
+                        over[i].setStrokeWeight($(this).prev().val());
+                        //alert($(this).prev().val());
+
+                        return;
+                    }
+                }
+            }
+
+            //编辑或移动
+            function editA() {
+                var a = $(this).attr('att');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].Type != 'marker') {
+
+                        over[i].enableEditing();
+
+                        return;
+                    } else if (over[i].mark == a && over[i].Type == 'marker') {
+                        over[i].enableDragging();
+
+                        return;
+                    }
+
+                }
+            }
+            //取消编辑 或移动
+            function diseditA() {
+                var a = $(this).attr('att');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].Type != 'marker') {
+                        over[i].disableEditing();
+
+                        return;
+                    } else if (over[i].mark == a && over[i].Type == 'marker') {
+                        over[i].disableDragging();
+
+                        return;
+                    }
+
+                }
+            }
+            //修改图片样式
+            function changePic() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].Type == 'marker') {
+
+                        over[i].setIcon();
+                        return;
+                    }
+                }
+            }
+            //修改线宽
+            function changeStrokeWeight() {
+
+                var a = $(this).parent().attr('title');
+
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setStrokeWeight($(this).prev().val());
+                        //alert($(this).prev().val());
+
+                        return;
+                    }
+                }
+            }
+            function editDis() {
+                var a = $(this).attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].type != 'marker') {
+
+                        over[i].disableEditing();
+
+                        return;
+                    }
+
+                }
+            }
+            function editAble() {
+                var a = $(this).attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].type != 'marker') {
+
+                        over[i].enableEditing();
+
+                        return;
+                    }
+
+                }
+            }
+            function deleteAble() {
+                //alert(111);
+                var a = $(this).attr('title');
+                //alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        map.removeOverlay(over[i]);
+                        $('.waaa[inner=' + over[i].mark + ']').remove();
+                        $('.attrBoxUl li[title=' + over[i].mark + ']').remove();
+                        over.splice(i, 1);
+                        return;
+                    }
+                }
+            }
+
+            function setIconFlow() {
+                var a = $(this).attr('title');
+
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        if (over[i].Type == 'marker') {
+                            // alert(over[i].getTitle());
+                            over[i].setIcon(myIcon_onOff);
+                            return;
+                        }
+
+
+                    }
+                }
+            }
+
+            $(document).delegate('.changeColor', 'click', changeStrokeColor);
+            $(document).delegate('.changeWeight', 'click', changeStrokeWeight);
+            $(document).delegate('.edit', 'click', editAble);
+            $(document).delegate('.disEdit', 'click', editDis);
+            $(document).delegate('.delete', 'click', deleteAble);
+            $(document).delegate('.setIcon', 'click', setIconFlow);
+            $(document).delegate('.setFlag', 'click', setFlag);
+            $(document).delegate('.changeName', 'click', changeNameFn);
+            $(document).delegate('.btn', 'click', changeAttrFn);           
+            $(document).delegate('.closeBtn', 'click', closeFn);
+            $(document).delegate('.deleteB', 'click', deleteFn);
+            $(document).delegate('.editA', 'click', editA);
+            $(document).delegate('.disEditD', 'click', diseditA);
+            
+            //clearAll = function () {
+
+            //    for (var i = 0; i < over.length; i++) {
+            //        map.removeOverlay(over[i])
+            //    }
+            //    over.length = 0;
+            //}
+            function chang() {
+                for (var i = 0; i < over.length; i++) {
+                    console.log(over[i]);
+
+                    (function (i) {
+                        over[i].onclick = function () {
+                            //alert(1);
+                            $('.attrBoxUl li[title=' + over[i].mark + ']').removeClass('hide').siblings().addClass('hide');
+                            // var path = over[i].getPath();
+                            // console.log(path);
+                        }
+                    })(i);
+
+                    //$('.colorInp').each(function () {
+                    //    $(this).minicolors();
+                    //});
+                }
+            }
+
+            drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+
+  
+
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

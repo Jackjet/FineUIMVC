@@ -1,0 +1,118 @@
+﻿
+.pageMidBox .pageMidHead{
+    width: 100%;
+    height: 100px;
+}
+.modelText{
+    height: 14px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    line-height: 14px;
+    text-indent: 5px;
+    border-left: 2px solid #438eb9;
+    color: #767778;
+    margin: 6px;
+}
+.pageMidHead .dataCircle_wrap{
+    height: 70px;
+    padding: 10px 1px;
+    background-color: #f4f4f4;
+    margin: 9px 0;
+}
+.process_wrap{
+    position: relative;
+}
+.dataCircle_wrap .process_wrap{
+    position: relative;
+    width: 164px;
+    height: 50px;
+    float: left;
+    padding:0  10px;
+}
+
+.process_wrap .arrowUpIco_Box{
+    width: 14px;
+    height: 22px;
+    position: absolute;
+    top: -1px;
+    left: 50px;
+    background: url(../img/water_upIco.png) no-repeat;
+}
+.process_wrap .elec_up{
+    background: url(../img/elec_upIco.png) no-repeat;
+}
+.process_wrap .arrowDownIco_Box{
+    width: 14px;
+    height: 22px;
+    position: absolute;
+    top: 29px;
+    left: 50px;
+    background: url(../img/water_downIco.png) no-repeat;
+}
+.process_wrap .elec_down{
+    background: url(../img/elec_downIco.png) no-repeat;
+}
+.process_wrap .proCircle{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 5px;
+}
+.proCircle canvas{
+    width: 50px;
+    height: 50px;
+}
+.process_wrap .monthData {
+    position: absolute;
+    left: 70px;
+    top: 2px;
+    height: 50px;
+    vertical-align: middle;
+}
+.monthData i{
+    display: block;
+    float: left;
+    width: 12px;
+    height: 24px;
+     vertical-align: middle;
+     margin-right: 4px;
+}
+.water_cur,.water_last,.elec_cur,.elec_last{
+    height: 24px;
+}
+.water_last  i{
+    background: url(../img/water_lastMonthIco.png) no-repeat 0px 8px;
+}
+.water_cur  i{
+    background: url(../img/water_curMonthIco.png) no-repeat 0px 8px;
+}
+.elec_cur  i{
+    background: url(../img/elec_curMonthIco.png) no-repeat 0px 8px;
+}
+.elec_last  i{
+    background: url(../img/elec_lastMonthIco.png) no-repeat 0px 8px;
+}
+
+.monthData span{
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    height: 24px;
+    line-height: 24px;
+    color: #767778;
+}
+
+.chart_wrap{
+    height: 220px;
+    background-color: #f4f4f4;
+    margin-bottom: 16px;
+}
+.chart_wrap .echartsBox{
+    width: 100%!important;
+    height: 100%!important;
+}
+.echartsBox canvas{
+    width: 100%!important;
+    height: 100%!important;
+}

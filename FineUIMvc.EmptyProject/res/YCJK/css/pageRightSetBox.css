@@ -1,0 +1,513 @@
+.marginBottom {
+  margin-bottom: 10px;
+}
+.borderStyle {
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #438eb9;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+}
+.borderStyleGreen {
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #94da1e;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+}
+.buttonBorder {
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 0;
+}
+.textOverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.fontSize12 {
+  font-size: 12px;
+}
+.timeAdress {
+  position: relative;
+  width: 330px;
+  background: #fff;
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #438eb9;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #727272;
+  z-index: 2;
+}
+.timeAdress .timeSetBtn {
+  position: absolute;
+  bottom: 20px;
+  right: 126px;
+  width: 38px;
+  height: 20px;
+  background: #188df0;
+  border-radius: 3px;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 3;
+}
+.timeAdress .timeSetBtn:hover {
+  font-weight: bold;
+  background: #188de0;
+}
+.timeAdress .timeBox {
+  margin-top: 8px;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+}
+.timeAdress .timeBox .timeBoxPic {
+  float: left;
+  margin-left: 10px;
+  margin-right: 4px;
+  width: 14px;
+  height: 18px;
+  background: url(../img/timeAdressBg.png) no-repeat 0 2px;
+}
+.timeAdress .timeBox .timeBoxTxt {
+  float: left;
+}
+.timeAdress .adressBox {
+  margin-top: 8px;
+  width: 100%;
+  height: 20px;
+  line-height: 16px;
+}
+.timeAdress .adressBox .adressBoxPic {
+  float: left;
+  margin-left: 10px;
+  margin-right: 4px;
+  width: 14px;
+  height: 18px;
+  background: url(../img/timeAdressBg.png) no-repeat 0 -18px;
+}
+.timeAdress .adressBox .adressBoxTxt {
+  float: left;
+}
+.timeAdress .caiJiBox {
+  position: relative;
+  margin-top: 8px;
+  width: 100%;
+  height: 38px;
+  line-height: 16px;
+}
+.timeAdress .caiJiBox .caiJiBoxPic {
+  float: left;
+  margin-left: 10px;
+  margin-right: 4px;
+  width: 14px;
+  height: 18px;
+  background: url(../img/timeAdressBg.png) no-repeat 0 -18px;
+}
+.timeAdress .caiJiBox .caiJiBoxTxt {
+  float: left;
+  width: 100px;
+  height: 38px;
+  line-height: 38px;
+}
+.timeAdress .caiJiBox .selectB {
+  float: left;
+}
+.menDengBox {
+  width: 330px;
+}
+.menDengBox li {
+  float: left;
+  width: 70px;
+  height: 90px;
+  margin: 0 14px 0 0;
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #438eb9;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+}
+.menDengBox li:nth-of-type(4n) {
+  margin-right: 0;
+}
+.menDengBox li.diandongfa,
+.menDengBox li.chushuiya,
+.menDengBox li.dingshi {
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #94da1e;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+}
+.menDengBox li.diandongfa input,
+.menDengBox li.chushuiya input,
+.menDengBox li.dingshi input {
+  width: 28px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  outline: none;
+  margin: 0 3px;
+  border: none;
+  background: #e2e2e2;
+  color: #767778;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.menDengBox li.diandongfa .diandongfaPic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 1px solid #5fd448;
+}
+.menDengBox li.diandongfa .diandongfaPic .diandongfaBg {
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  margin: 2px auto;
+  line-height: 32px;
+  border-radius: 50%;
+  background: #5fd448;
+}
+.menDengBox li.diandongfa .dianDongFaSet {
+  background: #5fd448;
+  color: #fff;
+}
+.menDengBox li.dingshi .dingshiPic {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.menDengBox li.dingshi .dingshiPic .dingshiBg {
+  color: #5fd448;
+  width: 32px;
+  height: 32px;
+  margin: 2px auto;
+  line-height: 32px;
+}
+.menDengBox li.dingshi .dingShiSet {
+  background: #5fd448;
+  color: #fff;
+}
+.menDengBox li.chushuiya .chushuiyaPic {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.menDengBox li.chushuiya .chushuiyaPic .chushuiyaBg {
+  color: #5fd448;
+  width: 32px;
+  height: 32px;
+  margin: 2px auto;
+  line-height: 32px;
+}
+.menDengBox li.chushuiya .chuShuiYaSet {
+  background: #5fd448;
+  color: #fff;
+}
+.menDengBox li .menDengItemTop {
+  width: 100%;
+  height: 52px;
+  margin: 6px auto;
+  font-size: 12px;
+  color: #333333;
+  text-align: center;
+}
+.menDengBox li .menDengItemTop .menDengTopPic {
+  width: 38px;
+  height: 36px;
+  margin: 0 auto;
+  background: url(../img/menDengXiaoDu.png) no-repeat;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_m {
+  background-position: 0 -62px;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_m.kai {
+  background-position: 0 0;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_d {
+  background-position: -86px -62px;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_d.kai {
+  background-position: -86px 0;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_fswd {
+  background-position: -171px -62px;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_fswd.kai {
+  background-position: -171px 0;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_psb {
+  background-position: -257px -62px;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_psb.kai {
+  background-position: -257px 0;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_xdy {
+  background-position: -342px -62px;
+}
+.menDengBox li .menDengItemTop .menDengTopPic.F_szmb_xdy.kai {
+  background-position: -342px 0;
+}
+.menDengBox li .menDengButtonBox {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.menDengBox li .menDengButtonBox button {
+  width: 28px;
+  height: 18px;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  outline: none;
+  margin: 0 3px;
+  border: none;
+  background: #e2e2e2;
+  color: #767778;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.menDengBox li .menDengButtonBox button.active {
+  background: #188df0;
+  color: #fff;
+}
+.menDengBox li .menDengButtonBox button:hover {
+  font-weight: bold;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.kongzhiStop {
+  width: 330px;
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #438eb9;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+  padding: 6px 0;
+}
+.kongzhiStop li {
+  width: 316px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 14px;
+  border-bottom: 1px solid #e0e0e0;
+  display: none;
+}
+.kongzhiStop li.active {
+  display: block;
+}
+.kongzhiStop li .kongzhiLeft {
+  float: left;
+  width: 208px;
+  font-size: 12px;
+  color: #333333;
+}
+.kongzhiStop li .kongzhiRight {
+  float: right;
+  width: 108px;
+  text-align: center;
+}
+.kongzhiStop li .kongzhiRight button {
+  width: 38px;
+  height: 22px;
+  margin-left: 6px;
+  background: #b7b7b7;
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.kongzhiStop li .kongzhiRight button.active {
+  background: #188df0;
+}
+.kongzhiStop li:last-child {
+  border-bottom: none;
+}
+.xianDingSet {
+  width: 330px;
+  border: 1px solid #e9e9e9;
+  border-top: 2px solid #438eb9;
+  box-shadow: 0 0 2px  #ccc;
+  margin-bottom: 10px;
+  display: none;
+}
+.xianDingSet.active {
+  display: block;
+}
+.xianDingSet .xianDingHeader {
+  width: 100%;
+  height: 28px;
+  background: #e9e9e9;
+}
+.xianDingSet .xianDingHeader .xianDingHeaderBg {
+  float: left;
+  width: 2px;
+  height: 13px;
+  background: #188df0;
+  margin-top: 9px;
+  margin-left: 10px;
+}
+.xianDingSet .xianDingHeader .xianDingHeaderName {
+  float: left;
+  width: 280px;
+  text-indent: 8px;
+  line-height: 28px;
+  font-size: 12px;
+  color: #444444;
+}
+.xianDingSet .xianDingHeader .xianDingHeaderBtn {
+  width: 32px;
+  height: 18px;
+  background: #188df0;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  margin-top: 4px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.xianDingSet .xianDingMid {
+  width: 100%;
+}
+.xianDingSet .xianDingMid .shangX,
+.xianDingSet .xianDingMid .xiaX {
+  width: 50%;
+  float: left;
+  font-size: 12px;
+  text-indent: 60px;
+  color: #ccc;
+}
+.xianDingSet .xianDingMid .xiaX {
+  text-indent: 40px;
+}
+.xianDingSet .xianDingList {
+  width: 100%;
+}
+.xianDingSet .xianDingList li {
+  width: 320px;
+  height: 30px;
+  padding: 4px 0;
+  line-height: 30px;
+  padding-left: 6px;
+}
+.xianDingSet .xianDingList li .xianDingName {
+  width: 50px;
+  float: left;
+  font-size: 12px;
+  color: #444444;
+}
+.xianDingSet .xianDingList li .topLineBox {
+  float: left;
+  margin-left: 4px;
+  width: 132px;
+  font-size: 12px;
+  color: #444444;
+}
+.xianDingSet .xianDingList li .topLineBox .topLineOld {
+  float: left;
+  width: 68px;
+  height: 22px;
+  margin-top: 4px;
+  background: #ededed;
+  text-align: center;
+  line-height: 22px;
+  border: 1px solid #e5e5e5;
+}
+.xianDingSet .xianDingList li .topLineBox .topLineNew {
+  width: 54px;
+  height: 22px;
+  border: 1px solid #e5e5e5;
+  border-left: none;
+  text-indent: 8px;
+  color: #444;
+  outline: none;
+}
+.xianDingSet .xianDingList li .bottomLineBox {
+  float: left;
+  width: 126px;
+  font-size: 12px;
+  color: #444444;
+}
+.xianDingSet .xianDingList li .bottomLineBox .bottomLineOld {
+  float: left;
+  width: 68px;
+  height: 22px;
+  margin-top: 4px;
+  background: #ededed;
+  text-align: center;
+  line-height: 22px;
+  border: 1px solid #e5e5e5;
+}
+.xianDingSet .xianDingList li .bottomLineBox .bottomLineNew {
+  width: 54px;
+  height: 22px;
+  border: 1px solid #e5e5e5;
+  border-left: none;
+  text-indent: 8px;
+  color: #444;
+  outline: none;
+}
+/*select class*/
+.selectBox {
+  float: left;
+  position: absolute;
+  top: 0px;
+  left: 90px;
+  width: 57px;
+  height: 20px;
+  border: 1px solid #d1cccc;
+  cursor: pointer;
+}
+.selectBox:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  margin-top: -2px;
+  border-top: 5px solid #ccc;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+.selectBox .select_text {
+  color: #999;
+  height: 20px;
+  width: 40px;
+  line-height: 20px;
+  font-size: 9px;
+  -o-transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+  overflow: hidden;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+.select_ul {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: -1px;
+  width: 66px;
+  border: 1px solid #D4D4D4;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background: #fff;
+  font-size: 12px;
+  z-index: 2;
+}
+.select_ul li {
+  color: #666;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+}
+.select_ul li:hover {
+  color: #fff;
+  background: #6AA7EA;
+}
+.select_ul li.cur {
+  color: #fff;
+  background: #195DA3;
+}

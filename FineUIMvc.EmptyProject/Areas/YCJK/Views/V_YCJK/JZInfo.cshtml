@@ -1,0 +1,255 @@
+﻿@{
+    ViewBag.Title = "机组信息";
+    var F = @Html.F();
+   
+}
+@section head {
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+
+<link rel="stylesheet" href="~/res/YCJK/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="~/res/YCJK/css/JZInfo.css" />
+<link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+<script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+<script src="~/res/layer/layer.js"></script>
+}
+
+@section body {
+<div class="main_wrap clearfix">
+    <div class="pumpInfo">
+        <p class="pumpInfo_title">泵房信息</p>
+        <div class="infoMode1">
+            <ul class="ul_pumpInfo1 clearfix">
+                <li class="col1">
+                    <span class="fieldName">泵房名称：</span><span class="fieldValue" data-field="PName">泵房11</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">安装日期：</span><span class="fieldValue" data-field="InstallDate">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">泵房进水：</span><span class="fieldValue" data-field="PumpSoaking">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">水箱消毒仪：</span><span class="fieldValue" data-field="WaterTankSterilizer">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo1 clearfix">
+                <li class="col1">
+                    <span class=" fieldName">水箱共用：</span><span class="fieldValue" data-field="TankIsSharing">泵房11</span>
+                </li>
+                <li class="col2">
+                    <span class=" fieldName">验收日期：</span><span class="fieldValue" data-field="AcceptanceDate">泵房11</span>
+                </li>
+                <li class="col3">
+                    <span class=" fieldName">破窗报警：</span><span class="fieldValue" data-field="Warning">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">泵房位置：</span><span class="fieldValue" data-field="PumpLocation">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo1 clearfix">
+                <li class="col1">
+                    <span class=" fieldName">地理位置（经纬度）：</span><span class="fieldValue" data-field="PLngLat">泵房11</span>
+                </li>
+                <li class="col2">
+                    <span class=" fieldName">供水楼层：</span><span class="fieldValue" data-field="WaterFloor">泵房11</span>
+                </li>
+                <li class="col3">
+                    <span class=" fieldName">水质检测：</span><span class="fieldValue" data-field="WaterQualityDetection">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo1 clearfix">
+                <li class="col1">
+                    <span class=" fieldName">主控PLC IP：</span><span class="fieldValue" data-field="MasterControlPLCIP">泵房11</span>
+                </li>
+                <li class="col2">
+                    <span class=" fieldName">换药周期：</span><span class="fieldValue" data-field="DressingCycle">泵房11</span>
+                </li>
+                <li class="col3">
+                    <span class=" fieldName">进水调节阀：</span><span class="fieldValue" data-field="ControlValve">泵房11</span>
+                </li>
+            </ul>
+        </div>
+        <div class="infoMode2">
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">1#摄像头IP</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">2#摄像头IP</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">3#摄像头IP</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">4#摄像头IP</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">1#门禁IP</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_pumpInfo2 clearfix">
+                <li class="col1">
+                    <span class="fieldName">2#门禁</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">类型：</span><span class="fieldValue">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">品牌：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">型号：</span><span class="fieldValue">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">IP端口号：</span><span class="fieldValue">泵房11</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="equipInfo">
+        <p class="equipInfo_title">机组信息</p>
+        <div class="infoMode1">
+            <ul class="ul_equipInfo1 clearfix">
+                <li class="col1">
+                    <span class="fieldName">设备编号：</span><span class=" fieldValue" data-field="DTUCode">2017-05-05</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">设备分区：</span><span class=" fieldValue" data-field="PumpJZArea">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">进口管径：</span><span class="fieldValue" data-field="PumpJZInletDiameter">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">1#水箱容积：</span><span class="fieldValue" data-field="PumpJZTankVolume">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class=" fieldName">成套品牌：</span><span class="fieldValue" data-field="PumpJZBrandSet">泵房11</span>
+                </li>
+            </ul>
+            <ul class="ul_equipInfo1 clearfix">
+                <li class="col1">
+                    <span class="fieldName">归属泵房：</span><span class="fieldValue" data-field="PName">2017-05-05</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">设备类型：</span><span class="fieldValue" data-field="MachineType">2017-05-05</span>
+                </li>
+                <li class="col3">
+                    <span class="pumpName fieldName">出口管径：</span><span class="fieldValue" data-field="PumpJZOutletDiameter">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">水泵品牌：</span><span class="fieldValue" data-field="PumpJZPumpBrand">泵房11</span>
+                </li>
+                <li class="col5">
+                    <span class="fieldName">调峰功能：</span><span class="fieldValue" data-field="PumpJZPeak"></span>
+                </li>
+            </ul>
+            <ul class="ul_equipInfo1 clearfix">
+                <li class="col1">
+                    <span class="pumpName fieldName">止回阀类型：</span><span class="fieldValue" data-field="PumpJZCheckValve">2017-05-05</span>
+                </li>
+                <li class="col2">
+                    <span class="pumpName fieldName">供水楼层：</span><span class="fieldValue" data-field="WaterFloor">泵房11</span>
+                </li>
+                <li class="col3">
+                    <span class=" fieldName">水箱尺寸：</span><span class="fieldValue" data-field="PumpJZTankLength">泵房11</span>
+                </li>
+                <li class="col4">
+                    <span class=" fieldName">有无减压阀：</span><span class="fieldValue" data-field="PumpJZPressReliValve">泵房11</span>
+                </li>
+            </ul>
+        </div>
+        <div class="infoMode2">
+            <ul class="ul_mainPump clearfix">
+                <li><span class=mainAuxPump>主泵</span> <span class="fieldName">数量：</span><span class="fieldValue" data-field="RunPumpNum"></span></li>
+                <li> <span class="fieldName">流量：</span><span class="fieldValue" data-field="PumpJZMainPumpFlow"></span></li>
+                <li> <span class="fieldName">扬程：</span><span class="fieldValue" data-field="PumpJZMainPumpLift"></span></li>
+                <li> <span class="fieldName">功率：</span><span class="fieldValue" data-field="PumpJZMainPumpPower"></span></li>
+            </ul>
+        </div>
+        <div class="infoMode3">
+            <ul class="ul_auxPump clearfix">
+                <li><span class=mainAuxPump>辅泵</span> <span class="fieldName">数量：</span><span class="fieldValue" data-field="Auxiliarypumpcount"></span></li>
+                <li> <span class="fieldName">流量：</span><span class="fieldValue" data-field="PumpJZAuxiliPumpFlow"></span></li>
+                <li> <span class="fieldName">扬程：</span><span class="fieldValue" data-field="PumpJZAuxiliPumpLift"></span></li>
+                <li> <span class="fieldName">功率：</span><span class="fieldValue" data-field="PumpJZAuxiliPumpPower"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+}
+@section script {
+<script type="text/javascript" src="~/res/YCJK/js/JZInfo.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}

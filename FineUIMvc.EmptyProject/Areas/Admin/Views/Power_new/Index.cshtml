@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Admin/Power_new";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnCreate_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBox()
+                       .Label("分组名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxGroupName"),
+                    F.TextBox()
+                       .Label("名称")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxName"),
+                    F.TextBox()
+                       .Label("标题")
+                       .ID("tbxTitle")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBox()
+                       .Label("备注")
+                       .ID("tbxRemark"),
+                    F.CheckBox()
+                       .ID("cboIsCustomerLook")
+                       .Label("是否客户可见")
+                       .ShowLabel(true)
+               )
+        )
+    )
+
+}

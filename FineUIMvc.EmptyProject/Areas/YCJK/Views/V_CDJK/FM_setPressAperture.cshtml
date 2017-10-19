@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "FM_setPressAperture";
+    var F = @Html.F();
+}
+@section head {
+    <meta charset="UTF-8">
+    <title>阀门列表</title>
+    <link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="~/res/CDJK/css/FM_setPressAperture.css" />
+    <link href="~/res/css/radialindicator.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+   
+}
+@section body {
+    <div class="main_wrap">
+        <div class="setPress_wrap" data-id="40003">
+            <label>压力给定</label><input type="text" /><button class="accBtn">确定</button>
+        </div>
+        <div class="setAperture_wrap" data-id="40009">
+            <label>开度设定</label><input type="text" /><button class="accBtn">确定</button>
+        </div>
+    </div>
+}
+@section script {
+    <script type="text/javascript" src="~/res/CDJK/js/FM_setPressAperture.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}

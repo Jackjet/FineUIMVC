@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.webcam.min.js"></script>
+    <title ></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-family: "微软雅黑";
+        }
+
+        li {
+            list-style: none;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background: rgba(6,19,33,1);
+        }
+        .faceLoginBox {
+            position: absolute;
+            width: 646px;
+            height: 416px;
+            left: 50%;
+            top: 50%;
+            margin-left: -323px;
+            margin-top: -208px;
+            border: 0px solid red;
+            /*background-color: rgb(0,0,0);*/
+            /*display: none;*/
+        }
+
+        .mainBox {
+            position: absolute;
+            left: 64px;
+            top: 56px;
+            width: 497px;
+            height: 365px;
+            border: 0px solid red;
+            background: url(./img/faceLogIco1.png) no-repeat 0px 0px;
+            z-index: 10;
+        }
+
+        .leftCircle {
+            position: absolute;
+            left: 0;
+            bottom: 24px;
+            width: 113px;
+            height: 112px;
+            background: url(./img/faceLogIco2.png) no-repeat 0px 0px;
+            z-index: 9;
+            -webkit-animation: rotate 2s infinite linear;
+        }
+
+        .rightCircle {
+            position: absolute;
+            right: 0px;
+            top: 70px;
+            width: 216px;
+            height: 216px;
+            background: url(./img/faceLogIco3.png) no-repeat 0px 0px;
+            z-index: 9;
+            -webkit-animation: rotate 2s infinite linear;
+        }
+
+        .faceLoginTitle {
+            position: absolute;
+            left: 250px;
+            top: 0;
+            width: 190px;
+            height: 61px;
+            line-height: 61px;
+            background: url(./img/faceLogIco5.png) no-repeat 0px 0px;
+            text-align: center;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: rgb(37,199,243);
+        }
+
+        .mainBox .greenCircle {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            width: 30px;
+            height: 30px;
+            background: url(./img/faceLogIco4.png) no-repeat 0px 0px;
+            -webkit-animation: rotate 2s infinite linear;
+        }
+
+        .mainBox .userFace {
+            position: absolute;
+            left: 54px;
+            top: 62px;
+            width: 196px;
+            height: 218px;
+            background: url(./img/faceLogIco7.png) no-repeat 0px 0px;
+        }
+
+        #video {
+            width: 186px;
+            height: 208px;
+            margin: 4px;
+            border: 0px solid #fff;
+        }
+
+        .scanBar {
+            width: 177px;
+            height: 13px;
+            position: absolute;
+            background: url(./img/faceLogIco8.png) no-repeat 0px 0px;
+            top: 0px;
+            left: 10px;
+            display: none;
+        }
+
+        .bannerBox {
+            position: absolute;
+            right: 70px;
+            top: 73px;
+            width: 130px;
+            height: 190px;
+            border: 0px solid #fff;
+            overflow: hidden;
+        }
+
+        .ulImg {
+            position: absolute;
+            top: 0px;
+            display: none;
+        }
+        /*#canvas2 {
+            
+            width: 130px;
+            height: 78px;
+            border: 1px solid red;
+        }*/
+        .faceImg1 {
+            width: 130px;
+            height: 78px;
+            border: 0px solid red;
+        }
+        .tips {
+            
+            height: 22px;
+            line-height: 22px;
+            color: rgb(37, 199, 243);
+            position: absolute;
+            bottom: 46px;
+            left: 56px;
+            /*display: none;*/
+        } 
+        #snap {
+            position: absolute;
+            bottom: 10px;
+            right: 70px;
+        }
+
+        /*#canvas2,#canvasPut{
+          position: absolute;
+          bottom: 0;
+        }*/
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes rotate {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="faceLoginBox" id="faceLogin">
+        <div class="faceLoginTitle">人脸识别登录</div>
+        <div class="mainBox">
+            <div class="greenCircle"></div>
+            <div class="userFace">
+                <video id="video" autoplay></video>
+                <div class="scanBar"></div>
+            </div>
+            <div class="bannerBox">
+                <ul class="ulImg">
+                    <li><img class="faceImg1 img1" src="./img/faceLoopImg1.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLoopImg2.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLoopImg3.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLoopImg4.png" /></li>
+                    <li><img class="faceImg1" src="./img/faceLoopImg5.png" /></li>
+                    <!--<li><canvas id="canvas2"></canvas></li>-->
+                </ul>
+            </div>
+          
+            <!--<canvas id="canvasPut"></canvas>-->
+          <div class="tips">正在打开摄像头...</div>
+        </div>
+        <div class="leftCircle"></div>
+        <div class="rightCircle"></div>
+    </div>
+    <!--<button id="snap">snap</button>-->
+    <script>
+
+    function scan() {
+        $(".scanBar").animate({ top: "180px" }, "slow", function () {
+            $(".scanBar").animate({ top: "16px" }, "slow", function () {
+                scan();
+            });
+        });
+    }
+    // scan();
+
+   
+
+    openCamera();
+    function openCamera() {
+        // Grab elements, create settings, etc.
+
+         //canvas2 = document.getElementById("canvas2"),
+       //  canvasPut= document.getElementById("canvasPut"),
+       //  context2 = canvas2.getContext("2d"),
+    //     contextPut = canvasPut.getContext("2d"),
+        var video = document.getElementById("video"),
+
+         videoObj = { "video": true },
+         errBack = function (error) {
+             console.log("Video capture error: ", error.code);
+             // alert('未检测到视频设备');
+             $(".tips").html("未检测到视频设备...");
+             $(".scanBar").hide();
+             $(".ulImg").hide();
+         };
+   
+        // Put video listeners into place
+
+        if (navigator.getUserMedia) { // Standard
+
+            navigator.getUserMedia(videoObj, function (stream) {
+                video.src = stream;
+                video.play();
+                delay2s();
+            }, errBack);
+
+        } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+
+             navigator.webkitGetUserMedia(videoObj, function (stream) {
+                console.log(stream);
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                delay2s();
+              //  $(".scanBar").show();
+             //   scan();
+
+
+            }, errBack);
+           
+        }
+
+        else if (navigator.mozGetUserMedia) { // Firefox-prefixed
+            //console.log('ff');
+            navigator.mozGetUserMedia(videoObj, function (stream) {
+                console.log('qqq'+stream);
+                video.src = window.URL.createObjectURL(stream);
+                video.play();
+                delay2s();
+            }, errBack);
+
+        }
+        
+        function delay2s() {
+            var timerID = setTimeout(function () {               
+                $(".scanBar").show();
+                $(".ulImg").show();   
+                scan();
+                pic_show();
+                $(".tips").html("正在识别...");
+            }, 2000);            
+           //   clearTimeout(timerID);
+        }
+        /*响应超时*/
+        var delayTime = setTimeout(function () {
+            //console.log('tt');
+            $(".tips").html('无匹配用户信息！');
+            $(".scanBar").hide();
+            $(".ulImg").hide();
+          // clearTimeout(delayTime);
+            timeOut();
+        },6000);
+
+        function timeOut() {
+            var timeOut = setTimeout(function () {             
+               
+            }, 1200);
+           // clearTimeout(timeOut);
+        }
+  
+    }
+
+
+    function pic_show() {
+        (function () {
+            // var pic_count = 5;
+            
+            var $this = $('.bannerBox');
+            var pic_count = $this.find("ul li").length;
+            console.log(pic_count);
+            var scrollTimer;
+            var get_alerm_timer;
+            scrollTimer = setInterval(function () {
+                alerm_loop($this);
+            }, 90);
+         /*   $this.hover(function () {
+
+                clearInterval(scrollTimer);
+
+            },
+            function () {
+                scrollTimer = setInterval(function () {
+                    alerm_loop($this);
+                }, 90);
+            }
+            ).trigger('mouseout');*/
+
+            //滚动动画
+            function alerm_loop(obj) {
+                var $self = obj.find("ul:first");
+                var $moveHeight = $self.find("li:first").height();
+                var $length = $self.find("li").length;
+                if ($length <= 1) {
+                    return;
+                } else {
+                    $self.animate({ "margin-top": -$moveHeight + "px" }, 90, function () {
+                        $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                    });
+                }
+            };
+        })();
+    }
+    //  pic_show();
+
+    </script>
+</body>
+
+</html>

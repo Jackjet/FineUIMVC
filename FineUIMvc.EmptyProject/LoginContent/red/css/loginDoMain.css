@@ -1,0 +1,167 @@
+body {
+	font-family: "微软雅黑";
+	background: url(../img/zizBigBg.png) no-repeat fixed;
+	background-size: cover;
+	overflow: hidden;
+}
+.wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.maskTop {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	width: 100%;
+	height: 50%;
+	background: #053f57;
+}
+.maskTopBg {
+	position: absolute;
+	bottom: 2px;
+	left: 50%;
+	width: 190px;
+	height: 143px;
+	margin-left: -95px;
+	background: url(../img/topMaskBg.png) no-repeat;	
+}
+.maskBottom {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+	width: 100%;
+	height: 50%;
+	background: #053f57;
+}
+.maskBottomBg {
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	width: 788px;
+	height: 135px;
+	margin-left: -394px;
+	background: url(../img/bottomMaskBg.png) no-repeat;	
+}
+.zizOpen {
+	position: absolute;
+	top: 50%;
+	margin-top: -12px;
+	left: 0;
+	width: 100%;
+	height: 24px;
+	z-index: 3;
+	background: #fff;
+	margin-left: -100%;
+	background: url(../img/zizBg.png) repeat-x;
+}
+.logoBig {
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	margin-left: -202px;
+	width: 404px;
+	height: 49px;
+	background: url(../img/logoBig.png) no-repeat;
+	opacity: 0;
+}
+
+.loginInput {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -454px;
+	margin-top: -1000px;
+	width: 908px;
+	height: 364px;
+	background: url(../img/logoInputBg.png) no-repeat;
+}
+.rightLogin {
+	position: absolute;
+	right: 22px;
+	top: 0;
+	width: 338px;
+	height: 315px;
+}
+.userName {
+	position: absolute;
+	top: 60px;
+	left: 50%;
+	margin-left: -137px;
+	width: 274px;
+	height: 40px;
+	border: 1px solid #3d8dad;
+	border-radius: 4px;
+	background: #13719c;
+	color: #fff;
+	text-indent: 10px;
+	outline: none;
+}
+.userPwd {
+	position: absolute;
+	top: 120px;
+	left: 50%;
+	margin-left: -137px;
+	width: 274px;
+	height: 40px;
+	border: 1px solid #3d8dad;
+	border-radius: 4px;
+	background: #13719c;
+	color: #fff;
+	text-indent: 10px;
+	outline: none;
+}
+.loginBtn {
+	position: absolute;
+	bottom: 90px;
+	margin-left: -137px;
+	left: 50%;
+	width: 274px;
+	height: 40px;
+	line-height: 30px;
+	border-radius: 4px;
+	background: #1cbbfd;
+	border: none;
+	outline: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	letter-spacing: 20px;
+	text-align: center;
+	overflow: hidden;
+}
+.loginBtn:hover {
+	font-weight: bold;
+	box-shadow: 0 0 8px  #0D5D92;
+}
+.scanFace {
+	position: absolute;
+	bottom: 16px;
+	left: 36%;
+	width: 28px;
+	height: 28px;
+	background: url(../img/scanFace.png) no-repeat;
+	cursor: pointer;
+}
+.wechatLogin {
+	position: absolute;
+	bottom: 16px;
+	right: 39%;
+	width: 28px;
+	height: 28px;
+	background: url(../img/wechatLogin.png) no-repeat;
+	cursor: pointer;
+}
+.copyright {
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	margin-left: -100px;
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+	width: 200px;
+	line-height: 30px;
+}

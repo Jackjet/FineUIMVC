@@ -1,0 +1,1553 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../InPage/css/reset.css" rel="stylesheet" />
+    <link href="../InPage/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="../InPage/js/jquery-ui.min.js"></script>
+    <script src="../InPage/js/jquery.mousewheel.js"></script>
+    <script src="../InPage/js/jquery.mCustomScrollbar.js"></script>
+    <script src="../InPage/js/echarts.min.js"></script>
+    <script src="../InPage/layer/layer.js"></script>     
+    <title>Data Analysis listIndex</title>
+    <style type="text/css">
+        body {
+            background-color: #0d5d92;
+            font-family: "微软雅黑";
+           
+        }
+        @media screen and (max-width: 1500px) {
+            ul.totalChartHeader li.li6-sprayNum, ul.totalChartHeader li.li5-sprayNum {
+                display: none;
+            }
+    }
+        @media screen and (min-width:1501px) and (max-width:1740px) {
+            ul.totalChartHeader li.li6-sprayNum {
+                display: none;
+            }
+        }    
+      
+        
+         .wraper {
+            width: 95%;
+            min-width: 998px;
+            max-width: 2000px;
+            height: 100%;
+            border: 0px solid rgba(0,0,0,0.2);
+            /*float: right;*/
+            margin-top: 15px;
+            margin-left: 61px;
+            font-size: 12px;
+        }
+       .wraper .scrollBox {
+                width: 100%;
+                position: relative;
+                height: 461px;
+                /*margin-top: 12px;*/
+            }
+       
+        .wraper  ul.totalChartHeader{
+            width: 100%;
+            min-width: 1120px;
+            height:146px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        ul.totalChartHeader li{
+            display: inline-block; 
+            height: 134px;
+            /*width: 16%;*/
+            width:275px;         
+            border: 0px solid rgba(0,0,0,0.2);
+            float: left;
+            position: relative;
+            background-color: rgba(255,255,255,0.1);
+            margin-bottom: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        ul.totalChartHeader li.li-show {
+            display: block;
+        }
+       ul.totalChartHeader li.li-lastShow {
+           float: right;
+           margin-right: 0;
+      }
+      ul.totalChartHeader li.li-hidden {
+                display: none;
+     }
+     ul.totalChartHeader li:hover {
+         background-color: rgba(255,255,255,0.2);
+    }
+        ul.totalChartHeader li.active {
+            background-color:rgba(255,255,255,0.2);
+        }
+        /*li.li-margin {         
+            margin-right:0.8%;
+        }*/
+        /*ul.totalChartHeader li.li1-totalNum {
+                background: -webkit-linear-gradient(left,rgb(179,124,250),rgb(153,89,236));
+                background: -moz-linear-gradient(left,rgb(179,124,250),rgb(153,89,236));
+                background: -ms-linear-gradient(left,rgb(179,124,250),rgb(153,89,236));
+                filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#b37cfa',EndColorStr='#9959ec',GradientType='1');
+            }
+            ul.totalChartHeader li.li2-onlineNum {
+                background: -webkit-linear-gradient(left,rgb(171,222,86),rgb(106,163,13));
+                background: -moz-linear-gradient(left,rgb(171,222,86),rgb(106,163,13));
+                background: -ms-linear-gradient(left,rgb(171,222,86),rgb(106,163,13));
+                filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#abde56',EndColorStr='#6aa30d',GradientType='1');
+            }
+        ul.totalChartHeader li.li3-offlineNum {
+            background: -webkit-linear-gradient(left,rgb(40, 245, 226),rgb(17, 187, 173));
+            background: -moz-linear-gradient(left,rgb(40, 245, 226),rgb(17, 187, 173));
+            background: -ms-linear-gradient(left,rgb(40, 245, 226),rgb(17, 187, 173));
+            filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#28f5e2',EndColorStr='#11bbad',GradientType='1');
+        }
+            ul.totalChartHeader li.li4-lifeNum {
+                background: -webkit-linear-gradient(left,rgb(9,200,254),rgb(26,162,255));
+                background: -moz-linear-gradient(left,rgb(9,200,254),rgb(26,162,255));
+                background: -ms-linear-gradient(left,rgb(9,200,254),rgb(26,162,255));
+                filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#09c8fe',EndColorStr='#1aa2ff',GradientType='1');
+            }
+            ul.totalChartHeader li.li5-sprayNum {
+                background: -webkit-linear-gradient(left,rgb(250,148,124),rgb(231,78,43));
+                background: -moz-linear-gradient(left,rgb(250,148,124),rgb(231,78,43));
+                background: -ms-linear-gradient(left,rgb(250,148,124),rgb(231,78,43));
+                filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#fa947c',EndColorStr='#e74e2b',GradientType='1');
+            }
+            ul.totalChartHeader li.li6-fireNum {
+                background: -webkit-linear-gradient(left,rgb(247,208,21),rgb(252,172,19));
+                background: -moz-linear-gradient(left,rgb(247,208,21),rgb(252,172,19));
+                background: -ms-linear-gradient(left,rgb(247,208,21),rgb(252,172,19));
+                filter: progid:DXImageTransform.Microsoft.Gradient(enabled='true',StartColorStr='#f7d015',EndColorStr='#fcac13',GradientType='1');
+            }
+
+        ul.totalChartHeader li div.ico {
+            width: 66px;
+            height: 50px;
+            border: 0px solid rgb(10,50,100);
+            margin: 28px 15px;
+            background: url(./img/listChartIco1.png) no-repeat 0px 0px;
+           
+        }
+        ul.totalChartHeader li.li4-lifeNum div.ico {
+            background-position: -495px 0px;
+        }
+        ul.totalChartHeader li.li2-onlineNum div.ico {
+            background-position: -164px 0px;
+           
+        }
+        ul.totalChartHeader li.li3-offlineNum div.ico {
+            background-position: -647px 0px;
+          
+        }
+        ul.totalChartHeader li.li5-sprayNum div.ico {
+            background-position: -815px 0px;
+         
+        }
+        ul.totalChartHeader li.li6-fireNum div.ico {
+            background-position: -333px 0px;
+          
+        }*/
+      
+        .totalChartHeader p{
+            color: #fff;
+            font-size: 12px;
+            font-family: "微软雅黑";
+        }
+        .totalChartHeader li > p {
+            height: 24px;
+            line-height: 24px;
+            text-indent: 6px;
+            border-bottom:1px solid #0d5d92;
+        }
+        
+        /*ul.totalChartHeader li.li-top div.text {
+            position: absolute;
+            top: 22px;
+            right: 0;
+        }*/
+
+        .yearData {
+            background: url(img/rightBorder.png) no-repeat right 0px ;
+        }
+    .yearData,.monthData{
+        float: left;
+        width: 137px;
+        height: 108px;
+    }
+        .yearData p {
+            height: 18px;
+            line-height: 18px;
+            margin-left: 8px;
+        } 
+        .monthData  p {
+            height: 18px;
+            line-height: 18px;
+            margin-left: 3px;
+        }
+
+        .yearData>p:first-child, .monthData>p:first-child{
+            width: 66px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            background: rgba(255,255,255,0.25);
+            margin: 10px 0 6px 41px;
+           
+        }
+        .yearData i,.monthData i{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: rgb(106,239,231);
+            margin: 0 7px;
+            vertical-align: middle;
+        }
+        .yearData  span{
+            display: inline-block;
+            height: 18px;
+            line-height: 18px;
+            vertical-align: middle;
+        }
+        .wraper .scrollBox .chart {
+            width: 100%;
+            height: 280px;
+            border: 0px solid rgb(0,255,0);
+            position: relative;
+            overflow-x: visible;
+        }
+        div.chart1Box {
+            background: rgba(255,255,255,0.1);
+        }
+        div.chart2Box {
+           margin-top: 12px;
+        }
+        #chart1 {
+            width: 100%;
+            height: 100%;
+        }
+        div.chart .leftChart {
+            width: 60%;
+            height: 100%;
+            border: 0px solid rgb(255,0,0);
+            float: left;
+            position: relative;
+            left: 0px;
+            top: 0px;
+            background: rgba(255,255,255,0.1);
+        }
+        div.chart .rightChart {
+            width: 300px;
+            height: 100%;
+            float: right;
+            border: 0px solid rgb(100,0,255);
+            margin-left: 12px;
+            background: rgba(255,255,255,0.1);
+        }
+        div.chart div#chart2, div#chart3 {
+            width: 100%;
+            height: 100%;
+        }
+        div.listTable {
+            width: 100%;
+            height: 240px;
+            border: 0px solid rgb(179,124,250);
+            margin-top: 12px;
+           
+        }
+            div.listTable table {
+                width: 100%;
+                border-collapse: collapse;
+                color: white;
+                background: rgba(255,255,255,0.1);
+            }
+        div.listTable table thead {
+                width: 100%;
+                height: 36px;
+            }
+            div.listTable table thead tr th {
+                width: 14%;
+                height: 36px;
+                border-bottom: 1px groove rgb(141, 212, 233);
+                /*border-bottom: 1px groove rgba(26,85,104,0.2);*/
+            }
+       div.listTable table tbody tr {
+                width:100%;
+                height:30px;
+                cursor: pointer;
+                
+            }
+                div.listTable table tbody tr:hover {
+                   background: rgba(255,255,255,.4);
+                }
+        div.listTable table tbody tr td {
+            width: 14%;
+            height: 30px;
+            text-align: center;
+            border-bottom: 1px groove rgb(141, 212, 233);
+            /*border-bottom: 1px groove rgba(26,85,104,0.2);*/
+        }
+
+
+
+       .chart1Box #selectList{
+           position: absolute;
+           right: 10px;
+           top: 5px;
+           z-index: 1000;
+       }
+        #selectList li {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 20px;
+            text-align: center;
+            color: white;
+            border-radius: 2px;
+            background-color: rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+    
+            #selectList li:hover {
+                background-color: rgba(108,154,192,.9);
+                box-shadow: 0px 0px 2px #e1e1e1;
+            }
+            #selectList li.current {
+                background-color: rgba(108,154,192,.9);
+                box-shadow: 0px 0px 2px #e1e1e1;
+            }
+    </style>
+</head>
+<body>
+    <div class="wraper">
+        <ul class='totalChartHeader'>
+            <li class="li1-totalNum li-margin active">
+                <p>供水一区赵巷段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>10470</span></p>
+                        <p><i></i><span>漏损率：</span> <span>46.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>1470</span></p>
+                        <p><i></i><span>漏损率：</span> <span>32.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="li2-onlineNum li-margin">
+                <p>供水二区崧泽段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>5605</span></p>
+                        <p><i></i><span>漏损率：</span> <span>46.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>5605</span></p>
+                        <p><i></i><span>漏损率：</span> <span>46.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>                  
+                </div>
+            </li>
+            <li class="li3-offlineNum li-margin">
+                <p>供水三区香花桥段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>1500</span></p>
+                        <p><i></i><span>漏损率：</span> <span>46.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>1500</span></p>
+                        <p><i></i><span>漏损率：</span> <span>46.47%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="li4-lifeNum li-margin">
+                <p>供水四区重固段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="li5-sprayNum li-margin">
+                <p>供水五区徐泾段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                </div>
+            </li>
+            <li class="li6-sprayNum li-margin li-lastShow">
+                <p>供水六区白鹤段</p>
+                <div class="text">
+                    <div class="yearData">
+                        <p>年度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                    <div class="monthData">
+                        <p>月度数据</p>
+                        <p><i></i><span>总流量：</span><span>8970</span></p>
+                        <p><i></i><span>漏损率：</span> <span>85.67%</span></p>
+                        <p><i></i><span>漏损量：</span><span></span></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="scrollBox">
+            <div class="scrollWrapper">
+                <div class="chart chart1Box">
+                    <!--<ul id="selectList">
+                        <li title="year">年</li>
+                        <li title="month">月</li>
+                        <li title="day" class="current">日</li>
+                    </ul>-->
+                    <div class="chart1" id="chart1"></div>
+                </div>
+                <div class="chart chart2Box">
+                    <div class="leftChart">
+                        <div id="chart2"></div>
+                    </div>
+                    <div class="rightChart">
+                        <div id="chart3"></div>
+                    </div>
+                </div>
+                <div class="listTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>设备名称</th>
+                                <th>总流量</th>
+                                <th>总电量</th>
+                                <th>最小压力</th>
+                                <th>最大压力</th>
+                                <th>平均圧力</th>
+                                <th>吨水能耗</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>赵巷用户总表</td>
+                                <td>2479</td>
+                                <td>87</td>
+                                <td>0.27</td>
+                                <td>1.08</td>
+                                <td>0.72</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>崧泽用户总表</td>
+                                <td>2751</td>
+                                <td>80</td>
+                                <td>0.21</td>
+                                <td>0.97</td>
+                                <td>0.64</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>香花桥用户总表</td>
+                                <td>2379</td>
+                                <td>71</td>
+                                <td>0.29</td>
+                                <td>1.37</td>
+                                <td>0.71</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>重固用户总表</td>
+                                <td>2521</td>
+                                <td>84</td>
+                                <td>0.26</td>
+                                <td>0.87</td>
+                                <td>0.53</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>徐泾用户总表</td>
+                                <td>2318</td>
+                                <td>69</td>
+                                <td>0.33</td>
+                                <td>0.91</td>
+                                <td>0.68</td>
+                                <td>11</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           
+        </div>
+        
+    </div>
+    <script type="text/javascript">
+
+        /*{"monthData":[{"id":12,"FMonth":1,"FFlowPrice":12268.00},{"id":39,"FMonth":2,"FFlowPrice":15748.00},{"id":42,"FMonth":3,"FFlowPrice":952.00}],"quarterData":[{"quarterS":"一季度","FFlowPrice":28968.00},{"quarterS":"二季度","FFlowPrice":0.00},{"quarterS":"三季度","FFlowPrice":0.00},{"quarterS":"四季度","FFlowPrice":0.00}]}*/
+        var id = 1;      
+        var typeChar = "日";
+        var myChart1 = echarts.init($('#chart1')[0]);
+        var myChart2 = echarts.init($('#chart2')[0]);
+        var myChart3 = echarts.init($('#chart3')[0]);
+        var topDataType = "year";
+        var dataType = "day";           
+        var dataAxis = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+        var xData = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23','24'];
+    //    getOneLevelNet(1,dataType,typeChar);   //id:1 dataType: day
+
+      //get year use on top nav
+        function formatDate() {
+            var d = new Date();
+            var dM = (d.getMonth() + 1).toString().replace(/^(\d)$/, '0$1');
+            var dD = d.getDate().toString().replace(/^(\d)$/, '0$1');
+           // var dM = (cDate.getMonth() < 9) ? '0' + (cDate.getMonth() + 1) : (cDate.getMonth() + 1);
+           // var dD = (cDate.getDate() < 9) ? '0' + (cDate.getDate()) : (cDate.getDate());
+            var dateTemp = d.getFullYear() + "-" + (dM) + "-" +dD;
+            return dateTemp;
+        }
+        var currentDate = formatDate();
+        console.log(currentDate);
+        /*    $(".totalChartHeader li").click(function () {
+            id = $(this).index() + 1;
+            setxAxisTitle(dataType);
+            getOneLevelNet(id,dataType,typeChar);
+        });
+
+        //click to select the data type
+        $("#selectList li").click(function () {
+            $(this).addClass("current").siblings().removeClass("current");
+            dataType = $(this).attr("title");
+            typeChar = $(this).html();
+            setxAxisTitle(dataType);
+            getOneLevelNet(id,dataType,typeChar);
+        });
+        setxAxisTitle(dataType);
+        function setxAxisTitle(dataType) {
+            if (dataType == "day") {
+                xAxisName = "时";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+            } else if (dataType == "month") {
+                xAxisName = "日";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+            } else {
+                xAxisName = "月";
+                xData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            }
+        }*/
+        
+        myChart1.setOption ({
+            title: {
+                text: '用水量',
+                textStyle: {
+                    color:'rgb(255,255,255)'
+                }
+            },
+                grid: {
+                    left: 40,
+                    right: 40,
+                    bottom:30
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(28,136,151,0.6)',
+                    padding: [5, 10],
+                    axisPointer: {
+                        lineStyle: {
+                            color: 'rgba(37,211,186,0.7)'   //'rgba(37,211,186,0.7)
+                        }
+                    }
+                },
+            legend: {
+                data: ['1日','2日','3日'],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+           
+            xAxis: {
+                type: 'category',
+                name: xData,
+                nameTextStyle: {
+                    color: 'rgb(255,255,255)'
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                boundaryGap: true,
+               //data: [],
+                data:['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+            },
+            yAxis: {
+                type: 'value',
+                name: '单位(m³)',
+                nameTextStyle: {
+                    color:'rgb(255,255,255)'
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            series: [{
+                name: '1日',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(179,124,250)',
+                        lineStyle: { color: 'rgb(179,124,250)' }
+                    },
+                },
+                smooth: true,
+                data: [],
+           //     data: [10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 12, 21, 54, 260, 830, 710, 10, 20, 54, 10, 12, 21, 54, 260, 830, 710]
+            },
+            {
+                name: '2日',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(171,222,86)',
+                        lineStyle: { color: 'rgb(171,222,86)' }
+                    },
+                },
+                smooth: true,
+                data: []
+             //   data: [30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 30, 182, 434, 791, 390, 30, 10, 390, 30]
+            },
+          
+            {
+                name: '3日', 
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#2378f7' },
+                                { offset: 0.7, color: '#2378f7' },
+                                { offset: 1, color: '#83bff6' }
+                            ]
+                        )
+                    }
+                },
+                data:[]
+            //    data: [320, 132, 601, 234, 120, 90, 20, 320, 112, 601, 234, 120, 90, 20, 120, 132, 601, 234, 120, 90, 20, 120, 112, 601, 234, 120, 90, 20, 20, 90]
+            }]
+        });
+       
+        var chart1Title = '近三天赵巷区域用水量';
+        var chart2Title = '赵巷区域月成本与月损失成本';
+        var chart3Title = '赵巷区域饼图';
+        var chart1Ytitle = '用水量(m³)';
+        var data1_0 = { "data": [{ "timer": "2017-03-24", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 2, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 7, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 8, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 9, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 10, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 12, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 13, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 14, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 15, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 16, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 19, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-24", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-23", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 6, "P_data": 1.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 7, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 8, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 11, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 12, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 13, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 14, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 15, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 16, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 17, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 18, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 20, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 21, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 22, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-23", "T_dayHour": 23, "P_data": 2.0 }] }, { "timer": "2017-03-22", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 0, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 1, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 2, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 3, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 4, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 5, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 6, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 7, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 8, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 9, "P_data": 12.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 10, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 11, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 13, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 15, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 16, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 17, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 18, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 19, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 20, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 22, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-22", "T_dayHour": 23, "P_data": 2.0 }] }] };
+        var data1_1 = { "data": [{ "timer": "2017-03-24", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 0, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 1, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 2, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 3, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 4, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 5, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 6, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 8, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 11, "P_data": 12.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 12, "P_data": 12.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 13, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 14, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 15, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 16, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 18, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 19, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 20, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 21, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 0, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 1, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 2, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 3, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 4, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 6, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 8, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 9, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 10, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 11, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 12, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 13, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 14, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 15, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 17, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 20, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 22, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 23, "P_data": 3.0 }] }, { "timer": "2017-03-25", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 13, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 15, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 16, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 17, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 21, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 22, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 23, "P_data": 7.0 }] }] };
+        var data1_2 = { "data": [{ "timer": "2017-03-24", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 3, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 4, "P_data": 1.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 7, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 8, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 10, "P_data": 11.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 11, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 12, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 13, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 14, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 15, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 18, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 20, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 21, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 0, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 1, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 2, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 3, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 4, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 6, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 8, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 9, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 10, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 11, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 12, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 13, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 14, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 15, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 17, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 20, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 22, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 23, "P_data": 3.0 }] }, { "timer": "2017-03-25", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 13, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 15, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 16, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 17, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 21, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 22, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 23, "P_data": 7.0 }] }] };
+        var data1_3 = { "data": [{ "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 0, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 1, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 2, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 3, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 4, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 6, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 8, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 9, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 10, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 12, "P_data": 11.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 13, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 14, "P_data": 12.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 15, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 16, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 18, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 20, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 21, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 0, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 1, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 2, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 3, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 4, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 6, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 8, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 9, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 10, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 11, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 12, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 13, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 14, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 15, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 17, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 20, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 22, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 23, "P_data": 3.0 }] }, { "timer": "2017-03-25", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 13, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 15, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 16, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 17, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 21, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 22, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 23, "P_data": 7.0 }] }] };
+        var data1_4 = { "data": [{ "timer": "2017-03-27", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 0, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 3, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 4, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 7, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 10, "P_data": 11.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 11, "P_data": 11.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 12, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 13, "P_data": 11.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 14, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 15, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 16, "P_data": 1.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 19, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 20, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 21, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 0, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 1, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 2, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 3, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 4, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 6, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 8, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 9, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 10, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 11, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 12, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 13, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 14, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 15, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 17, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 20, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 22, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 23, "P_data": 3.0 }] }, { "timer": "2017-03-25", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 13, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 15, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 16, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 17, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 21, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 22, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 23, "P_data": 7.0 }] }] };
+        var data1_5 = { "data": [{ "timer": "2017-03-28", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 0, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 1, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 2, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 3, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 4, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 5, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 6, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 7, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 8, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 9, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 10, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 12, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 13, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 15, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 16, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 17, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 18, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 19, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 20, "P_data": 1.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 21, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 22, "P_data": 0.0 }, { "T_Lev": 1, "TM_day": "2017-03-27", "T_dayHour": 23, "P_data": 0.0 }] }, { "timer": "2017-03-26", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 0, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 1, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 2, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 3, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 4, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 5, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 6, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 8, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 9, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 10, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 11, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 12, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 13, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 14, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 15, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 16, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 17, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 18, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 19, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 20, "P_data": 4.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 21, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 22, "P_data": 3.0 }, { "T_Lev": 1, "TM_day": "2017-03-26", "T_dayHour": 23, "P_data": 3.0 }] }, { "timer": "2017-03-25", "detailData": [{ "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 0, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 1, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 2, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 3, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 4, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 5, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 6, "P_data": 2.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 7, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 8, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 9, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 10, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 11, "P_data": 10.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 12, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 13, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 14, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 15, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 16, "P_data": 9.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 17, "P_data": 8.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 18, "P_data": 6.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 19, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 20, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 21, "P_data": 7.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 22, "P_data": 5.0 }, { "T_Lev": 1, "TM_day": "2017-03-25", "T_dayHour": 23, "P_data": 7.0 }] }] };
+        function staticChart1(data,chart1Title) {
+            
+            var json = data.data;           
+            var legData = [];
+            var seriesData = [];
+            $.each(json, function (i, v) {           
+                var series_tempData = [];            
+                for (var j = 0; j < v.detailData.length; j++) {
+                    series_tempData.push(v.detailData[j].P_data);                   
+                }
+                legData.push(v.timer);             
+                seriesData.unshift({ name: v.timer, data: series_tempData });
+            });
+            options1 = {
+                title: { text: '近三天'+chart1Title+'区域用水量' },
+                legend: {
+                    data: legData
+                },
+                xAxis: {
+                    name: '日',
+                    data: xData
+                },
+                yAxis: {
+                    name: chart1Ytitle
+                },
+                series: seriesData,
+
+            };
+
+            myChart1.setOption(options1);
+        }
+        var data2_0 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 17636.00, "FLeakagePrice": 13636.00, "FTotalLeakPrice": 17636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 46080.00, "FLeakagePrice": 20048.00, "FTotalLeakPrice": 41036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 12068.00, "FLeakagePrice": 4970.00, "FTotalLeakPrice": 10316.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 15748.00, "FLeakagePrice": 6228.00, "FTotalLeakPrice": 16436.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 952.00, "FLeakagePrice": 460.00, "FTotalLeakPrice": 868.00 }];
+        var data2_1 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 10636.00, "FLeakagePrice": 15236.00, "FTotalLeakPrice": 10636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 41280.00, "FLeakagePrice": 23148.00, "FTotalLeakPrice": 40036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 16268.00, "FLeakagePrice": 4120.00, "FTotalLeakPrice": 12016.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 12148.00, "FLeakagePrice": 5128.00, "FTotalLeakPrice": 11036.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 852.00, "FLeakagePrice": 500.00, "FTotalLeakPrice": 668.00 }];
+        var data2_2 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 12636.00, "FLeakagePrice": 12436.00, "FTotalLeakPrice": 12636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 45680.00, "FLeakagePrice": 19748.00, "FTotalLeakPrice": 44036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 19268.00, "FLeakagePrice": 4630.00, "FTotalLeakPrice": 9916.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 15248.00, "FLeakagePrice": 6628.00, "FTotalLeakPrice": 12436.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 952.00, "FLeakagePrice": 470.00, "FTotalLeakPrice": 868.00 }];
+        var data2_3 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 20636.00, "FLeakagePrice": 16136.00, "FTotalLeakPrice": 15636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 40280.00, "FLeakagePrice": 12048.00, "FTotalLeakPrice": 48036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 15368.00, "FLeakagePrice": 4990.00, "FTotalLeakPrice": 12316.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 11548.00, "FLeakagePrice": 7328.00, "FTotalLeakPrice": 15436.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 652.00, "FLeakagePrice": 560.00, "FTotalLeakPrice": 768.00 }];
+        var data2_4 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 13636.00, "FLeakagePrice": 18536.00, "FTotalLeakPrice": 19636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 47180.00, "FLeakagePrice": 21248.00, "FTotalLeakPrice": 41036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 20168.00, "FLeakagePrice": 4280.00, "FTotalLeakPrice": 13300.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 15348.00, "FLeakagePrice": 4108.00, "FTotalLeakPrice": 11436.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 952.00, "FLeakagePrice": 660.00, "FTotalLeakPrice": 968.00 }];
+        var data2_5 = [{ "id": 3, "yearMonth": "16-4", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 4, "yearMonth": "16-5", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 5, "yearMonth": "16-6", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 6, "yearMonth": "16-7", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 7, "yearMonth": "16-8", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 8, "yearMonth": "16-9", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 9, "yearMonth": "16-10", "FFlowPrice": 0.00, "FLeakagePrice": 0.00, "FTotalLeakPrice": 0.00 }, { "id": 10, "yearMonth": "16-11", "FFlowPrice": 11636.00, "FLeakagePrice": 13036.00, "FTotalLeakPrice": 11636.00 }, { "id": 11, "yearMonth": "16-12", "FFlowPrice": 37000.00, "FLeakagePrice": 26148.00, "FTotalLeakPrice": 42036.00 }, { "id": 12, "yearMonth": "17-1", "FFlowPrice": 12568.00, "FLeakagePrice": 4780.00, "FTotalLeakPrice": 10306.00 }, { "id": 39, "yearMonth": "17-2", "FFlowPrice": 13048.00, "FLeakagePrice": 6728.00, "FTotalLeakPrice": 15436.00 }, { "id": 42, "yearMonth": "17-3", "FFlowPrice": 752.00, "FLeakagePrice": 560.00, "FTotalLeakPrice": 868.00 }];
+        function staticChart2(data,chart2Title) {
+            
+            var yMData = [];
+            var yPData = [];
+            var yLPData = [];
+            var seriesData = [];
+            for (var i = 0; i < data.length; i++) {
+                yMData.push(data[i].yearMonth);
+                yPData.push(data[i].FFlowPrice);
+                yLPData.push(data[i].FLeakagePrice);
+            }
+          /*  $.each(data[0], function (i, v) {
+                //   console.log(v);
+                //legData.push(v[0].monthType);
+                //seriesData.push({ name: v[0].monthType, data: v[0].Y });
+                yMData.push(v.yearMonth);
+                yPData.push(v.FFlowPrice);
+                yLPData.push(v.FLeakagePrice);
+            });*/
+            //  console.log(seriesData);
+            options2 = {
+                title: { text: chart2Title+'区域月成本与月损失成本' },
+                //legend: {
+                //    data: legData
+                //},
+                xAxis: {
+                    data: yMData,
+
+                },
+                series: [
+                    {
+                        name: '月成本',
+                        data: yPData
+                    },
+                    {
+                        name: '月损失成本',
+                        data: yLPData
+                    }
+                ],
+            };
+            myChart2.setOption(options2);
+        }
+        var data3_0 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 12268.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 15748.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 902.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 22968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        var data3_1 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 11168.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 11738.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 923.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 26968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        var data3_2 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 10018.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 13718.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 961.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 23968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        var data3_3 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 12060.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 11778.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 919.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 27968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        var data3_4 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 13208.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 14728.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 829.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 25968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        var data3_5 = { "monthData": [{ "id": 12, "FMonth": 1, "FFlowPrice": 98968.00 }, { "id": 39, "FMonth": 2, "FFlowPrice": 12758.00 }, { "id": 42, "FMonth": 3, "FFlowPrice": 852.00 }], "quarterData": [{ "quarterS": "一季度", "FFlowPrice": 28968.00 }, { "quarterS": "二季度", "FFlowPrice": 0.00 }, { "quarterS": "三季度", "FFlowPrice": 0.00 }, { "quarterS": "四季度", "FFlowPrice": 0.00 }] };
+        function staticChart3(data,chart3Title) {            
+            var quarterColor = ['rgb(247,208,21)', 'rgb(250,148,124)', 'rgb(9,200,254)', 'rgb(179,124,250)'];
+            var seriesData = [];
+            var qColorData = [
+                    { normal: { color: 'rgb(247,208,21)' } },
+                    { normal: { color: 'rgb(250,148,124)' } },
+                    { normal: { color: 'rgb(9,200,254)' } },
+                    { normal: { color: 'rgb(179,124,250)' } }
+
+            ];
+            var colorData = [
+
+                { normal: { color: 'rgb(108,196,208)' } },
+                { normal: { color: 'rgb(9,200,254)' } },
+                { normal: { color: 'rgb(250,148,124)' } },
+                { normal: { color: 'rgb(179,124,250)' } },
+                { normal: { color: 'rgb(17,120,21)' } },
+                { normal: { color: 'rgb(247,208,21)' } },
+                { normal: { color: 'rgb(17,208,21)' } },
+                { normal: { color: 'rgb(17,187,173)' } },
+                { normal: { color: 'rgb(218, 134, 88)' } },
+                { normal: { color: 'rgb(47,208,21)' } },
+                { normal: { color: 'rgb(214, 165, 161)' } }
+
+            ];
+
+            var quarterData = [];
+            var monthData = [];
+            var qLen = data.quarterData.length;
+            var mLen = data.monthData.length;
+
+            for (var i = 0; i < qLen; i++) {
+                var jsonDat = {};
+                jsonDat.name = data.quarterData[i].quarterS;
+                jsonDat.value = data.quarterData[i].FFlowPrice;
+                jsonDat.itemStyle = qColorData[i];
+
+                quarterData.push(jsonDat);
+            }
+            for (var j = 0; j < mLen; j++) {
+                var jsonDat = {};
+                jsonDat.name = data.monthData[j].FMonth + '月';
+                jsonDat.value = data.monthData[j].FFlowPrice;
+                jsonDat.itemStyle = colorData[j];
+                monthData.push(jsonDat);
+
+
+            }
+
+            console.log(quarterColor[0]);
+
+            options3 = {              
+                title: {
+                    text: chart3Title+'区域饼图',
+                    textStyle: { color: '#fff' },
+                    left: '50%',
+                    bottom: 20,
+                },
+                series: [
+                    {
+                        name: '季度成本',
+                        data: quarterData
+                    },
+                    {
+                        name: '月成本',
+                        data: monthData
+                    }
+                ],
+            };
+            myChart3.setOption(options3);
+        }
+        //获取一级网漏损数据 近三天数据
+   /*     function getOneLevelNet(reportID,dataType,typeChar) {          
+                var chart1Title = '近三天用水';
+                var chart2Title = '月成本与月损失成本';
+                var chart3Title = '饼图';
+                var chart1Ytitle = '用水量(m³)';
+                 
+            switch(reportID){
+                case 1:
+                    chart1Title = '近三'+typeChar+'一级网用水量';
+                    chart2Title = '一级网月成本与月损失成本';
+                    chart3Title = '一级网饼图';
+                    chart1Ytitle = '用水量(m³)';
+                    chart1Request(reportID,dataType);
+                    chart2Request();
+                    chart3Request();
+                    break;
+                case 2:
+                    chart1Title = '近三'+typeChar+'二级网用水量';
+                    chart2Title = '二级网月成本与月损失成本';
+                    chart3Title = '二级网饼图';
+                    chart1Ytitle = '用水量(m³)';
+                    chart1Request(reportID, dataType);
+                    chart2Request();
+                    chart3Request();
+                    break;
+                case 3:
+                    chart1Title = '近三'+typeChar+'用户用水量';
+                    chart1Request(reportID, dataType);
+                    chart1Ytitle = '用水量(m³)';
+                    break;
+                case 4:                    
+                    chart1Title ='近三'+typeChar+ '总漏损';
+                    chart1Ytitle = '漏损量(m³)';
+                    chart1Request(reportID, dataType);
+                    break;
+                case 5:
+                    chart1Title = '近三'+typeChar+'用水成本';
+                    chart1Ytitle = '用水成本(元)';
+                    chart1Request(reportID, dataType);
+                    break;
+                case 6:
+                    chart1Title ='近三'+typeChar+ '损失成本';
+                    chart1Ytitle = '损失成本(元)';
+                    chart1Request(reportID, dataType);
+                    break;
+            }*/
+
+
+          /*  function chart1Request(reportID, dataType) {
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getwatleakrecmarchdata',
+                    data: {
+                        'ReportID': reportID,
+                        'timeStr':dataType
+                    },
+                    success: function (data) {                                                      
+                        var data = JSON.parse(data);
+                        console.log(data);
+                        var json = data.data;
+                  //      console.log(json+'json');
+                        var legData = [];
+                        var seriesData = [];
+                       // var xData = [];
+                        $.each(json, function (i, v) {
+                          // console.log( v.day);
+                            var series_tempData = [];
+                         //   var xTempData = [];
+                            for (var j = 0; j < v.detailData.length; j++)
+                            {
+                                series_tempData.push(v.detailData[j].P_data);
+                              //  xTempData.push(v.detailData[j].T_dayHour);
+                            }
+                       
+                            legData.push(v.timer);
+                           //xData
+                            seriesData.unshift({ name: v.timer, data: series_tempData });
+                        });
+                        console.log(seriesData);
+                        options1 = {
+                            title: { text: chart1Title },
+                            legend: {
+                                data: legData
+                            },
+                            xAxis: {
+                                name: xAxisName,
+                                data: xData
+                            },
+                            yAxis: {
+                                name: chart1Ytitle
+                            },
+                            series: seriesData,
+                           
+                        };
+
+                        myChart1.setOption(options1);
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }*/
+
+            //月成本和月损失成本
+    /*        function chart2Request() {            
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getmonthcostdata',
+                    data: { 'ReportID': reportID },
+                    success: function (data) {
+                       // console.log(123);
+                        console.log(data);
+                       // console.log(123);
+                        var data = JSON.parse(data);
+                      
+                        
+                    //    console.log(data.data[0].monthData1[0].monthType);
+                   //     console.log(data.data[0].monthData1[0].Y);
+                        //var legData = [];
+                        var yMData = [];
+                        var yPData = [];
+                        var yLPData = [];
+                        var seriesData = [];
+                        $.each(data, function (i, v) {
+                            //   console.log(v);
+                            //legData.push(v[0].monthType);
+                            //seriesData.push({ name: v[0].monthType, data: v[0].Y });
+                            yMData.push(v.yearMonth);
+                            yPData.push(v.FFlowPrice);
+                            yLPData.push(v.FLeakagePrice);
+                        });
+                      //  console.log(seriesData);
+                        options2 = {
+                            title:{text:chart2Title},
+                            //legend: {
+                            //    data: legData
+                            //},
+                            xAxis: {
+                                data: yMData,
+                                
+                                },
+                            series: [
+                                {
+                                    name: '月成本',
+                                    data: yPData
+                                },
+                                {
+                                    name: '月损失成本',
+                                    data: yLPData
+                                }
+                            ],
+                        };
+                        myChart2.setOption(options2);
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }*/
+            
+            //季度成本和月成本
+      /*      function chart3Request() {
+                $.ajax({
+                    url: '../../Service/T_ReportService.ashx?method=getmonthquarterdata',
+                    data: { 'ReportID': reportID },
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                       // console.log(123);
+                       // console.log(data);
+                       // console.log(123);
+                        var quarterColor = ['rgb(247,208,21)', 'rgb(250,148,124)', 'rgb(9,200,254)', 'rgb(179,124,250)'];
+                        var seriesData = [];
+
+
+
+                        var qColorData = [
+                                { normal: { color: 'rgb(247,208,21)' }},
+                                { normal: { color: 'rgb(250,148,124)'}},
+                                { normal: { color: 'rgb(9,200,254)'}},
+                                { normal: { color: 'rgb(179,124,250)'}}
+
+                        ];
+                        var colorData = [
+
+                            { normal: { color: 'rgb(108,196,208)'}},
+                            { normal: { color: 'rgb(9,200,254)'}},
+                            { normal: { color: 'rgb(250,148,124)'}},
+                            { normal: { color: 'rgb(179,124,250)'}},
+                            { normal: { color: 'rgb(17,120,21)'}},
+                            { normal: { color: 'rgb(247,208,21)'}},
+                            { normal: { color: 'rgb(17,208,21)'}},
+                            { normal: { color: 'rgb(17,187,173)'}},
+                            { normal: { color: 'rgb(218, 134, 88)'}},
+                            { normal: { color: 'rgb(47,208,21)'}},
+                            { normal: { color: 'rgb(214, 165, 161)'}}
+
+                        ];
+                        
+                        var quarterData = [];
+                        var monthData = [];
+                        var qLen=data.quarterData.length;
+                        var mLen=data.monthData.length;
+                        
+                        for (var i = 0; i < qLen; i++) {
+                            var jsonDat = {};
+                            jsonDat.name = data.quarterData[i].quarterS;
+                            jsonDat.value = data.quarterData[i].FFlowPrice;
+                            jsonDat.itemStyle = qColorData[i];
+                           
+                            quarterData.push(jsonDat);
+                        }
+                        for (var j = 0; j < mLen; j++) {
+                            var jsonDat={};
+                            jsonDat.name=data.monthData[j].FMonth+'月';
+                            jsonDat.value = data.monthData[j].FFlowPrice;
+                            jsonDat.itemStyle = colorData[j];
+                            monthData.push(jsonDat);
+
+
+                        }
+
+                        console.log(quarterColor[0]);
+                      
+                        options3 = {
+                            //legend: {
+                            //    data: legData
+                            //},
+                            title: {
+                                text: chart3Title,
+                                textStyle:{color:'#fff'},
+                                left: '50%',
+                                bottom: 20,
+                            },
+                            series: [
+                                {      
+                                    name: '季度成本',
+                                    data: quarterData
+                                },
+                                {
+                                    name: '月成本',
+                                    data: monthData                               
+                                }
+                            ],
+                        };
+                        myChart3.setOption(options3);
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+          
+        }*/
+
+        //初始设置chart2
+        myChart2.setOption( {
+            title: {
+                text: '月成本与月损失成本',
+                textStyle: {
+                    color: 'rgb(255,255,255)',
+                },
+              
+            },
+            legend: {
+                data: ['月成本','月损失成本'],
+               textStyle:{color:'#fff'}
+            },
+            grid: {
+                show: true,
+                left: 60,
+                right: 40,
+                bottom: 40,
+                borderColor: 'rgba(27, 131, 167,0.7)',
+            },
+            xAxis: {
+                data: dataAxis,
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(27, 131, 167,0.7)',
+                        width: 1,
+                    },
+                },
+                z: 10
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: 12,
+                    },
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: ['rgba(27, 131, 167,0.7)'],
+                        width: 1,
+                        type: 'solid',
+                    },
+                },
+            },
+            dataZoom: [
+                {
+                    type: 'inside'
+                }
+            ],
+            series: [       
+                { // For shadow
+                    type: 'bar',
+                    itemStyle: {
+                        normal: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    barGap: '10%',
+                    barCategoryGap: '20%'
+                   
+                },
+                {
+                    name: '月成本',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: '#2378f7' },
+                                    { offset: 0.7, color: '#2378f7' },
+                                    { offset: 1, color: '#83bff6' }
+                                ]
+                            )
+                        }
+                    },
+                    data:[],
+                    //data: data
+                },
+                {
+                    name: '月损失成本',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(247,208,21,0.9)' },
+                                    { offset: 1, color: 'rgba(252,172,19,0.4)' }
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: '#2378f7' },
+                                    { offset: 0.7, color: '#2378f7' },
+                                    { offset: 1, color: '#83bff6' }
+                                ]
+                            )
+                        }
+                    },
+                    data: [],
+                   // data: [100,20,50,60,30,50,40,37,58,62,46,52],
+                }
+            ]
+        });
+
+      /*  function getTwoLevel() {
+            $.ajax({
+                url: '../../Service/T_ReportService.ashx?method=getwatleakrecmarchdata',
+                data: { 'ReportID': 2 },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    // var json = data.data;
+                    console.log(data.data[0].monthData1[0].month);
+                    console.log(data.data[0].monthData1[0].Y);
+                    //  console.log(json);
+                    //  console.log(json.monthData)
+                    var legData = [];
+                    //var seriesdata = [];
+                    var seriesData = [];
+                    $.each(data.data[0], function (i, v) {
+                        // var legData = [data.data[0].monthData3[0].month, data.data[0].monthData2[0].month, data.data[0].monthData1[0].month];
+                        //  console.log(v);
+                        legData.push(v[0].month);
+                        //   seriesdata.push(v[0].Y);
+                        seriesData.unshift({ name: v[0].month, data: v[0].Y })
+                    });
+                    console.log(seriesData);
+                    options1 = {
+                        legend: {
+                            data: legData
+                        },
+                        series: seriesData,
+                     
+                    };
+
+                    myChart1.setOption(options1);
+                    
+                },
+                error: function (data) {
+                    console.log('错误：' + data.responseText);
+                }
+            });
+            $.ajax({
+                url: '../../Service/T_ReportService.ashx?method=getmonthcostdata',
+                data: { 'ReportID': 2 },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    // var json = data.data;
+                    console.log(data);
+                    console.log(data.data[0].monthData1[0].monthType);
+                    console.log(data.data[0].monthData1[0].Y);
+                    var legData = [];
+                    var seriesData = [];
+                    $.each(data.data[0], function (i, v) {
+                        //   console.log(v);
+                        legData.push(v[0].monthType);
+                        seriesData.push({ name: v[0].monthType, data: v[0].Y });
+                    });
+                    console.log(seriesData);
+                    options2 = {
+                        legend: {
+                            data: legData
+                        },
+                        series: seriesData,
+                    };
+                    myChart2.setOption(options2);
+                },
+                error: function (data) {
+                    console.log('错误：' + data.responseText);
+                }
+            });
+            $.ajax({
+                url: '../../Service/T_ReportService.ashx?method=getmonthquarterdata',
+                data: { 'ReportID': 2 },
+                success: function (data) {
+                    var data = JSON.parse(data);
+                    console.log(data);
+                    var quarterColor = ['rgb(247,208,21)', 'rgb(250,148,124)', 'rgb(9,200,254)', 'rgb(179,124,250)'];
+                    var seriesData = [];
+                    console.log(quarterColor[0]);
+                    
+                    //options3 = {
+                        
+                    //    series: [
+                    //        {
+                    //            // name:'季度成本',data:seriesData,
+                    //            name: '季度成本', data: [{ name: data.quarterData[0].name, value: data.quarterData[0].value, selected: true, itemStyle: { normal: { color: 'rgb(247,208,21)' } } },
+                    //                { name: data.quarterData[1].name, value: data.quarterData[1].value, itemStyle: { normal: { color: 'rgb(250,148,124)' } } },
+                    //                 { name: data.quarterData[2].name, value: data.quarterData[2].value, itemStyle: { normal: { color: 'rgb(9,200,254)' } } },
+                    //                   { name: data.quarterData[3].name, value: data.quarterData[3].value, itemStyle: { normal: { color: 'rgb(179,124,250)' } } },
+                    //            ]
+                    //        },
+                    //        {
+                    //            name: '月成本', data: [{ name: data.monthData[0].name, value: data.monthData[0].value, itemStyle: { normal: { color: 'rgb(171,222,86)' } } },
+                    //                { name: data.monthData[1].name, value: data.monthData[1].value, itemStyle: { normal: { color: 'rgb(108, 196, 208)' } } },
+                    //                { name: data.monthData[2].name, value: data.monthData[2].value, itemStyle: { normal: { color: 'rgb(9,200,254)' } } },
+                    //                { name: data.monthData[3].name, value: data.monthData[3].value, itemStyle: { normal: { color: 'rgb(250,148,124)' } } },
+                    //                { name: data.monthData[4].name, value: data.monthData[4].value, itemStyle: { normal: { color: 'rgb(179,124,250)' } } },
+                    //                { name: data.monthData[5].name, value: data.monthData[5].value, itemStyle: { normal: { color: 'rgb(17,120,21)' } } },
+                    //                { name: data.monthData[6].name, value: data.monthData[6].value, itemStyle: { normal: { color: 'rgb(247,208,21)' } } },
+                    //               { name: data.monthData[7].name, value: data.monthData[7].value, itemStyle: { normal: { color: 'rgb(17,208,21)' } } },
+                    //               { name: data.monthData[8].name, value: data.monthData[8].value, itemStyle: { normal: { color: 'rgb(17, 187, 173)' } } },
+                    //               { name: data.monthData[9].name, value: data.monthData[9].value, itemStyle: { normal: { color: 'rgb(218, 134, 88)' } } },
+                    //              { name: data.monthData[10].name, value: data.monthData[10].value, itemStyle: { normal: { color: 'rgb(47,208,21)' } } },
+                    //              { name: data.monthData[11].name, value: data.monthData[11].value, itemStyle: { normal: { color: 'rgb(214, 165, 161)' } } },
+                    //            ]
+                    //        }
+                    //    ],
+                    //};
+                    //myChart3.setOption(options3);
+                },
+                error: function (data) {
+                    console.log('错误：' + data.responseText);
+                }
+            });
+        }*/
+
+        //chart3  初始设置
+        option3 = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            grid: {
+                show: false,
+                right: 0,
+                bottom: 0,
+            },
+            legend: {
+                x: 'left',
+                itemWidth: 12,
+                itemHeight: 10,
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                textStyle: {
+                    color: '#fff',
+                },
+            },
+            series: [
+                {
+                    name: '季度成本',
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: [0, '30%'],
+                    label: {
+                        normal:{show:false,position:'inside'},
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    itemStyle: {
+                        noraml: {
+                            color: 'rgba(171,222,86,0.7',
+                            shadowBlur: 200,
+                        },
+                    },
+                    data: []
+                },
+                {
+                    name: '月成本',
+                    type: 'pie',
+                    radius: ['45%', '60%'],
+                    label: {
+                        normal: {
+                            show:false,
+                        },
+                    },
+                    data: []
+                }
+            ],
+          };    
+        myChart3.setOption(option3);
+        $(function () {
+            function layout() {
+                var screenWidth = $(window).width();
+                $('.wraper').css({'height': $(window).height()-50,"width":$(window).width()-62});
+                console.log($('.wraper').height());
+                $(".scrollBox").css("height", $('.wraper').height() - $('.totalChartHeader').height()-18);
+                $(".scrollWrapper").css("width", $(".scrollBox").width() - 55);
+                $(".totalChartHeader").css("width", $(".scrollWrapper").width());
+                console.log($('.totalChartHeader').height());
+                console.log($('.scrollBox').height());
+                $(".leftChart").css("width", $('.chart').width()-$('.rightChart').width()-15);
+                           
+                myChart1.resize();
+                myChart2.resize();
+           //     if (screenWidth > 1366) {
+                    var index = 0;
+                    $("ul.totalChartHeader li").each(function () {
+
+                        if ($(this).css("display") == "block") {
+                            console.log($(this).index());
+                            index = $(this).index();
+                        }
+                    });
+                    $("ul.totalChartHeader li").removeClass("li-lastShow");
+                    $("ul.totalChartHeader li").eq(index).addClass("li-lastShow");
+                    var mRight = $("ul.totalChartHeader").width() - 275 * (index + 1)
+                    $("ul.totalChartHeader li").css("marginRight", mRight / index);
+                    $("ul.totalChartHeader li").eq(index).css("marginRight", 0);
+               // }
+               
+            }
+            layout();
+            $(window).resize(function () { layout() });
+
+
+            
+            /*     getTopData(topDataType, currentDate);
+           function getTopData(topDataType,date) {
+                console.log(topDataType);
+                console.log(date);
+                $.ajax({
+                url: '../../Service/T_ReportService.ashx?method=gettoplabledata',
+                data:{
+                    'timeStr': topDataType,
+                    'date': date
+                },
+                success: function (data) {
+                    console.log(data + 'hhhhhh');
+                    var data = JSON.parse(data);
+               
+                   
+                    data.Lev1_Miss_P = data.Lev1_Miss_P.toFixed(2);
+                    data.Lev2_Miss_P = data.Lev2_Miss_P.toFixed(2);
+                    data.LevZ_Miss_P = data.LevZ_Miss_P.toFixed(2);
+                    data.Mount = data.Mount.toFixed(2);
+                    data.Mount1 = data.Mount1.toFixed(2);
+                    //   $(".li1-totalNum .text  p")[0].firstChild.nodeValue = data.Lev1_P01;
+                    $(".li1-totalNum .text ").html("<p>" + data.Lev1_P01 + "<span> m<sup>3</sup></span></p> <p>漏损 <strong>"+data.Lev1_Miss_P+"%</strong></p> <p>一级网</p>");//firstChild().text(data.Lev1_P01);
+                    $(".li2-onlineNum .text").html("<p>" + data.Lev2_P01 + "<span>m<sup>3</sup></span></p><p>漏损 <strong>" + data.Lev2_Miss_P + "%</strong></p><p>二级网</p>");
+                    $(".li3-offlineNum .text").html("<p>"+data.Lev3_P01+"<span> m<sup>3</sup></span></p><p>用户</p>");
+                    $(".li4-lifeNum .text").html("<p>" + data.LevZ_Miss + "<span> m<sup>3</sup></span></p><p>总漏损 <strong>" + data.LevZ_Miss_P + "%</strong></p>");
+                    $(".li5-sprayNum .text").html(" <p>" + data.Mount + " <span>元</span></p> <p>用水成本</p>");
+                    $(".li6-fireNum .text").html(" <p>" + data.Mount1 + " <span>元</span></p> <p>损失成本</p>");
+
+                    console.log('lklklklkl' + $(".li1-totalNum .text  p")[0].childNodes[0].nodeValue);
+                    console.log(document.referrer);
+                }, 
+                error: function (data) {
+                    alert('错误：' + data.responseText);
+                }
+            });}*/
+            (function () {
+                $('.scrollBox').mCustomScrollbar({
+                    scrollButtons: {
+                        enable: true,
+                        scrollType: "continuous",
+                        scrollSpeed: 20,
+                        scrollAmount: 40
+                    },
+                    axis: "y",
+                    set_width: false,
+                    scrollbarPosition: "inside",
+
+                });
+            })();
+            var chart1TitleArr =['赵巷','崧泽','香花桥','重固','徐泾','白鹤'];
+            
+            staticChart1(data1_0, chart1TitleArr[0]);
+            staticChart2(data2_0, chart1TitleArr[0]);
+            staticChart3(data3_0,chart1TitleArr[0]);
+            $(".totalChartHeader li").click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+                id = $(this).index();
+                staticChart1(eval('data1_' + id), chart1TitleArr[id]);
+                staticChart2(eval('data2_' + id), chart1TitleArr[id]);
+                staticChart3(eval('data3_' + id), chart1TitleArr[id]);
+              //  getOneLevelNet(id, dataType, typeChar);
+            });
+
+            bottomTableClick();
+        });
+        
+
+
+        //下册表格的点击  
+        function bottomTableClick() {
+            $('.listTable tbody tr').click(function () {
+                var index = $(this).index();
+
+                layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['94%', '90%'],
+                    content: 'tabelClickFrame.html?indexNum=' + index + '&bcc=333'
+                });
+            });
+        }
+    </script>
+</body>
+</html>

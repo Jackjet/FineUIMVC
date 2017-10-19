@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>setupFrame2</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/setupFrame2.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <!--<script src="js/jquery-ui.min.js"></script>-->
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="js/setupFrame2.js"></script>
+</head>
+<body >
+    <div class="sFrame2Main">
+        <div class="sFrame2Left">
+            <div class="sFleftHeader">
+                <div class="search">
+                    <div class="select">
+                        <span class="defaultContainer">名称</span>
+                        <!--<span class="triangle"></span>-->
+                        <!--<ul class="dropDownMenu">
+                            <li>名称</li>
+                            <li>编号</li>
+                        </ul>-->
+                    </div>
+                    <input type="text" name="search" class="searchDiag" id="searchDiag" value=""/>
+                    <button class="searchBtn"></button>
+                </div>
+                <button class="deleteIco"></button><i class="borderIco"></i>
+                <button class="alterIco"></button><button class="alterSave"></button><i class="borderIco"></i>
+                
+                <button class="newIco"></button>
+                <button class="saveIco"></button>
+                
+            </div>
+            <div class="sFrame2Table"> 
+                    <table class="tableHeader">
+                        <thead>
+                            <tr>
+                                <th>客户名称</th>
+                                <th>联系人姓名</th>
+                                <th>电话</th>
+                                <th>地址</th>
+                                <th>创建日期</th>
+                            </tr>
+                        </thead>
+                       
+                    </table>
+                    <div class="tableScroll">
+                        <table class="customTable">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+       
+            <div class="sFrameLeftFooter">
+                <div class="changepageWrap">
+                    <i class="setListFinallyPage"></i>
+                    <i class="setListNextPage"></i>
+                    <span>第<a class="pageIndex">1</a>页，共<a class="totalPageNum">1</a>页</span>
+                    <i class="setListPrevPage"></i>
+                    <i class="setListFirstPage"></i>
+                </div>
+                 
+            </div>
+        </div>
+        <div class="rightConPerInfo">
+            <div class="rightHeader">
+                报警联系人详细信息
+                <span class="newConPer"></span>
+                <span class="saveConPer"></span>
+                <i class="borderIco"></i>
+            </div>
+            <div class="allConPerson_container">
+                <div class="allConPerson">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!--<script type="text/javascript">
+        console.log('this is log message');
+        console.debug('this is debug message');
+        console.error('this is error message');
+        console.info('this is info message');
+        console.warn('this is warn message');
+
+    </script>-->
+</body>
+
+</html>
+<!--<script type="text/javascript">
+    $(function () {
+        (function () {
+            $('.tableScroll').mCustomScrollbar({
+                scrollButtons: { 
+                    enable: true,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false,
+                set_width: false
+            });
+            $('.allConPerson_container').mCustomScrollbar({
+                scrollButtons: {
+                    enable: true,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false,
+                set_width: false
+            });
+        })();
+    });
+</script>-->

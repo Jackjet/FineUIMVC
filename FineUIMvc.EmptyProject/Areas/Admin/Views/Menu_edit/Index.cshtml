@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Admin/Menu_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.sys_Menus
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.HiddenFieldFor(x => x.ID),
+                    F.TextBoxFor(x=>x.Name)
+                       .Label("菜单名称")
+                       .EmptyText("请输入名称")
+                       .ID("tbxName")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.DropDownListFor(x => x.ParentID)
+                       .ID("ddlParent")
+                       .Label("上级菜单")
+                       .EnableEdit(true)
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .DataTextField("Name")
+                       .DataValueField("ID")
+                       .EnableSimulateTree(true)
+                       .DataSimulateTreeLevelField("TreeLevel")
+                       .DataSource(ViewBag.ddlParentDataSource)
+                       .SelectedValue(ViewBag.ddlParentSelect),
+                    F.NumberBoxFor(x => x.SortIndex)
+                       .ID("tbxSortIndex")
+                       .Label("排序")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.DropDownListFor(x => x.ViewPowerID)
+                       .ID("ddlPower")
+                       .Label("浏览权限")
+                       .EnableEdit(true)
+                       .DataTextField("Name")
+                       .DataValueField("ID")
+                       .Required(false)
+                       .ShowRedStar(false)
+                       .DataSource(ViewBag.ddlPowerDataSource)
+                       .SelectedValue(ViewBag.ddlPowerSelect),
+                    F.TextBoxFor(x => x.NavigateUrl)
+                       .Label("链接")
+                       .ID("tbxUrl"),
+                    F.TextBoxFor(x => x.ImageUrl)
+                       .Label("图标")
+                       .ID("tbxIcon"),
+                    F.TextBoxFor(x => x.Remark)
+                       .Label("备注")
+                       .ID("tbxRemark")
+               )
+        )
+    )
+
+}

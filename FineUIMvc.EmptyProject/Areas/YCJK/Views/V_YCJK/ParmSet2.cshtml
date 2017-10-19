@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "ParmSet2";
+    var F = @Html.F();
+}
+@section head {
+<link rel="stylesheet" href="~/res/YCJK/css/reset.css" />
+<link rel="stylesheet" href="~/res/YCJK/css/ParamSet1.css" />
+<link rel="stylesheet" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+<script type="text/javascript" src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/echarts.min.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+}
+
+@section body {
+    <div class="main_wrap">
+    @*<div class="btns_wrap">
+            <div class="btnStyle saveBtn" >保存</div>
+            <div class="btnStyle cancelBtn">取消</div>
+        </div>*@
+    <div class="defaultOp_wrap">
+        <p class="title_text">常用</p>
+        <ul class="ul_default">
+            <li><i class="checked"></i><label>1#变频器输出温度(℃)</label></li>
+            <li><i></i><label>1#变频器输出温度(℃)</label></li>
+            <li><i></i><label>1#变频器输出温度(℃)</label></li>
+        </ul>
+    </div>
+    <div class="othersOp_wrap">
+        <p class="title_text">其他</p>
+        <ul class="ul_others">
+            <li><i class="checked"></i><label>设备编号</label></li>
+            <li><i></i><label>1#变频器输出温度(℃)</label></li>
+            <li><i></i><label>1#变频器输出温度(℃)</label></li>
+        </ul>
+    </div>
+</div>
+}
+@section script {
+<script type="text/javascript" src="~/res/YCJK/js/ParamSet2.js"></script>
+<script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}

@@ -1,0 +1,413 @@
+body {
+    position: relative; 
+    background: #f2f3f7;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+
+　　color:#999;
+
+　　}
+
+　　:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+
+　　color:#999;
+
+　　}
+
+　　::-moz-placeholder { /* Mozilla Firefox 19+ */
+
+　　color:#999;
+
+　　}
+
+　　:-ms-input-placeholder { /* Internet Explorer 10+ */
+
+　　color:#999;
+
+　　}
+* {
+    box-sizing: content-box;
+}
+.contentWrap {
+    position: absolute;
+    top: 12px;
+    left: 56px;
+    right: 12px;
+    bottom: 12px;
+}
+.pageHeader { 
+    width: 100%;
+    padding-top: 12px;
+    height: 40px; //28
+    background: #f2f3f7; 
+    
+}
+.headerWrap {
+    float: right;
+    height: 40px;
+    margin-right: 8px;
+}
+.statusBox {
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    padding: 1px;
+    background: #fff;
+    border-radius: 13px 0 0 13px;
+    border: 1px solid #d0d5d9;
+    border-right: none;
+    li {
+       float: left;
+       width: 50px;
+       height:24px;
+       line-height: 24px;
+       margin-right: 1px;
+       background: #e7e7e7;
+       cursor: pointer;
+       
+       &:first-child {
+           border-radius: 12px 0 0 12px; 
+       }
+       .statusPic {
+           float: left;
+           width: 14px;
+           height: 24px;
+           margin: 0 2px 0 5px;
+           background: url(../img/normalOnlineAndOff.png) no-repeat;
+       }
+       &.active,&:hover {         
+           background: #25bdff;
+           .statusTxt {
+                color: #fff;          
+            }
+            .statusPic {
+                 background: url(../img/activePnlineAndOff.png) no-repeat;               
+            }
+       }
+       &:nth-of-type(1) .statusPic {
+           background-position: 1px 6px;
+       }
+       &:nth-of-type(2) .statusPic {
+           background-position: -54px 6px;
+       }
+       &:nth-of-type(3) .statusPic {
+           background-position: -108px 6px;
+       }
+       &:nth-of-type(4) .statusPic {
+           background-position: -158px 6px;
+       }
+       .statusTxt {
+           float: left;
+           width: 27px;
+           height: 24px;
+           line-height: 24px;
+           font-size: 12px;
+           color: #bfc6ca;           
+       }
+    }
+}
+
+.searchBox {
+    position: relative;
+    float: left;
+    width: 226px;
+    height: 24px;
+    padding: 1px;
+    border: 1px solid #d0d5d9;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    background:#fff;
+    input {
+        background: transparent;
+        width: 86%;
+        height: 100%;
+        border: none;
+        outline: none;
+        color: #666;
+        text-indent: 12px;
+    }
+    label {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        background: url(../img/loopSearch.png) no-repeat 3px 3px;
+    }
+}
+.searchBtn {
+    float: left;
+    width: 58px;
+    height: 26px;
+    background: #ffab5a;
+    line-height: 28px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    border-radius: 13px;
+    color: #fffefe;
+    box-shadow: 1px 1px 3px #ccc;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+        opacity: .8;
+    }
+}
+.nextBtn {
+    float: left;
+    width: 58px;
+    height: 26px;
+    background: #25bdff;
+    line-height: 28px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+    border-radius: 13px;
+    color: #fffefe;
+    box-shadow: 1px 1px 3px #ccc;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+        opacity: .8;
+    }
+}
+
+//loopMain
+.loopMain {
+    position: absolute;
+    top: 60px;
+    left: 52px;
+    right: 16px;
+    bottom: 40px;  
+    background: #fff;
+    overflow: auto;
+}
+.loopItemContainer {
+    padding-bottom: 40px;
+    .loopItem {
+        position: relative;
+        float: left;
+        width: 348px;
+        height: 300px;
+        background: #fff;
+        box-shadow: 0 0 1px 3px #E2E3E7;
+        margin-top: 50px;
+       
+        .loopHeader {
+            width: 100%;
+            height: 35px;
+            border-bottom: 2px solid #23b6ff; 
+            .pumpStusPic {
+                float: left;
+                width: 16px;
+                height: 100%;
+                margin-left: 12px;
+                background: url(../img/statusItem.png) no-repeat -62px 10px;
+                &.error {
+                    background-position: -122px 10px; 
+                }
+                &.online {
+                    background-position: 0 10px;
+                }
+            }
+            .pumpNameTxt {
+                float: left;
+                height: 35px;
+                line-height: 35px;
+                color: #26c1ff;
+                font-size: 14px;
+            }
+        }
+        .loopPinAndSet {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 35px;
+            line-height: 35px;
+            .loopSet {
+                float: left;
+                width: 18px;
+                height: 18px;
+                margin-top: 7px;
+                margin-right: 3px;
+                cursor: pointer;
+                display: none;
+                background: url(../img/loopPinAndSet.png) no-repeat -99px 0 ;
+               
+            }
+            .loopPin {
+                float: left;
+                width: 18px;
+                height: 18px;
+                margin-top: 7px;
+                margin-right: 4px;
+                cursor: pointer;
+                background: url(../img/loopPinAndSet.png) no-repeat -50px 0 ;
+                &.pin {
+                  background-position: 0 0;  
+                }
+            }
+        }
+        
+        .loopContentBox {
+            position: relative;
+            width: 100%;
+            height: 198px;
+            border-bottom: 2px solid #23b6ff;
+            background: url(../img/loopBgWu.png) no-repeat 30px 16px;
+            &.xiang {
+                background: url(../img/loopBgXiang.png) no-repeat 30px 16px;
+            }
+            &.guan {
+                background: url(../img/loopBgGuan.png) no-repeat 30px 16px;
+            }
+            .inNum {
+                position: absolute;
+                top: 44px;
+                left: 148px;
+                width: 32px;
+                height: 16px;
+                font-size: 12px;
+                color: #fff;
+                line-height:16px;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 3px;
+                background: #26bfff;
+            }
+            .outNum {
+                position: absolute;
+                bottom: 14px;
+                left: 148px;
+                width: 32px;
+                height: 16px;
+                font-size: 12px;
+                color: #fff;
+                line-height:16px;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 3px;
+                background: #26bfff;
+            }
+            .timeBox {
+                position: absolute;
+                bottom: 30px;
+                right: 0;
+                width: 144px;
+                height: 16px;
+                color: #52bfff;
+                font-size: 12px;
+                line-height: 16px;
+            }
+            .yelunStatusBox {
+                position: absolute;
+                top: 64px;
+                left: 57px;
+                width: 232px;
+                height: 62px;
+                .yelunItem {
+                    position: relative;
+                    float: left;
+                    width: 20px;
+                    margin: 0 9px;
+                    height: 100%;
+                    .yelunLine {
+                        margin-left: 10px; 
+                        width: 1px;
+                        height: 100%;
+                        background: #24b9ff;
+                    }
+                    .yelunStatus {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        margin-left: -10px;
+                        margin-top: -10px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background: url(../img/pumpYeLunStatus.png) no-repeat -52px 0 #fff;
+                        &.error {
+                            background-position: -26px 0;
+                        }
+                        &.online {
+                            background-position: 0 0;
+                        }
+                    }
+                }
+            }
+        }
+        .loopLiuLiangAndDian {
+            width: 100%;
+            .loopLIuliang {
+                float: left;
+                width: 50%;
+                height: 30px;
+               line-height: 30px;
+                .liuLiangPic {
+                    float: left;
+                    width: 26px;
+                    height: 100%;
+                    background: url(../img/loopLiuLIangPic.png) no-repeat 5px 6px;
+                }
+                .liuLiangNumBox {
+                    text-indent: 6px;
+                    float: left;
+                    font-size: 12px;
+                    color: #26bfff;
+                    .liuLiangNum {
+                        font-size: 12px;
+                        
+                    }
+                }
+            }
+            .loopDianLiang {
+                float: left;
+                width: 50%;
+                height: 30px;
+                line-height: 30px;
+                .dianLiangPic {
+                    float: left;
+                    width: 26px;
+                    height: 100%;
+                    background: url(../img/loopLiuLIangPic.png) no-repeat -150px 6px;
+                }
+                .dianLiangNumBox {
+                    text-indent: 6px;
+                    float: left;
+                    font-size: 12px;
+                    color: #26bfff;
+                    .dianLiangNum {
+                        font-size: 12px;
+                        
+                    }
+                }
+            }
+            .loopBianPin {
+                float: left;
+                width: 50%;
+                height: 30px;
+                line-height: 30px;
+                .bianPinPic {
+                    float: left;
+                    width: 26px;
+                    height: 100%;
+                    background: url(../img/bianpinLunxun.png) no-repeat 5px 6px;
+                }
+                .bianPinNumBox {
+                    text-indent: 6px;
+                    float: left;
+                    font-size: 12px;
+                    color: #26bfff;
+                    .bianPinNum {
+                        font-size: 12px;
+                        
+                    }
+                }
+            }
+        }
+    } 
+}
+
+

@@ -1,0 +1,445 @@
+﻿
+@{
+    ViewBag.Title = "YuZhiPumpBasic_new";
+var F = @Html.F();
+}
+
+
+@section body {
+    @(F.Form()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnBasicCreate_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                   F.FormRow()
+                     .Items(
+                         F.TextBox()
+                            .Label("预置泵站编号")
+                            .EmptyText("请输入预置泵站编号")
+                            .ID("tbSelectedDTU")
+                            .Required(true)
+                            .ShowRedStar(true)
+                         .LabelWidth(80),
+                         F.TextBox()
+                            .Label("预置泵站名称")
+                            .EmptyText("请输入预置泵站名称")
+                            .ID("tbxName")
+                            .LabelWidth(80)
+                            .Required(true)
+                            .ShowRedStar(true)
+                         
+                         ),
+                     F.FormRow()
+                      .Items(
+                         F.TriggerBox()
+                            .ID("tbSelectedCustomer")
+                            .EnableEdit(false)
+                            .LabelWidth(80)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientCustomerSelect();")
+                            .Text(ViewBag.CustomerName)
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .Readonly(ViewBag.ReadOnly)
+                            .Label("客户名称"),
+                         F.TriggerBox()
+                           .ID("tbSelectedAddressList")
+                           .EnableEdit(false)
+                           .LabelWidth(80)
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientAddressListSelect();")
+                           .Label("地址方案")
+                         ),
+                                  F.FormRow()
+                                      .ID("gp1FormRow2")
+                                      .Items(
+                                         F.DropDownList()
+                                            .ID("ddlRunPumpNum")
+                                            .Label("主泵泵数")
+                                                    .LabelWidth(80)
+                                            .SelectedValue("0")
+                                            .Items(
+                                                 F.ListItem()
+                                                     .Text("0")
+                                                     .Value("0"),
+                                                 F.ListItem()
+                                                     .Text("1")
+                                                     .Value("1"),
+                                                 F.ListItem()
+                                                     .Text("2")
+                                                     .Value("2"),
+                                                 F.ListItem()
+                                                     .Text("3")
+                                                     .Value("3"),
+                                                 F.ListItem()
+                                                     .Text("4")
+                                                     .Value("4"),
+                                                 F.ListItem()
+                                                     .Text("5")
+                                                     .Value("5"),
+                                                 F.ListItem()
+                                                     .Text("6")
+                                                     .Value("6")
+                                                 ),
+                                         F.DropDownList()
+                                            .ID("ddlAuxiliarypumpcount")
+                                            .Label("辅泵泵数")
+                                                    .LabelWidth(80)
+                                            .SelectedValue("0")
+                                            .Items(
+                                                 F.ListItem()
+                                                     .Text("0")
+                                                     .Value("0"),
+                                                 F.ListItem()
+                                                     .Text("1")
+                                                     .Value("1"),
+                                                 F.ListItem()
+                                                     .Text("2")
+                                                     .Value("2"),
+                                                 F.ListItem()
+                                                     .Text("3")
+                                                     .Value("3"),
+                                                 F.ListItem()
+                                                     .Text("4")
+                                                     .Value("4"),
+                                                 F.ListItem()
+                                                     .Text("5")
+                                                     .Value("5"),
+                                                 F.ListItem()
+                                                     .Text("6")
+                                                     .Value("6")
+                                                 ),
+                                         F.DropDownList()
+                                            .ID("ddlDrainPumpNum")
+                                            .Label("排水泵数")
+                                            .LabelWidth(80)
+                                            .SelectedValue("0")
+                                            .Items(
+                                                 F.ListItem()
+                                                     .Text("0")
+                                                     .Value("0"),
+                                                 F.ListItem()
+                                                     .Text("1")
+                                                     .Value("1"),
+                                                 F.ListItem()
+                                                     .Text("2")
+                                                     .Value("2"),
+                                                 F.ListItem()
+                                                     .Text("3")
+                                                     .Value("3"),
+                                                 F.ListItem()
+                                                     .Text("4")
+                                                     .Value("4"),
+                                                 F.ListItem()
+                                                     .Text("5")
+                                                     .Value("5"),
+                                                 F.ListItem()
+                                                     .Text("6")
+                                                     .Value("6")
+                                                 )
+                                      ),
+                   F.FormRow()
+                     .Items(
+                        F.TriggerBox()
+                            .ID("tbSelectedAddress")
+                            .LabelWidth(80)
+                            .EnableEdit(false)
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientAddressSelect();")
+                            .Label("安装位置")
+                     ),
+                   F.FormRow()
+                     .Items(
+                        F.TriggerBox()
+                           .ID("tbSelectedFWell")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFWellSelect();")
+                           .Label("所在井室"),
+                         F.TriggerBox()
+                           .ID("tbSelectedFPipeline")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFPipelineSelect();")
+                           .Label("所在管线")
+                      ),
+                 F.FormRow()
+                    .Items(
+                        F.TriggerBox()
+                           .ID("tbSelectedFEnterValve")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFEnterValveSelect();")
+                           .Label("进口阀门"),
+                        F.TriggerBox()
+                           .ID("tbSelectedFExitValve")
+                           .LabelWidth(80)
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .OnClientTriggerClick("OnClientFExitValveSelect();")
+                           .Label("出口阀门")
+                              ),
+                   F.FormRow()
+                      .Items(
+                          F.TextBox()
+                            .Label("品牌")
+                            .EmptyText("请输入品牌")
+                            .ID("tbxFBrand")
+                            .LabelWidth(80),
+                          F.DropDownList()
+                            .ID("ddlFMaterial")
+                            .Label("材质")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFMaterialDataSource)
+                            .SelectedValue("0"),
+                          F.DropDownList()
+                            .ID("ddlFCaliber")
+                            .Label("口径")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFCaliberDataSource)
+                            .SelectedValue("0")
+                          ),
+                   F.FormRow()
+                   .Items(
+                      F.TextBox()
+                            .ID("txt_sxrj")
+                            .LabelWidth(80)
+                            .Label("水箱容积"),
+                      F.DropDownList()
+                            .ID("ddlFEQuiType")
+                            .Label("设备类型")
+                            .LabelWidth(80)
+                            .Hidden(true)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFEQuiTypeDataSource)
+                            .SelectedValue("0"),
+                      F.DropDownList()
+                            .ID("ddlFInstallMode")
+                            .Label("安装方式")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFInstallModeDataSource)
+                            .SelectedValue("0"),
+                      F.DropDownList()
+                            .ID("ddlFCommunicationMode")
+                            .Label("通讯方式")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFCommunicationModeDataSource)
+                            .SelectedValue("0")
+                       ),
+                   F.FormRow()
+                   .Items(
+                       F.DropDownList()
+                             .ID("ddlFReadMeterMode")
+                             .Label("抄表方式")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFReadMeterModeDataSource)
+                             .SelectedValue("0"),
+                       F.DropDownList()
+                             .ID("ddlFBuriedMode")
+                             .Label("埋设形式")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFBuriedModeDataSource)
+                             .SelectedValue("0"),
+                       F.DropDownList()
+                             .ID("ddlFEQuiState")
+                             .Label("设备状态")
+                             .LabelWidth(80)
+                             .DataTextField("FName")
+                             .DataValueField("FValue")
+                             .DataSource(ViewBag.ddlFEQuiStateDataSource)
+                             .SelectedValue("0")
+                   ),
+              F.FormRow()
+               .Items(
+                   F.NumberBox()
+                         .Label("地面标高")
+                         .LabelWidth(80)
+                         .DecimalPrecision(2)
+                         .Text("1.00")
+                         .TrimEndZero(false)
+                         .ID("tbxFGroundHeigh"),
+                   F.NumberBox()
+                         .Label("保养周期")
+                         .LabelWidth(80)
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .Text("1")
+                         .ID("tbxFBYCycle"),
+                   F.NumberBox()
+                         .Label("更换周期")
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .LabelWidth(80)
+                         .Text("1")
+                         .ID("tbxFGHCycle")
+                   ),
+              F.FormRow()
+                  .Items(
+                      F.TextBox()
+                        .Label("备注")
+                        .EmptyText("请输入备注")
+                        .ID("tbxFNote")
+                        .LabelWidth(80)
+                      ),
+                 F.FormRow()
+                   .Items(
+              F.HiddenField()
+              .Label("地址表")
+              .ID("tbxFSchemeID"),
+              F.HiddenField()
+                 .Label("经纬度")
+                 .ID("tbxLngLat"),
+              F.HiddenField()
+                 .Label("客户id")
+                 .ID("tbxCustomerID")
+                 .Text(ViewBag.CustomerID),
+              F.HiddenField()
+                 .Label("所在井室")
+                 .ID("hidFWell"),
+              F.HiddenField()
+                 .Label("所在管线")
+                 .ID("hidFPipeline"),
+              F.HiddenField()
+                 .Label("进口阀门")
+                 .ID("hidFEnterValve"),
+              F.HiddenField()
+                 .Label("出口阀门")
+                 .ID("hidFExitValve"),
+              F.HiddenField()
+                 .Label("地图模板id")
+                 .ID("tbxFMapTempID")
+                 .Text(ViewBag.MapTempID)
+                 )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+        function OnClientFWellSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/WellWindow")';
+            var openUrl = F.formatString("{0}?FWell={1}", url, F.urlEncode(F.ui.tbSelectedFWell.getValue()));
+
+            F.ui.Window1.show(openUrl, '所在井室选择');
+        }
+        function OnClientFPipelineSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/PipelineWindow")';
+            var openUrl = F.formatString("{0}?FPipeline={1}", url, F.urlEncode(F.ui.tbSelectedFPipeline.getValue()));
+
+            F.ui.Window1.show(openUrl, '所在管线选择');
+        }
+        function OnClientFEnterValveSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/EnterValveWindow")';
+            var openUrl = F.formatString("{0}?FEnterValve={1}", url, F.urlEncode(F.ui.tbSelectedFEnterValve.getValue()));
+
+            F.ui.Window1.show(openUrl, '进口阀门选择');
+        }
+        function OnClientFExitValveSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/ExitValveWindow")';
+            var openUrl = F.formatString("{0}?FExitValve={1}", url, F.urlEncode(F.ui.tbSelectedFExitValve.getValue()));
+
+            F.ui.Window1.show(openUrl, '出口阀门选择');
+        }
+        function OnClientAddressListSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/AddressSchemeWindow")';
+            var openUrl = F.formatString("{0}?id=11&AddressListId={1}", url, F.urlEncode(F.ui.tbSelectedAddressList.getValue()));
+
+            F.ui.Window1.show(openUrl, '地址方案选择', 700, 500);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.tbxFSchemeID.setValue(id);
+        }
+
+
+        function updateCustomer(id, text,tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+
+        function updateWell(id, text) {
+            F.ui.tbSelectedFWell.setValue(text);
+            F.ui.hidFWell.setValue(id);
+        }
+        function updatePipeline(id, text) {
+            F.ui.tbSelectedFPipeline.setValue(text);
+            F.ui.hidFPipeline.setValue(id);
+        }
+        function updateEnterValve(id, text) {
+            F.ui.tbSelectedFEnterValve.setValue(text);
+            F.ui.hidFEnterValve.setValue(id);
+        }
+        function updateExitValve(id, text) {
+            F.ui.tbSelectedFExitValve.setValue(text);
+            F.ui.hidFExitValve.setValue(id);
+        }
+
+    </script>
+}

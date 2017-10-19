@@ -1,0 +1,376 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #eaeff3;
+  overflow: hidden;
+  position: relative;
+}
+a {
+  text-decoration: none;
+  color: #5fb0f8;
+}
+/*搜索框模块*/
+.search {
+  /*position: absolute;
+        top: 0;
+        left: 0;*/
+  width: 97%;
+  height: 1.21428571rem;
+  padding: 0.14285714rem;
+  background: #20a6ff;
+  border-radius: 5px;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.contentWrap {
+  position: absolute;
+  top: 1.42857143rem;
+  left: 0;
+  right: 0;
+  bottom: 1.14285714rem;
+  overflow: auto;
+}
+.dropload-up,
+.dropload-down {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  font-size: 0.42857143rem;
+  /* 开启硬件加速 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.dropload-down {
+  height: 1.42857143rem;
+}
+.dropload-refresh,
+.dropload-update,
+.dropload-load,
+.dropload-noData {
+  height: 1.42857143rem;
+  line-height: 1.42857143rem;
+  text-align: center;
+}
+.dropload-load .loading {
+  display: inline-block;
+  height: 0.53571429rem;
+  width: 0.53571429rem;
+  border-radius: 100%;
+  margin: 6px;
+  border: 2px solid #666;
+  border-bottom-color: transparent;
+  vertical-align: middle;
+  -webkit-animation: rotate 0.75s linear infinite;
+  animation: rotate 0.75s linear infinite;
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*泵房列表搜索框*/
+.searchBg {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+.search .select {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 0.46428571rem;
+  vertical-align: middle;
+}
+.search .select .defaultContainer {
+  display: inline-block;
+  width: 1.07142857rem;
+  padding-left: 0.21428571rem;
+  height: 1.21428571rem;
+  line-height: 1.21428571rem;
+  float: left;
+}
+.search .select .triangle {
+  display: inline-block;
+  width: 0.35714286rem;
+  height: 0.32142857rem;
+  margin-top: 0.42857143rem;
+  line-height: 1.21428571rem;
+  background: url(../img/triangle.png) no-repeat;
+  background-size: cover;
+}
+.search .select .dropDownMenu {
+  position: absolute;
+  left: 0;
+  top: 1.21428571rem;
+  background: #67c2ff;
+  width: 2rem;
+  height: 1.92857143rem;
+  text-align: center;
+  color: #ffffff;
+  z-index: 3;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.noneShow {
+  display: none;
+}
+.search .select .dropDownMenu li {
+  position: relative;
+  height: 0.96428571rem;
+  line-height: 0.96428571rem;
+  padding-left: 0.28571429rem;
+}
+.search .select .dropDownMenu li:hover {
+  background: #dad4d4;
+}
+/*.pumpList .pumpListBody*/
+.search .select .current {
+  transform: rotate(180deg);
+}
+.searchDiag {
+  width: 6.42857143rem;
+  height: 1.21428571rem;
+  font-size: 0.5rem;
+  text-indent: 0.35714286rem;
+  background: none;
+  color: #fff;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+.searchBtn {
+  width: 0.85714286rem;
+  height: 0.71428571rem;
+  padding-top: 0.14285714rem;
+  padding-right: 0.07142857rem;
+  line-height: 1.21428571rem;
+  /*background-color:transparent;*/
+  border: none;
+  background: url(../img/searchBtn-2.png) no-repeat;
+  background-size: contain;
+  float: right;
+  margin: 0.07142857rem;
+  margin-top: 0.21428571rem;
+  cursor: pointer;
+}
+/*泵房列表*/
+.List {
+  background: #fff;
+  /*margin-top: 46*@rex;*/
+  width: 100%;
+  overflow: auto;
+  font-size: 0.42857143rem;
+  box-sizing: border-box;
+  padding: 0 0.28571429rem;
+}
+.List ul li {
+  height: 1.07142857rem;
+  line-height: 1.07142857rem;
+  padding: 0.14285714rem;
+  color: #fff;
+  border-top: 1px solid #f3f4f5;
+  border-bottom: 1px solid #f3f4f5;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+}
+.List ul li a {
+  font-size: 0.35714286rem;
+  width: 100%;
+  display: block;
+}
+.List ul li.current {
+  background: #f0f2f4;
+}
+.List ul li:hover {
+  background: #f0f2f4;
+}
+/*.List ul .offline i{
+		background-position:-40px 3px;
+	}
+	.List ul .warning i{
+		background-position:-80px 3px;
+	}*/
+.List ul li p {
+  display: inline-block;
+  height: 0.71428571rem;
+  line-height: 1.07142857rem;
+}
+.List ul li span {
+  color: #ced3d8;
+  font-weight: normal;
+  height: 0.71428571rem;
+  line-height: 1.07142857rem;
+  float: right;
+}
+.listItem i {
+  display: inline-block;
+  width: 0.39285714rem;
+  height: 0.39285714rem;
+  margin-right: 0.14285714rem;
+}
+.listItem.status0 i {
+  background: url(../img/stopIco.png) no-repeat;
+  background-size: contain;
+}
+.listItem.status1 i {
+  background: url(../img/runIco.png) no-repeat;
+  background-size: contain;
+}
+.listItem.status2 i {
+  background: url(../img/errorIco.png) no-repeat;
+  background-size: contain;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.21428571rem;
+  background: #20a6ff;
+}
+.footer ul {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  display: -webkit-box;
+  display: box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+.footer ul li {
+  list-style: none;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  line-height: 100%;
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footer ul li span {
+  display: inline-block;
+  width: 0.64285714rem;
+  height: 0.64285714rem;
+  margin-top: 0.21428571rem;
+}
+.footer .listC {
+  background-image: url(../img/listC.png);
+  background-size: cover;
+}
+.footer .dataA {
+  background-image: url(../img/dataA.png);
+  background-size: cover;
+}
+.footer .warnA {
+  width: 0.71428571rem;
+  height: 0.71428571rem;
+  background-image: url(../img/warnA.png);
+  background-size: cover;
+}
+.footer .set {
+  background-image: url(../img/set.png);
+  background-size: cover;
+}
+.footer .map {
+  width: 0.71428571rem;
+  height: 0.71428571rem;
+  background-image: url(../img/map.png);
+  background-size: cover;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.setItem {
+  position: absolute;
+  bottom: 1px;
+  left: 0.07142857rem;
+  right: 0.07142857rem;
+  height: 6.42857143rem;
+  border-radius: 0.21428571rem;
+}
+.setItem ul {
+  width: 100%;
+  height: 76%;
+  margin-bottom: 1%;
+  box-sizing: border-box;
+  padding: 0.71428571rem;
+  border-radius: 0.21428571rem;
+  list-style: none;
+  background: #f0f2f4;
+  display: -webkit-box;
+  display: box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+.setItem ul li {
+  width: 33.3%;
+  height: 2.14285714rem;
+  background: #b7b1b1;
+  text-align: center;
+  line-height: 2.14285714rem;
+  border-radius: 0.17857143rem;
+  border: 1px solid gray;
+  margin: 0 0.03571429rem;
+}
+.setItem .close-set {
+  width: 100%;
+  height: 20%;
+  margin-top: 0.07142857rem;
+  box-sizing: border-box;
+  list-style: none;
+  background: #f0f2f4;
+  border-radius: 0.21428571rem;
+  font-size: 0.57142857rem;
+  color: rgba(40, 165, 248, 0.92);
+  display: -webkit-box;
+  display: box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}

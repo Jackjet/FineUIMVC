@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "TFBengZhan";
+    var F = @Html.F();
+}
+
+@section head {
+    <title>调峰泵站</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/TFBengZhan.css" />
+    <link rel="stylesheet" href="~/res/CDJK/css/Flow_List.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/reportNavListStyle.css" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/js/echarts.min.js"></script>   
+    <script src="~/res/layer/layer.js"></script>
+}
+
+@section body {
+
+    <div class="main_wrap clearfix">
+    <div class="list_wrap">
+        <div class="list_header clearfix">
+            <div class="search_box">
+                <div class="search_wrap">
+                    <button class="onlineBtn">在线</button><button class="offlineBtn">离线</button><button class="alarmBtn">报警</button><button class="showAllBtn active">全部</button>
+                    <input id="searchText" type="text" placeholder="搜索内容" />
+                </div>
+                <button class="searchBtn">搜索</button>
+            </div>
+        </div>
+        <div class="list_table">
+            <div class="table1_wrap">
+                <table class="myTable table1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>调峰编号</th>
+                            <th>采集时间</th>
+                            <th>调峰名称</th>
+                            <th>进出水压力(MPa)</th>
+                            <th class="FlowInOut">进出累积流量(m³)</th>
+                            <th>蓄水流量(m³/h)</th>
+                            <th>水箱容积(m³)</th>
+                            <th>出水流量(m³/h)</th>
+                            <th>蓄满时间(h)</th>
+                            <th>储水总量(m³)</th>
+                            <th>调峰水量(m³)</th>
+                            <th>调节比例(%)</th>
+                            <th>储水比例(%)</th>
+                            <th>调峰能力(min)</th>
+                            <th>滞留时间(h)</th>
+                            <th>水箱液位(m)</th>
+                            <th>日调峰量(m³)</th>
+                            <th>调控状态</th>
+                            <th>流量阀远程控制</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                @*<div class="setBtn"></div>*@
+            </div>
+            <div class="table2_wrap">
+                <table class="myTable table2">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>调峰编号</th>
+                            <th>采集时间</th>
+                            <th>调峰名称</th>
+                            <th>进出水压力(MPa)</th>
+                            <th class="FlowInOut">进出累积流量(m³)</th>
+                            <th>蓄水流量(m³/h)</th>
+                            <th>水箱容积(m³)</th>
+                            <th>出水流量(m³/h)</th>
+                            <th>蓄满时间(h)</th>
+                            <th>储水总量(m³)</th>
+                            <th>调峰水量(m³)</th>
+                            <th>调节比例(%)</th>
+                            <th>储水比例(%)</th>
+                            <th>调峰能力(min)</th>
+                            <th>滞留时间(h)</th>
+                            <th>水箱液位(m)</th>
+                            <th>日调峰量(m³)</th>
+                            <th>调控状态</th>
+                            <th>流量阀远程控制</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>采集时间</td>
+                            <td>进水压力(MPa)</td>
+                            <td>出水压力(MPa)</td>
+                            <td>蓄水流量(m³/h)</td>
+                            <td>水箱容积(m³)</td>
+                            <td>出水流量(m³/h)</td>
+                            <td>蓄满时间(h)</td>
+                            <td>储水总量(m³)</td>
+                            <th>调峰水量(m³)</th>
+                            <td>调节比例(%)</td>
+                            <td>储水比例(%)</td>
+                            <td>调峰能力(min)</td>
+                            <td>滞留时间(h)</td>
+                            <td>水箱液位(m)</td>
+                            <td>日调峰量(m³)</td>
+                            <td>调控状态</td>
+                            <td>流量阀远程控制</td>
+                            <td>流量阀远控开度(%)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>采集时间</td>
+                            <td>11</td>
+                            <td>11</td>
+                            <td>12345</td>
+                            <td>345567</td>
+                            <td>t556</td>
+                            <td>455</td>
+                            <td>67767</td>
+                            <td>8989</td>
+                            <td>67</td>
+                            <td>2345</td>
+                            <td>2345</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>345</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="active">
+                            <td></td>
+                            <td>002</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>003</td>
+                            <td class="equipName"><i class="status_2"></i><a>测试设备1</a></td>
+                            <td>2017-04-21</td>
+                            <td class="inOutPress"><span class="pressIn alarm">6.24</span><span class="pressOut">0.68</span></td>
+                            <td class="pumpStatus"><span class="onSta"></span><span class="offSta"></span><span class="alarmSta"></span></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page_wrap">
+            <div class="page_box">
+                <a id="firstPage" href="#">&lt;&lt;</a>
+                <a id="prevPage" href="#">&lt;</a><a id="currentPage" href="#">1</a><a href="#">/</a><a id="totalPage" href="#">100</a><a id="nextPage" href="#">&gt;</a><a id="lastPage" href="#">&gt;&gt;</a>
+                <span>每页</span><a id="pageSize" href="#">10</a><input type="text" id="editPageIndex" /><span>条，共</span><a id="totalNum" href="#">12222</a><span>条</span>
+            </div>
+        </div>
+    </div>
+    <div class="chart_box">
+        <div id="showHideBtn" class="show"></div>
+        <div class="chart_mainBox">
+            <div class="realPress_wrap">
+                <p class="modelText">进出水压力</p>
+                <div class=" chart_wrap">
+                    <div class="echartsBox" id="chart_waterInOutPress"></div>
+                </div>
+            </div>
+            <div class="yearMonth_wrap">
+                <p class="modelText">调峰水量实时曲线</p>
+                <div class="chart_wrap">
+                    <div class="echartsBox" id="chart_tfWaterFlow"></div>
+                </div>
+            </div>
+            <div class="monthDay_wrap">
+                <p class="modelText">水箱液位实时曲线</p>
+                <div class="chart_wrap ">
+                    <div class="echartsBox" id="chart_waterLevel"></div>
+                </div>
+            </div>
+            <div class="dayHour_wrap">
+                <p class="modelText">调峰能力曲线</p>
+                <div class="chart_wrap">
+                    <div class="echartsBox" id="chart_tfAbility"></div>
+                </div>
+            </div>
+        </div>
+        <div class="report_wrap">
+            <div class="showReportBtn">报表导航</div>
+            <div class="reportNav_wrap">
+                <div class="reportNav_box">
+                    <div class="reportNav_head"><p>报表导航</p></div>
+                    <div class="report_listWrap">
+                        <ul class="report_list">
+                            @*<li data-key="tfRunLog"><i class="area_ico"></i><a>运行日志</a></li>
+                            <li data-key="compreReport"><i class="lineBar_ico"></i><a>综合报表</a></li>
+                            <li data-key="waterBoxYW"><i class="lineBar_ico"></i><a>水箱液位</a></li>
+                            <li data-key="tfAbility"><i class="lineBar_ico"></i><a>调峰能力</a></li>
+                            <li><i class="lineBar_ico"></i><a>月每日压力曲线图</a></li>
+                            <li><i class="lineBar_ico"></i><a>月每日电量统计图</a></li>
+                            <li><i class="lineBar_ico"></i><a>月每日流量统计图</a></li>
+                            <li><i class="lineBar_ico"></i><a>年每月压力曲线图</a></li>
+                            <li><i class="lineBar_ico"></i><a>年每月电量统计图</a></li>
+                            <li><i class="lineBar_ico"></i><a>年每月流量统计图</a></li>
+                            <li><i class="lineBar_ico"></i><a>水泵小保提示报表</a></li>
+                            <li><i class="lineBar_ico"></i><a>水泵大保提示报表</a></li>
+                            <li><i class="lineBar_ico"></i><a>吨水能耗</a></li>*@
+                        </ul>
+                    </div>
+                </div>
+                <div class="hideReportBtn">向上收缩隐藏</div>
+            </div>
+        </div>
+     </div>
+</div>
+   
+}
+@section script {
+<script type="text/javascript" src="~/res/configJson/reportList.js"></script>
+    <script type="text/javascript" src="~/res/CDJK/js/TFBengZhan.js"></script>
+<script type="text/javascript" src="~/res/CDJK/js/reportNavList.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}
+
+

@@ -1,0 +1,312 @@
+.textDot {
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  background: #A6A6A6;
+}
+.yaLiBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 332px;
+  height: 558px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-left: -166px;
+  margin-top: -1000888px;
+  background: url(../img/warnNodataBg.png) no-repeat #ffffff center center;
+  -webkit-box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+}
+.yaLiA,
+.yaLiB {
+  position: absolute;
+  top: 0;
+  left: 0;
+  float: left;
+  width: 332px;
+  height: 558px;
+  background: #f2f2f6;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 14px 14px 14px rgba(0, 0, 0, 0.4);
+}
+.yaLiA {
+  z-index: 3;
+}
+.yaLiA .aHeader {
+  position: relative;
+  width: 332px;
+  height: 220px;
+  border-radius: 8px 8px 0 0;
+}
+.yaLiA .aHeader .imgBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: #0f699e;
+}
+.yaLiA .aHeader .timeBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 332px;
+  height: 42px;
+  font-size: 12px;
+  border-radius: 8px 8px 0 0;
+}
+.yaLiA .aHeader .timeBox .caiJiTime {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  padding: 12px 0 0 18px;
+  width: 220px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.yaLiA .aHeader .numberBox {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 332px;
+  height: 30px;
+  line-height: 30px;
+}
+.yaLiA .aHeader .numberBox .pumpName {
+  float: left;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 18px;
+  width: 180px;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.yaLiA .aHeader .numberBox .pumpNumber {
+  float: right;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 18px;
+  width: 1px;
+  overflow: hidden;
+}
+.yaLiA .aHeader .numberBox .pumpQuanJing {
+  float: right;
+  width: 16px;
+  height: 24px;
+  margin-right: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  background: url(../img/camera.png) no-repeat;
+  background-size: cover;
+}
+.closeBox {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.8s ease-in;
+  -o-transition: all 0.8s ease-in;
+  transition: all 0.8s ease-in;
+  -webkit-transform-origin: 17px 18px;
+  -moz-transform-origin: 17px 18px;
+  -ms-transform-origin: 17px 18px;
+  -o-transform-origin: 17px 18px;
+  transform-origin: 17px 18px;
+}
+.closeBox:hover {
+  -webkit-transform: rotateZ(700deg);
+  -ms-transform: rotateZ(700deg);
+  -o-transform: rotateZ(700deg);
+  transform: rotateZ(700deg);
+}
+.closeBox .close {
+  font-size: 34px;
+  z-index: 1;
+  font-weight: bold;
+  color: #fff;
+}
+.yaLiA .aContentList {
+  margin-top: 10px;
+  width: 332px;
+  height: 316px;
+  background: #fff;
+  border-top: 1px solid #d9d8d9;
+  border-bottom: 1px solid #d9d8d9;
+}
+.yaLiA .aContentList .power_box {
+  width: 332px;
+}
+.yaLiA .aContentList .power_box > li {
+  width: 324px;
+  height: 39px;
+  line-height: 39px;
+  font-size: 12px;
+  margin-left: 8px;
+  border-bottom: 1px solid #d9d8d9;
+}
+.yaLiA .aContentList .power_box > li .power_name {
+  float: left;
+  height: 39px;
+  padding: 0 6px 0 3px;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList {
+  float: left;
+  padding-top: 10px;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList > li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  background: url(../img/yaLiPopABg.png) no-repeat;
+  margin-right: 4px;
+  cursor: pointer;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList > li.bingtu {
+  background-position: 2px -212px;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList > li.quxian {
+  background-position: 2px -141px;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList > li.zhuxing {
+  background-position: 2px -70px;
+}
+.yaLiA .aContentList .power_box > li .tubiaoList > li.set {
+  background-position: 2px -356px;
+}
+.yaLiA .aContentList .power_box > li .number {
+  width: 70px;
+  padding-right: 20px;
+  float: right;
+  text-align: right;
+  color: #aeaeae;
+}
+.yaLiB .bHeader {
+  position: relative;
+  width: 332px;
+  height: 142px;
+  padding: 4px 0 0 5px;
+  background: #3a86b2;
+}
+.yaLiB .bHeader .backBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+}
+.yaLiB .bHeader .backBox .backBtn {
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  background: url(../img/backBtn.png) no-repeat 5px 10px;
+}
+.yaLiB .bHeader #echart_box {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 332px;
+  height: 84px;
+}
+.yaLiB .bRightUl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 280px;
+  height: 412px;
+  font-size: 12px;
+}
+.yaLiB .bRightUl .bRightItem {
+  width: 100%;
+  border-bottom: 1px solid #d9d8d9;
+  height: 39px;
+  line-height: 39px;
+  cursor: pointer;
+}
+.yaLiB .bRightUl .bRightItem .bRightItemName {
+  max-width: 60px;
+  float: left;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.yaLiB .bRightUl .bRightItem .bRightItemNumber {
+  max-width: 200px;
+  float: right;
+  padding-right: 16px;
+  color: #aeaeae;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.yaLiB .bContentBox {
+  height: 412px;
+  width: 332px;
+  background: #fff;
+}
+.yaLiB .bContentBox .cotentLeftNav {
+  float: left;
+  width: 36px;
+  height: 100%;
+  background: #f2f2f2;
+}
+.yaLiB .bContentBox .cotentLeftNav > li {
+  width: 36px;
+  height: 36px;
+  border-bottom: 1px solid #dadada;
+  background: url(../img/mapShowNav.png) no-repeat;
+  cursor: pointer;
+}
+.yaLiB .bContentBox .cotentLeftNav > li:hover,
+.yaLiB .bContentBox .cotentLeftNav > li.active {
+  background-color: #fff;
+}
+.yaLiB .bContentBox .cotentLeftNav > li.info {
+  background-position: 10px -22px;
+}
+.yaLiB .bContentBox .cotentLeftNav > li.baobiao {
+  background-position: 10px -56px;
+}
+.yaLiB .bContentBox .cotentLeftNav > li.baojing {
+  background-position: 10px -88px;
+}
+.yaLiB .bContentBox .bRightContentWrap {
+  position: relative;
+  float: right;
+  width: 280px;
+  height: 412px;
+  background: #fff;
+}
+.yaLiB .bContentBox .bRightContentWrap .bRightUl.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}

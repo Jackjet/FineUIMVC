@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "User_new";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .BodyPadding(10)
+                .AutoScroll(true)
+                .IsViewPort(true)
+                .Toolbars(
+                    F.Toolbar()
+                        .Items(
+                            F.Button()
+                                .Icon(Icon.SystemClose)
+                                .Text("关闭")
+                                .Listener("click", "F.activeWindow.hide();"),
+                            F.ToolbarSeparator(),
+                            F.Button()
+                                .ValidateForms("SimpleForm1")
+                                .Icon(Icon.SystemSaveClose)
+                                .OnClick(Url.Action("btnCreate_Click"), "SimpleForm1")
+                                .Text("保存后关闭")
+                        )
+                )
+                .Items(
+                        F.TextBox()
+                           .Label("登录名")
+                           .EmptyText("请输入登录名")
+                           .ID("tbxName")
+                           .Required(true)
+                           .ShowRedStar(true),
+                        F.TextBox()
+                           .Label("密码")
+                           .EmptyText("请输入密码")
+                           .ID("tbxPassword")
+                           .TextMode(TextMode.Password)
+                           .Required(true)
+                           .ShowRedStar(true),
+                        F.DropDownList()
+                           .ID("ddlType")
+                           .Label("用户类型")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlTypeDataSource)
+                           .Listener("change", "onddlTypeChange")
+                           .Readonly(ViewBag.ReadOnly)
+                           .SelectedValue(ViewBag.SelectValue),
+                        F.DropDownList()
+                           .ID("ddlSex")
+                           .Label("性别")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlSexDataSource)
+                           .SelectedValue("0"),
+                        F.DropDownList()
+                           .ID("ddlEnable")
+                           .Label("是否启用")
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .DataTextField("FName")
+                           .DataValueField("FValue")
+                           .DataSource(ViewBag.ddlEnableDataSource)
+                           .SelectedValue("1"),
+                        F.DropDownList()
+                          .ID("ddlCompany")
+                          .Label("分公司")
+                          .Required(true)
+                          .ShowRedStar(true)
+                          .DataTextField("Fengongsi")
+                          .DataValueField("U8number")
+                          .DataSource(ViewBag.ddlCompanyDataSource)
+                          .SelectedValue("0"),
+                        F.DatePicker()
+                          .DateFormatString("yyyy-MM-dd")
+                          .Label("生日")
+                          .EmptyText("请输入生日")
+                          .ID("dpBirthday")
+                          .SelectedDate(DateTime.Now),
+                        F.TextBox()
+                           .Label("邮箱")
+                           .EmptyText("请输入邮箱")
+                           .RegexPattern(RegexPattern.EMAIL)
+                           .RegexMessage("邮箱格式不正确")
+                           .ID("tbxEmail"),
+                        F.TriggerBox()
+                           .ID("tbSelectedCustomer")
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .OnClientTriggerClick("OnClientCustomerSelect();")
+                           .Text(ViewBag.CustomerName)
+                           .Hidden(ViewBag.Hidden)
+                           .Readonly(ViewBag.ReadOnly)
+                           .Label("选择客户"),
+                        F.TriggerBox()
+                           .ID("tbSelectedPumpGroup")
+                           .EnableEdit(false)
+                           .TriggerIcon(TriggerIcon.Search)
+                           .Required(true)
+                           .ShowRedStar(true)
+                           .OnClientTriggerClick("OnClientPumpGroupSelect();")
+                           .Label("选择泵房组"),
+                        F.TextBox()
+                           .Label("备注")
+                           .EmptyText("请输入备注")
+                           .ID("tbxRemark"),
+                        F.HiddenField()
+                           .Label("客户id")
+                           .Text(ViewBag.CustomerID)
+                           .ID("tbxCustomerID"),
+                        F.HiddenField()
+                           .Label("泵房组id")
+                           .ID("tbxPumpGroupID")
+               )
+    )
+@(F.Window()
+        .ID("Window1")
+        .Width(400)
+        .Height(400)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+)
+}
+
+
+@section script {
+
+    <script>
+        F.ready(function () {
+           // F.ui.tbSelectedCustomer.setHidden(true);
+            F.ui.ddlCompany.setHidden(true);
+            F.ui.tbSelectedPumpGroup.setHidden(true);
+        })
+        function onddlTypeChange(event) {
+            var ddlType = F.ui.ddlType;
+            var tbSelectedCustomer = F.ui.tbSelectedCustomer;
+            var ddlCompany = F.ui.ddlCompany;
+            var tbSelectedPumpGroup = F.ui.tbSelectedPumpGroup;
+            var tbxCustomerID = F.ui.tbxCustomerID;
+            var tbxPumpGroupID = F.ui.tbxPumpGroupID;
+            if(ddlType.getValue()=="1"){  //管理员
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(true);
+                tbSelectedPumpGroup.setHidden(true);
+            }
+            else if (ddlType.getValue() == "2") { //分公司
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(false);
+                tbSelectedPumpGroup.setHidden(true);
+            }
+            else if(ddlType.getValue() == "3"){ //客户
+                tbSelectedCustomer.setHidden(false);
+                ddlCompany.setHidden(true);
+                tbSelectedPumpGroup.setHidden(true);
+            }
+            else if (ddlType.getValue() == "4") { //其他
+                tbSelectedCustomer.setHidden(true);
+                ddlCompany.setHidden(true);
+                tbSelectedPumpGroup.setHidden(false);
+            }
+
+            tbSelectedCustomer.setValue("");
+            ddlCompany.setValue("");
+            tbSelectedPumpGroup.setValue("");
+            tbxCustomerID.setValue("0");
+            tbxPumpGroupID.setValue("0");
+        }
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl,"客户选择",700,500);
+        }
+
+        function OnClientPumpGroupSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/PGroupWindow")';
+            var openUrl = F.formatString("{0}?PGroupID={1}", url, F.urlEncode(F.ui.tbxPumpGroupID.getValue()));
+
+            F.ui.Window1.show(openUrl, "泵房组选择", 400, 500);
+        }
+
+        function updateCustomer(id, text) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+        }
+
+        function updatePGroup(id, text) {
+            F.ui.tbSelectedPumpGroup.setValue(text);
+            F.ui.tbxPumpGroupID.setValue(id);
+        }
+
+    </script>
+}

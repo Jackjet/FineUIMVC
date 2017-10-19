@@ -1,0 +1,108 @@
+body {
+  position: relative;
+}
+.leftNavTopBox {
+  position: absolute;
+  top: 12px;
+  left: 22px;
+  width: 43px;
+  height: 43px;
+  background: #438eb9;
+  cursor: pointer;
+  z-index: 3;
+}
+.leftNavTopBox.active {
+  background: #438eb9;
+}
+.leftNavTopBox .navClickBg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -7px;
+  margin-left: -9px;
+  width: 18px;
+  height: 15px;
+  background: url(../img/navShow.png) no-repeat;
+}
+.leftNavTopBox .navClickSanjiao {
+  width: 12px;
+  height: 10px;
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  background: url(../img/sanJiao.png) no-repeat;
+  z-index: 2;
+  display: none;
+}
+.leftNav {
+  position: absolute;
+  top: 55px;
+  left: 22px;
+  width: 43px;
+  height: 86px;
+  background: #fefefe;
+  display: none;
+  z-index: 1;
+}
+.leftNav li {
+  position: relative;
+  width: 43px;
+  border: 1px solid #d6d2d2;
+  border-top: none;
+  height: 43px;
+  background: url(../img/leftNavBg.png) no-repeat;
+  background: blue;
+  cursor: pointer;
+}
+.leftNav li.baoBiao {
+  background: url(../img/bengfangBaojing.png) no-repeat 10px 12px;
+}
+.leftNav li.baoBiao:hover {
+  border-color: #999;
+}
+.leftNav li.baoJing {
+  background: url(../img/bengfangBaojing.png) no-repeat 12px -28px;
+}
+.leftNav li.baoJing:hover {
+  border-color: #999;
+}
+.sheBeiList {
+  position: absolute;
+  top: 54px;
+  left: 65px;
+  width: 226px;
+  min-height: 86px;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-left: none;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  display: none;
+  cursor: pointer;
+}
+.sheBeiList li {
+  height: 42px;
+  line-height: 42px;
+  cursor: pointer;
+}
+.sheBeiList li:hover {
+  background: #e7e6e6;
+}
+.sheBeiList li .itemBgBox {
+  float: left;
+  width: 8px;
+  height: 10px;
+  margin: 15px 2px 10px 12px;
+  background: url(../img/sheBeiitemBg.png) no-repeat;
+}
+.sheBeiList li .itemTxt {
+  float: left;
+  color: #323232;
+  text-indent: 6px;
+}
+.mainIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

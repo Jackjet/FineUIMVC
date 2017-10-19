@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "FM_runLog";
+    var F = @Html.F();
+}
+@section head {
+    <title>阀门运行日志</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/TF_reportWaterInOutPress.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/CDJK/css/TFBengZhan.css" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/js/echarts.min.js"></script>
+    <script src="~/res/layer/layer.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/laydate.js"></script>
+}
+
+@section body {
+    <div class="chart_mainWrap">
+        <div class="header_wrap clearfix">
+            <div class="searchCriteria">
+                <div class="select_wrap"><input type="text" class="TFname" placeholder="阀门名称" readonly="readonly" /><i class="selectBtn"></i></div>
+            </div>
+            <span class="exportBtn">导出</span>
+            <button class="chart_searchBtn">搜索</button>
+            <div class="searchTime">
+                <input id="startTime" type="text" />
+                <span>- -</span>
+                <input id="endTime" type="text" />
+            </div>
+            <div class="selectDiagWrap">
+                <div class="selectedWrap">
+                    <input type="text" />
+                    <div class="triangleWrap"></div>
+                </div>
+                <ul class="selectMenu hide">
+                    <li class="active" data-key="today"><a href="#">今天</a></li>
+                    <li data-key="yestoday"><a href="#">昨天</a></li>
+                    <li data-key="bYestoday"><a href="#">前天</a></li>
+                    <li data-key="today0-6"><a href="#">今日(0-6时)</a></li>
+                    <li data-key="today6-12"><a href="#">今日(6-12时)</a></li>
+                    <li data-key="today12-y0"><a href="#">今日(12-次日凌晨)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="list_table">
+            <div class="table1_wrap">
+                <table class="myTable table1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>采集时间</th>
+                            <th>阀门编号</th>
+                            <th>阀门名称</th>
+                            <th>地址</th>
+                            <th>进水压力(MPa)</th>
+                            <th>出水压力(MPa)</th>
+                            <th>压力给定(MPa)</th>
+                            <th>阀门开度(%)</th>
+                            <th>瞬时流量(m³/h)</th>
+                            <th>累计流量(m³/h)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="table2_wrap">
+                <table class="myTable table2">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>采集时间</th>
+                            <th>阀门编号</th>
+                            <th>阀门名称</th>
+                            <th>地址</th>
+                            <th>进水压力(MPa)</th>
+                            <th>出水压力(MPa)</th>
+                            <th>压力给定(MPa)</th>
+                            <th>阀门开度(%)</th>
+                            <th>瞬时流量(m³/h)</th>
+                            <th>累计流量(m³/h)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="page_wrap">
+            <div class="page_box">
+                <a id="firstPage" href="#">&lt;&lt;</a>
+                <a id="prevPage" href="#">&lt;</a><a id="currentPage" href="#">1</a><a href="#">/</a><a id="totalPage" href="#">100</a><a id="nextPage" href="#">&gt;</a><a id="lastPage" href="#">&gt;&gt;</a>
+                <span>每页</span><a id="pageSize" href="#">10</a><input type="text" id="editPageIndex" /><span>条，共</span><a id="totalNum" href="#">12222</a><span>条</span>
+            </div>
+        </div>
+
+    </div>
+}
+@section script {
+    <script type="text/javascript" src="~/res/CDJK/js/FM_runLog.js"></script>
+    <script type="text/javascript" src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

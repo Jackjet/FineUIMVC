@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "OpenWindow/Alarm_TimelyWindow";
+    var F = @Html.F();
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Items(
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("Grid1")
+                       .DataIDField("id")
+                       .DataTextField("FName")
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .EnableMultiSelect(false)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .PageSize(1000)
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("报警时间")
+                                    .DataField("FAlarmTime")
+                                    .Width(150),
+                               F.RenderField()
+                                    .HeaderText("类型")
+                                    .RendererFunction("renderFMarkerType")
+                                    .DataField("FMarkerType")
+                                    .Width(50),
+                               F.RenderField()
+                                    .HeaderText("名称")
+                                    .DataField("FName")
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("报警信息")
+                                    .DataField("FMsg")
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("自定义报警信息")
+                                    .DataField("FSetMsg")
+                                    .Width(200),
+                               F.RenderField()
+                                    .HeaderText("等级")
+                                    .DataField("FLev")
+                                    .RendererFunction("renderFLev")
+                                    .Width(50)
+                               )
+                               .DataSource(ViewBag.Grid1DataSource)
+         )
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+        function renderFMarkerType(value, params) {
+            //var text=value == 0 ? '管线' : 1 ? '泵站' : 2 ? '阀门' : 3 ? '流量' : 4 ? '水厂' : 5 ? '水源' : 6 ? '大表' : 7 ? '压力' : 8 ? '调峰' : 9 ? '水质' : 10 ? '加压站' : '未知';
+            var text;
+            switch (value)
+            {
+                case 0: text = '管线'; break;
+                case 1: text = '泵站'; break;
+                case 2: text = '阀门'; break;
+                case 3: text = '流量'; break;
+                case 4: text = '水厂'; break;
+                case 5: text = '水源'; break;
+                case 6: text = '大表'; break;
+                case 7: text = '压力'; break;
+                case 8: text = '调峰'; break;
+                case 9: text = '水质'; break;
+                case 10: text = '加压站'; break;
+            }
+            return text;
+        }
+        function renderFLev(value, params) {
+            return value == 1 ? '低' : 2 ? '中' : '高';
+        }
+    </script>
+}

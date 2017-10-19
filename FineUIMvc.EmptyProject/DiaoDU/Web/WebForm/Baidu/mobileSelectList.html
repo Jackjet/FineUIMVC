@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>熊猫园区泵房列表</title>
+    <link href="css/mobileSelectList.css?v=1.0.0" rel="stylesheet" />
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <!--<link href="css/dropload.css" rel="stylesheet" />-->
+    <!--<link rel="stylesheet" href="css/light7.min.css">
+    <link rel="stylesheet" href="css/light7-swiper.min.css">-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/dropload.min.js"></script>
+    <!--<script type='text/javascript' src='js/light7.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='js/light7-swiper.min.js' charset='utf-8'></script>-->
+</head>
+<body>
+    <!--搜索模块-->
+    <div class="search">
+        <div class="searchBg">
+            <span class="select">
+                <span class="defaultContainer">名称</span>
+                <span class="triangle"></span>
+                <ul id="noshow" class="dropDownMenu noneShow">
+                    <li>名称</li>
+                    <li>编号</li>
+                </ul>
+            </span>
+            <input type="text" name="search" class="searchDiag" />
+            <i class="searchBtn"></i>
+
+        </div>
+
+
+    </div>
+    <div id="wrap" class="contentWrap">
+        <div class="List">
+            <ul class="listUl list_box">
+                
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <footer class="footer">
+        <ul>
+            <li>
+                <span class="listC"></span>
+            </li>
+            <li>
+                <span class="dataA"></span>
+            </li>
+            <li class="sss">
+                <span class="set"></span>
+            </li>
+            <li>
+                <span class="warnA"></span>
+            </li>
+            <li>
+                <span class="map"></span>
+            </li>
+        </ul>
+    </footer>
+    <div class="mask hidden"></div>
+    <div class="setItem hidden">
+
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div class="close-set">close</div>
+    </div>
+    <script>
+
+        $('.mask')[0].addEventListener('touchstart', function (e) {
+            $('.mask').removeClass('show').addClass('hidden');
+            $('.setItem').removeClass('show').addClass('hidden');
+            e.preventDefault();
+        });
+
+        $('.close-set')[0].addEventListener('touchstart', function (e) {
+            $('.mask').removeClass('show').addClass('hidden');
+            $('.setItem').removeClass('show').addClass('hidden');
+            e.preventDefault();
+        });
+
+        $('.sss').click(function () {
+            $('.mask').removeClass('hidden');
+            $('.setItem').removeClass('hidden');
+        });
+        //$('.footer .map').parent().click(function () {
+        //    window.location.href = './sankaimap.htm';
+        //});
+
+        //通过搜索获得泵房
+        $(function () {
+            var pageNum = 0;
+            //load_list();
+
+            $('.searchBtn').click(function () {
+                //alert(1);
+                var $search_text = $.trim($('.searchDiag').val());
+                if ($search_text) {
+                    // alert(2);
+                    if ($('.defaultContainer').html() == '名称') {
+                        //alert($search_text);
+                        $.ajax({
+                            url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+                            data: { 'FName': $search_text },
+                            success: function (data) {
+                                $('.list_box').empty();
+                                // console.log(data);
+                                var data = JSON.parse(data);
+                                $('.onlineStatus .all').html(data.total);
+                                $('.onlineStatus .online').html(data.oncount);
+                                $('.onlineStatus .offline').html(data.offcount);
+
+                                $.each(data.data, function (i, v) {
+
+
+                                    $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a  href="./pandaMobile.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+
+
+                                });
+                            },
+                            error: function (data) {
+                                console.log('错误' + data);
+                                //alert('搜索错误！请查询重试');
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+                            data: { 'FNumber': $search_text },
+                            success: function (data) {
+                                //console.log(data);
+                                $('.list_box').empty();
+                                var data = JSON.parse(data);
+                                $('.onlineStatus .all').html(data.total);
+                                $('.onlineStatus .online').html(data.oncount);
+                                $('.onlineStatus .offline').html(data.offcount);
+
+                                $.each(data.data, function (i, v) {
+
+
+
+                                    $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a href="./pandaMobile.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+
+                                    //$('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+                                    // console.log(v.FName);
+                                    // console.log(v.ID);
+
+                                });
+                            },
+                            error: function (data) {
+                                console.log('错误' + data);
+                                //alert('搜索错误！请查询重试');
+                            }
+                        });
+                    }
+
+                } else {
+                    pageNum = 0;
+                    $('.dropload-down').remove()
+                    $('.list_box').empty();
+                    load_list();
+
+
+
+                }
+            });
+
+            //'.contentWrap ul'
+            function load_list() {
+                $('.contentWrap').dropload({
+                    scrollArea: $('.contentWrap'),
+                    loadDownFn: function (me) {
+
+                        pageNum++;
+                        var result = '';
+
+                        //var $search_text = $.trim($('.searchDiag').val());
+                        //            if ($search_text) {
+                        //                if ($('.defaultContainer').html() == '名称') {
+                        //                    $.ajax({
+                        //                        url: '../Service/PumpManagerService.ashx?method=Search',
+                        //                        data: { 'FName': $search_text,'pageIndex':0,'pageSize':12 },
+                        //                        success: function (data) {
+                        //                            $('.list_box').empty();
+                        //                            // console.log(data);
+                        //                            var data = JSON.parse(data);
+                        //                            $('.onlineStatus .all').html(data.total);
+                        //                            $('.onlineStatus .online').html(data.oncount);
+                        //                            $('.onlineStatus .offline').html(data.offcount);
+
+                        //                            $.each(data.data, function (i, v) {
+
+
+                        //                                $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a  href="./pandaMobile.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+
+                        //                                //$('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+                        //                                // console.log(v.FName);
+                        //                                // console.log(v.ID);
+                        //                            });
+                        //                            dropload.resetload();
+                        //                        },
+                        //                        error: function (data) {
+                        //                            console.log('错误' + data);
+                        //                            dropload.resetload();
+                        //                            //alert('搜索错误！请查询重试');
+                        //                        }
+                        //                    });
+                        //                } else {
+                        //                    $.ajax({
+                        //                        url: '../Service/PumpManagerService.ashx?method=SearchAll',
+                        //                        data: { 'FNumber': $search_text },
+                        //                        success: function (data) {
+                        //                            //console.log(data);
+                        //                            $('.list_box').empty();
+                        //                            var data = JSON.parse(data);
+                        //                            $('.onlineStatus .all').html(data.total);
+                        //                            $('.onlineStatus .online').html(data.oncount);
+                        //                            $('.onlineStatus .offline').html(data.offcount);
+
+                        //                            $.each(data.data, function (i, v) {
+
+
+
+                        //                                $('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a href="./pandaMobile.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+
+                        //                                //$('.list_box').append($('<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a target="ifr" href="./iframe1.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p>' + v.FName + '</p><span>' + v.FNumber + '</span></a>'));
+                        //                                // console.log(v.FName);
+                        //                                // console.log(v.ID);
+
+                        //                            });
+                        //                            dropload.resetload();
+                        //                        },
+                        //                        error: function (data) {
+                        //                            console.log('错误' + data);
+                        //                            dropload.resetload();
+                        //                            //alert('搜索错误！请查询重试');
+                        //                        }
+                        //                    });
+                        //                }
+
+                        //            } else {
+                        $.ajax({
+                            url: '../../Service/PumpManagerService.ashx?method=Search',
+                            data: { 'pageIndex': pageNum - 1, 'pageSize': 10 },
+
+                            success: function (data) {
+                                var data = JSON.parse(data);
+                                var arrLen = data.data.length;
+                                if (arrLen > 0) {
+                                    $.each(data.data, function (i, v) {
+
+
+                                        result += '<li id="' + v.ID + '" class="listItem status' + v.FIsOnline + '"><a href="./pandaMobile.html?id=' + v.ID + '&v=' + Math.random() + '"><i></i><p title="' + v.FNumber + '">' + v.FName + '</p><span>' + v.FNumber + '</span></a>';
+
+                                    })
+
+                                    // 如果没有数据
+                                } else {
+                                    // 锁定
+                                    me.lock();
+                                    // 无数据
+                                    me.noData();
+                                }
+
+                                setTimeout(function () {
+                                    // 插入数据到页面，放到最后面
+                                    $('.list_box').append(result);
+                                    me.resetload();
+                                }, 500);
+
+
+
+                            },
+                            error: function (xhr, type) {
+                                alert('Ajax error!');
+                                // 即使加载出错，也得重置
+                                me.resetload();
+                            }
+                        });
+                        //}
+
+
+                    }
+                });
+            }
+
+
+            load_list();
+
+           
+
+            //小三角
+
+            $(".search .select").click(function () {
+                $('.triangle').toggleClass("current");
+                $("#noshow").toggle();
+
+            });
+
+            $(".dropDownMenu li").click(function () {
+                $(".defaultContainer").html($(this).html());
+                $(".triangle").addClass("current");
+                $('#noshow').addClass('noneShow');
+
+            });
+
+        })
+
+
+
+
+
+
+
+        windowResize();
+        function windowResize() {
+            var $wW = $('.search').width();
+
+            $('.searchDiag').width($wW - $('.select').width() - ($('.searchBtn').width()) * 1.5);
+        }
+        //searchDiag宽度
+        $(window).resize(windowResize);
+
+
+
+
+
+
+    </script>
+</body>
+</html>

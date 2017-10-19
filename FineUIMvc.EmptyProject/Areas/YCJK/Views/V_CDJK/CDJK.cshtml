@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "CDJK";
+    var F = @Html.F();
+}
+@section head {
+<title>测点监控</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+<link href="~/res/CDJK/css/CDJK.css" rel="stylesheet" />
+<script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+<script src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+}
+
+@section body {
+    <iframe class="mainIframe" src='@Url.Content("~/YCJK/V_CDJK/PA_List")' frameborder="0"></iframe>
+
+<ul class="leftNav">
+    <li data-cla="yali" class="yali active" title="压力"></li>
+    <li data-cla="famen" class="famen" title="阀门"></li>
+    <li data-cla="liuliang" class="liuliang" title="流量"></li>
+    <li data-cla="tiaofeng" class="tiaofeng" title="调峰"></li>
+    <li data-cla="baobiao" class="baobiao"></li>
+    <li data-cla="lieBiao" class="lieBiao"></li>
+    <li data-cla="lunXun" class="lunXun"></li>
+    <li data-cla="baojing" class="baojing"></li>
+    <li data-cla="help" class="help"><div class="helpBg"></div></li>
+</ul>
+}
+@section script {
+<script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+<script src="~/res/CDJK/js/CDJK.js"></script>
+}

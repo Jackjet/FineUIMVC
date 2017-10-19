@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<FineUIMvc.PumpMVC.Models.BASE_SHUICHANG>
+@{
+    ViewBag.Title = "YSY_Index";
+
+    var F = @Html.F();
+}
+
+@section head {
+
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/res/YCJK/css/jquery.mCustomScrollbar.min.css" />
+    <link href="~/res/hs_shuichang/s1/css/Hs_indexMainStyle.css" rel="stylesheet" />
+    <script src="~/res/YCJK/js/jquery-2.1.0.js"></script>
+    <script src="~/res/YCJK/js/jquery.mousewheel.js"></script>
+
+}
+
+
+
+@section body {
+
+    <iframe name="frmMain" class="mainIframe" src='@Url.Action(ViewBag.FjLink, new { ID = ViewBag.ShuiChangID })' frameborder="0"></iframe>
+    @*@Url.Content("~/YCJK/V_YCJK/Map")*@
+    <div class="leftNavTopBox">
+        <div class="navClickBg"></div>
+        <div class="navClickSanjiao"></div>
+    </div>
+    <ul class="leftNav">
+        <li data-cla="baoBiao" class="baoBiao"></li>
+        <li data-cla="baoJing" class="baoJing"></li>
+    </ul>
+
+    <ul class="sheBeiList">
+        @foreach (var item in Model)
+        {
+            <li class="sheBeiItem">
+                <div class="itemBgBox"></div>
+                <div class="itemTxt"><a target="frmMain" href="@Url.Action(item.FJKLink, new { ID = item.id })">@item.FName</a></div>
+            </li>
+        }
+
+
+
+    </ul>
+
+
+
+
+
+
+}
+@section script {
+    <script src="~/res/YCJK/js/jquery.mCustomScrollbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <script src="~/res/hs_shuichang/s1/js/Hs_IndexMain.js"></script>
+
+}
+
+
+

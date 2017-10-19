@@ -1,0 +1,396 @@
+body {
+  position: relative;
+  background: #f2f3f7;
+}
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+}
+* {
+  box-sizing: content-box;
+}
+.contentWrap {
+  position: absolute;
+  top: 12px;
+  left: 56px;
+  right: 12px;
+  bottom: 12px;
+}
+.pageHeader {
+  width: 100%;
+  padding-top: 12px;
+  height: 40px;
+  background: #f2f3f7;
+}
+.headerWrap {
+  float: right;
+  height: 40px;
+  margin-right: 8px;
+}
+.statusBox {
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  padding: 1px;
+  background: #fff;
+  border-radius: 13px 0 0 13px;
+  border: 1px solid #d0d5d9;
+  border-right: none;
+}
+.statusBox li {
+  float: left;
+  width: 50px;
+  height: 24px;
+  line-height: 24px;
+  margin-right: 1px;
+  background: #e7e7e7;
+  cursor: pointer;
+}
+.statusBox li:first-child {
+  border-radius: 12px 0 0 12px;
+}
+.statusBox li .statusPic {
+  float: left;
+  width: 14px;
+  height: 24px;
+  margin: 0 2px 0 5px;
+  background: url(../img/normalOnlineAndOff.png) no-repeat;
+}
+.statusBox li.active,
+.statusBox li:hover {
+  background: #25bdff;
+}
+.statusBox li.active .statusTxt,
+.statusBox li:hover .statusTxt {
+  color: #fff;
+}
+.statusBox li.active .statusPic,
+.statusBox li:hover .statusPic {
+  background: url(../img/activePnlineAndOff.png) no-repeat;
+}
+.statusBox li:nth-of-type(1) .statusPic {
+  background-position: 1px 6px;
+}
+.statusBox li:nth-of-type(2) .statusPic {
+  background-position: -54px 6px;
+}
+.statusBox li:nth-of-type(3) .statusPic {
+  background-position: -108px 6px;
+}
+.statusBox li:nth-of-type(4) .statusPic {
+  background-position: -158px 6px;
+}
+.statusBox li .statusTxt {
+  float: left;
+  width: 27px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  color: #bfc6ca;
+}
+.searchBox {
+  position: relative;
+  float: left;
+  width: 226px;
+  height: 24px;
+  padding: 1px;
+  border: 1px solid #d0d5d9;
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  background: #fff;
+}
+.searchBox input {
+  background: transparent;
+  width: 86%;
+  height: 100%;
+  border: none;
+  outline: none;
+  color: #666;
+  text-indent: 12px;
+}
+.searchBox label {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background: url(../img/loopSearch.png) no-repeat 3px 3px;
+}
+.searchBtn {
+  float: left;
+  width: 58px;
+  height: 26px;
+  background: #ffab5a;
+  line-height: 28px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  border-radius: 13px;
+  color: #fffefe;
+  box-shadow: 1px 1px 3px #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+.searchBtn:hover {
+  opacity: .8;
+}
+.nextBtn {
+  float: left;
+  width: 58px;
+  height: 26px;
+  background: #25bdff;
+  line-height: 28px;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  border-radius: 13px;
+  color: #fffefe;
+  box-shadow: 1px 1px 3px #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+.nextBtn:hover {
+  opacity: .8;
+}
+.loopMain {
+  position: absolute;
+  top: 60px;
+  left: 52px;
+  right: 16px;
+  bottom: 40px;
+  background: #fff;
+  overflow: auto;
+}
+.loopItemContainer {
+  padding-bottom: 40px;
+}
+.loopItemContainer .loopItem {
+  position: relative;
+  float: left;
+  width: 348px;
+  height: 300px;
+  background: #fff;
+  box-shadow: 0 0 1px 3px #E2E3E7;
+  margin-top: 50px;
+}
+.loopItemContainer .loopItem .loopHeader {
+  width: 100%;
+  height: 35px;
+  border-bottom: 2px solid #23b6ff;
+}
+.loopItemContainer .loopItem .loopHeader .pumpStusPic {
+  float: left;
+  width: 16px;
+  height: 100%;
+  margin-left: 12px;
+  background: url(../img/statusItem.png) no-repeat -62px 10px;
+}
+.loopItemContainer .loopItem .loopHeader .pumpStusPic.error {
+  background-position: -122px 10px;
+}
+.loopItemContainer .loopItem .loopHeader .pumpStusPic.online {
+  background-position: 0 10px;
+}
+.loopItemContainer .loopItem .loopHeader .pumpNameTxt {
+  float: left;
+  height: 35px;
+  line-height: 35px;
+  color: #26c1ff;
+  font-size: 14px;
+}
+.loopItemContainer .loopItem .loopPinAndSet {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 35px;
+  line-height: 35px;
+}
+.loopItemContainer .loopItem .loopPinAndSet .loopSet {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-top: 7px;
+  margin-right: 3px;
+  cursor: pointer;
+  display: none;
+  background: url(../img/loopPinAndSet.png) no-repeat -99px 0;
+}
+.loopItemContainer .loopItem .loopPinAndSet .loopPin {
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-top: 7px;
+  margin-right: 4px;
+  cursor: pointer;
+  background: url(../img/loopPinAndSet.png) no-repeat -50px 0;
+}
+.loopItemContainer .loopItem .loopPinAndSet .loopPin.pin {
+  background-position: 0 0;
+}
+.loopItemContainer .loopItem .loopContentBox {
+  position: relative;
+  width: 100%;
+  height: 198px;
+  border-bottom: 2px solid #23b6ff;
+  background: url(../img/loopBgWu.png) no-repeat 30px 16px;
+}
+.loopItemContainer .loopItem .loopContentBox.xiang {
+  background: url(../img/loopBgXiang.png) no-repeat 30px 16px;
+}
+.loopItemContainer .loopItem .loopContentBox.guan {
+  background: url(../img/loopBgGuan.png) no-repeat 30px 16px;
+}
+.loopItemContainer .loopItem .loopContentBox .inNum {
+  position: absolute;
+  top: 44px;
+  left: 148px;
+  width: 32px;
+  height: 16px;
+  font-size: 12px;
+  color: #fff;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  background: #26bfff;
+}
+.loopItemContainer .loopItem .loopContentBox .outNum {
+  position: absolute;
+  bottom: 14px;
+  left: 148px;
+  width: 32px;
+  height: 16px;
+  font-size: 12px;
+  color: #fff;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  background: #26bfff;
+}
+.loopItemContainer .loopItem .loopContentBox .timeBox {
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  width: 144px;
+  height: 16px;
+  color: #52bfff;
+  font-size: 12px;
+  line-height: 16px;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox {
+  position: absolute;
+  top: 64px;
+  left: 57px;
+  width: 232px;
+  height: 62px;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox .yelunItem {
+  position: relative;
+  float: left;
+  width: 20px;
+  margin: 0 9px;
+  height: 100%;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox .yelunItem .yelunLine {
+  margin-left: 10px;
+  width: 1px;
+  height: 100%;
+  background: #24b9ff;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox .yelunItem .yelunStatus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: url(../img/pumpYeLunStatus.png) no-repeat -52px 0 #ffffff;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox .yelunItem .yelunStatus.error {
+  background-position: -26px 0;
+}
+.loopItemContainer .loopItem .loopContentBox .yelunStatusBox .yelunItem .yelunStatus.online {
+  background-position: 0 0;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian {
+  width: 100%;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopLIuliang {
+  float: left;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopLIuliang .liuLiangPic {
+  float: left;
+  width: 26px;
+  height: 100%;
+  background: url(../img/loopLiuLIangPic.png) no-repeat 5px 6px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopLIuliang .liuLiangNumBox {
+  text-indent: 6px;
+  float: left;
+  font-size: 12px;
+  color: #26bfff;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopLIuliang .liuLiangNumBox .liuLiangNum {
+  font-size: 12px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopDianLiang {
+  float: left;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopDianLiang .dianLiangPic {
+  float: left;
+  width: 26px;
+  height: 100%;
+  background: url(../img/loopLiuLIangPic.png) no-repeat -150px 6px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopDianLiang .dianLiangNumBox {
+  text-indent: 6px;
+  float: left;
+  font-size: 12px;
+  color: #26bfff;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopDianLiang .dianLiangNumBox .dianLiangNum {
+  font-size: 12px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopBianPin {
+  float: left;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopBianPin .bianPinPic {
+  float: left;
+  width: 26px;
+  height: 100%;
+  background: url(../img/bianpinLunxun.png) no-repeat 5px 6px;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopBianPin .bianPinNumBox {
+  text-indent: 6px;
+  float: left;
+  font-size: 12px;
+  color: #26bfff;
+}
+.loopItemContainer .loopItem .loopLiuLiangAndDian .loopBianPin .bianPinNumBox .bianPinNum {
+  font-size: 12px;
+}

@@ -1,0 +1,437 @@
+﻿@{
+    ViewBag.Title = "PumpJZ_edit";
+    var F = @Html.F();
+}
+
+@model FineUIMvc.PumpMVC.Models.Panda_PumpJZ
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.HiddenFieldFor(x => x.ID)
+                        .ID("tbxID"),
+                    F.TriggerBoxFor(x => x.DTUCode)
+                        .ID("tbSelectedDTU")
+                        .EnableEdit(false)
+                        .Hidden(true)
+                        .Required(true)
+                        .ShowRedStar(true)
+                        .TriggerIcon(TriggerIcon.Search)
+                        .OnClientTriggerClick("OnClientDTUSelect();")
+                        .Label("机组编号"),
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnJZEdit_Click"), "Panel1")
+                        .Text("保存后关闭"),
+                    F.ToolbarFill(),
+                    F.Button()
+                       .Icon(Icon.Connect)
+                       .Text("报警联系人")
+                       .MarginRight(20)
+                       .Hidden(true)
+                       .Listener("click", "onNewContactClick")
+                )
+        )
+        .Items(
+             F.GroupPanel()
+                .ID("GroupPanel1")
+                .Layout(LayoutType.Anchor)
+                .Title("配置信息")
+                .Items(
+                     F.Form()
+                         .ID("Form1")
+                         .BodyPadding("5 5 0 5")
+                         .LabelAlign(LabelAlign.Left)
+                         .LabelWidth(100)
+                         .ShowHeader(false)
+                         .ShowBorder(false)
+                         .Rows(
+                            F.FormRow()
+                              .ID("gp1FormRow1")
+                              .Items(
+                                  F.TextBoxFor(x => x.DTUCode)
+                                     .Label("机组编号")
+                                     .Required(true)
+                                     .ShowRedStar(true)
+                                     .EmptyText("请输入机组编号")
+                                     .ID("tbSelectedDTU")
+                                     .LabelWidth(80),
+                                  F.TextBoxFor(x => x.PumpJZName)
+                                     .Label("机组名称")
+                                     .EmptyText("请输入机组名称")
+                                     .ID("tbxJZName")
+                                     .Required(true)
+                                     .ShowRedStar(true),
+                                  F.DropDownListFor(x => x.MachineType)
+                                     .ID("ddlType")
+                                     .Label("设备类型")
+                                     .Required(true)
+                                     .ShowRedStar(true)
+                                     .DataTextField("FName")
+                                     .DataValueField("FValue")
+                                     .DataSource(ViewBag.ddlTypeDataSource)
+                                     .SelectedValue(ViewBag.ddlTypeSelect)
+                              ),
+                           F.FormRow()
+                              .ID("gp1FormRow2")
+                              .Items(
+                                 F.DropDownList()
+                                    .ID("ddlRunPumpNum")
+                                    .Label("主泵泵数")
+                                    .SelectedValue(ViewBag.ddlRunPumpNumSelect)
+                                    .Items(
+                                         F.ListItem()
+                                             .Text("0")
+                                             .Value("0"),
+                                         F.ListItem()
+                                             .Text("1")
+                                             .Value("1"),
+                                         F.ListItem()
+                                             .Text("2")
+                                             .Value("2"),
+                                         F.ListItem()
+                                             .Text("3")
+                                             .Value("3"),
+                                         F.ListItem()
+                                             .Text("4")
+                                             .Value("4"),
+                                         F.ListItem()
+                                             .Text("5")
+                                             .Value("5"),
+                                         F.ListItem()
+                                             .Text("6")
+                                             .Value("6")
+                                         ),
+                                 F.DropDownList()
+                                    .ID("ddlAuxiliarypumpcount")
+                                    .Label("辅泵泵数")
+                                    .SelectedValue(ViewBag.ddlAuxiliarypumpcountSelect)
+                                    .Items(
+                                         F.ListItem()
+                                             .Text("0")
+                                             .Value("0"),
+                                         F.ListItem()
+                                             .Text("1")
+                                             .Value("1"),
+                                         F.ListItem()
+                                             .Text("2")
+                                             .Value("2"),
+                                         F.ListItem()
+                                             .Text("3")
+                                             .Value("3"),
+                                         F.ListItem()
+                                             .Text("4")
+                                             .Value("4"),
+                                         F.ListItem()
+                                             .Text("5")
+                                             .Value("5"),
+                                         F.ListItem()
+                                             .Text("6")
+                                             .Value("6")
+                                         ),
+                                 F.DropDownList()
+                                    .ID("ddlDrainPumpNum")
+                                    .Label("排水泵数")
+                                    .SelectedValue(ViewBag.ddlDrainPumpNumSelect)
+                                    .Items(
+                                         F.ListItem()
+                                             .Text("0")
+                                             .Value("0"),
+                                         F.ListItem()
+                                             .Text("1")
+                                             .Value("1"),
+                                         F.ListItem()
+                                             .Text("2")
+                                             .Value("2"),
+                                         F.ListItem()
+                                             .Text("3")
+                                             .Value("3"),
+                                         F.ListItem()
+                                             .Text("4")
+                                             .Value("4"),
+                                         F.ListItem()
+                                             .Text("5")
+                                             .Value("5"),
+                                         F.ListItem()
+                                             .Text("6")
+                                             .Value("6")
+                                         )
+                              ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                                 F.NumberBoxFor(x => x.PumpJZCollectPeriod)
+                                    .ID("txt_cjzq")
+                                    .MinValue(1)
+                                    .Label("采集周期"),
+                                 F.NumberBoxFor(x => x.PumpJZCollectLength)
+                                    .ID("txt_cjcd")
+                                    .MinValue(1)
+                                    .Label("采集长度"),
+                                 F.DropDownListFor(x => x.PumpJZReadMode)
+                                    .ID("ddlDqms")
+                                    .Label("读取模式")
+                                    .Required(true)
+                                    .ShowRedStar(true)
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .DataSource(ViewBag.ddlDqmsDataSource)
+                                    .SelectedValue(ViewBag.ddlDqmsSelect)
+                          ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                                 F.TextBoxFor(x => x.PumpJZTankVolume)
+                                    .ID("txt_sxrj")
+                                    .Label("水箱容积"),
+                                 F.TextBoxFor(x => x.PumpJZInletDiameter)
+                                    .ID("txt_jkgj")
+                                    .Label("进口管径"),
+                                 F.TextBoxFor(x => x.PumpJZBrandSet)
+                                    .ID("txt_ctpp")
+                                    .Label("成套品牌")
+                          ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                                 F.TextBoxFor(x => x.PumpJZTankLength)
+                                    .ID("txt_sxcc")
+                                    .Label("水箱尺寸"),
+                                 F.TextBoxFor(x => x.PumpJZOutletDiameter)
+                                    .ID("txt_ckgj")
+                                    .Label("出口管径"),
+                                 F.TextBoxFor(x => x.PumpJZPumpBrand)
+                                    .ID("txt_sbpp")
+                                    .Label("水泵品牌")
+                          ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                                 F.TextBoxFor(x => x.PumpJZMainPumpLift)
+                                    .ID("txt_zbyc")
+                                    .Label("主泵扬程"),
+                                 F.TextBoxFor(x => x.PumpJZAuxiliPumpLift)
+                                    .ID("txt_fbyc")
+                                    .Label("辅泵扬程"),
+                                 F.TextBoxFor(x => x.PumpJZAuxiliPumpFlow)
+                                    .ID("txt_fbll")
+                                    .Label("辅泵流量")
+                          ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                                 F.TextBoxFor(x => x.PumpJZMainPumpPower)
+                                    .ID("txt_zbgl")
+                                    .Label("主泵功率"),
+                                 F.TextBoxFor(x => x.PumpJZAuxiliPumpPower)
+                                    .ID("txt_fbgl")
+                                    .Label("辅泵功率"),
+                                 F.TextBoxFor(x => x.PumpJZMainPumpFlow)
+                                    .ID("txt_zbll")
+                                    .Label("主泵流量")
+                          ),
+                          F.FormRow()
+                              .ID("gp1FormRow3")
+                              .Items(
+                                 F.DropDownListFor(x => x.PumpJZArea)
+                                    .ID("ddlPumpJZArea")
+                                    .Label("设备分区")
+                                    .Required(true)
+                                    .ShowRedStar(true)
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .EnableEdit(true)
+                                    .ForceSelection(false)
+                                    .Text(ViewBag.ddlPumpJZAreaSelect)
+                                    .DataSource(ViewBag.ddlPumpJZAreaDataSource)
+                                    .SelectedValue(ViewBag.ddlPumpJZAreaSelect),
+                                 F.TriggerBoxFor(x => x.AddressScheme.FName)
+                                    .ID("tbSelectedAddressList")
+                                    .EnableEdit(false)
+                                    .Required(true)
+                                    .ShowRedStar(true)
+                                    .TriggerIcon(TriggerIcon.Search)
+                                    .OnClientTriggerClick("OnClientAddressListSelect();")
+                                    .Label("地址方案"),
+                                 F.DropDownListFor(x => x.PumpJZCheckValve)
+                                    .ID("ddlZHFType")
+                                    .Label("止回阀类型")
+                                    .DataTextField("FName")
+                                    .DataValueField("FValue")
+                                    .DataSource(ViewBag.ddlZHFTypeDataSource)
+                                    .SelectedValue(ViewBag.ddlZHFTypeSelect)
+                              ),
+                          F.FormRow()
+                              .ID("gp2FormRow2")
+                              .Items(
+                              F.CheckBox()
+                                    .ID("cboOpenMessage")
+                                    .Label("开启短信通知")
+                                    .ShowLabel(true)
+                                    .Checked(ViewBag.cboOpenMessage),
+                              F.CheckBox()
+                                    .ID("cboYNJYF")
+                                    .Label("有无减压阀")
+                                    .ShowLabel(true)
+                                    .Checked(ViewBag.cboYNJYF),
+                              F.CheckBox()
+                                    .ID("cboYNTFGN")
+                                    .Label("有无调峰功能")
+                                    .ShowLabel(true)
+                                    .Checked(ViewBag.cboYNTFGN)
+                          ),
+                           F.FormRow()
+                              .ID("gp1FormRow")
+                              .Items(
+                                 //F.HiddenFieldFor(x => x.Dtu_Base.B_ID)
+                                 //   .Label("DTU")
+                                 //   .ID("hidDTU"),
+                                 F.HiddenFieldFor(x => x.AddressScheme.ID)
+                                    .Label("地址表")
+                                    .ID("hidDZB"),
+                                 F.HiddenField()
+                                    .ID("pumpId")
+                                    .Text(ViewBag.pumpId) 
+                              )
+                         )
+                ),
+                    F.GroupPanel()
+                        .ID("GroupPanel2")
+                        .Layout(LayoutType.Anchor)
+                        .Title("限定设置")
+                        .Items(
+                           F.Form()
+                               .ID("Form2")
+                               .BodyPadding("5 5 0 5")
+                               .LabelAlign(LabelAlign.Left)
+                               .LabelWidth(100)
+                               .ShowHeader(false)
+                               .ShowBorder(false)
+                               .Rows(
+                                    F.FormRow()
+                                        .ID("gp2FormRow1")
+                                        .Items(
+                                            F.NumberBoxFor(x => x.PumpJZInPUpper)
+                                                .ID("txt_jsS")
+                                                .MinValue(0)
+                                                .Label("进水压力上限"),
+                                            F.NumberBoxFor(x => x.PumpJZInPLower)
+                                                .ID("txt_jsX")
+                                                .MinValue(0)
+                                                .Label("进水压力下限"),
+                                            F.NumberBoxFor(x => x.PumpJZOutPUpper)
+                                                .ID("txt_csS")
+                                                .MinValue(0)
+                                                .Label("出水压力上限"),
+                                            F.NumberBoxFor(x => x.PumpJZOutPLower)
+                                                .ID("txt_csX")
+                                                .MinValue(0)
+                                                .Label("出水压力下限")
+                                        ),
+                                    F.FormRow()
+                                        .ID("gp2FormRow2")
+                                        .Items(
+                                            F.NumberBoxFor(x => x.PumpJZReChlorUpper)
+                                                .ID("txt_ylS")
+                                                .MinValue(0)
+                                                .Label("余氯值上限"),
+                                            F.NumberBoxFor(x => x.PumpJZReChlorLower)
+                                                .ID("txt_ylX")
+                                                .MinValue(0)
+                                                .Label("余氯值下限"),
+                                            F.NumberBoxFor(x => x.PumpJZTurbidUpper)
+                                                .ID("txt_zdS")
+                                                .MinValue(0)
+                                                .Label("浊度值上限"),
+                                            F.NumberBoxFor(x => x.PumpJZTurbidLower)
+                                                .ID("txt_zdX")
+                                                .MinValue(0)
+                                                .Label("浊度值下限")
+                                        ),
+                                    F.FormRow()
+                                        .ID("gp2FormRow3")
+                                        .Items(
+                                            F.NumberBoxFor(x => x.PumpJZPHUpper)
+                                                 .ID("txt_phS")
+                                                 .MinValue(0)
+                                                 .Label("PH值上限"),
+                                            F.NumberBoxFor(x => x.PumpJZPHLower)
+                                                .ID("txt_phX")
+                                                .MinValue(0)
+                                                .Label("PH值下限"),
+                                            F.NumberBoxFor(x => x.PumpJZTankUpper)
+                                                .ID("txt_sxS")
+                                                .MinValue(0)
+                                                .Label("水箱上限"),
+                                            F.NumberBoxFor(x => x.PumpJZTankLower)
+                                                .ID("txt_sxX")
+                                                .MinValue(0)
+                                                .Label("水箱下限")
+                                        )
+                                  )
+                      )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+@section script {
+
+    <script>
+
+        function onNewContactClick(event) {
+            F.ui.Window1.show('@Url.Content("~/OpenWindow/AlarmContactWindow")?PumpJZ_Id=' + F.ui.tbxID.getValue(), '报警联系人');
+        }
+
+        function OnClientDTUSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/DTUWindow")';
+            var openUrl = F.formatString("{0}?DTUId={1}", url, F.urlEncode(F.ui.tbSelectedDTU.getValue()));
+
+            F.ui.Window1.show(openUrl, 'DTU选择', 520, 500);
+        }
+
+        function OnClientAddressListSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/AddressSchemeWindow")';
+            var openUrl = F.formatString("{0}?id=1&AddressListId={1}", url, F.urlEncode(F.ui.tbSelectedAddressList.getValue()));
+
+            F.ui.Window1.show(openUrl, '地址方案选择', 700, 500);
+        }
+
+        function updateDTU(id, text) {
+            F.ui.tbSelectedDTU.setValue(text);
+           // F.ui.hidDTU.setValue(id);
+        }
+
+        function updateAddressScheme(id, text) {
+            F.ui.tbSelectedAddressList.setValue(text);
+            F.ui.hidDZB.setValue(id);
+        }
+
+    </script>
+}

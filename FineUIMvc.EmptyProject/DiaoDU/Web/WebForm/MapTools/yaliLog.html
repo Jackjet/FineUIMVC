@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>关联设备ID</title>
+    <!--<link href="css/jquery.pagination.css" rel="stylesheet" />-->
+    <link href="../InPage/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="../InPage/layer/layer.js"></script>
+    <script src="../InPage/js/jquery.mCustomScrollbar.js"></script>
+    <script src="../InPage/js/jquery.mousewheel.js"></script>
+    <script src="js/laydate0.js"></script>
+    <!--<script src="js/jquery.pagination-1.2.7.min.js"></script>-->
+    <style type="text/css">
+        body, ul, li, a, button, span {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 12px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0px 25px 12px 25px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+            .clearfix:after {
+                content: '';
+                height: 0;
+                display: block;
+                clear: both;
+            }
+
+        .main_wrap {
+            margin: 0 auto;
+            
+        }
+
+        .addBtn {
+            margin-top: 10px;
+        }
+
+        .searchBtn, .addBtn {
+            padding: 8px 14px;
+            background-color: #36a9ff;
+            font-size: 12px;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            margin-left: 9px;
+            cursor: pointer;
+        }
+
+        .searchDiag {
+            height: 26px;
+            text-indent: 6px;
+            width: 200px;
+            padding-right: 32px;
+            /*background: url(img/searchIco.png) no-repeat right 0px;*/
+            border: 1px solid #d0d5d9;
+        }
+
+        .search_wrap {
+            height: 48px;
+        }
+
+        .search_box {
+            float: right;
+            margin: 10px 0;
+        }
+        .table_wrap {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #d0d5d9;
+            overflow: hidden;
+        }
+        .table1_box{
+            height: 460px;
+        } 
+        .table_0, .table_1 {
+            border-collapse: collapse;
+            width: 100%;
+        }
+            .table_0 tbody, .table_1 tbody {
+                width: 100%;
+              
+                overflow: auto;
+            }
+            /*.table_1 tbody {
+                width: 100%;
+                max-height: 400px;
+                overflow: auto;
+            }*/
+            .table_0 th:nth-child(2), .table_0 th:nth-child(3), .table_0 th:nth-child(4), .table_0 th:nth-child(5) {
+                width: 25%;
+            }   
+        .table_1 td[data-field="FDTUCode "], .table_1 td[data-field="FName"], .table_1 td[data-field="FMpaDown"], .table_1 td[data-field="FMpaUp"] {
+            width: 25%;
+        }
+        /*.table_1 td[data-field="FName"]{
+            width: 120px;
+        }
+            .table_1 td[data-field="FMpaDown"] {
+                width: 120px;
+            }
+      .table_1 td[data-field="FMpaUp"] {
+          width: 120px;
+      }*/
+            .table_0 thead, .table_0 tr, .table_1 thead, .table_1 tr {
+                width: 100%;
+            }
+       .table_0, .table_1, th, td {
+            font-family: "微软雅黑";
+            font-size: 12px;
+            color: #505654;
+        }
+
+            .table_1 tr.current {
+                background: #000;
+            }
+
+        .table_0 tr th:nth-child(1), .table_0 tr td:nth-child(1), .table_1 tr td:nth-child(1) {
+            display: none;
+        }
+
+        .table_1 tr:nth-child(odd) td {
+            background-color: #fff;
+        }
+
+        /*.table_1 tr td:first-child {
+            width: 54px;
+        }*/
+
+        /*.table_1 tr td:last-child {
+            width: 54px;
+        }*/
+
+        .table_1 tr td:first-child i {
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin: 0 auto;
+            background: url(img/checkIco.png) no-repeat -40px 0;
+            cursor: pointer;
+        }
+
+        .table_1 tr.current td:first-child i {
+            background: url(img/checkIco.png) no-repeat 0 0;
+        }
+        .table_0 tbody{
+            display: none;
+        } .table_0 th, .table_1 th {
+            padding: 14px 2px;
+            text-align: center;
+            background-color: #eef3f7;
+            color: #9ba4a9;
+            border-bottom: 1px solid #d0d5d9;
+        }
+
+        .table_1 td {
+            padding: 6px 2px;
+            text-align: center;
+            background-color: #f0f8fa;
+        }
+
+        .table_1 tr:hover td {
+            background-color: #b8e9f5;
+        }
+        
+        .table_1 tr td:last-child i {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: url(img/modi_deleIco.png) no-repeat -45px 4px;
+            margin-right: 4px;
+            cursor: pointer;
+        }
+
+            .table_1 tr td:last-child i.deleBtn {
+                background-position: 0 4px;
+            }
+
+        .page_wrap {
+            height: 28px;
+            margin: 14px 0 16px 0;
+        }
+      
+        .pageBox {
+            float: right;
+        }
+
+            .pageBox span {
+                display: inline-block;
+                padding: 0 10px;
+                line-height: 26px;
+                color: #8f9092;
+                border: 1px solid #d0d5d9;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+
+        a.currentPage {
+            color: #000;
+        }
+        /*#mCSB_1 {
+            width: 100% !important;
+            height: 400px !important;
+        }*/
+    </style>
+</head>
+<body>
+    <div class="main_wrap">
+        <div class="search_wrap clearfix">          
+            <div class="search_box">
+                <input class="searchDiag" id="startTime" type="text" />  <input class="searchDiag" id="endTime" type="text" /><button class="searchBtn" type="button">搜索</button>
+            </div>
+        </div>
+        <div class="table_wrap">
+            <table class="table_0">
+                <thead>
+                    <tr><th></th><th>编号</th><th>名称</th><th>压力上限</th><th>压力下限</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="table1_box">
+                <table class="table_1">
+                    <thead></thead>
+                    <tbody class="table1_tbody">
+                        <tr><td></td><td>2017-03-31</td><td>2017-03-31</td><td>2017-03-31</td><td>2017-03-31</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="pageIna" class="page_wrap clearfix">
+            <!--<span class="page_next">&gt;</span>
+            <ul class="page_ul">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><span>...</span><a href="#">110</a></li>
+            </ul>-->
+            <div class="pageBox">
+                <span class="firstPage"><<</span><span class="prevPage"><</span><span><a class="currentPage">1</a><a> / </a><a class="totalPage">10</a></span><span class="nextPage">></span><span class="lastPage">>></span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log('aaaa');
+            $(".table_wrap tbody").on('click', 'tr', function () {
+                //  $(this).addClass('current').find('i').addClass("active").parents('tr').siblings().removeClass('current').find('i').removeClass("active");
+                $(this).addClass('current').siblings().removeClass('current');
+                var fMidName = $(this).children("td[data-id='FName']").html();
+                var fMidID = $(this).children("td[data-id='id']").html();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                var proId = parent.$(".property_main").find('input[type="hidden"]').val();
+                //    parent.modifyProperty('../../Service/Map_Marker.ashx?method=updmarkerpro', proId, 'FMID', fMidID, '', fMidName);
+            });
+
+            var urlJson = parseUrl();
+            console.log(urlJson);
+            var startTime = formatDate()+' 00:00:00';
+            var endTime = formatDate() + ' 23:59:59';
+            var pageSize = 40;
+            var pageIndex = $("a.currentPage").html() - 1;
+            var totalPage = $("a.totalPage").html();
+            $(".searchBtn").click(function () {
+                startTime = $("#startTime").val();
+                endTime = $("#endTime").val();
+                startTime=( startTime == '' ? formatDate() + ' 00:00:00' : startTime);
+                endTime=(endTime == '' ?  formatDate() + ' 23:59:59' : endTime);
+                console.log(window.location.href);
+                console.log(parseUrl());
+                searchTimeFn();
+            });
+            $(".pageBox").on('click', 'span.nextPage', function () {
+                if (pageIndex == (totalPage - 1)) {
+                    alert('当前为最后一页');
+                } else {
+                    pageIndex++;
+                    alert(pageIndex);
+                      searchTimeFn();
+                }
+            });
+            $(".pageBox").on('click', 'span.prevPage', function () {
+                if (!(pageIndex == 0)) {
+                    pageIndex--;
+                    searchTimeFn();
+                } else {
+                    alert('当前为第一页');
+                }
+            });
+            $(".pageBox").on('click', 'span.firstPage', function () {
+                if (!(pageIndex == 0)) {
+                    pageIndex = 0;
+                    searchTimeFn();
+                } else {
+                    alert('当前为第一页');
+                }
+            });
+            $(".pageBox").on('click', 'span.lastPage', function () {
+                if (pageIndex == totalPage - 1) {
+                    alert('当前为最后一页');
+
+                } else {
+                    
+                    pageIndex = totalPage - 1;
+                    alert(pageIndex);
+                    searchTimeFn();
+                }
+            });
+
+            function formatDate() {
+                var d = new Date();
+                var dM = (d.getMonth() + 1).toString().replace(/^(\d)$/, '0$1');
+                var dD = d.getDate().toString().replace(/^(\d)$/, '0$1');
+                var dateTemp = d.getFullYear() + "-" + (dM) + "-" + dD;
+                return dateTemp;
+            }
+
+            function parseUrl() {
+                var url = window.location.href;
+                var i = url.indexOf('?');
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+                    arr2[tar[0]] = tar[1];
+                };
+                return arr2;
+            }
+            searchTimeFn();
+            //搜索
+           
+            function searchTimeFn() {
+                console.log('sssssssssssssss');
+                console.log(pageIndex);
+                $.ajax({
+                    type: 'POST',
+                    url: '../../Service/Data_YaLi.ashx?method=searchyali_year',
+                    data: {
+                        'Type': urlJson.typeIndex,
+                        'ID': urlJson.id,
+                        'StartDate': startTime,
+                        'EndDate': endTime,
+                        'pageIndex': pageIndex,
+                        'pageSize': pageSize
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('MID');
+                        console.log(data);
+                     //   var result = JSON.parse(data);
+                        dealTbodyFn(data.data);
+                       tableScroll();
+                        $('.currentPage').html(parseInt(pageIndex + 1));
+                        $(".totalPage").html(totalPage);
+
+                    },
+                    error: function (data) {
+                        console.log('错误：' + data.responseText);
+                    }
+                });
+            }
+
+           
+         /*   function dealTheadFn(thData) {
+                $("thead tr").empty();
+                $("thead tr").append('<th></th>');
+                for (var i = 0; i < thData.length; i++) {
+                    $("thead tr").append('<th>' + thData[i] + '</th>');
+                }
+               
+            }*/
+
+            function dealTbodyFn(result) {
+                $(".table_1 tbody").empty();
+                for (var i = 0; i < result.length; i++) {
+                    var tempStr = '<tr><td data-field="BASEID">' + result[i].BASEID + '</td>\
+                        <td data-field="FDTUCode ">' + result[i].FDTUCode + '</td>\
+                        <td data-field="FName">' + result[i].FName + '</td>\
+                        <td data-field="FMpaDown">' + result[i].FMpaDown + '</td>\
+                        <td data-field="FMpaUp">' + result[i].FMpaUp + '</td></tr>'
+                    $(".table_1 tbody").append(tempStr);
+                }
+                $(".table_0 tbody").html($(".table_1 tbody").html());
+            }
+            function dealPage(total) {
+                totalPage = Math.ceil(total / pageSize);
+            }
+            function tableScroll() {
+                console.log('66666');
+                $('.table1_box').mCustomScrollbar({
+                    scrollbarPosition: "inside",
+                    theme: "minimal-dark"
+                });
+            }
+            layout();
+            $(window).resize(function () {
+                layout();
+            });
+            function layout() {
+                $('.table_wrap').height($(window).height()-130);
+                $(".table1_box").height($(window).height()-180);
+            }
+            laydate({
+                elem: "#startTime",
+                format: "YYYY-MM-DD  hh:mm:ss",
+                istime: true,
+                istoday: false,
+                issure: true,
+            });
+            laydate({
+                elem: "#endTime",
+                format: "YYYY-MM-DD  hh:mm:ss",
+                istime: true,
+                istoday: false,
+                issure: true,
+            });
+        });
+    </script>
+</body>
+</html>

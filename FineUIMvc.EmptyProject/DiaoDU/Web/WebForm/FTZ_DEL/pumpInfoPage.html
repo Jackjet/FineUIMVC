@@ -1,0 +1,726 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>currentData</title>
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <!-- <link rel="stylesheet" href="css/dataAnalysis.css" />-->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+  <!--  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: rgba(14,70,112,0.4);
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+
+
+
+
+            .clearfix:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+        .changePageMain {
+            color: #42abf7;
+        }
+
+            .changePageMain i {
+                display: inline-block;
+                cursor: pointer;
+            }
+
+
+                .changePageMain i.firstPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningFront.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.prevlPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningLeft.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.nextPage {
+                    width: 10px;
+                    height: 15px;
+                    background: url(./img/warningRight.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+                .changePageMain i.finallyPage {
+                    width: 21px;
+                    height: 15px;
+                    background: url(./img/warningLast.png) no-repeat;
+                    background-position-y: 2px;
+                }
+
+            .changePageMain .currentPage {
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                font-size: 12px;
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+
+            .changePageMain .totalPages {
+                color: white;
+                font-size: 12px;
+                line-height: 20px;
+                display: inline-block;
+                text-align: center;
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+
+
+
+
+
+        .main {
+            position: relative;
+        }
+        .main_top {
+            width: 100%;
+            height: 34px;
+            text-align: center;
+            line-height: 50px;
+            margin-top: 8px;
+        }
+        .main_top_left {
+            float: left;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+            .main_top_left .search_box {
+                height: 30px;
+                text-align: center;
+                font-size: 12px;
+                color: #fff;
+            }
+                .main_top_left .search_box .inputText {
+                    height: 26px;
+                    width: 210px;
+                    border: none;
+                    text-indent: 20px;
+                    margin-left: 10px;
+                    line-height: 26px;
+                    display: block;
+                    float: left;
+                    color: #fff;
+                    border-radius: 5px 0 0 5px;
+                    background: rgba(9,58,93,.5);
+                }
+                .main_top_left .search_box .searchButton {
+                    height: 26px;
+                    width: 40px;
+                    display: block;
+                    border: none;
+                    float: left;
+                    color: #fff;
+                    outline: none;
+                    border-left: 1px solid rgba(9,58,93,.7);
+                    background: url(./img/searchBtn.png) no-repeat 8px 5px rgba(9,58,93,.5);
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                }
+                .main_top_left .search_box .searchButton:hover {
+                    background-color: rgba(9,58,93,.8);
+                }
+        
+        
+         .main_top_right {
+            float: right;
+            margin-right: 20px;
+        }
+            .main_top_right button {
+                width: 52px;
+                height: 26px;
+                line-height: 26px;
+                float: right;
+                margin-right: 5px;
+                border: none;
+                font-size: 12px;
+                color: #fff;
+                cursor: pointer;
+                border-radius: 4px;
+                background: rgba(38,121,165,.8);
+            }
+            .main_top_right button:hover {                
+                background: rgba(38,121,165,1);
+            }
+        .main_bottom {
+            width: 100%;
+        }
+
+        .table.table1 {
+            position: absolute;
+            border-bottom: 2px solid #257393;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            background: rgba(3, 66, 113,1); /*1*/
+            height: 60px;
+            overflow: hidden;
+        }
+
+        #mCSB_1 .mCSB_container_wrapper {
+            margin-right: 10px;
+        }
+
+        #mCSB_1 .mCSB_container {
+            padding-right: 0;
+        }
+
+        #mCSB_1_scrollbar_horizontal .mCSB_draggerRail {
+            height: 2px;
+        }
+
+        .table1 tbody {
+            max-height: 1px;
+        }
+
+        .table tr {
+            height: 30px;
+        }
+
+        .table {
+            color: #fff;
+            overflow: auto;
+            border-collapse: collapse;
+            margin: 0 30px 0 18px;
+            word-break: keep-all;
+        }
+        .table a {
+           text-decoration: underline;
+        }
+            .table a:hover {
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            .table th {
+                height: 36px;
+                padding: 0 14px;
+                font-weight: normal;
+                font-size: 12px;
+                text-align: center;
+            }
+            
+            .table td {
+                padding: 0 14px;
+                white-space: nowrap;
+                height: 30px;
+                font-size: 12px;
+                text-align: center;
+                border-bottom: 1px dashed rgba(255,255,255,0.2);
+            }
+
+
+        .tableBoxT {
+            position: absolute;
+            width: 99.2%;
+            height: 36px;
+            overflow: hidden;
+            background: rgba(3, 66, 113,1);
+            border-bottom: 2px solid #257393;
+            z-index: 10;
+        }
+
+
+        .mainBottom_pager {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            font-size: 12px;
+        }
+        #messagePage {
+            display: none;
+
+        }
+
+        /*table 中的style*/
+        .contentBox tr .click:hover {
+            text-decoration: underline;
+        }
+        .green {
+            color: #339900;
+        }
+        .gray {
+            color: #808080;
+        }
+    </style>
+</head>
+<body>   
+    <div class="main">
+        <div class="main_top">
+            <div class="main_top_left">
+                <div class="search_box">
+                    <input type="text" class="inputText" name="inputText" placeholder="请输入编号" />
+                    <button type="button" class="searchButton"></button>
+                </div>
+            </div>
+            <div class="main_top_right">
+                <button type="button" class="deleteButton">删除</button>
+                <button type="button" class="newFile">新增</button>                
+            </div>
+        </div>
+        <div class="main_bottom">
+           <div class="tableBoxT clearfix">
+                <table class="table table1">
+                    <thead>
+                        <tr>
+                            <th width="30"> </th>
+                            <th width="90">设备编号</th>
+                            <th width="60">设备状态</th>
+                            <th width="220">设备名称</th><!--220-->
+                            <th width="60">排序</th>
+                            <th width="100">客户名称</th><!--100-->
+                            <th width="60">设备<br>类型</th><!--60-->
+                            <th width="20">生活<br>主泵</th><!--100-->
+                            <th width="20">生活<br>辅泵</th><!--100-->
+                            <th width="20">消防<br>主泵</th>
+                            <th width="20">消防<br>辅泵</th>
+                            <th width="20">喷淋<br>主泵</th>
+                            <th width="20">喷淋<br>辅泵</th>
+                            <th width="20">生活<br>出水</th>
+                            <th width="20">消防<br>出水</th>
+                            <th width="20">喷淋<br>出水</th>
+                            <th width="20">排水<br>泵</th>
+                            <th width="200">经纬度</th>
+                            <th width="200">地图地址</th>
+                            <th width="200">地址</th><!--160-->
+                            <th width="200">创建时间</th><!--140-->
+                        </tr>
+                    </thead>
+
+                </table>
+
+            </div>
+            <div class="tableBox2">
+                <table class="table table2">
+                    <thead>
+                        <tr>
+                            <th width="30"> </th>
+                            <th width="90">设备编号</th>
+                            <th width="60">设备状态</th>
+                            <th width ="220">设备名称</th>
+                            <th width="60">排序</th>
+                            <th width="100">客户名称</th>
+                            <th width="60">设备<br>类型</th>
+                            <th width="20">生活<br>主泵</th>
+                            <th width="20">生活<br>辅泵</th>
+                            <th width="20">消防<br>主泵</th>
+                            <th width="20">消防<br>辅泵</th>
+                            <th width="20">喷淋<br>主泵</th>
+                            <th width="20">喷淋<br>辅泵</th>
+                            <th width="20">生活<br>出水</th>
+                            <th width="20">消防<br>出水</th>
+                            <th width="20">喷淋<br>出水</th>
+                            <th width="20">排水<br>泵</th>
+                            <th width="200">经纬度</th>
+                            <th width="200">地图地址</th>
+                            <th width="200">地址</th>
+                            <th width="200">创建时间</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="contentBox">
+                       <!--<tr>
+                            <td><input type="checkbox"></td>
+                            <td>03151101247</td>
+                            <td>1</td>
+                            <td>F24-65,66,67号厂房泵房</td>
+                            <td>7</td>
+                            <td>31</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>121.6247650000,31.3265540000</td>
+                            <td>位置：F7园区希雅路330号-370号</td>
+                            <td>2016-09-29 08:44:17.000</td>
+                        </tr>--> 
+                  
+                    </tbody>
+                </table>
+            </div>                                
+        </div>
+        
+        <div class="mainBottom_pager">
+            <div class="changePageMain">
+                <i class="firstPage"></i>
+                <i class="prevlPage"></i>
+                <a class="currentPage">12</a>
+                <span>/</span>
+                <span class="totalPages">89</span>
+                <i class="nextPage"></i>
+                <i class="finallyPage"></i>
+                <span>每页</span>
+                <a class="pageSize">10</a>
+                <span>条，共</span>
+                <a class="total">500</a>
+                <span>条</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        $('.main').ready(function () {
+           // $('body').click(function () {
+            //    alert($(parent.document));
+             //   console.log($(parent.document));
+
+                
+               // $(parent.document).find('#newFilePgContainer').css('display', 'block').css('background','red');
+               // $(parent.document).find('#newFilePgContainer').load('');
+              // alert(2);
+           // });
+
+            function mainSize() {
+                var h = $(window).height();
+                $('body').height(h);
+                //alert(h);
+                // alert('body'+$('body').height());
+                $('.main').height(h);//100
+                $('.main .tableBox').height(h - 90);
+                $('.main .tableBox2').height(h - 90);
+                //$('.main .tableBox .table2').height(h - 100);
+
+
+            };
+            function iframeSize() {
+                var h = $(window).height();
+                var w = $(window).width();
+                $('body').height(h);
+                //alert(h);
+                // alert('body'+$('body').height());
+                $('#messagePage').height(h).width(w);//100
+               
+              
+            }
+            mainSize();
+            iframeSize();
+            //窗口重置
+            $(window).resize(function () {
+                mainSize();
+                /*trResize();*/
+                tableClone();
+                iframeSize();
+            });
+            //clone 
+
+            function tableClone() {
+                if ($('.table1 thead').next()) {
+                    $('.table1 thead').next().remove();
+                }
+                $('.table1 thead').after($('.contentBox').clone());
+            };
+            tableClone();
+
+
+
+            $('.tableBox2').mCustomScrollbar({
+                scrollButtons: {
+                    enable: true,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                axis: "yx",
+                set_width: false,
+                scrollbarPosition: "inside",
+                callbacks: {
+                    whileScrolling: function () {
+                        var $that = this.mcs.left;
+                        //alert($that);
+                        //tableClone();
+                        $('.table1').css('left', $that);
+                        
+
+                    }
+                }
+            });
+
+
+           /* $('.main_top_right').delegate('input', 'click', function () {
+                alert(22);
+            });*/
+
+            
+
+            //初始化
+            $('.currentPage').html(1);
+            var $currentPage = $('.currentPage').html();
+            var $pageSize = 10;
+            $('.pageSize').html($pageSize);
+            var $totalPages = 30;
+            $('.totalPages').html($totalPages);
+            $('.total').html(100);
+            var $search_text = null;
+            
+            //  泵房信息
+
+            function getPumpInfo() {
+                $currentPage = $('.currentPage').html();
+                    $.ajax({
+                        url: '../../Service/PumpManagerService.ashx?method=search',
+                        async: false,
+                        cache: false,
+                        data: { 'FNumber': $search_text, 'pageIndex': $currentPage - 1, 'pageSize': $pageSize },
+                        success: function (data) {
+                            //console.log(data);
+                            
+                            var data = JSON.parse(data);
+                            $('.total').html(data.total);
+                            if (!data.total) {
+                                $('.currentPage').html(0);
+                                alert('暂无数据！');
+                            }
+                            $('.totalPages').html(Math.ceil($('.total').html() / $pageSize));
+                            $('.contentBox').empty();
+                            $.each(data.data, function (i, v) {
+                                var FCreateDate = v.FCreateDate ? v.FCreateDate.replace("T", " ") : "无数据";
+                                if (Number(v.FIsOnline)) {
+                                    var FIsOnline='<span class="green">在线</span>';
+                                }else{
+                                    var FIsOnline='<span class="gray">离线</span>';
+                                }
+                                if (Number(v.FPumpType)) {
+                                    var FPumpType = '<span>多控柜</span>';
+                                } else {
+                                    var FPumpType = '<span>标准</span>';
+                                }
+
+
+                                //FIsOnline = '<span class="green">' + FIsOnline + '</span>';
+                                $('.contentBox').append('<tr id='+v.ID+'>\
+                                    <td width="30"><input type="checkbox"></td>\
+                            <td width="90">' + v.FNumber + '</td>\
+                            <td width="60">' + FIsOnline + '</td>\
+                            <td><div style="width:220px"><a class="click" href="javascript: void(0);">' + v.FName + '</a></div></td>\
+                            <td width="60">' + v.FSortIndex + '</td>\
+                            <td><div style="width:100px">' + v.CustomerName + '</div></td>\
+                            <td><div style="width:60px">' + FPumpType + '</div></td>\
+                            <td><div style="width:20px">' + v.FLifeMajorPumpNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FLifeAuxPumpNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FFireMajorPumpNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FFireAuxPumpNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FSprayMajorPumpNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FSprayAuxPumpNum + '</div></td>\
+                            <td><div class="FLifeON" style="width:20px">' + v.FLifeOutNum + '</div></td>\
+                            <td><div class="FFireON" style="width:20px">' + v.FFireOutNum + '</div></td>\
+                            <td><div class="FSprayON" style="width:20px">' + v.FSprayOutNum + '</div></td>\
+                            <td><div style="width:20px">' + v.FDewaterPumpNum + '</div></td>\
+                            <td><div style="width:200px">' + v.FLatAndLong + '</div></td>\
+                            <td><div style="width:200px">' + v.FMapAddress + '</div></td>\
+                            <td><div style="width:200px">' + v.FAddress + '</div></td>\
+                            <td><div style="width:200px">' + FCreateDate + '</div></td>\
+                                    </tr>');
+                            });
+                            tableClone();
+
+                           
+                        },
+                        error: function (data) {
+                            console.log("error:"+data.responseText);
+                        }
+                    });
+                };
+
+            getPumpInfo();
+           
+
+            //通过搜索获得泵房
+            $('.searchButton').click(function () {
+                 $search_text = $.trim($('.inputText').val());
+                if ($search_text) {
+                    $('.currentPage').html(1);
+                  
+                }
+                
+                getPumpInfo();
+            });
+
+            //分页操作
+            $('.changePageMain .prevlPage').click(function () {
+                if ($('.currentPage').html() == 1) {
+                    alert('已经是第一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    return --v;
+                });
+                getPumpInfo();
+            });
+
+
+            $('.changePageMain .nextPage').click(function () {
+                if ($('.currentPage').html() == $('.totalPages').html()) {
+                    alert('已经是最后一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    return ++v;
+                });
+                getPumpInfo();
+            });
+
+            $('.changePageMain .firstPage').click(function () {
+                if ($('.currentPage').html() == 1) {
+                    alert('已经是第一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    v = 1;
+                    return v;
+                });
+                getPumpInfo();
+            });
+
+            $('.changePageMain .finallyPage').click(function () {
+                if ($('.currentPage').html() == $('.totalPages').html()) {
+                    alert('已经是最后一页了');
+                    return;
+                }
+                $('.currentPage').html(function (i, v) {
+                    v = $('.totalPages').html();
+                    return v;
+                });
+                getPumpInfo();
+            });
+
+
+            //点击 修改某项
+
+            function modify() {
+                $('.table2').delegate('.contentBox tr .click', 'click', function (i, v) {
+                    var id = $(this).parent().parent().parent().attr('id');
+                    var url = './newFilePage.html?id=' + id + '&v=' + Math.random();
+                    //var url = './newFilePage.html';
+                    $(parent.document).find('#newFilePgContainer').slideDown('fast');
+                    $(parent.document).find('#newFilePgContainer').draggable();
+                    $(parent.document).find('#contanterShow').attr('src', url);
+                    //$(parent.document).find('#contanterShow').attr('src', url);
+                   // $('.main').css('display', 'none');
+                   // $('body').css('src', url);
+                    //alert(url);
+                });
+            }
+            modify();
+
+
+            //取消 每个tr 的 冒泡事件
+
+            function canselBable() {
+                $('.table2').delegate('.contentBox tr input[type=checkbox]', 'click', function (e,i, v) {
+                    e.stopPropagation();
+                   
+                });
+            }
+            canselBable();
+            //  根据当前选择 删除某项
+           
+            function deleted() {
+                $('.deleteButton').click(function () {
+                    
+                    if ($('.contentBox input[type=checkbox]').is(':checked')) {
+                        var $checkBox = $('.contentBox input[type=checkbox]:checked');
+                        var $lifeoutBox, $fireoutBox, $sprayoutBox;
+                        alert($checkBox.length);
+                        $checkBox.each(function (i, v) {
+                            var that = $(this).parent().parent();
+                            $lifeoutBox = Number($(that).find('.FLifeON').html());
+                            
+                            $fireoutBox = Number($(that).find('.FFireON').html());
+                           
+                            $sprayoutBox = Number($(that).find('.FSprayON').html());
+                            
+                            var json = "[{\"id\":\"" + that.attr('id') + "\",\"FDeleted\":\"" + 1 + "\",\"FLifeOutNum\":\"" + $lifeoutBox + "\",\"FFireOutNum\":\"" + $fireoutBox + "\",\"FSprayOutNum\":\"" + $sprayoutBox + "\"}]";
+                            
+                            $.ajax({
+                                url: '../../Service/PumpManagerService.ashx?method=save',
+                                async: false,
+                                cache: false,
+                                data: { data: json },
+                                success: function (data) {
+                                    
+                                    var data = JSON.parse(data);
+                                    if (data.result == 1) {
+                                        alert('删除成功！');
+                                        that.remove();
+
+                                    } else {
+                                        alert('删除失败！');
+                                    }
+                                },
+                                error: function (data) {
+                                    alert('error' + data.responseText);
+                                }
+                            });
+                        });
+                    } 
+                });
+            };
+            deleted();
+
+            //  新增某项
+            
+            function newFile() {
+                $('.newFile').click(function () {
+                    var id ='';
+                    var url = './newFilePage.html?id=' + id ;
+                    $(parent.document).find('#newFilePgContainer').slideDown('fast');
+                    $(parent.document).find('#newFilePgContainer').draggable();
+                    $(parent.document).find('#contanterShow').attr('src', url);
+                    //$(parent.document).find('#contanterShow').attr('src', url);
+                    //$('.main').css('display','none');
+                    // $('body').css('src', url);
+                });
+            }
+            newFile();
+        })
+    </script>
+</body>
+</html>

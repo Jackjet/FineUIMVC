@@ -1,0 +1,93 @@
+﻿@{
+    var F = Html.F();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @if (ViewBag.SourceFiles != null)
+    {
+        <meta name="sourcefiles" content="@ViewBag.SourceFiles" />
+    }
+
+    @F.RenderCss()
+    <link href="~/res/css/common.css" rel="stylesheet" type="text/css" />
+    @RenderSection("head", false)
+
+</head>
+<body>
+
+    @Html.AntiForgeryToken()
+
+    @{
+        var pm = F.PageManager;
+
+        // 主题
+        HttpCookie themeCookie = Request.Cookies["Theme_Mvc"];
+        if (themeCookie != null)
+        {
+            string themeValue = themeCookie.Value;
+
+            Theme theme;
+            if (Enum.TryParse<Theme>(themeValue, true, out theme))
+            {
+                pm.Theme(theme);
+            }
+            else
+            {
+                pm.CustomTheme(themeValue);
+            }
+        }
+
+        // 语言
+        HttpCookie langCookie = Request.Cookies["Language_Mvc"];
+        if (langCookie != null)
+        {
+            string langValue = langCookie.Value;
+
+            Language lang;
+            if (Enum.TryParse<Language>(langValue, true, out lang))
+            {
+                pm.Language(lang);
+            }
+            else
+            {
+                pm.CustomLanguage(langValue);
+            }
+        }
+
+        // 紧凑模式和大字体模式
+        HttpCookie modeCookie = Request.Cookies["MenuMode_Mvc"];
+        if (modeCookie != null)
+        {
+            string modeType = modeCookie.Value;
+            if (modeType == "compact")
+            {
+                pm.EnableCompactMode(true);
+            }
+            else if (modeType == "large")
+            {
+                pm.EnableLargeMode(true);
+            }
+        }
+
+        // 加载动画
+        HttpCookie loadingCookie = Request.Cookies["Loading_Mvc"];
+        if (loadingCookie != null)
+        {
+            int loadingNumber = Convert.ToInt32(loadingCookie.Value);
+            pm.LoadingImageNumber(loadingNumber);
+        }
+    }
+    @F.PageManager
+
+    @RenderSection("body", false)
+
+    @F.RenderScript()
+    @RenderSection("script", false)
+
+
+
+</body>
+</html>

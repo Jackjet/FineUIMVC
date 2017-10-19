@@ -1,0 +1,420 @@
+@rex:5rem/24;
+
+#page_header {
+     background: #000;
+    color: #fff;
+    height: 8.7*@rex;
+    line-height: 8.7*@rex;
+    text-align: center;
+    font-size: 1.8*@rex;  
+    font-size: 2.4*@rex;                          
+}
+
+#saveBtn {
+    font-size:1.8*@rex;
+    display: inline-block;
+    width: 8.6*@rex;
+    height:8.7*@rex;
+    float: right;
+    cursor: pointer;
+    padding-right: .9*@rex;
+ }
+ #page_main {                
+    padding: 0  1*@rex 2*@rex 1*@rex;
+  }
+  
+.main_top {
+    color: #fff;
+    font-size: 1.4*@rex;
+//  max-width: 6.4rem;
+    height: 39.6*@rex;
+    margin: 0 auto;
+    border-radius: 1*@rex;
+    padding-top: 2.0*@rex;                    
+  }
+  
+.main_top .top_header {
+  padding: 0 1*@rex;
+//  max-width: 60.8*@rex;
+    height: 15.6*@rex;
+    position: relative;
+    border-top-left-radius: 1*@rex;
+    border-top-right-radius: 1*@rex;
+    background: url(../img/arcBg.png) no-repeat;
+    background-size: cover;
+   }
+   
+.top_header .title {                
+    width: 60.8*@rex;
+    height: 3.0*@rex;
+    line-height: 4*@rex;                   
+            }
+            .top_header .title i {
+                display: inline-block;
+                width: 2.1*@rex;
+                height: 2.1*@rex;
+                margin-right: .5*@rex;
+                vertical-align: middle;
+                background: url(../img/index.png) no-repeat;
+                background-size: contain;
+            }
+            .top_header .out {
+                width: 100%;
+                height: 8*@rex;
+                margin-top: 1.7*@rex;
+                display: inline-block;
+            }
+            .out .outIco {
+                float: left;
+                width: 7.2*@rex;
+                height: 7.3*@rex;
+                background: url(../img/ico4.png) no-repeat ;
+                background-size: cover;
+                margin-right:3px;
+            }
+            .out .data {
+                float: left;
+            }
+            .top_header .data p {
+                line-height: 2.6*@rex;            
+            }
+            .data p .number {
+                font-size: 1.6*@rex;
+                color: rgb(248,226,5);
+            }
+            
+.main_top .top_ul {
+                padding: 0 1*@rex;
+                //max-width: 60.8*@rex;
+                height: 24*@rex;
+                margin: 0 auto;
+                background: #fff;
+                border-bottom-left-radius: 1*@rex;
+                border-bottom-right-radius: 1*@rex;
+            }
+            .top_ul li {
+                /*color: rgb(90,171,250);*/
+                width: 100%;
+                height: 7.2*@rex;     
+                padding: .3*@rex 0;   
+            }
+            .top_ul li div {
+                height: 100%;
+                float: left;
+                border: 0px solid red;
+                padding: 2.4*@rex 0 ;
+            }
+            .top_ul li div i {
+                display: inline-block;
+                vertical-align: middle;
+                width: 2.1*@rex;
+                height: 2.1*@rex;
+                margin-right: .5*@rex;
+            }
+            .top_ul li .on_off_box {
+                position: relative;
+                height: 100%;
+                width: 6.6*@rex;
+                margin-right: .5*@rex;
+                         
+            }
+            .top_ul li .on_off_box div {
+                position: absolute;
+                top: 0;              
+                height: 100%;
+                width: 100%;
+                background: url(../img/on-off.png) no-repeat;  
+                background-size:cover;            
+            }
+            .top_ul li .on_off_box div.on_off2 {
+                background-position: 0 0 ;             
+            }
+            .top_ul li .on_off_box div.on_off0 {
+                background-position: -14*@rex 0;            
+            }
+            .top_ul li .on_off_box div.on_off2 {
+                background-position: -14*@rex 0;            
+            }
+            .top_ul li .pumpName {
+                
+                /*border: 1px solid red;*/
+            }
+            .top_ul li .pumpName i {                
+                
+                background: url(../img/icon2_g.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li .pumpName i.pumpState0 {                
+                
+                background: url(../img/icon2_g.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li .pumpName i.pumpState1 {                
+                
+                background: url(../img/icon2_g.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li .pumpName i.pumpState2 {                
+                
+                background: url(../img/icon2_b.png) no-repeat;
+                background-size:cover;
+            }
+           .top_ul li .pumpName i.pumpState3 {                
+                
+                background: url(../img/icon2_y.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li div.flow_in,.top_ul li div.flow_out {
+                float: right;
+                width: 12*@rex;
+                margin-right: .6*@rex;
+                display: inline-block;
+            }
+            
+            .top_ul li div.flow_in i {              
+                background: url(../img/in-out1.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li div.flow_out i {             
+                background: url(../img/in-out2.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li div .flow_value {
+                font-size: 1.6*@rex;
+            }
+            ul li span {
+                display: inline-block;
+                color: rgb(90,171,250);
+                vertical-align: middle;
+            }
+            .top_ul li em {
+                display: inline-block;
+                float: right;
+                width: 1.1*@rex;
+                height: 1*@rex;
+                margin-top: 2.8*@rex;
+                margin-right: 1.2*@rex;
+                vertical-align: middle;
+            
+                background: url(../img/icon1_gr.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li em.rightIco0 {
+                background: url(../img/icon1_gr.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li em.rightIco1 {
+                background: url(../img/icon1_g.png) no-repeat;
+                background-size:cover;
+            }
+            .top_ul li em.rightIco2 {
+                background: url(../img/icon1_r.png) no-repeat;
+                background-size:cover;
+            }
+
+//bottom
+.main_bottom {
+                margin-top: 2.2*@rex;
+                margin-bottom: 2.2*@rex;
+                height: 50.2*@rex;
+                //max-width: 64*@rex;
+            }
+            .main_bottom .top_header {
+                height: 26*@rex;
+               // max-width: 60.8*@rex;
+                padding: 0 1*@rex;
+                background: url(../img/arcBGb.png) no-repeat;
+                background-size: cover;
+                
+            }
+            .main_bottom .state2_in .outIco {
+                position: relative;
+               top: 1*@rex;
+                width: 4.5*@rex;
+                height: 4.6*@rex;
+                background: url(../img/yelloIn.png) no-repeat ;
+                background-size: cover;
+            }
+            .main_bottom div.out {
+                width: 50%;
+                float: left;
+                height: 6.8*@rex;
+                margin-top: 1.2*@rex;
+            }
+            .main_bottom .state2_out .outIco {
+               position: relative;
+               top: 1*@rex;
+                 width: 4.5*@rex;
+                height: 4.6*@rex;
+                background: url(../img/redOut.png) no-repeat ;
+                background-size: cover;
+            }
+            
+            .main_bottom .aperture .outIco {
+               position: relative;
+               top: 1*@rex;
+                 width: 4.5*@rex;
+                height: 4.6*@rex;
+                background: url(../img/onOff.png) no-repeat ;
+                background-size: cover;
+            }
+            .aperture input.aperture_value {
+                display: inline-block;
+                width: 1.4*@rex;
+                background: none;
+                border: none;
+                border-bottom: 1px solid rgb(255,147,127);
+            }
+            .main_bottom .aperture_set {
+                border: none;
+                margin-top: 1*@rex;
+                height: 2.3*@rex; 
+                line-height: 2.3*@rex;            
+                width: 7.6*@rex;
+                display: block;
+                font-size:1.2*@rex;
+                padding-bottom: 1.6*@rex;
+                background:#ffdf04;
+                border-radius: .3*@rex;
+                
+            }
+
+
+
+            
+/*.layui-m-layerchild {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    font-size: .14*@rex;
+    border-radius: .05*@rex;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+    pointer-events: auto;-webkit-overflow-scrolling: touch; -webkit-animation-fill-mode: both;
+    animation-fill-mode: both; -webkit-animation-duration: .2s;
+    animation-duration: .2s
+}
+
+.layui-m-layer0 .layui-m-layerchild {
+    width: 90% ;
+}
+
+.layui-m-layer2 .layui-m-layerchild {
+    width: auto;
+    max-width: 2.6*@rex;
+    min-width: .4*@rex;
+    border: none;
+    background: 0 0;
+    box-shadow: none;
+    color: #fff
+}
+.layui-m-layerchild h3 {
+    padding: 0 .1*@rex;
+    height: .6*@rex;
+    line-height: .6*@rex;
+    font-size: .16*@rex;
+    font-weight: 400;
+    border-radius: 5px 5px 0 0;
+    text-align: center
+}
+
+.layui-m-layercont {
+    padding: .5*@rex .30*@rex;
+    line-height: .22*@rex;
+    text-align: center
+}
+.layui-m-layer2 .layui-m-layercont i {
+    width: .25*@rex;
+    height: .25*@rex;
+    margin-left: .08*@rex;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 100% ; -webkit-animation: layui-m-anim-loading 1.4s infinite ease-in-out;
+    animation: layui-m-anim-loading 1.4s infinite ease-in-out; -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+.layui-m-layer2 .layui-m-layercont p {
+    margin-top: .20*@rex
+}
+
+.layui-m-layer2 .layui-m-layercont>div {
+    line-height: .22*@rex;
+    padding-top: .07*@rex;
+    margin-bottom: .20*@rex;
+    font-size: .14*@rex;
+}
+.layui-m-layerbtn {
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    width: 100% ;
+    height: .5*@rex;
+    line-height: .5*@rex;
+    font-size: 0;
+    border-top: 1px solid#D0D0D0;
+    background-color: #F2F2F2
+}
+.layui-m-layerbtn span {
+    display: block; -moz-box-flex: 1;
+    box-flex: 1; -webkit-box-flex: 1;
+    font-size: .84*@rex!important;
+    cursor: pointer
+}
+.layui-m-layerend {
+    position: absolute;
+    right: .07*@rex;
+    top: .1*@rex;
+    width: .3*@rex;
+    height: .30*@rex;
+    border: 0;
+    font-weight: 400;
+    background: 0 0;
+    cursor: pointer; -webkit-appearance: none;
+    font-size: .30*@rex
+}
+.layui-m-layerend::after,
+.layui-m-layerend::before {
+    position: absolute;
+    left: .05*@rex;
+    top: .15*@rex;
+    content: '';
+    width: .18*@rex;
+    height: .01*@rex;
+    background-color: #999;
+    transform: rotate(45deg); -webkit-transform: rotate(45deg);
+    border-radius: 3px
+}
+
+body.layui-m-layer .layui-m-layer-footer {
+    position: fixed;
+    width: 95% ;
+    max-width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: .10*@rex;
+    background: 0 0
+}
+.layui-m-layer-footer .layui-m-layercont {
+    padding: .20*@rex;
+    border-radius: 5px 5px 0 0;
+    background-color: rgba(255,255,255,.8)
+}
+
+.layui-m-layer-footer .layui-m-layerbtn span[yes] {
+    margin-top: .10*@rex;
+    border-radius: 5px
+}
+body.layui-m-layer .layui-m-layer-msg {
+    width: auto;
+    max-width: 90% ;
+    margin: 0 auto;
+    bottom: -1.50*@rex;
+    background-color: rgba(0,0,0,.7);
+    color: #fff
+}
+.layui-m-layer-msg .layui-m-layercont {
+    padding: .1*@rex .20*@rex
+}*/
+            
+

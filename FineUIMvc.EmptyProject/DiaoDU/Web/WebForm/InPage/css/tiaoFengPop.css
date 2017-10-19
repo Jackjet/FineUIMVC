@@ -1,0 +1,701 @@
+﻿@charset "utf-8";
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft YaHei";
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: #fff;
+}
+img {
+	border: none;
+}
+
+
+* {
+	outline: 0;
+	font-family: "Microsoft YaHei";
+}
+li { 
+	 list-style: none;
+ }
+	.tiaoFeng.stage {
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		width: 332px;
+		height: 558px;
+		border-radius: 8px;		
+		-webkit-perspective: 1200;
+		   -moz-perspective: 1200;
+			-ms-perspective: 1200;
+			    perspective: 1200;
+
+			 -ms-transform: perspective(1200px);
+			-moz-transform: perspective(1200px);
+    			-moz-transform-style: preserve-3d; 
+    			 -ms-transform-style: preserve-3d; 
+		
+		
+	}
+	.tiaoFeng.stage .close {
+		font-size: 34px;
+		z-index: 1;
+		font-weight: bold; 
+		color: #fff;
+	
+	}
+	.tiaoFeng.stage .contentBox {
+		border-radius: 8px;
+		position: relative;
+		width: 332px;
+		height: 558px;
+			-webkit-transition: .6s;
+			-webkit-transform-style: preserve-3d;
+			-ms-transition: .6s;
+
+			-moz-transition: .6s;
+			-moz-transform: perspective(1200px);
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+
+			transition: .6s;
+			transform-style: preserve-3d;
+	}
+	.tiaoFeng.stage .fore, .tiaoFeng.stage .back {
+		background: #fff;
+		overflow: hidden;
+		border-radius: 8px;
+		-webkit-box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+		box-shadow: 14px 14px  14px rgba(0,0,0,.4);
+		 -webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			 -ms-backface-visibility: hidden;
+			     backface-visibility: hidden;
+
+		         -webkit-transition: .6s;
+		    -webkit-transform-style: preserve-3d;
+		          -webkit-transform: rotateY(0deg);
+
+		         -moz-transition: .6s;
+		    -moz-transform-style: preserve-3d;
+		          -moz-transform: rotateY(0deg);
+
+		    -o-transition: .6s;
+		    -o-transform-style: preserve-3d;
+		    -o-transform: rotateY(0deg);
+
+		         -ms-transition: .6s;
+		    -ms-transform-style: preserve-3d;
+		          -ms-transform: rotateY(0deg);
+
+		         transition: .6s;
+		    transform-style: preserve-3d;
+		          transform: rotateY(0deg);
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 332px;
+			height: 558px;
+	}
+	.tiaoFeng.stage .fore {	
+	    -webkit-transform: rotateY(0deg);
+			-ms-transform: rotateY(0deg);
+			     	z-index: 2;		
+	}
+	.tiaoFeng.stage .fore_header {
+		position: relative;
+		width: 332px;
+		height: 220px;
+		border-radius: 8px 8px 0 0;
+	}
+	.tiaoFeng.stage .fore.click {
+		-webkit-transform: rotateY(180deg);
+    	   -moz-transform: rotateY(180deg);
+             -o-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+               
+	}
+	.tiaoFeng.stage .fore.clickTwo {
+		-webkit-transform: rotateY(0deg);
+    	   -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+                
+	}
+	
+	.tiaoFeng.stage .back {	
+			-webkit-transform: rotateY(-180deg);
+		       -moz-transform: rotateY(-180deg);
+		         -o-transform: rotateY(-180deg);
+		        -ms-transform: rotateY(-180deg);
+		            transform: rotateY(-180deg);
+		            padding-bottom: 6px;
+	}
+	.tiaoFeng.stage .back.click {
+		-webkit-transform: rotateY(0deg);
+           -moz-transform: rotateY(0deg);
+             -o-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+               
+	}
+	.tiaoFeng.stage .back.clickTwo {
+		-webkit-transform: rotateY(-180deg);
+           -moz-transform: rotateY(-180deg);
+             -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+                
+	}
+	.tiaoFeng.stage .camera {
+       	 	position: absolute;
+       		 right: 12px;
+        	top: 150px;
+        	width: 26px;
+        	height: 38px;
+        	cursor: pointer;
+        	background: url(../img/camera.png) no-repeat;
+	}
+   .tiaoFeng.stage  .prev,.next {
+         position: absolute;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+        background: red;
+        color: #fff;
+    }
+
+   .tiaoFeng.stage  .prev {
+       top: 50%;
+       left: 20px;
+       margin-top: -20px;
+    }
+   .tiaoFeng.stage  .next {
+        top: 50%;
+       right: 20px;
+       margin-top: -20px;
+    }
+	.tiaoFeng.stage .img-box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 220px;
+        background: #0f699e;
+	}
+	
+	.tiaoFeng.stage .img-box div {
+		width: 244px;
+        height: 116px;
+        margin: 50px auto 0;
+        background: url(../img/top.png) no-repeat;
+	}
+	
+	.tiaoFeng.stage .time-box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 332px;
+		height: 42px;
+        font-size: 12px;
+		border-radius: 8px 8px 0 0 ;
+	}
+	.tiaoFeng.stage .pump_time {
+		cursor: pointer;
+		color: #fff;
+		font-size: 12px;
+		padding: 12px 0 0 18px;
+		width: 220px;
+		-ms-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.tiaoFeng.stage .number_box {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 332px;
+		height: 30px;
+		line-height: 30px;
+	}
+	.tiaoFeng.stage .pump_name {
+		float: left;
+		cursor: pointer;
+		color: #fff;
+		font-size: 14px;
+		padding-left: 18px;
+		width: 180px;
+		-ms-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.tiaoFeng.stage .pump_number {
+		float: right;
+		cursor: pointer;
+		color: #fff;
+		font-size: 14px;
+		text-align: right;
+		padding-right: 18px;
+		width: 100px;
+		overflow: hidden;
+	}
+	
+	.tiaoFeng.stage .closeBox {
+	
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+		width: 34px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		cursor: pointer;
+			-webkit-transition: all .8s ease-in;
+			     -o-transition: all .8s ease-in;
+					transition: all .8s ease-in;
+		-webkit-transform-origin: 17px 18px;
+		   -moz-transform-origin: 17px 18px;
+		    -ms-transform-origin: 17px 18px;
+		     -o-transform-origin: 17px 18px;
+		        transform-origin: 17px 18px;
+	}
+	.tiaoFeng.stage .closeBox:hover {
+		-webkit-transform: rotateZ(700deg);
+		    -ms-transform: rotateZ(700deg);
+		     -o-transform: rotateZ(700deg);
+		        transform: rotateZ(700deg);
+	}
+	.tiaoFeng.stage .backBtn {
+		color: #fff;
+		display: inline-block;
+		cursor: pointer;
+		width: 34px;
+		height: 34px;
+		background: url(../img/backBtn.png) no-repeat 5px 10px;
+	}
+	.tiaoFeng.stage .clearfix {
+		zoom: 1;
+	}
+	.tiaoFeng.stage .clearfix:after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
+	
+	.tiaoFeng.stage .fore .content .power_box {
+		width: 332px;
+		height: 316px;
+		background: #fff;
+	}
+	.tiaoFeng.stage .fore .content .power_box li {
+        position: relative;
+        float: left;
+		width: 82px!important;
+		height: 80px!important;
+        border: none!important;
+        margin: 0!important;
+        padding: 0!important;
+		border-bottom: 1px solid #f4f4f4!important;
+        border-right: 1px solid #f4f4f4!important;
+		color: #3ca7ff;
+        text-align: center;
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(4n+4) {       		
+        border-right: none;
+	}
+	
+
+    .tiaoFeng.stage .fore .content .power_box li .picBox {     
+		width: 100%;
+        height: 28px;
+        margin-top: 14px;
+        background: url(../img/tiaofengTuBiao.png) no-repeat;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(1) .picBox {     
+		
+        background-position: 30px 6px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(2) .picBox {     
+		
+        background-position: -60px 6px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(3) .picBox {     
+		
+        background-position: -226px -74px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(4)  .picBox{     
+		
+        background-position: -220px 6px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(5)  .picBox{     
+		
+        background-position: -144px 6px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(6)  .picBox{     
+		
+        background-position: -144px -74px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(7)  .picBox{     
+		
+        background-position: 30px -234px;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(8)  .picBox{     
+		
+        background-position: -56px -233px;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(9)  .picBox{     
+		
+        background-position: -144px -154px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(10) .picBox {     
+		
+        background-position: -56px -154px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(11) .picBox {     
+		
+        background-position: -224px -154px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(12) .picBox {     
+		
+        background-position: 34px -154px;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(13) .picBox {     
+		
+        background-position: -56px -74px ;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(14) .picBox {     
+		
+        background-position: 34px -74px;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li:nth-of-type(15) .picBox {     
+		
+        background-position: -146px -234px;    
+	}
+    .tiaoFeng.stage .fore .content .power_box li .itemTxt {     
+		width: 82px;
+        height: 20px;
+        line-height: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: keep-all;
+        font-size: 12px; 
+	}
+    .tiaoFeng.stage .fore .content .power_box li .itemNumber {     
+		width: 82px;
+        height: 20px;   
+        line-height: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: keep-all;
+        font-size: 12px;
+	}
+    .tiaoFeng.stage .fore .content .power_box li .itemSetBtn {     
+		position: absolute;
+        right: 14px;
+        top: 14px;
+        width: 54px;
+        height: 50px;
+        cursor: pointer;
+        border: 1px solid #a3e5f9;
+        background: url(../img/tiaofengSet.png) no-repeat  rgba(140,212,233,.4) 44px 4px;
+        border-radius: 4px;
+	}
+
+    .kaiduSetBox {
+        position: absolute;
+        top: -100px;
+        left: -105px;
+        width: 210px;
+        height: 130px;
+        background: #fff;
+        box-shadow: 0px 0px 6px #ccc;
+        border-radius: 4px;
+        z-index: 2;
+        display: none;
+    }
+    .kaiduSetBox .closeB {
+       width: 100%;
+       height: 20px;
+       line-height: 20px;
+       text-align: right;
+       font-size: 22px;
+       cursor: pointer;
+       color: #666;
+    }
+   .kaiduSetBox .liuLiangYuanKong {
+       width: 100%;
+       height: 26px;
+       line-height: 26px;
+   }
+   .kaiduSetBox .liuLiangYuanKong * {
+      float: left;
+   }
+   .kaiduSetBox .liuLiangYuanKong p {
+       font-size: 14px;
+      color: #666;
+      text-indent: 6px;
+   }
+   .kaiduSetBox .liuLiangYuanKong span {
+      height: 20px;
+      line-height: 20px;
+       padding: 1px 8px;
+       font-size: 12px;
+       border-radius: 4px;
+       color: #999;
+       background: #eee;
+       margin:0 4px;
+       cursor: pointer;
+   }
+   .kaiduSetBox .liuLiangYuanKong span:hover {
+      font-weight: bold;
+   }
+   .kaiduSetBox .liuLiangYuanKong span.active {     
+       background: #21a0ff;
+       color: #fff;
+   }
+
+   .kaiduRadia {
+       float: left;
+       width: 70px;
+       height: 70px;
+       margin-left: 10px;
+
+   } 
+   .radioSetBox {
+       position: relative;
+       float: right;
+       width: 110px;
+       height: 70px;
+   }
+    .radioSetBox input {
+       width: 96%;
+       height: 20px;
+       border: none;
+       outline: none;
+       border-bottom: 1px solid #ccc;
+       background: transparent;
+       text-indent: 12px;
+   }
+    .radioSetBox button {
+        position: absolute;
+        top: 46px;
+        left: 8px;
+       width: 90px;
+       height: 20px;
+       border: none;
+       color: #fff;
+       outline: none;
+       border-radius: 4px;
+       background: #21a0ff;
+       cursor: pointer;
+   }
+    .radioSetBox button:hover {
+       font-weight: bold;
+   }
+	/*.tiaoFeng.stage .fore .content .power_box .power_name {
+		width: 138px;
+		height: 39px;
+		float: left;
+	}
+	
+	.tiaoFeng.stage .fore .content .power_box .power_name_bg {
+		width: 28px;
+		height: 30px;
+		margin-top: 12px;
+		padding-right: 4px;
+		display: inline-block;
+		float: left;
+		
+	}
+	.tiaoFeng.stage .fore .content .power_box .power_name_bg.child1 {
+		
+		background: url(../img/waterLine.png) no-repeat 6px 4px ;
+	}
+	 .tiaoFeng.stage .fore .content .power_box .power_name_bg.child2 {
+		
+		background: url(../img/stageWater.png) no-repeat 6px 4px ;
+	}
+	.tiaoFeng.stage .fore .content .power_box .power_name_bg.child3 {
+		
+		background: url(../img/userWater.png) no-repeat 6px 4px ;
+	}
+	.tiaoFeng.stage .fore .content .power_box .power_name_bg.child4 {
+		
+		background: url(../img/canuseTime.png) no-repeat 6px 4px ;
+	}
+	.tiaoFeng.stage .fore .content .power_box .power_name_bg.child5 {
+		
+		background: url(../img/inPress.png) no-repeat 6px 4px ;
+	}
+.tiaoFeng.stage .fore .content .power_box .power_name_bg.child6 {
+		
+		background: url(../img/out.png) no-repeat 6px 4px ;
+	}
+   .tiaoFeng.stage .fore .content .power_box .power_name_bg.child7 {
+		
+		background: url(../img/famenKaidu.png) no-repeat 6px 4px ;
+	}
+   .tiaoFeng.stage .fore .content .power_box .power_name_bg.child8 {
+		
+		background: url(../img/kaiduSet.png) no-repeat 6px 4px ;
+	}*/
+	
+	.tiaoFeng.stage .fore .content .power_box .number {
+		width: 104px;
+		height: 39px;
+		float: right;
+		text-align: right;
+	}
+	
+	  
+
+
+.tiaoFeng.stage .back_header {
+	position: relative;
+	width: 332px;
+	height: 142px;
+	padding: 4px 0 0 5px;
+	background: url(../img/bg.png) no-repeat;
+}
+.tiaoFeng.stage #echart_box {
+	position: absolute;
+	top: 0;
+	left: 0;
+		width: 332px;
+		height: 126px;
+}
+	.tiaoFeng.stage .show_list {
+        position: absolute;
+	    bottom: 0;
+	    left: 0;
+        height: 20px;
+       
+        width: 100%;
+	}
+   .tiaoFeng.stage  .show_list ul {
+        position: absolute;
+	    bottom: 0;
+	    left: 0;
+        height: 20px;
+       
+        width: 100%;
+	}
+   .tiaoFeng.stage .show_list ul li {
+        float: left;     
+        width: 28px;
+        height: 20px;
+        margin: 0 14px 0 23px;
+        cursor: pointer;
+        background: url(../../FTZ/img/pic_li_bg.png) no-repeat;     
+       
+	}
+    .tiaoFeng.stage .show_list ul li.showList_li2 {
+     
+        background-position: -167px 0;     
+       
+	}
+   .tiaoFeng.stage .show_list ul li.showList_li3 {
+     
+          background-position: -338px 0;     
+       
+	}
+   .tiaoFeng.stage .show_list ul li.showList_li4 {
+     
+        background-position: -507px 0;    
+       
+	}
+    .tiaoFeng.stage .show_list ul li.showList_li5 {
+     
+         background-position: -677px 0;    
+       
+	}
+.tiaoFeng.stage .backBox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	cursor: pointer;
+	color: #fff;
+	width: 34px;
+	height: 34px;
+}
+.tiaoFeng.stage .back_content {
+	height: 400px;
+	width: 310px;
+	padding: 0 11px 0 11px;
+}
+.tiaoFeng.stage .back_content ul {
+	width: 310px;
+}
+.tiaoFeng.stage .back_content ul li {
+	height: 39px;
+	width: 310px;
+	line-height: 39px;
+	border-bottom: 1px solid #e6e6e6;
+}
+.tiaoFeng.stage .back_content ul li .item {
+	float: left;
+	color: #000;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg {
+	width: 24px;
+	height: 38px;
+	margin-right: 8px;
+	display: block;
+	float: left;
+	background: url(../img/item_bg.png) no-repeat;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg1 {
+	background-position: -44px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg2 {
+	background-position: -168px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg3 {
+	background-position: -293px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg4 {
+	background-position: -125px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg5 {
+	background-position: -249px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg6 {
+	background-position: -208px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg7 {
+	background-position: -83px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg8 {
+	background-position: -333px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg9 {
+	background-position: -375px 12px;
+}
+.tiaoFeng.stage .back_content ul li .item .item_bg.item_bg10 {
+	background-position: 0 12px;
+}
+.tiaoFeng.stage .back_content ul li .item_content {
+	float: right;
+	color: #3ca7ff;
+}
+ 

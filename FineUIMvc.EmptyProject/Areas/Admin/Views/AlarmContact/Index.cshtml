@@ -1,0 +1,367 @@
+﻿@{
+    ViewBag.Title = "报警联系人";
+    var F = @Html.F();
+}
+
+@section body {
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .Layout(LayoutType.Region)
+        .IsViewPort(true)
+        .Items(
+        F.Panel()
+                .Layout(LayoutType.Fit)
+                .Collapsed(false)
+                .EnableCollapse(false)
+                .Title("报警联系人组")
+                .ShowHeader(true)
+                .Width(180)
+                .ShowBorder(true)
+                .RegionSplitIcon(false)
+                .RegionSplitWidth(3)
+                .RegionSplit(true)
+                .RegionPosition(Position.Left)
+                .CssClass("leftregion")
+                .ID("leftPanel")
+                .Items(
+                    F.Tree()
+                        .ID("Tree1")
+                        .ShowBorder(false)
+                        .ShowHeader(false)
+                        .EnableSingleClickExpand(true)
+                        .EnableCollapse(true)
+                        .SelectedNodeID(ViewBag.SelectNode)
+                        .Nodes((TreeNode[])ViewBag.Tree1Nodes)
+                        .Listener("nodeclick", "onTree1NodeClick")
+                )
+                .Tools(
+                    F.Tool()
+                     .IconFont(IconFont.PlusCircle)
+                     .ID("leftPanelToolCollapse")
+                     .Enabled(ViewBag.CoreAlarmContactNew)
+                     .Listener("click", "onCreateClick"),
+                   F.Tool()
+                    .IconFont(IconFont.Pencil)
+                    .ID("leftPanelToolCollapse")
+                    .Enabled(ViewBag.CoreAlarmContactEdit)
+                    .Listener("click", "onEditClick"),
+                    F.Tool()
+                     .IconFont(IconFont.MinusCircle)
+                     .ID("leftPanelToolCollapse")
+                     .Enabled(ViewBag.CoreAlarmContactDelete)
+                     .Listener("click", "onDeleteClick")
+                        ),
+
+        F.Panel()
+           .ID("Region3")
+           .ShowHeader(false)
+           .ShowBorder(false)
+           .RegionPosition(Position.Center)
+           .Items(
+                   F.Grid()
+                      .EnableCollapse(true)
+                      .Title("表格")
+                      .ShowHeader(false)
+                      .ShowBorder(true)
+                      .ID("Grid1")
+                      .DataIDField("ID")
+                      .EnableTextSelection(true)
+                      .EnableCheckBoxSelect(true)
+                      .AllowPaging(true)
+                      .IsDatabasePaging(true)
+                      .IsViewPort(true)
+                      .ClicksToEdit(1)
+                      .AllowCellEditing(true)
+                      .AutoScroll(true)
+                      .PageSize(20)
+                      .OnPageIndexChanged(Url.Action("Grid1_PageIndexChanged"), "Grid1",
+                                        new Parameter("gridPageSize", "F.ui.ddlGridPageSize.getValue()")
+                                      , new Parameter("GroupID", "F.ui.Tree1.getSelectedNode(true).id"))
+                      .Toolbars(
+                          F.Toolbar()
+                                 .ID("Toolbar1")
+                                 .Items(
+                                     F.TriggerBox()
+                                         .ID("tbSelectedCustomer")
+                                         .EnableEdit(false)
+                                         .TriggerIcon(TriggerIcon.Search)
+                                         .OnClientTriggerClick("OnClientCustomerSelect();")
+                                         .Required(true)
+                                         .ShowRedStar(true)
+                                         .Readonly(ViewBag.ReadOnly)
+                                         .Text(ViewBag.CustomerName)
+                                         .Label("客户名称"),
+                                     F.ToolbarFill(),
+                                     F.Button()
+                                      .ID("btnDeleteSelected")
+                                      .Icon(Icon.Delete)
+                                      .Text("删除子项")
+                                      .Enabled(ViewBag.CoreAlarmContactDelete)
+                                      .Listener("click", "onDeleteSelectedClick"),
+                                     F.Button()
+                                      .ID("btnNew")
+                                      .Icon(Icon.Add)
+                                      .Listener("click", "onNewGroupContactClick")
+                                      .Enabled(ViewBag.CoreAlarmContactNew)
+                                      .Text("新增联系人"),
+                                     F.Button()
+                                      .ID("btnSubmit")
+                                      .Enabled(ViewBag.CoreAlarmContactEdit)
+                                      .Text("保存数据")
+                                      .MarginRight(200)
+                                      .OnClick(Url.Action("btnSubmit_Click"), "Grid1", new Parameter("GroupID", "F.ui.Tree1.getSelectedNode(true).id")),
+                                     F.HiddenField()
+                                      .Label("客户id")
+                                      .ID("tbxCustomerID")
+                                      .Text(ViewBag.CustomerID)
+                                 )
+                      )
+                      .PageItems(
+                          F.ToolbarSeparator()
+                             .ID("ToolbarSeparator1"),
+                          F.ToolbarText()
+                             .ID("ToolbarText1")
+                             .Text("每页记录数："),
+                          F.DropDownList()
+                             .ID("ddlGridPageSize")
+                             .Width(80)
+                             .SelectedValue("20")
+                             .Listener("change", "onDropDownList1Change")
+                             .Items(
+                                F.ListItem()
+                                  .Text("10")
+                                  .Value("10"),
+                                F.ListItem()
+                                  .Text("20")
+                                  .Value("20"),
+                                F.ListItem()
+                                  .Text("50")
+                                  .Value("50"),
+                                F.ListItem()
+                                  .Text("100")
+                                  .Value("100")
+                             )
+                      )
+                      .Columns(
+                            F.RowNumberField(),
+                            F.RenderField()
+                                  .HeaderText("联系人")
+                                  .ColumnID("Contacts")
+                                  .DataField("Contacts")
+                                  .Width(100)
+                                  .Editor(
+                                      F.TextBox()
+                                          .ID("tbxContact")
+                                          .Required(true)
+                                  ),
+                             F.RenderField()
+                                  .HeaderText("联系电话")
+                                  .ColumnID("ContactPhone")
+                                  .DataField("ContactPhone")
+                                  .Width(200)
+                                  .Editor(
+                                     F.TextBox()
+                                         .ID("tbxContactPhone")
+                                         .Required(true)
+                                   ),
+                             F.RenderField()
+                                  .HeaderText("所属客户")
+                                  .ColumnID("FCustomerName")
+                                  .DataField("FCustomerName")
+                                  .Width(300),
+                             F.RenderCheckField()
+                                  .Width(100)
+                                  .ColumnID("Type")
+                                  .DataField("Type")
+                                  .HeaderText("是否报警")
+                              )
+                              .RecordCount(ViewBag.Grid1RecordCount)
+                              .DataSource(ViewBag.Grid1DataSource)
+           )
+        )
+    )
+    @(F.Window()
+        .ID("Window1")
+        .Width(400)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+        .Listener("close", "onWindow1Close")
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+        var CoreAlarmContactDelete = @Convert.ToString(ViewBag.CoreAlarmContactDelete).ToLower();
+        function renderDeleteField(value, params) {
+            var disabledCls = CoreAlarmContactDelete ? '' : ' ui-state-disabled';
+            return '<a href="javascript:;" class="action-btn delete' + disabledCls + '" ><img class="f-grid-cell-icon" src="@Url.Content("~/res/icon/delete.png")"></a>';
+        }
+        function onCreateClick() {
+            var C_Name=F.ui.tbSelectedCustomer.getValue();
+            var C_Id=F.ui.tbxCustomerID.getValue();
+            if(C_Name=="")
+            {
+                F.alert('请先选择客户！');
+                return;
+            }
+
+            F.ui.Window1.show('@Url.Content("~/Admin/AlarmContact/ContactGroup_new")?C_Id='+C_Id+'&C_Name='+C_Name, '新增报警联系人组');
+        }
+        function onEditClick() {
+
+            var result = '';
+            var selectedNode = F.ui.Tree1.getSelectedNode(true);
+            if (selectedNode) {
+                result = {
+                    id: selectedNode.id,
+                    text: selectedNode.text
+                };
+            }
+            if (result.id != undefined || result.id != null) {
+                F.ui.Window1.show('@Url.Content("~/Admin/AlarmContact/ContactGroup_edit")?GroupID=' + result.id, '编辑报警联系人组');
+            }
+        }
+        function onDeleteClick() {
+            var result = '';
+
+            var selectedNode = F.ui.Tree1.getSelectedNode(true);
+            if (selectedNode) {
+                result = {
+                    id: selectedNode.id,
+                    text: selectedNode.text
+                };
+            }
+            if (result.id != undefined || result.id != null) {
+                F.doPostBack('@Url.Action("btnGetSelectedNode_Click")', {
+                    selectedNode: result
+                });
+            }
+        }
+
+        function onTree1NodeClick(event, nodeId) {
+            var tree = this;
+            var grid1 = F.ui.Grid1;
+            var nodeData = tree.getNodeData(nodeId);
+
+            // 触发后台事件
+            F.doPostBack('@Url.Action("Tree1_NodeClick")', {
+                nodeId: nodeId,
+                Grid1_fields: grid1.fields
+            });
+        }
+
+        function onWindow1Close(event) {
+            doCustomPostBack('windowclose');
+        }
+
+        function onDropDownList1Change(event) {
+            doCustomPostBack('dropdownlist', {
+                ddlValue: this.getValue()
+            });
+        }
+
+        function doCustomPostBack(type, params) {
+            var grid1 = F.ui.Grid1;
+            var ddlGridPageSize = F.ui.ddlGridPageSize;
+            // 触发后台事件
+            F.doPostBack('@Url.Action("MyCustomPostBack")', {
+                type: type,
+                gridFields: grid1.fields,
+                typeParams: params,
+                gridIndex: grid1.getPageIndex(),
+                gridPageSize: ddlGridPageSize.getValue(),
+                GroupID:F.ui.Tree1.getSelectedNode(true)==null?-1:F.ui.Tree1.getSelectedNode(true).id
+            });
+        }
+
+        function onNewGroupContactClick() {
+            var grid1 = F.ui.Grid1;
+            var selectedNode = F.ui.Tree1.getSelectedNode(true);
+            if (selectedNode) {
+                result = {
+                    id: selectedNode.id,
+                    text: selectedNode.text,
+                };
+            }
+            if(selectedNode==null)
+            {
+                F.alert("请先选择报警联系人组");
+                return;
+            }
+            if (result.id != undefined || result.id != null) {
+                // 新增一行（返回新增行的ID）
+                var addedRowId = grid1.addNewRecord({
+                    'FContactName': '新联系人',
+                    'FContactPhone': '1',
+                    'FCustomerName':F.ui.tbSelectedCustomer.getValue()
+                }, true);
+            }
+            else
+            {
+                F.alert("请先选择报警联系人组");
+                return;
+            }
+        }
+
+        function onDeleteSelectedClick(event) {
+            var grid1 = F.ui.Grid1;
+
+            if (!grid1.hasSelection()) {
+                F.alert('请至少选择一项！');
+                return;
+            }
+
+            var selectedRows = grid1.getSelectedRows();
+            F.confirm({
+                message: '你确定要删除选中的&nbsp;<b>' + selectedRows.length + '</b>&nbsp;行数据吗？',
+                target: '_top',
+                ok: function () {
+                    grid1.deleteRows(selectedRows);
+                }
+            });
+        }
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择',600,500);
+        }
+
+        function updateCustomer(id, text) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            if(text=="")
+            {
+
+            }
+            else
+            {
+                doCustomPostBack('selectCustomer', {
+                    FCustomerID: id
+                });
+            }
+        }
+
+        // 点击浏览器右上角关闭按钮，或者关闭当前页面所在的选项卡
+        F.beforeUnload(function () {
+            var grid1 = F.ui.Grid1;
+            // 如果存在删除行 或者 新增行 或者 修改的数据
+            if (grid1.getModifiedData().length) {
+                return '当前表格数据已经被修改，确认放弃修改？';
+            }
+        });
+    </script>
+}
+

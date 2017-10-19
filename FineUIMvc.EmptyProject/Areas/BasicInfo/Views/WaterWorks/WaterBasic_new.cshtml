@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "BasicInfo/Flow/FlowBasic_new";
+    var F = @Html.F();
+}
+
+
+@section body {
+    @(F.Form()
+         .ID("SimpleForm1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(10)
+         .AutoScroll(true)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                 .Items(
+                     F.Button()
+                         .ValidateForms("SimpleForm1")
+                         .Icon(Icon.SystemSaveClose)
+                         .OnClick(Url.Action("btnBasicCreate_Click"), "SimpleForm1")
+                         .Text("保存")
+                 )
+         )
+         .Items(
+                   F.FormRow()
+                     .Items(
+                         F.TextBox()
+                            .Label("水厂编号")
+                            .EmptyText("请输入水厂编号")
+                            .ID("tbxCode")
+                            .Text(ViewBag.txtCode)
+                            .Readonly(true)
+                         .LabelWidth(80),
+                         F.TextBox()
+                            .Label("水厂名称")
+                            .EmptyText("请输入水厂名称")
+                            .ID("tbxName")
+                            .LabelWidth(80)
+                            .Required(true)
+                            .ShowRedStar(true)
+
+                         ),
+                     F.FormRow()
+                      .Items(
+                         F.TriggerBox()
+                            .ID("tbSelectedCustomer")
+                            .EnableEdit(false)
+                            .LabelWidth(80)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientCustomerSelect();")
+                            .Text(ViewBag.CustomerName)
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .Readonly(ViewBag.ReadOnly)
+                            .Label("客户名称"),
+                         F.TriggerBox()
+                            .ID("tbSelectedAddress")
+                            .LabelWidth(80)
+                            .EnableEdit(false)
+                            .Required(true)
+                            .ShowRedStar(true)
+                            .TriggerIcon(TriggerIcon.Search)
+                            .OnClientTriggerClick("OnClientAddressSelect();")
+                            .Label("具体位置")
+                         ),
+                   F.FormRow()
+                      .Items(
+                          F.DropDownList()
+                            .ID("ddlFType")
+                            .Label("水厂类型")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFTypeDataSource)
+                            .SelectedValue("0"),
+                          F.DropDownList()
+                            .ID("ddlFRotaryPa")
+                            .Label("转压方式")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFRotaryPaDataSource)
+                            .SelectedValue("0")
+                          ),
+                   F.FormRow()
+                   .Items(
+                      F.DropDownList()
+                            .ID("ddlFInDiameter")
+                            .Label("进口管径")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFInDiameterDataSource)
+                            .SelectedValue("0"),
+                      F.DropDownList()
+                            .ID("ddlFOutDiameter")
+                            .Label("出口管径")
+                            .LabelWidth(80)
+                            .DataTextField("FName")
+                            .DataValueField("FValue")
+                            .DataSource(ViewBag.ddlFOutDiameterDataSource)
+                            .SelectedValue("0")
+                       ),
+                    F.FormRow()
+                               .Items(
+                                   F.NumberBox()
+                                         .Label("进水口数量")
+                                         .LabelWidth(100)
+                                         .NoDecimal(true)
+                                         .NoNegative(true)
+                                         .Text("1")
+                                         .TrimEndZero(false)
+                                         .ID("tbxFEnterWNum"),
+                                   F.NumberBox()
+                                         .Label("出水口数量")
+                                         .NoDecimal(true)
+                                         .NoNegative(true)
+                                         .LabelWidth(100)
+                                         .Text("1")
+                                         .ID("tbxFExitWNum")
+                                   ),
+              F.FormRow()
+               .Items(
+                   F.NumberBox()
+                         .Label("设计供水量")
+                         .LabelWidth(100)
+                         .DecimalPrecision(2)
+                         .Text("1.00")
+                         .TrimEndZero(false)
+                         .ID("tbxFWater"),
+                   F.NumberBox()
+                         .Label("设计供水压力")
+                         .LabelWidth(100)
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .Text("1")
+                         .ID("tbxFWaterPa"),
+                   F.NumberBox()
+                         .Label("蓄水容积")
+                         .NoDecimal(true)
+                         .NoNegative(true)
+                         .LabelWidth(100)
+                         .Text("1")
+                         .ID("tbxFWaterM3")
+                   ),
+            F.FormRow()
+                 .Items(
+                     F.TextBox()
+                       .Label("备注")
+                       .EmptyText("请输入备注")
+                       .ID("tbxFNote")
+                       .LabelWidth(80)
+                     ),
+           F.FormRow()
+                .Items(
+                    F.TextBox()
+                      .Label("监控地址")
+                      .EmptyText("请输入监控地址")
+                      .ID("tbxFJKLink")
+                      .LabelWidth(80)
+                      .Hidden(ViewBag.Hidden)
+                    ),
+                 F.FormRow()
+                   .Items(
+              F.HiddenField()
+                 .Label("经纬度")
+                 .ID("tbxLngLat"),
+              F.HiddenField()
+                 .Label("客户id")
+                 .ID("tbxCustomerID")
+                 .Text(ViewBag.CustomerID),
+              F.HiddenField()
+                 .Label("地图模板id")
+                 .ID("tbxFMapTempID")
+                 .Text(ViewBag.MapTempID)
+                 )
+        )
+    )
+
+    @(F.Window()
+        .ID("Window1")
+        .Width(700)
+        .Height(500)
+        .IsModal(true)
+        .Hidden(true)
+        .Target(Target.Top)
+        .EnableResize(true)
+        .EnableMaximize(true)
+        .EnableIFrame(true)
+        .IFrameUrl(Url.Content("about:blank"))
+    )
+}
+
+@section script {
+    <script>
+
+        function OnClientCustomerSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/CustomerWindow")';
+            var openUrl = F.formatString("{0}?customerId={1}", url, F.urlEncode(F.ui.tbxCustomerID.getValue()));
+
+            F.ui.Window1.show(openUrl, '客户选择');
+        }
+
+        function OnClientAddressSelect(event) {
+            var url = '@Url.Content("~/OpenWindow/MapWindow")';
+            var openUrl = F.formatString("{0}?LngLat={1}", url, F.urlEncode(F.ui.tbxLngLat.getValue()));
+
+            F.ui.Window1.show(openUrl, '坐标地址选择');
+        }
+
+        function updateCustomer(id, text,tepmid) {
+            F.ui.tbSelectedCustomer.setValue(text);
+            F.ui.tbxCustomerID.setValue(id);
+            F.ui.tbxFMapTempID.setValue(tepmid);
+        }
+
+        function updateMap(id, text) {
+            F.ui.tbSelectedAddress.setValue(text);
+            F.ui.tbxLngLat.setValue(id);
+        }
+    </script>
+}

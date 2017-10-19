@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>上海自贸区泵房远程监控系统</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/common.css" />
+    <!--<link rel="stylesheet" href="css/index.css" />-->
+    <link rel="stylesheet" href="css/basicSetup.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <!--<script src="js/jquery-ui.min.js"></script>-->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <script src="js/dataAnalysis1.js"></script>
+    <!--<script type="text/javascript" src="js/basicSetup.js"></script>-->
+    <!--<style type="text/css">
+        .basicSetup .setup_RightList iFrame {
+            background: rgba(14,70,112,0.7);
+        }
+    </style>-->
+</head>
+<body>
+    <div class="basicSetup" id="basic1">
+        <div class="setup_Left" id="leftScroll">
+            <!--<div class="scroll scrollUp"></div>
+            <div class="scroll scrollDown"></div>-->
+            <dl class="left-list">
+                <dd class="setupListItem">
+                    <a class="setupfoldIco"><i class="info-show"></i>数据分析</a>
+                    <ul class="info-list">
+                        <li class="current"><a>报表首页</a></li>
+                        <li ><a>设备日志</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="setup_RightList">
+
+            <div class="setup_righterHeader">
+                <ul class="setup_RightTab">
+                    <li class="current" id="报表首页"><a>报表首页</a></li>
+                </ul>
+                <!--<button class="setup_saveBtn">保存</button>-->
+                <!--<button class="expand"></button>-->
+
+            </div>
+            <iframe src="listIndex.html" class="setupListFrame"></iframe>
+            <iframe src="equipmentLog.html" class="setupListFrame"></iframe>
+            <iframe src="list1.html" class="setupListFrame"></iframe>
+        </div>
+    </div>
+</body>
+</html>
+

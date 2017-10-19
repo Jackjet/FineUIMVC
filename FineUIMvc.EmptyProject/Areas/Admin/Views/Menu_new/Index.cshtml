@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Admin/Menu_new";
+    var F = @Html.F();
+}
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnCreate_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBox()
+                       .Label("菜单名称")
+                       .EmptyText("请输入名称")
+                       .ID("tbxName")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.DropDownList()
+                       .ID("ddlParent")
+                       .Label("上级菜单")
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .DataTextField("Name")
+                       .DataValueField("ID")
+                       .EnableSimulateTree(true)
+                       .DataSimulateTreeLevelField("TreeLevel")
+                       .DataSource(ViewBag.ddlParentDataSource)
+                       .SelectedValue("0"),
+                    F.NumberBox()
+                       .ID("tbxSortIndex")
+                       .Label("排序")
+                       .Required(true)
+                       .ShowRedStar(true),
+                    F.TextBox()
+                       .Label("浏览权限")
+                       .ID("tbxViewPower"),
+                    F.TextBox()
+                       .Label("链接")
+                       .ID("tbxUrl"),
+                    F.TextBox()
+                       .Label("图标")
+                       .ID("tbxIcon")
+                       .Text("~/res/icon/tag_blue.png"),
+                    F.TextBox()
+                       .Label("备注")
+                       .ID("tbxRemark")
+               )
+        )
+    )
+
+}

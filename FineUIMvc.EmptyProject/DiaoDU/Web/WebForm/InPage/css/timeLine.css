@@ -1,0 +1,350 @@
+.timeLineItem.timeLineItem1,
+.timeLineItem.timeLineItem2 {
+  height: 164px!important;
+  width: 700px;
+  margin: 0 10% ;
+}
+.timeLineItem.timeLineItem1 .timeLineMark,
+.timeLineItem.timeLineItem2 .timeLineMark {
+  position: relative;
+  float: left;
+  height: 164px!important;
+  width: 50px;
+}
+.timeLineItem.timeLineItem1 .timeLineMark .TimeLineLine,
+.timeLineItem.timeLineItem2 .timeLineMark .TimeLineLine {
+  width: 1px;
+  height: 100%;
+  margin: 0 auto;
+  background: #5392b3;
+}
+.timeLineItem.timeLineItem1 .timeLineMark .timeLineNumber,
+.timeLineItem.timeLineItem2 .timeLineMark .timeLineNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  width: 20px;
+  height: 20px;
+  background: #21a0ff;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox,
+.timeLineItem.timeLineItem2 .timeContentBox {
+  float: left;
+  width: 600px;
+  height: 96px;
+  margin: 14px 20px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentLeft,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft {
+  float: left;
+  width: 286px;
+  height: 96px;
+  margin-right: 2px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  text-align: center;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentLeft h2,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft h2 {
+  margin: 22px 0 10px 0;
+  color: #e2f000;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight {
+  float: left;
+  width: 152px;
+  height: 100%;
+  margin-right: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .title,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .title,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .title,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .title {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 8px;
+  color: #fff;
+  margin-top: 4px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .title .titleBg,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .title .titleBg,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .title .titleBg,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .title .titleBg {
+  float: left;
+  margin-top: 2px;
+  margin-left: 8px;
+  width: 3px;
+  height: 16px;
+  background: #69eafd;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem {
+  width: 100%;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem li,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem li,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem li,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem li {
+  width: 100%;
+  height: 22px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem li div,
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem li div,
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem li div,
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem li div {
+  float: left;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem li div:nth-of-type(1),
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem li div:nth-of-type(1),
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem li div:nth-of-type(1),
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem li div:nth-of-type(1) {
+  width: 6px;
+  height: 6px;
+  margin: 5px 10px 5px 14px;
+  background: #69eafd;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem li div:nth-of-type(2),
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem li div:nth-of-type(2),
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem li div:nth-of-type(2),
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem li div:nth-of-type(2) {
+  width: 50px;
+  height: 22px;
+}
+.timeLineItem.timeLineItem1 .timeContentBox .contentMid .listItem li div:nth-of-type(3),
+.timeLineItem.timeLineItem2 .timeContentBox .contentMid .listItem li div:nth-of-type(3),
+.timeLineItem.timeLineItem1 .timeContentBox .contentRight .listItem li div:nth-of-type(3),
+.timeLineItem.timeLineItem2 .timeContentBox .contentRight .listItem li div:nth-of-type(3) {
+  width: 50px;
+  height: 22px;
+}
+.timeLineItem.timeLineItem2 {
+  width: 980px;
+}
+.timeLineItem.timeLineItem2 .timeContentBox {
+  width: 750px;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft {
+  float: left;
+  width: 438px;
+  height: 96px;
+  margin-right: 2px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  text-align: center;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft h2 {
+  margin: 22px 0 10px 0;
+  color: #e2f000;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft1,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft2 {
+  position: relative;
+  margin: 15px 22px;
+  float: left;
+  width: 170px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft1.active,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft2.active {
+  background: #21a0ff;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft1 .number,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft2 .number {
+  margin-top: 12px;
+  margin-bottom: 3px;
+  height: 20px;
+  font-size: 20px;
+}
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft1 .shuiChangMark,
+.timeLineItem.timeLineItem2 .timeContentBox .contentLeft .contentLeft2 .shuiChangMark {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(../img/shui.png) no-repeat;
+  background-size: cover;
+}
+.timeLineItem {
+  width: 1000px;
+  margin: 0 10% ;
+}
+.timeLineItem .timeLineMark {
+  position: relative;
+  float: left;
+  height: 100%;
+  width: 50px;
+}
+.timeLineItem .timeLineMark .TimeLineLine {
+  width: 1px;
+  height: 100%;
+  margin: 0 auto;
+  background: #5392b3;
+}
+.timeLineItem .timeLineMark .timeLineNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  width: 20px;
+  height: 20px;
+  background: #21a0ff;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+}
+.timeLineItem .timeContentBox {
+  float: left;
+  width: 860px;
+  margin: 14px 20px;
+}
+.timeLineItem .timeContentBox .contentLeft {
+  float: left;
+  width: 700px;
+  margin-right: 2px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  text-align: center;
+}
+.timeLineItem .timeContentBox .contentLeft .contentLeftTop {
+  width: 100%;
+}
+.timeLineItem .timeContentBox .contentLeft .contentLeftTop li {
+  float: left;
+  width: 154px;
+  height: 14px;
+  margin: 4px 8px;
+  cursor: pointer;
+}
+.timeLineItem .timeContentBox .contentLeft .contentLeftTop li:nth-of-type(1) {
+  background: url(../img/tiaofengL.png) no-repeat;
+}
+.timeLineItem .timeContentBox .contentLeft .contentLeftTop li:nth-of-type(2) {
+  background: url(../img/bengzhanL.png) no-repeat;
+}
+.timeLineItem .timeContentBox .contentLeft .contentLeftTop li:nth-of-type(3) {
+  background: url(../img/liuliangL.png) no-repeat;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom {
+  width: 100%;
+  padding-top: 12px;
+  min-height: 164px;
+  margin-bottom: 10px;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li {
+  float: left;
+  width: 176px;
+  height: 52px;
+  margin: 8px 16px;
+  padding-top: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li.active {
+  background: #21a0ff;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li .picWrap {
+  float: left;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  margin-left: 10px;
+  background: url(../img/itemBg1.png) no-repeat 7px 8px rgba(255, 255, 255, 0.1);
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li .txtWarp {
+  float: left;
+  height: 38px;
+  text-align: left;
+  margin-left: 10px;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li .txtWarp .contBotTxt {
+  font-size: 12px;
+}
+.timeLineItem .timeContentBox .contentLeft .contentBottom li .txtWarp .contBotNumber {
+  margin-top: 5px;
+  font-size: 16px;
+}
+.timeLineItem .timeContentBox .contentBoxRight {
+  float: left;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight {
+  width: 152px;
+  height: 100%;
+  margin-bottom: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .title,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .title {
+  width: 100%;
+  height: 26px;
+  line-height: 26px;
+  text-indent: 8px;
+  color: #fff;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .title .titleBg,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .title .titleBg {
+  float: left;
+  margin-top: 6px;
+  margin-left: 8px;
+  width: 3px;
+  height: 16px;
+  background: #69eafd;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem {
+  width: 100%;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem li,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem li {
+  width: 100%;
+  height: 22px;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem li div,
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem li div {
+  float: left;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem li div:nth-of-type(1),
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem li div:nth-of-type(1) {
+  width: 6px;
+  height: 6px;
+  margin: 5px 10px 5px 14px;
+  background: #69eafd;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem li div:nth-of-type(2),
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem li div:nth-of-type(2) {
+  width: 50px;
+  height: 22px;
+}
+.timeLineItem .timeContentBox .contentBoxRight .contentMid .listItem li div:nth-of-type(3),
+.timeLineItem .timeContentBox .contentBoxRight .contentRight .listItem li div:nth-of-type(3) {
+  width: 50px;
+  height: 22px;
+}

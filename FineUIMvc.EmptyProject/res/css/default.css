@@ -1,0 +1,210 @@
+﻿#header table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+    #header table td {
+        padding: 0;
+    }
+
+#header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    width: 200px;
+}
+
+.pageHeader {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    border-bottom: 1px solid #0f405c;
+    background: url(/res/images/logo/pandaLogo.png) no-repeat 24px 10px;
+}
+
+.headerNav {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 0;
+    transform: translateX(-32%);
+    width: 640px;
+    height: 50px;
+}
+
+    .headerNav li {
+        position: relative;
+        height: 100%;
+        width: 70px;
+        margin-right: 1px;
+        padding-top: 6px;
+        background: #2d749c;
+        float: left;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+        .headerNav li .picBox {
+            width: 30px;
+            height: 27px;
+            margin-left: 20px;
+            background: url(../img/navBar.png) no-repeat;
+        }
+
+        .headerNav li:nth-of-type(1) .picBox {
+            background-position: 4px 2px;
+        }
+
+        .headerNav li:nth-of-type(2) .picBox {
+            background-position: -64px 2px;
+        }
+
+        .headerNav li:nth-of-type(3) .picBox {
+            background: url(../img/navTopIco2.png) no-repeat 3px 0px;
+        }
+
+        .headerNav li:nth-of-type(4) .picBox {
+            background: url(../img/navTopIco2.png) no-repeat -66px 0px;
+        }
+
+        .headerNav li:nth-child(5) .picBox {
+            background-position: -136px 2px;
+        }
+
+        .headerNav li:nth-child(6) .picBox {
+            background-position: -208px 2px;
+        }
+
+        .headerNav li:nth-child(7) .picBox {
+            background-position: -278px 2px;
+        }
+
+        .headerNav li:nth-child(8) .picBox {
+            background-position: -348px 2px;
+        }
+
+        .headerNav li:nth-child(9) .picBox {
+            background-position: -422px 2px;
+        }
+
+        .headerNav li .picTxt {
+            width: 100%;
+            height: 19px;
+            line-height: 19px;
+            display: block;
+            color: #fff;
+            text-align: center;
+        }
+
+            .headerNav li .picTxt:hover {
+                text-decoration: underline;
+            }
+
+        .headerNav li .childList {
+            position: relative;
+            width: 70px;
+            background: #fff;
+            box-shadow: 1px 1px 2px #333;
+            display: none;
+            border:1px solid #ccc;
+
+        }
+
+            .headerNav li .childList li {
+                width: 70px;
+                padding: 0 10px;
+                height: 30px;
+                line-height: 30px;
+                background: #fff;
+                font-size: 12px;
+            }
+
+                .headerNav li .childList li a {
+                    width: 70px;
+                    padding: 4px 0 6px 0;
+                    color: #424242;
+                    border-bottom: 1px solid #ccc;
+                }
+
+                .headerNav li .childList li:last-child a {
+                    border-bottom: none;
+                }
+
+        .headerNav li:hover {
+            background: #1F7BB2;
+        }
+
+
+
+#header .f-btn {
+    border-width: 0;
+    padding: 10px;
+}
+
+#header .icontopaction .f-btn-icon {
+    width: 22px;
+    font-size: 22px;
+    line-height: 22px;
+    height: 22px;
+}
+
+#header .icontopaction .f-btn-text {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+
+#header .icononlyaction .f-btn-icon,
+#header .icononlyaction .f-btn-text {
+    font-size: 30px;
+    line-height: 40px;
+    height: 40px;
+}
+
+
+#header .userpicaction .f-btn-icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#header .userpicaction .f-btn-text {
+    margin-left: 8px;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+
+ul.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+    ul.list li {
+        margin-bottom: 5px;
+    }
+
+
+.bottomtable {
+    width: 100%;
+    font-size: 12px;
+}
+
+#topPanel {
+    overflow: visible;
+}
+
+    #topPanel .f-panel-body {
+        overflow: visible;
+    }
+
+    .f-compactmode .f-tree-minimode-list .f-tree-minimode-icon {
+
+    min-width: 21px;
+   
+}

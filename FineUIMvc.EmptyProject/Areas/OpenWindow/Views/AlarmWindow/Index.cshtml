@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "报警参数";
+    var F = @Html.F();
+}
+
+@section head {
+    <style>
+    </style>
+}
+
+@section body {
+    @(F.Panel()
+         .ID("Panel1")
+         .ShowBorder(false)
+         .ShowHeader(false)
+         .BodyPadding(5)
+         .Layout(LayoutType.VBox)
+         .BoxConfigAlign(BoxLayoutAlign.Stretch)
+         .IsViewPort(true)
+         .Toolbars(
+             F.Toolbar()
+                    .ID("Toolbar1")
+                    .Items(
+                         F.HiddenField()
+                             .ID("baseId")
+                             .Text(ViewBag.baseID),
+                         F.HiddenField()
+                             .ID("typeId")
+                             .Text(ViewBag.typeId),
+                         F.ToolbarFill()
+                             .ID("ToolbarFill1"),
+                         F.CheckBox()
+                             .ID("cboTongBu")
+                             .Label("是否同步")
+                             .LabelWidth(80)
+                             .ShowLabel(true),
+                         F.Button()
+                             .ID("btnSave")
+                             .Icon(Icon.SystemSaveClose)
+                             .OnClick(Url.Action("btnAlarmSet_Click"), "GridAlarmPara"
+                                    , new Parameter("selected", "getGridSelectedRows()")
+                                    , new Parameter("baseId", "F.ui.baseId.getValue()")
+                                    , new Parameter("cboTongBu", "F.ui.cboTongBu.getValue()")
+                                    , new Parameter("typeId", "F.ui.typeId.getValue()"))
+                             .Text("保存")
+                    )
+         )
+         .Items(
+                  F.Grid()
+                       .EnableCollapse(true)
+                       .Title("表格")
+                       .ShowHeader(false)
+                       .ShowBorder(true)
+                       .ID("GridAlarmPara")
+                       .DataIDField("ParamID")
+                       .AllowCellEditing(true)
+                       .ClicksToEdit(1)
+                       .CheckBoxSelectOnly(true)
+                       .EnableTextSelection(true)
+                       .EnableCheckBoxSelect(true)
+                       .AutoScroll(true)
+                       .BoxFlex(1)
+                       .Columns(
+                               F.RowNumberField(),
+                               F.RenderField()
+                                    .HeaderText("等级")
+                                    .DataField("FLev")
+                                    .ColumnID("FLev")
+                                    .RendererFunction("renderFLev")
+                                    .Width(50)
+                                    .Editor(
+                                        F.DropDownList()
+                                            .ID("ddlFLev")
+                                            .Required(true)
+                                            .Items(
+                                                F.ListItem()
+                                                    .Text("低")
+                                                    .Value("1"),
+                                                F.ListItem()
+                                                    .Text("中")
+                                                    .Value("2"),
+                                                F.ListItem()
+                                                    .Text("高")
+                                                    .Value("3")
+                                            )
+                                    ),
+                               F.RenderField()
+                                    .HeaderText("报警名称")
+                                    .DataField("A_FMsg")
+                                    .Width(220),
+                               F.RenderField()
+                                    .HeaderText("自定义报警")
+                                    .DataField("FSetMsg")
+                                    .ColumnID("FSetMsg")
+                                    .Width(220)
+                                    .Editor(
+                                        F.TextBox()
+                                            .ID("tbxName")
+                                            .Required(true)
+                                    ),
+                               F.RenderField()
+                                    .DataField("TimelyID")
+                                    .ColumnID("TimelyID")
+                                    .Hidden(true)
+                               )
+                              .DataSource(ViewBag.GridAlarmParaDataSource)
+                              .SelectedRowIndexArray(ViewBag.GridAlarmParaSelectedRow)
+         )
+    )
+}
+
+@section script {
+
+    <script src="~/res/js/grid.js"></script>
+
+    <script>
+        function getGridSelectedRows() {
+            var result = [], grid = F.ui.GridAlarmPara;
+
+            $.each(grid.getSelectedRows(true), function (index, item) {
+                var itemArr = [];
+                itemArr.push(item.id);
+                itemArr.push(item.values.FLev);
+                itemArr.push(item.values.FSetMsg);
+                itemArr.push(item.values.TimelyID);
+                result.push(itemArr);
+            });
+
+            return result;
+        }
+
+        function renderFLev(value) {
+            return F.ui.ddlFLev.getTextByValue(value);
+        }
+    </script>
+}

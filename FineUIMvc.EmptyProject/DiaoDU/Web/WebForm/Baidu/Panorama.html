@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		#panorama {width:100%; height: 100%;}
+		
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+	<title>获取指定的全景图</title>
+	</head>
+	<body>
+	<div id="panorama"></div>
+	
+	
+	<script type="text/javascript"> 
+	var map = new BMap.Map('panorama');
+	map.centerAndZoom(new BMap.Point(121.190386, 31.167229), 12);
+	map.addTileLayer(new BMap.PanoramaCoverageLayer());
+
+	var panorama = new BMap.Panorama('panorama'); 
+	panorama.setPov({heading: 187.12, pitch: -10.47});
+	
+	document.body.onclick=function(e){
+		alert(e);
+	};
+//	document.getElementById("setPanoramaById").onclick = function(){ 
+	panorama.setId('01000300001311081241234085P');//根据全景id展示全景图
+//	};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1383 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="./css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/loginCss.css" rel="stylesheet" type="text/css" />
+    <link href="./js/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../FTZ/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../FTZ/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.minicolors.min.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../FTZ/js/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="./layer/layer.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/radialIndicator.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <script src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js "></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            top: 90px;
+            right: 0;
+            width: 240px;
+            height: 400px;
+          
+        }
+
+        .showHide {
+            width: 18px;
+            height: 100%;
+            text-align: center;
+            line-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #007FFF;
+        }
+
+        .overlayBox {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 10px 0;
+            width: 210px;
+            height: 180px;
+            overflow: auto;
+        }
+
+            .overlayBox input {
+                width: 80%;
+                height: 20px;
+            }
+
+            .overlayBox button {
+                width: 100px;
+                height: 30px;
+                margin-top: 4px;
+                border-radius: 4px;
+                background: #fff;
+            }
+
+        .attrBox {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 10px 0;
+            width: 210px;
+            height: 180px;
+            overflow: auto;
+        }
+
+        .attrBoxUl li {
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+            .attrBoxUl li button {
+                display: inline-block;
+                height: 30px;
+                width: 40%;
+                border-radius: 6px;
+                background: #fff;
+            }
+
+        
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <!--<button class="clearAll" onclick="clearAll()">清除</button>-->
+    <div class="wrap">
+        <div class="showHide show">>></div>
+        <div class="overlayBox"></div>
+        <div class="attrBox">
+            <ul class="attrBoxUl"></ul>
+        </div>
+    </div>
+
+    <script>
+        $('.showHide').click(function () {
+            if ($(this).hasClass('show')) {
+                $('.wrap').animate({ 'right': '-220px' });
+                $(this).removeClass('show').html('<<');
+            } else {
+                $('.wrap').animate({ 'right': '0' });
+                $(this).addClass('show').html('>>');
+            }
+        });
+
+        //var clearAll;
+
+        function liShow(obj) {
+            var objIndex = $(obj).index() / 3;
+            $('.attrBoxUl li').eq(objIndex).removeClass('hide').siblings().addClass('hide');
+            alert(objIndex);
+        }
+
+      
+        function clickFn(obj) {
+            var objId = $(obj).attr('nameId');
+            var inputBoxInfo = $(obj).prev().val();
+            var nameBoxInfo = $(obj).prev().prev();
+            //			    	alert(inputBoxInfo);
+            //			    	alert(objId);
+            //			    	alert(over.length)
+            for (var i = 0; i < over.length; i++) {
+
+                if (over[i].mark == objId) {
+                    console.log(1);
+                    console.log(over[i]);
+                    console.log(2);
+                    over[i].name = inputBoxInfo;
+                    nameBoxInfo.html(inputBoxInfo);
+                    //			    			alert(over[i].name);
+                    //			    			alert("Ok");
+                    return;
+                }
+            }
+        }
+        var over = [];
+        var markers = [];
+        var markersArray = [];
+        var overSettings = [];
+        // 页面载入时 进行 图像绘制
+
+
+        function drawAgain(da) {
+
+            for (var i = 0; i < da.length; i++) {
+                map.addOverlay(da[i]);
+                over.push(da[i]);
+                if (type != 'marker') {
+
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var a = ff.getPath();
+                    var sColor = ff.getStrokeColor();
+                    var fColor = ff.getFillColor();
+                    var sWeight = ff.getStrokeWeight();
+                    var sOpacity = ff.getStrokeOpacity();
+                    var fOpacity = ff.getFillOpacity();
+                    var sStyle = ff.getStrokeStyle();
+
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><input type="color" ><button class="changeColor">修改颜色</button><br><input type="range" min="3" max="20"><button class="changeWeight">修改线宽</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                  
+
+                } else {
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var Lng = ff.getPosition().lng;
+                    var Lat = ff.getPosition().lat;
+                   
+                    ff.setIcon(myIcon_flow);
+                    markers.push(ff);
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><button class="setIcon" title="' + id + '">设置为开关</button><input type="text" ><button type="button" title="' + id + '" class="setFlag">设置Flag</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                
+                }
+            }
+        }
+        $(function () {
+
+            var map = new BMap.Map("map", { mapType: BMAP_SATELLITE_MAP });
+            var point = new BMap.Point(121.191705, 31.166028);    // 创建点坐标
+            map.centerAndZoom(point, 19);                     // 初始化地图,设置中心点坐标和地图级别。
+            map.enableScrollWheelZoom();
+
+            var myIcon_flow = new BMap.Icon("Images/flow2.png", new BMap.Size(30, 30));
+
+            var myIcon_onOff = new BMap.Icon("Images/onOff.png", new BMap.Size(30, 30));
+
+
+            //编号获取函数
+            var numJson = [];
+            var onOff;
+            var myLabel;
+            var $kaiSet;
+            var pressLabel;
+            var press;
+            var timerCurrentNum;
+            $(window).ready(function () {
+
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=SearchAll',
+                    //async: false,
+                    cache: false,
+                    success: function (data) {
+                       // alert(data);
+                        //console.log(data);
+                        var data = JSON.parse(data);
+                        data = data.data;
+
+                        numJson = data;
+
+                       
+                     
+
+                       
+                      
+
+                      
+
+                    }
+                });
+
+            });
+
+            //$('.colorInp').each(function () {
+            //    $(this).minicolors();
+            //});
+            function markersArrayClick() {
+              
+                for (var j = 0; j < markers.length; j++) {
+                    markers[j].addEventListener('click', function (e) {
+                       //alert(this.getTitle());
+                        if ($('.stage')) {
+                            $('.stage').remove();
+                           // alert(1);
+                        }
+                        
+                        var position = this.getPosition();
+                        map.setCenter(position);
+                       // alert(3);
+                        for (var n in numJson) {
+                            //alert(33);
+                            //alert(numJson[n].FFlag+'qqq');
+                            if (numJson[n].FFlag == this.getTitle()) {
+                                //alert(numJson[n].FFlag + 'qqq');
+                               
+                               /// alert(4444);
+                                getData(numJson[n].ID);
+                                return;
+                            }
+                        }
+
+                    });
+                }
+            }
+
+
+            //数据获取函数
+
+            function getData(pId) {
+                $.ajax({
+                    url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                    data: { 'FPumpID': pId },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        console.log(data + "dafdsfs");
+                        var data = JSON.parse(data);
+                        data = data.data[0];
+                        showContent(data, pId);////
+                        pumpName(pId);////
+                    }
+                });
+            }
+
+
+     
+
+            //内容生成函数
+            function showContent(data, pId) {
+                if ($('.stage')) {
+                    $('.stage').remove();
+                }
+                var addTime = data.AddTime ? data.AddTime.replace('T', ' ') : ' ';
+                var infoBox =
+                '<div class="stage">' +
+            '	<div class="contentBox">' +
+            '		<div class="fore">' +
+            '			' +
+            '			' +
+            '			<div class="fore_header">' +
+            '				' +
+            '				<ul class="img-box clearfix">' +
+            '					<li><img src="img1/img1.png" /></li>' +
+            '					<li><img src="img1/img2.png" /></li>' +
+            '					<li><img src="img1/img1.png" /></li>' +
+            '					<li><img src="img1/img2.png" /></li>' +
+            '				</ul>' +
+            '				' +
+            '				<div class="time-box">' +
+            '					<p class="pump_time">采集时间：<span>' + addTime + '</span></p>					' +
+            '				</div>				' +
+            '				<div class="number_box">' +
+            '					<p class="pump_name">泵房名称</p>' +
+            '					<p class="pump_number">23</p>' +
+            '				</div>' +
+            '				' +
+            '			</div>	' +
+            '			' +
+            '			<div class="closeBox"><span class="close">&times;</span></div>' +
+            '            <div class="camera"></div>' +
+            '			<div class="content">' +
+            '				<ul class="power_box">' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child1"></span>正累积流量</div><div class="number">' + (data.P01 ? data.P01 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child2"></span>压力</div><div class="number">' + (data.A03 ? data.A03 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child3"></span>瞬时流量</div><div class="number">' + (data.A01 ? data.A01 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child4"></span>负累积流量</div><div class="number">' + (data.P02 ? data.P02 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child5"></span>GPRS电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.V ? data.V : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child6"></span>电池电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.A02 ? data.A02 : ' ') + '</div></li>' +
+            '				</ul>' +
+            '			</div>						' +
+            '			<div class="fore_footer">' +
+            '				<ul class="warning_info_box">' +
+            '					<li><a href="javascript:void(0);">东泵房报警泵房水压报警1</a></li>' +
+            '					<li><a href="javascript:void(0);">泵房阀门异常报警2</a></li>' +
+            '					<li><a href="javascript:void(0);">泵房流量报警3</a></li>' +
+            '				</ul>' +
+            '			</div>				' +
+            '		</div>' +
+            '		<div class="back">' +
+            '			<div class="closeBox"><span class="close">&times;</span></div>' +
+            '			<div class="back_header">' +
+            '				<p class="backBox"><span class="backBtn"></span></p>			' +
+            '                <div id="echart_box"></div>' +
+            '<div title="' + pId + '" class="show_list"><ul><li class="showList_li1"></li><li class="showList_li2"></li><li class="showList_li3"></li><li class="showList_li4"></li><li class="showList_li5"></li></ul></div>' +
+            '			</div>			' +
+            '			<div class="back_content">' +
+            '				<ul>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg1"></span>名称</div>' +
+            '						<div class="item_content">熊猫管网</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg2"></span>品牌</div>' +
+            '						<div class="item_content">熊猫</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg3"></span>保养周期</div>' +
+            '						<div class="item_content">6个月</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg4"></span>更换周期</div>' +
+            '						<div class="item_content">6个月</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg5"></span>材质</div>' +
+            '						<div class="item_content">PVC</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg6"></span>埋深</div>' +
+            '						<div class="item_content">0.8米</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg7"></span>设备类型</div>' +
+            '						<div class="item_content">官网监测</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg8"></span>设备状态</div>' +
+            '						<div class="item_content">使用中</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg9"></span>管径</div>' +
+            '						<div class="item_content">DF65</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg10"></span>口径</div>' +
+            '						<div class="item_content">DF65</div>' +
+            '					</li>' +
+            '				</ul>' +
+            '				' +
+            '			</div>' +
+            '		</div>' +
+            '	</div>' +
+            '</div> ';
+
+                $('body').append(infoBox);
+               
+                $('.stage').css({
+                    'top': '50%',
+                    'left': '51%',
+                    'margin-top': -270 + "px",
+                });
+                $('.stage').ready(function () {
+                }).addClass('bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                 function () {
+                     $(this).removeClass('bounceInDown animated');
+
+                     var myChart = echarts.init($('#echart_box')[0]);
+                     myChart.setOption(option0);
+                     function chart1Request(ID) {
+                         $.ajax({
+                             url: '../../Service/T_ReportService.ashx?method=getcurvedata',
+                             data: { 'PumpID': ID },
+
+                             success: function (data) {
+                                 //  alert(data);
+                                 var data = JSON.parse(data);
+                                 console.log(data);
+                                 var xData = [];
+                                 var seriesData = [];
+                                 $.each(data, function (i, v) {
+                                     xData.push(v.T_Time);
+                                     // xData.push(' ');
+                                     seriesData.push(v.A03)
+                                 });
+                                 // console.log("xData" + xData);
+                                 //    console.log("seriesData" + seriesData);
+                                 var options1 = {
+                                     xAxis: {
+                                         data: xData
+                                     },
+                                     series: {
+                                         data: seriesData
+                                     },
+                                 };
+                                 console.log(options1);
+                                 myChart.setOption(options1);
+                             },
+                             error: function (data) {
+                                 console.log('错误：' + data.responseText);
+                             }
+                         });
+                     }
+
+
+
+
+                     chart1Request(193);
+                     //myChart.setOption(option);
+
+
+                 });
+
+                $('body').delegate('.pump_name', 'mouseover', function () {
+                    $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass('swing animated');
+                    });
+                });
+            };
+
+            //
+
+
+            //泵房名称获取函数
+            function pumpName(id) {
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=get',
+                    data: { 'id': id },
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        // console.log(data +"dddfasdfsdfsafsa");
+                        // alert(data+'dddddddddddddddddddd');
+                        var data = JSON.parse(data);
+
+                        $('.number_box .pump_name').html(data.FName);
+                        $('.number_box .pump_number').html(data.FNumber);
+                        $('.item_bg1').parent().parent().find('.item_content').html(data.FName);
+                        $('.item_bg2').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg3').parent().parent().find('.item_content').html(data.FMaintenancePeriod);
+                        $('.item_bg4').parent().parent().find('.item_content').html(data.FChangePeriod);
+                        $('.item_bg5').parent().parent().find('.item_content').html(data.FMaterial);
+                        //$('.item_bg6').parent().parent().find('.item_content').html(data.FBrand);
+                        $('.item_bg7').parent().parent().find('.item_content').html(data.FPumpType);
+                        $('.item_bg8').parent().parent().find('.item_content').html(data.FStatus);
+                        $('.item_bg9').parent().parent().find('.item_content').html(data.FPipeSize);
+                        $('.item_bg10').parent().parent().find('.item_content').html(data.FCaliber);
+
+                        window.setTimeout(function () {
+                            pic_show();
+
+
+                            info_show();
+                        }, 400);
+                    }
+                });
+            }
+
+            var styleOptions = {
+                strokeColor: "red",    //边线颜色。
+                fillColor: "green",      //填充颜色。当参数为空时，圆形将没有填充效果。
+                strokeWeight: 8,       //边线的宽度，以像素为单位。
+                strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+                fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+                strokeStyle: 'solid' //边线的样式，solid或dashed。
+            }
+
+            var drawingManager = new BMapLib.DrawingManager(map, {
+                isOpen: false, //是否开启绘制模式
+                enableDrawingTool: true, //是否显示工具栏
+                drawingToolOptions: {
+                    anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                    offset: new BMap.Size(5, 5), //偏离值
+                },
+                circleOptions: styleOptions, //圆的样式
+                polylineOptions: styleOptions, //线的样式
+                polygonOptions: styleOptions, //多边形的样式
+                rectangleOptions: styleOptions //矩形的样式
+            });
+
+
+
+            var overlaycomplete = function (e) {
+                var ff = e.overlay;
+                var id = new Date().getTime();
+                var name = "新加";
+                ff.mark = id;
+                ff.name = name;
+
+                var type = e.drawingMode;
+                ff.Type = type;
+
+
+                if (type != 'marker') {
+
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var a = ff.getPath();
+                    var sColor = ff.getStrokeColor();
+                    var fColor = ff.getFillColor();
+                    var sWeight = ff.getStrokeWeight();
+                    var sOpacity = ff.getStrokeOpacity();
+                    var fOpacity = ff.getFillOpacity();
+                    var sStyle = ff.getStrokeStyle();
+
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><input type="color" ><button class="changeColor">修改颜色</button><br><input type="range" min="3" max="20"><button class="changeWeight">修改线宽</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                    //var overOPt = {
+                    //    'ID': id,
+                    //    'pointArr': a,
+                    //    'drawType': type,
+                    //    'fColor': fColor,
+                    //    'sColor': sColor,
+                    //    'sWeight': sWeight,
+                    //    'sOpacity': sOpacity,
+                    //    'fOpacity': fOpacity,
+                    //    'sStyle': sStyle
+                    //};
+
+
+                    //overOPt['fColor'] = fColor;
+
+                    //overSettings.push(overOPt);
+
+                } else {
+                    $('.overlayBox').append('<div class="waaa" inner="' + id + '"><div class="nameBox" id="' + id + '  " >' + name + id + '</div><input type="text"><button title="' + id + '" class="changeName">修改名字</button></div>');
+
+                    var Lng = ff.getPosition().lng;
+                    var Lat = ff.getPosition().lat;
+                    //var pointOp = {
+
+                    //    'ID': id,
+                    //    'lat': Lat,
+                    //    'lng': Lng
+                    //}
+                    ff.setIcon(myIcon_flow);
+                    markers.push(ff);
+                    $('.attrBoxUl').append('<li class="hide" title="' + id + '"><button class="setIcon" title="' + id + '">设置为开关</button><input type="text" ><button type="button" title="' + id + '" class="setFlag">设置Flag</button><button title="' + id + '" class="edit">可编辑</button><button title="' + id + '" class="disEdit">关闭编辑</button><button title="' + id + '" class="delete">删除</button></li>');
+                        //overSettings.push(pointOp);
+                }
+
+
+
+                console.log(1);
+                console.log(overSettings);
+                console.log(2);
+
+
+                console.log(a);
+                //			    	ff.title='mark';
+                //			    	ff.name='12312';
+                //			    	ff.big=4;
+                over.push(ff);
+
+                //			    	ff.enableEditing();
+                //			    	ff.addEventListener('click',function(){
+                //			    		alert(this.big);
+                //			    		this.setStrokeColor("violet");
+                //			    		this.setStrokeWeight(10);
+                //			    	});
+                //			    	console.log(over);
+
+                chang();
+                //markersArrayClick();
+            }
+
+
+            //修改颜色
+            function changeStrokeColor() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setStrokeColor($(this).prev().val());
+                        return;
+                    }
+                }
+            }
+
+            //修改名字
+            function changeNameFn() {
+                var a = $(this).attr('title');
+               // alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].name = $(this).prev().val();
+                       // alert(over[i].name);
+                        $(this).prev().prev().html(over[i].name);
+                        //waaa
+                       
+                        return;
+                    }
+                }
+            }
+            //修改填充颜色
+            function changeFillColor() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setFillColor($(this).prev().val());
+                        return;
+                    }
+                }
+            }
+
+
+            //设置 marker的 Flag
+            function setFlag() {
+                var t = $(this).attr('title');
+                var a = $(this).prev().val();
+                //alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == t) {
+                        over[i].setTitle(a);
+                        markersArrayClick();
+                        break;
+                    }
+                }
+                for (var n in numJson) {
+                   /// alert(numJson[n].FFlag+'qqq');
+
+                    if (numJson[n].FFlag == a) {
+                       /// alert(123);
+                        //alert(numJson[n].FFlag + 'qqq');
+                        // alert(numJson[n].ID);
+                        $.ajax({
+                            url: '../../Service/T_DataMainService.ashx?method=getcurrentdata',
+                            data: { 'FPumpID': numJson[n].ID },
+                            async: false,
+                            cache: false,
+                            success: function (data) {
+                                // console.log(data);
+                                var data = JSON.parse(data);
+                                data = data.data[0];
+                                // + data.P01 + 'm³&nbsp;'
+                                var label = new BMap.Label(data.P01 + 'm³', { offset: new BMap.Size(18, -10) });
+                                label.setStyle({                                   //给label设置样式，任意的CSS都是可以的     
+                                    color: "#5b4303",
+                                    fontSize: "8px",               //字号
+                                    border: "0",
+                                    textAlign: "center",         //行高，文字垂直居中显示
+                                    fontWeight: "bold",
+                                    padding: "5px 5px 0 3px",
+                                    borderRadius: "3px",
+                                    background: "url(./Images/text_bg1.png) repeat-x",
+                                    backgroundSizing: "cover",
+                                    cursor: "pointer",
+                                    transform: "scale(.9)"
+                                });
+                                over[i].setLabel(label);
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            //修改图片样式
+            function changePic() {
+                var a = $(this).parent().attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].Type == 'marker') {
+
+                        over[i].setIcon();
+                        return;
+                    }
+                }
+            }
+            //修改线宽
+            function changeStrokeWeight() {
+
+                var a = $(this).parent().attr('title');
+
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        over[i].setStrokeWeight($(this).prev().val());
+                        //alert($(this).prev().val());
+
+                        return;
+                    }
+                }
+            }
+            function editDis() {
+                var a = $(this).attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].type != 'marker') {
+
+                        over[i].disableEditing();
+
+                        return;
+                    }
+
+                }
+            }
+            function editAble() {
+                var a = $(this).attr('title');
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a && over[i].type != 'marker') {
+
+                        over[i].enableEditing();
+
+                        return;
+                    }
+
+                }
+            }
+            function deleteAble() {
+                //alert(111);
+                var a = $(this).attr('title');
+                //alert(a);
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        map.removeOverlay(over[i]);
+                        $('.waaa[inner=' + over[i].mark + ']').remove();
+                        $('.attrBoxUl li[title=' + over[i].mark + ']').remove();
+                        over.splice(i, 1);
+                        return;
+                    }
+                }
+            }
+
+            function setIconFlow() {
+                var a = $(this).attr('title');
+              
+                for (var i = 0; i < over.length; i++) {
+                    if (over[i].mark == a) {
+                        if (over[i].Type == 'marker') {
+                           // alert(over[i].getTitle());
+                            over[i].setIcon(myIcon_onOff);
+                            return;
+                        }
+
+
+                    }
+                }
+            }
+
+            $(document).delegate('.changeColor', 'click', changeStrokeColor);
+            $(document).delegate('.changeWeight', 'click', changeStrokeWeight);
+            $(document).delegate('.edit', 'click', editAble);
+            $(document).delegate('.disEdit', 'click', editDis);
+            $(document).delegate('.delete', 'click', deleteAble);
+            $(document).delegate('.setIcon', 'click', setIconFlow);
+            $(document).delegate('.setFlag', 'click', setFlag);
+            $(document).delegate('.changeName', 'click', changeNameFn);
+            //clearAll = function () {
+               
+            //    for (var i = 0; i < over.length; i++) {
+            //        map.removeOverlay(over[i])
+            //    }
+            //    over.length = 0;
+            //}
+            function chang() {
+                for (var i = 0; i < over.length; i++) {
+                    console.log(over[i]);
+
+                    (function (i) {
+                        over[i].onclick = function () {
+                            //alert(1);
+                            $('.attrBoxUl li[title=' + over[i].mark + ']').removeClass('hide').siblings().addClass('hide');
+                            // var path = over[i].getPath();
+                            // console.log(path);
+                        }
+                    })(i);
+
+                    //$('.colorInp').each(function () {
+                    //    $(this).minicolors();
+                    //});
+                }
+            }
+
+            drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+
+
+
+
+
+
+
+            // 动画函数
+
+            $('body').delegate('.camera', 'click', function () {
+                var id = (parseInt)(Math.random() * 3 + 1);
+                //top.aaa($id);
+                //layer.open({
+                //    type: 2,
+                //    anim: 3,
+                //    shade: .6,
+                //    title: false,
+                //    shadeClose: true, //点击遮罩关闭层
+                //    area: ['70%', '60%'],
+                //    content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                //});
+                if (id == 1) {
+                    top.layer.open({
+                        type: 2,
+                        anim: 3,
+                        shade: .6,
+                        title: false,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['70%', '60%'],
+                        content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+                    });
+                    //layer.iframeAuto(index);
+                } else if (id == 2) {
+                    top.layer.open({
+                        type: 2,
+                        anim: 3,
+                        shade: .6,
+                        title: false,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['70%', '60%'],
+                        content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                    });
+                    //layer.iframeAuto(index);
+                } else if (id == 3) {
+                    top.layer.open({
+                        type: 2,
+                        anim: 3,
+                        shade: .6,
+                        title: false,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['70%', '60%'],
+                        content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583cce983e28653c463c986a&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984055140QJ&istiled=1&shareurl=1'
+
+                    });
+                    //layer.iframeAuto(index);
+                } else {
+                    top.layer.open({
+                        type: 2,
+                        closeBtn: 1,
+                        anim: 3,
+                        shade: .6,
+                        title: false,
+                        shadeClose: true, //点击遮罩关闭层
+                        area: ['70%', '60%'],
+                        content: 'http://pai.baidu.com/?qt=pano&uid=80436317&jobid=583ccefa3e286583243c99ae&poiname=上海熊猫机械(集团)有限公司&pickey=080000001116112984233216QJ&istiled=1&shareurl=1'
+
+                    });
+                    //layer.iframeAuto(index);
+                }
+
+
+
+
+            });
+
+            //down  animate
+            $('body').delegate('.close', 'click', function () {
+                //$('.stage').addClass('zoomOutDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                // function () {
+                //     $(this).removeClass('zoomOutDown animated');
+                $('.stage').remove();
+
+                //$(this).removeClass('zoomOutDown animated');
+                //$('.stage').remove();
+                //});
+            });
+            $('body').delegate('.pump_name', 'click', function () {
+                $('.fore').removeClass('clickTwo').addClass('click').css('z-index', '0');
+                $('.back').removeClass('clickTwo').addClass('click').css('z-index', '2');
+            });
+            $('body').delegate('.backBtn', 'mouseover', function () {
+                $(this).addClass('tada animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass('tada animated');
+                });
+            });
+            $('body').delegate('.backBtn', 'click', function () {
+                $('.back').removeClass('click').addClass('clickTwo').css('z-index', '0');
+                $('.fore').removeClass('click').addClass('clickTwo').css('z-index', '2');
+            });
+
+            $('body').delegate('.back_bottom  .pump_info li', 'mouseover', function () {
+                $(this).addClass('bounce animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass('bounce animated');
+                });
+            });
+
+
+            //内容生成函数
+            function showContent(data, pId) {
+                if ($('.stage')) {
+                    $('.stage').remove();
+                }
+                var addTime = data.AddTime ? data.AddTime.replace('T', ' ') : ' ';
+                var infoBox =
+                '<div class="stage">' +
+            '	<div class="contentBox">' +
+            '		<div class="fore">' +
+            '			' +
+            '			' +
+            '			<div class="fore_header">' +
+            '				' +
+            '				<ul class="img-box clearfix">' +
+            '					<li><img src="img1/img1.png" /></li>' +
+            '					<li><img src="img1/img2.png" /></li>' +
+            '					<li><img src="img1/img1.png" /></li>' +
+            '					<li><img src="img1/img2.png" /></li>' +
+            '				</ul>' +
+            '				' +
+            '				<div class="time-box">' +
+            '					<p class="pump_time">采集时间：<span>' + addTime + '</span></p>					' +
+            '				</div>				' +
+            '				<div class="number_box">' +
+            '					<p class="pump_name">泵房名称</p>' +
+            '					<p class="pump_number">23</p>' +
+            '				</div>' +
+            '				' +
+            '			</div>	' +
+            '			' +
+            '			<div class="closeBox"><span class="close">&times;</span></div>' +
+            '            <div class="camera"></div>' +
+            '			<div class="content">' +
+            '				<ul class="power_box">' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child1"></span>正累积流量</div><div class="number">' + (data.P01 ? data.P01 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child2"></span>压力</div><div class="number">' + (data.A03 ? data.A03 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child3"></span>瞬时流量</div><div class="number">' + (data.A01 ? data.A01 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child4"></span>负累积流量</div><div class="number">' + (data.P02 ? data.P02 : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child5"></span>GPRS电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.V ? data.V : ' ') + '</div></li>' +
+            '					<li class="clearfix"><div class="power_name"><span class="power_name_bg child6"></span>电池电压</div><div class="battery_box"><span class="battery_progress"></span></div><div class="number">' + (data.A02 ? data.A02 : ' ') + '</div></li>' +
+            '				</ul>' +
+            '			</div>						' +
+            '			<div class="fore_footer">' +
+            '				<ul class="warning_info_box">' +
+            '					<li><a href="javascript:void(0);">东泵房报警泵房水压报警1</a></li>' +
+            '					<li><a href="javascript:void(0);">泵房阀门异常报警2</a></li>' +
+            '					<li><a href="javascript:void(0);">泵房流量报警3</a></li>' +
+            '				</ul>' +
+            '			</div>				' +
+            '		</div>' +
+            '		<div class="back">' +
+            '			<div class="closeBox"><span class="close">&times;</span></div>' +
+            '			<div class="back_header">' +
+            '				<p class="backBox"><span class="backBtn"></span></p>			' +
+            '                <div id="echart_box"></div>' +
+            '<div title="' + pId + '" class="show_list"><ul><li class="showList_li1"></li><li class="showList_li2"></li><li class="showList_li3"></li><li class="showList_li4"></li><li class="showList_li5"></li></ul></div>' +
+            '			</div>			' +
+            '			<div class="back_content">' +
+            '				<ul>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg1"></span>名称</div>' +
+            '						<div class="item_content">熊猫管网</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg2"></span>品牌</div>' +
+            '						<div class="item_content">熊猫</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg3"></span>保养周期</div>' +
+            '						<div class="item_content">6个月</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg4"></span>更换周期</div>' +
+            '						<div class="item_content">6个月</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg5"></span>材质</div>' +
+            '						<div class="item_content">PVC</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg6"></span>埋深</div>' +
+            '						<div class="item_content">0.8米</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg7"></span>设备类型</div>' +
+            '						<div class="item_content">官网监测</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg8"></span>设备状态</div>' +
+            '						<div class="item_content">使用中</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg9"></span>管径</div>' +
+            '						<div class="item_content">DF65</div>' +
+            '					</li>' +
+            '					<li class="clearfix">' +
+            '						<div class="item"><span class="item_bg item_bg10"></span>口径</div>' +
+            '						<div class="item_content">DF65</div>' +
+            '					</li>' +
+            '				</ul>' +
+            '				' +
+            '			</div>' +
+            '		</div>' +
+            '	</div>' +
+            '</div> ';
+
+                $('body').append(infoBox);
+                $('.stage').css({
+                    'top': '50%',
+                    'left': '51%',
+                    'margin-top': -270 + "px",
+                });
+                $('.stage').ready(function () {
+                }).addClass('bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                 function () {
+                     $(this).removeClass('bounceInDown animated');
+
+                     var myChart = echarts.init($('#echart_box')[0]);
+                     myChart.setOption(option0);
+                     function chart1Request(ID) {
+                         $.ajax({
+                             url: '../../Service/T_ReportService.ashx?method=getcurvedata',
+                             data: { 'PumpID': ID },
+
+                             success: function (data) {
+                                 //  alert(data);
+                                 var data = JSON.parse(data);
+                                 console.log(data);
+                                 var xData = [];
+                                 var seriesData = [];
+                                 $.each(data, function (i, v) {
+                                     xData.push(v.T_Time);
+                                     // xData.push(' ');
+                                     seriesData.push(v.A03)
+                                 });
+                                 // console.log("xData" + xData);
+                                 //    console.log("seriesData" + seriesData);
+                                 var options1 = {
+                                     xAxis: {
+                                         data: xData
+                                     },
+                                     series: {
+                                         data: seriesData
+                                     },
+                                 };
+                                 console.log(options1);
+                                 myChart.setOption(options1);
+                             },
+                             error: function (data) {
+                                 console.log('错误：' + data.responseText);
+                             }
+                         });
+                     }
+
+
+
+
+                     chart1Request(193);
+                     //myChart.setOption(option);
+
+
+                 });
+
+                $('body').delegate('.pump_name', 'mouseover', function () {
+                    $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass('swing animated');
+                    });
+                });
+            };
+
+            //
+
+            $('body').delegate('.back_content ul li', 'mouseenter', function () {
+
+                $(this).addClass('lightSpeedIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass('lightSpeedIn animated');
+                });
+            });
+
+
+
+
+            //右侧setBtn 的事件
+
+            $('.setBtn').hover(function () {
+                $(this).addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass('swing animated');
+                });
+            });
+
+            $('.setBtn').click(function () {
+                if ($('.rightSet').hasClass('active')) {
+                    $(this).removeClass('active').animate({ 'right': '10px' }, 600);;
+                    $('.rightSet').removeClass('active').animate({ 'right': '-198px' }, 600);
+                } else {
+                    $(this).addClass('active').animate({ 'right': '181px' }, 600);;
+                    $('.rightSet').addClass('active').animate({ 'right': '1px' }, 600);
+                }
+            });
+
+            //反面  小图标的点击事件
+
+            /*    $('body').delegate('.show_list ul li.showList_li1', 'click', function () {
+                    var id=$(this).parent().parent().attr('title');              
+                        top.layer.open({
+                            type: 2,
+                            anim: 3,
+                            shade: .6,
+                            title: false,
+                            shadeClose: true, //点击遮罩关闭层
+                            area: ['70%', '60%'],
+                            content: '../Baidu/chartsFrame.html?id=' + id + '&bcc=333'
+                        });             
+                });*/
+
+            $('body').delegate('.show_list ul li', 'click', function (i, v) {
+                var id = $(this).parent().parent().attr('title');
+                var index = $(this).index();
+                top.layer.open({
+                    type: 2,
+                    anim: 3,
+                    shade: .6,
+                    title: false,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['70%', '60%'],
+                    content: '../Baidu/chartsFrame.html?id=' + id + '&index=' + index
+                });
+            });
+
+            //轮播图片函数
+
+
+
+            function pic_show() {
+                (function () {
+                    var pic_count = 4;
+                    var $this = $('.fore_header');
+                    var scrollTimer;
+                    var get_alerm_timer;
+
+                    $this.hover(function () {
+                        console.log(22222);
+                        clearInterval(scrollTimer);
+                        console.log(33333);
+
+                    },
+                    function () {
+                        scrollTimer = setInterval(function () {
+                            alerm_loop($this);
+                        }, 3500);
+                    }
+                    ).trigger('mouseout');
+
+                    //滚动动画
+                    function alerm_loop(obj) {
+                        var $self = obj.find("ul:first");
+                        var $moveWidth = $self.find("li:first").width();
+                        var $length = $self.find("li").length;
+                        if ($length <= 1) {
+                            return;
+                        } else {
+                            $self.animate({ "margin-left": -$moveWidth + "px" }, 2500, function () {
+                                $self.css("margin-left", "0px").find("li:first").appendTo($self);
+                            });
+                        }
+                    };
+                })();
+            }
+            pic_show();
+
+
+            //报警信息函数
+
+            function info_show() {
+                (function () {
+                    var $this = $('.fore_footer');
+                    var scrollTimer;
+                    var get_alerm_timer;
+                    $this.hover(function () {
+                        clearInterval(scrollTimer);
+                    },
+                    function () {
+                        scrollTimer = setInterval(function () {
+                            alerm_loop($this);
+                        }, 3000);
+                    }
+                    ).trigger('mouseout');
+
+                    //报警 滚动动画
+                    function alerm_loop(obj) {
+                        var $self = obj.find("ul:first");
+                        var lineHeight = $self.find("li:first").height();
+
+                        $self.animate({ "margin-top": -lineHeight + "px" }, 2000, function () {
+                            $self.css("margin-top", "0px").find("li:first").appendTo($self);
+                        });
+                    };
+
+
+                })();
+            }
+            info_show();
+
+
+
+
+
+            //echart
+
+            var option0 = {
+                title: {
+                    text: '实时压力',
+                    textStyle: {
+                        color: 'rgb(255,255,255)',
+                        fontSize: '12px',
+
+                    },
+                    left: '40%'
+                },
+                grid: {
+                    show: true,
+                    borderWidth: .2,
+                    borderColor: 'gray',
+                    top: 40,
+                    left: 10,
+                    right: 10,
+                    bottom: 10
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(28,136,151,0.6)',
+                    padding: [5, 10],
+                    axisPointer: {
+                        lineStyle: {
+                            color: 'rgba(37,211,186,0.7)'
+                        }
+                    }
+                },
+                legend: {
+                    data: [''],
+                    textStyle: {
+                        color: '#fff',
+                    },
+                    //    selected: {
+                    //        '当月': true
+                    //    }
+                },
+                xAxis: {
+                    show: true,
+                    type: 'category',
+                    name: "",
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                            type: 'solid',
+                        },
+                    },
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .2,
+                        },
+                    },
+                    // boundaryGap: true,
+                    //     data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日', '8日', '9日', '10日', '11日', '12日', '13日', '14日', '15日', '16日', '17日', '18日', '19日', '20日', '21日', '22日', '23日', '24日', '25日', '26日', '27日', '28日', '29日', '30日', '31日', ]
+                    data: []
+                },
+                yAxis: {
+                    show: true,
+                    type: 'value',
+                    name: "",
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: 'rgb(0,0,0)',
+                            fontSize: 12,
+                        },
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'gray',
+                            width: .4,
+                            type: 'solid',
+                        },
+                    },
+                },
+                series: [{
+                    name: '当天',
+                    type: 'line',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(37,211,186,0.9)' },
+                                    { offset: 1, color: 'rgba(37, 157, 214,0.7)' }
+                                ]
+                            )
+                        },
+                        smooth: true,
+                    },
+                    //  data: ["0.274", "0.277", "0.274", "0.281", "0.277", "0.274", "0.279", "0.282", "0.274", "0.268", "0.276", "0.266", "0.260", "0.267", "0.277", "0.278", "0.287", "0.287", "0.282", "0.287", "0.287", "0.281", "0.276", "0.275", "0.254", "0.259", "0.282", "0.283", "0.286", "0.279", "0.279", "0.282", "0.278", "0.251", "0.271", "0.281", "0.270", "0.283", "0.282", "0.285", "0.277", "0.276", "0.267", "0.267", "0.268", "0.261", "0.250", "0.240", "0.212", "0.203", "0.203", "0.214", "0.189", "0.183", "0.184", "0.208", "0.207", "0.197", "0.188", "0.207", "0.198", "0.191", "0.197", "0.198", "0.188", "0.197", "0.180", "0.176", "0.168", "0.186", "0.178"]
+                    data: []
+                }]
+            };
+            
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

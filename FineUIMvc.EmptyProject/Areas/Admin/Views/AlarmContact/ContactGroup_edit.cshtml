@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "ContactGroup_edit";
+    var F = @Html.F();
+}
+
+@model  FineUIMvc.PumpMVC.Models.Alarm_Contact_Group
+
+@section body {
+
+    @(F.Panel()
+        .ID("Panel1")
+        .ShowBorder(false)
+        .ShowHeader(false)
+        .BodyPadding(10)
+        .AutoScroll(true)
+        .IsViewPort(true)
+        .Toolbars(
+            F.Toolbar()
+                .Items(
+                    F.Button()
+                        .Icon(Icon.SystemClose)
+                        .Text("关闭")
+                        .Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button()
+                        .ValidateForms("SimpleForm1")
+                        .Icon(Icon.SystemSaveClose)
+                        .OnClick(Url.Action("btnEdit_Click"), "SimpleForm1")
+                        .Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm()
+                .ID("SimpleForm1")
+                .ShowBorder(false)
+                .ShowHeader(false)
+                .Items(
+                    F.TextBoxFor(x=>x.FName)
+                       .Label("组名称")
+                       .LabelWidth(80)
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .ID("tbxName"),
+                    F.DropDownListFor(x=>x.FType)
+                       .ID("ddlFType")
+                       .Label("方案类型")
+                       .LabelWidth(80)
+                       .SelectedValue("1")
+                       .Items(
+                            F.ListItem()
+                             .Text("泵站")
+                             .Value("1"),
+                            F.ListItem()
+                             .Text("阀门")
+                             .Value("2"),
+                            F.ListItem()
+                             .Text("流量")
+                             .Value("3"),
+                            F.ListItem()
+                             .Text("水厂")
+                             .Value("4"),
+                            F.ListItem()
+                             .Text("水源")
+                             .Value("5"),
+                            F.ListItem()
+                             .Text("大表")
+                             .Value("6"),
+                            F.ListItem()
+                             .Text("压力")
+                             .Value("7"),
+                            F.ListItem()
+                             .Text("调峰")
+                             .Value("8"),
+                            F.ListItem()
+                             .Text("水质")
+                             .Value("9"),
+                            F.ListItem()
+                             .Text("加压站")
+                             .Value("10"),
+                            F.ListItem()
+                             .Text("预置泵房")
+                             .Value("11")
+                                ),
+                    F.TriggerBoxFor(x=>x.Panda_Customer.Name)
+                       .ID("tbSelectedCustomer")
+                       .TriggerIcon(TriggerIcon.Search)
+                       .Required(true)
+                       .ShowRedStar(true)
+                       .LabelWidth(80)
+                       .Readonly(true)
+                       .Label("客户名称"),
+                    F.TextBoxFor(x=>x.FNote)
+                       .Label("备注")
+                       .EmptyText("请输入备注")
+                       .ID("tbxFNote")
+                       .LabelWidth(80),
+                    F.HiddenFieldFor(x=>x.Panda_Customer.ID)
+                       .Label("客户id")
+                       .ID("tbxCustomerID"),
+                    F.HiddenFieldFor(x=>x.ID)
+                       .Label("组id")
+                       .ID("tbxID")
+               )
+        )
+    )
+}

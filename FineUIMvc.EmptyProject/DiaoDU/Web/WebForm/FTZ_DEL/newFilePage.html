@@ -1,0 +1,1631 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>currentData</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <link rel="stylesheet" href="css/dataAnalysis.css" />-->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=lSs5x0CtdFvp81zUi3sxZo7Zcxm2BC8X"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            font-size: 12px;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: rgba(8,37,65,.42); /*.4*/
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+            .clearfix:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+        .disabled {
+            pointer-events: none;
+        }
+
+
+        .main {
+            position: relative;
+           
+        }
+
+            .main .main_header {
+                width: 100%;
+                height: 38px;
+                border-bottom: 1px solid rgba(0,0,0,.3);
+                
+            }
+            .main .main_header button {
+                width: 70px;
+                height: 38px;
+                line-height: 38px;
+                float: right;
+                margin-right: 5px;
+                border: none;
+                font-size: 12px;
+                color: #fff;
+                border-radius: 4px;
+                cursor: pointer;
+                background: rgba(38,121,165,.8);
+            }
+                .main .main_header button:hover {
+                    background: rgba(38,121,165,1);
+                }
+        .main_top {
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,.14);
+            min-height: 200px;
+            overflow: auto;
+        }
+         .main_top input {
+            border: 1px solid rgba(37, 148, 176,.4);
+            background: rgba(5, 67, 108,.4);
+            color: #fff;
+            height: 28px;
+            line-height: 28px;
+            text-indent: 10px;
+            border-radius: 4px;
+        }
+
+        .main_top_left {
+            float: left;
+            width: 58%;
+            color: #fff;
+        }
+            .main_top_left .line_L1 {
+                width: 100%;
+                margin-top: 5px;
+                line-height: 34px;
+            }
+            .main_top_left .line_L1 div {
+                width: 44%;
+                float: left;
+            }
+            .main_top_left .line_L1 .pumpNoBox {
+                margin-left: 4%;
+            }
+            .main_top_left .line_L1 div span {
+                float: left;
+            }
+            .main_top_left .line_L1 div input {
+                float: left;
+                width: 77.2%;
+            }
+
+
+
+
+            /*2*/
+            .main_top_left .line_L2 {
+                width: 100%;
+                margin-top: 5px;
+                line-height: 34px;
+            }
+
+                .main_top_left .line_L2 div {
+                    width: 88%;
+                    float: left;
+                    margin-left: 4%;
+                }
+
+                    .main_top_left .line_L2 div span {
+                        float: left;
+                    }
+
+                    .main_top_left .line_L2 div input {
+                        float: left;
+                        width: 88%;
+                    }
+            /*3*/
+            .main_top_left .line_L3 {
+                width: 100%;
+                margin-top: 5px;
+                line-height: 34px;
+            }
+
+                .main_top_left .line_L3 div {
+                    width: 88%;
+                    float: left;
+                    margin-left: 4%;
+                }
+
+                    .main_top_left .line_L3 div span {
+                        float: left;
+                    }
+
+                    .main_top_left .line_L3 div input {
+                        float: left;
+                        width: 88%;
+                    }
+            /*4*/
+            .main_top_left .line_L4 {
+                width: 100%;
+                margin-top: 5px;
+                line-height: 34px;
+            }
+
+                .main_top_left .line_L4>div {
+                    width: 48%;
+                    float: left;
+                    height:36px;
+                    line-height: 36px;
+                    min-width: 330px;
+                }
+                .main_top_left .line_L4 .fireBox {
+                    margin-left: 4%;
+                }
+                    .main_top_left .line_L4>div>span {
+                        float: left;
+                    }
+
+                    .main_top_left .line_L4>div .fire {
+                        float: left;
+                        width: 22%;
+                    }
+                .main_top_left .line_L4 > div .spray {
+                    float: left;
+                    width: 22%;
+                }
+                .main_top_left .line_L4 .sprayoutBox .defaultContainer {
+                    line-height: 32px;
+                    width: 18px;
+                    overflow: hidden;
+                }
+        
+        /*5*/
+        .main_top_left .line_L5 {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+                .main_top_left .line_L5 .typeBox {
+                    width: 30%;
+                    float: left;
+                    margin-left: 4%;
+                    height: 36px;
+                    line-height: 36px;
+                }
+                .main_top_left .line_L5 .typeBox span {
+                    float: left;
+                }
+                    .main_top_left .line_L5 .typeBox > div {
+                        float: left;
+                        line-height: 36px;
+                        height: 36px;
+                    }
+                    .main_top_left .line_L5 .typeBox>div input {
+                        width: 20px;
+                        /*margin-left: 10px;*/
+                        margin: 11px 0px 0px 10px;
+                        float: left;
+                        height: 16px;
+                        background: none;
+                        line-height: 16px;
+                        display: block;
+                    }
+                        .main_top_left .line_L5 .typeBox > div label {
+                            float: left;
+                        }
+                .main_top_left .line_L5 .urlBox {
+                    width: 50%;
+                    float: left;
+                    height: 36px;
+                    margin-left: 5%;
+                    line-height: 36px;
+                }
+                .main_top_left .line_L5 .urlBox span {
+                    float: left;
+                }
+                    .main_top_left .line_L5 .urlBox div {
+                        float: left;
+                        width: 90%;
+                    }
+                .main_top_left .line_L5 .urlBox .select {
+                    width: 100%;
+                    position: relative;
+                }
+                    .main_top_left .line_L5 .urlBox .select .triangle {
+                        position: absolute;
+                        top: 0;
+                        right: 3px;
+                        float: right;
+                    }
+                    .main_top_left .line_L5 .urlBox .select .defaultContainer {
+                        width: 160px;
+                        text-indent: 40px; 
+                    }
+
+                    .main_top_left .line_L5 .urlBox .select .dropDownMenu {
+                        width: 100%;
+                    }
+
+                        .main_top_left .line_L5 .urlBox .select .dropDownMenu li {
+                            width: 98%;
+                        }
+
+
+
+
+
+        .main_top_right {
+            float: right;
+            width: 38%;
+            color: #fff;
+        }
+            .main_top_right .line_R1 {
+                margin-top: 5px;
+                width: 100%;
+                line-height: 34px;
+            }
+            .main_top_right .line_R1>div>span {
+               float: left;
+            }
+            .main_top_right .line_R1>div .select {
+               float: left;
+               width: 60%;
+            }
+                .main_top_right .line_R1 .dropDownMenu {
+                    position: absolute;
+                    left: -1px;
+                    top: 32px;
+                    display: none;
+                    background: rgba(44, 121, 158, 0.9);
+                    width: 100%;
+                    color: #fff;
+                    border: 1px solid deepskyblue;
+                    border-top: none;
+                    padding-top: 5px;
+                    z-index: 14;
+                }
+
+                .main_top_right .line_R1 .dropDownMenu li {
+                    padding-left: 8px;
+                    height: 30px;
+                    line-height: 30px;
+                    width: 96%;
+                }
+
+            /*2*/
+            .main_top_right .line_R2 {
+                margin-top: 5px;
+                width: 100%;
+                line-height: 34px;
+            }
+
+                .main_top_right .line_R2 > div span {
+                    float: left;
+                }
+                .main_top_right .line_R2 > div .map {
+                    width: 21px;
+                    height: 22px;
+                    margin-left: 2%;
+                    cursor: pointer;
+                }
+                .main_top_right .line_R2 > div input {
+                    float: left;
+                    width: 56%;
+                }
+
+            /*3*/
+            .main_top_right .line_R3 {
+                margin-top: 5px;
+                width: 100%;
+                line-height: 39px;
+                height: 39px;
+            }
+
+                .main_top_right .line_R3>div {
+                    float: left;
+                }
+                .main_top_right .line_R3 .pumpSortBox {
+                    width: 40%;
+                }
+                .main_top_right .line_R3 .pumpSortBox input {
+                    width: 60%;
+                }
+                .main_top_right .line_R3 .deWaterBox {
+                    width: 40%;
+                    margin-left: 5%;
+                }
+                .main_top_right .line_R3 > div>span {
+                    float:left;
+                }
+                    .main_top_right .line_R3 > div input {
+                        float:left;
+                    }
+                .main_top_right .line_R3 .deWaterBox .deWaterNum {
+                    float: left;
+                    height: 39px;
+                }
+                .main_top_right .line_R3 > div input {
+                    float: left;
+                }
+
+            /*4*/
+            .main_top_right .line_R4 {
+                /*margin-top: 5px;*/
+                width: 100%;
+                line-height: 34px;
+            }
+
+                .main_top_right .line_R4 .life {
+                    float: left;
+                }
+               
+                .main_top_right .line_R4 > div .map {
+                    width: 21px;
+                    height: 22px;
+                    margin-left: 2%;
+                }
+
+                .main_top_right .line_R4 > div input {
+                    float: left;
+                    width: 56%;
+                }
+
+        
+
+       
+
+       
+
+        
+
+       
+
+        .main_bottom {
+            width: 100%;
+            margin-top: 6px;
+        }
+
+            .main_bottom .ul_box {
+                width: 100%;
+                height: 30px;
+                background: rgba(0,0,0,.2);
+                border-bottom: 1px solid rgba(0,0,0,.3);
+            }
+            .main_bottom ul li {
+                width: 100px;
+                float: left;
+                height: 30px;
+                border-radius: 1px;
+                line-height: 40px;
+                text-align: center;
+                border-right: 1px solid #578196;
+            }
+
+                .main_bottom ul li a {
+                    position: relative;
+                    top: 3px;
+                    left: 2px;
+                    width: 90px;
+                    display: block;
+                    vertical-align: middle;
+                    height: 26px;
+                    border-radius: 30px;
+                    line-height: 26px;
+                    text-align: center;
+                }
+
+                    .main_bottom ul li a:hover, .main_bottom ul li a.active {
+                        background: #2f89ae;
+                    }
+
+        .main div.table_box {
+            width: 100%;
+        }
+
+        .main_bottom table {
+            color: #fff;
+            overflow: auto;
+            border-collapse: collapse;
+            margin: 0 0px 0 4px;
+            word-break: keep-all;
+        }
+
+            .main_bottom table th {
+                height: 28px;
+                font-weight: normal;
+                font-size: 12px;
+                text-align: center;
+                background: rgba(0,0,0,0.1);
+            }
+            .main_bottom table th:last-child{
+                text-align: left;
+                padding-left: 36px;
+           } 
+           .main_bottom table td {
+                    padding: 0 36px;
+                    white-space: nowrap;
+                    height: 26px;
+                    font-size: 12px;
+                    text-align: center;
+                    border-bottom: 1px dashed rgba(255,255,255,0.2);
+           }
+
+            .main_bottom table button {
+                color: #fff;
+                background: rgba(37, 148, 176,1);
+                border: none;
+                margin-right: 2px;
+                border-radius: 4px;
+                padding: 2px;
+                cursor: pointer;
+                font-size: 8px!important;
+                text-align: center;
+            }
+            .hide {
+                display: none;
+            }
+            .main_bottom table td input {
+                border: 1px solid deepskyblue;
+                width: 80px;
+                background: none;
+                color: #fff;
+                display: none;
+            }
+
+            .main_bottom table td span {
+                width: 80px;
+                background: none;
+                color: #fff;
+                border: 1px solid transparent;
+                text-align: center;
+                /*display: block;*/
+            }
+
+        .maxMinTable {
+            display: none;
+        }
+        /* 下拉类 */
+        .select {
+            border: 1px solid rgba(37,148,176,.4);
+            position: relative;
+            display: inline-block;
+            width: 78px;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(5,67,108,.4);
+            color: rgb(39, 178, 241);
+            border-radius: 4px 4px 2px 2px;
+            margin-right: 20px;
+            margin-left: 6px;
+
+        }
+
+            .select .type_box {
+                display: block;
+                float: left;
+                height: 26px;
+                padding: 2px 6px;
+                line-height: 26px;
+                border-radius: 0 3px 3px 0;
+                margin-right: 5px;
+                color: rgba(255,255,255,.3);
+                background: rgba(0,0,0,.1);
+            }
+            .select .defaultContainer {
+                display: block;
+                float: left;
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .select .triangle {
+                display: block;
+                float: right;
+                width: 18px;
+                height: 30px;
+                line-height: 30px;
+                background: url(./img/triangle.png) no-repeat;
+                background-position: 4px 13px;
+            }
+
+            .select .dropDownMenu {
+                position: absolute;
+                left: -1px;
+                top: 32px;
+                display: none;
+                background: rgba(44, 121, 158, 0.9);
+                /*width: 78px;*/
+                width: 186px;
+                color: #fff;
+                border: 1px solid deepskyblue;
+                border-top: none;
+                padding-top: 2px;
+                z-index: 14;
+            }
+
+                .select .dropDownMenu li {
+                    padding: 6px 7px;
+                    height: 15px;
+                    line-height: 15px;
+                    /*width: 15px;*/
+                    display: inline-block;
+                    cursor: pointer;
+                }
+
+                    .select .dropDownMenu li:hover {
+                        background: rgba(0,0,0,.5);
+                    }
+
+            .select .current {
+                transform: rotate(180deg);
+            }
+
+
+
+            /*map*/
+        .map_box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: none;
+            margin-left: -25%;
+            margin-top: -200px;
+            width: 50%;
+            height: 70%;
+            border-radius: 8px;
+            border: 1px solid gray;
+            box-shadow: 2px 2px 6px #000;
+        }
+        .mapSearch {
+            position: absolute;
+            top:-30px;
+            left: 2px;
+            
+        }
+        #where {
+            width: 140px;
+            height: 20px;
+            outline: none;
+            text-indent: 5px;
+            border-radius:2px; 
+            font-size: 12px;
+        }
+        #button {
+            position: relative;
+            top: 1px;
+            border-radius: 3px;
+            padding: 1px 2px;
+            height: 24px;
+            outline: none;
+        }
+        .mapQuit {
+            position: absolute;
+            top: -26px;
+            right: -26px;
+            width: 24px;
+            height: 24px;
+            color: #fff;
+            font-size: 22px;
+            line-height: 23px;
+            text-align: center;
+            background: rgba(37, 148, 176,.5);
+            border-radius: 50%;
+            cursor: pointer;
+            -moz-transition: .4s ease-in;
+            -o-transition: .4s ease-in;
+            -webkit-transition: .4s ease-in;
+            transition: .4s ease-in;
+        }
+            .mapQuit:hover {
+                background: rgba(37, 148, 176,.8);
+                -moz-transform: scale(1.5,1.5);
+                -ms-transform: scale(1.5,1.5);
+                -o-transform: scale(1.5,1.5);
+                -webkit-transform: scale(1.5,1.5);
+                transform: scale(1.5,1.5);
+            }
+
+
+            .red {
+                color: red;
+            }
+            .min_height {
+                min-height: 280px;
+            }
+            /*必填项样式*/
+        .redMark {
+            font-style: normal;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main clearfix">
+        <div class="main_header clearfix save">
+            <button>保存</button>
+        </div>
+        <div class="main_top clearfix">
+            <div class="main_top_left">
+                <div class="line_L1 clearfix">
+                    <div class="pumpNoBox clearfix">
+                        <span>设备编号<i class="redMark">*</i></span>
+                        <input type="text" required>
+                    </div>
+                    <div class="pumpNameBox clearfix">
+                        <span>设备名称<i class="redMark">*</i></span>
+                        <input type="text" required>
+                    </div>
+                </div>
+                <div class="line_L2 clearfix">
+                    <div class="mapBox clearfix">
+                        <span>Map地址</span>
+                        <input type="text" readonly>
+                    </div>
+                </div>
+                <div class="line_L3 clearfix">
+                    <div class="realBox clearfix">
+                        <span>实际地址</span>
+                        <input type="text" readonly>
+                    </div>
+                </div>
+                <div class="line_L4 clearfix">
+                    <div class="fireBox clearfix">
+                        <span>消防泵</span>
+                        <div class="fire fireMaj">
+                            <div class="select">
+                                <span class="type_box">主</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fire fireAux">
+                            <div class="select">
+                                <span class="type_box">副</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="fire fireoutBox">
+                                <div class="select">
+                                    <span class="type_box">出水</span>
+                                    <span class="defaultContainer">0</span>
+                                    <span class="triangle"></span>
+                                    <ul class="dropDownMenu">
+                                        <li>0</li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>6</li>
+                                        <li>7</li>
+                                        <li>8</li>
+                                        <li>9</li>
+                                        <li>10</li>
+                                        <li>11</li>
+                                        <li class="set_self">输入</li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="sprayBox clearfix">
+                        <span>喷淋泵</span>
+                        <div class="spray sprayMaj">
+
+                            <div class="select">
+                                <span class="type_box">主</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="spray sprayAux">
+                            <div class="select">
+                                <span class="type_box">副</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="spray sprayoutBox">
+                            <div class="select">
+                                <span class="type_box">出水</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <!--<li class="set_self">自定义...</li>-->
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                    <li>7</li>
+                                    <li>8</li>
+                                    <li>9</li>
+                                    <li>10</li>
+                                    <li>11</li>
+                                    <li class="set_self">输入</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="line_L5 clearfix">
+                    <div class="typeBox clearfix">
+                        <span>设备类型</span>
+                        <div class="clearfix">
+                            <input type="radio" id="pumpType1" name="pumpType" class="pumpType"><label class="label1" for="pumpType1">标准</label>
+
+                        </div>
+                        <div class="clearfix">
+                            <input type="radio" id="pumpType2" name="pumpType" class="pumpType"><label class="label2" for="pumpType2">多控柜</label>
+                        </div>
+                    </div>
+
+                    <div class="urlBox clearfix">
+                        <span>URL</span>
+                        <div>
+                            <input type="text">
+                            <!--<div class="select clearfix">
+                                <span class="defaultContainer">./iframe2.html</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>./iframe2.html</li>
+                                    <li>./iframe3.html</li>
+                                    <li>./iframe4.html</li>
+                                </ul>
+                            </div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="main_top_right clearfix">
+                <div class="line_R1 clearfix">
+                    <div id="dataT" class="pumpCreateTimeBox clearfix">
+                        <span>客户<i class="redMark">*</i></span>
+                        <div class="select">                           
+                            <span class="defaultContainer">无</span>
+                            <span class="triangle"></span>
+                            <ul class="dropDownMenu">
+                                <li id="0">无</li>
+                               <!-- <li>三凯物业</li>
+                                <li>外高桥物业</li> -->                             
+                            </ul>
+                        </div>
+                        <!--<input type="text" required>-->
+                    </div>
+                </div>
+                <div class="line_R2 clearfix">
+                    <div class="latBox">
+                        <span>经&nbsp;纬&nbsp;度 <i class="redMark">*</i></span>
+                        <input type="text" readonly>
+                        <span class="map"><img alt="map" src="./img/mapIco.png"/></span>
+                    </div>
+                </div>
+                <div class="line_R3 clearfix">
+                    <div class="pumpSortBox">
+                        <span>排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序<i class="redMark">*</i></span>
+                        <input type="text" required>
+                    </div>
+                    <div class="deWaterBox">
+                        <span>排水泵</span>
+                        <div class="deWaterNum">
+                            <div class="select">
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line_R4 clearfix">
+                    <div class="lifeBox">
+                        <span class="life">生 活 泵</span>
+                        <div class="life lifeMaj" >
+                            <div class="select">
+                                <span class="type_box">主</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="life lifeAux">
+                            <div class="select">
+                                <span class="type_box">副</span>
+                                <span class="defaultContainer">0</span>
+                                <span class="triangle"></span>
+                                <ul class="dropDownMenu">
+                                    <li>0</li>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="life lifeoutBox">
+                                <div class="select">
+                                    <span class="type_box">出水</span>
+                                    <span class="defaultContainer">0</span>
+                                    <span class="triangle"></span>
+                                    <ul class="dropDownMenu">
+                                        <li>0</li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>6</li>
+                                        <li>7</li>
+                                        <li>8</li>
+                                        <li>9</li>
+                                        <li>10</li>
+                                        <li>11</li>
+                                        <li class="set_self">输入</li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="main_bottom clearfix">
+            <div class="ul_box">
+                <ul class="clearfix">
+                    <li><a class="active" href="javascript: void(0);">出水压力设定</a></li>
+                    <li><a href="javascript: void(0);">其他</a></li>
+                    <li><a href="javascript: void(0);">附件</a></li>
+                </ul>
+            </div>
+            
+            <div class="box table_box">
+                <table class="maxMinTable">
+                    <thead>
+                        <tr>
+                            <th width="200">管路名称</th>
+                            <th width="60">上&nbsp;限</th>
+                            <th width="60">下&nbsp;限</th>
+                            <th width="180">操&nbsp;作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="maxMinBox">
+                        <!--<tr>
+                            <td class="popName" width="200">dddddddd</td>
+                            <td class="max" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td class="min" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td width="180"><button class="modify" type="button">修改</button><button class="saveBtn" type="button">保存</button></td>
+                        </tr>
+                        <tr>
+                            <td class="popName" width="200">dddddddd</td>
+                            <td class="max" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td class="min" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td width="180"><button class="modify" type="button">修改</button><button class="saveBtn" type="button">保存</button></td>
+                        </tr>
+                        <tr>
+                            <td class="popName" width="200">dddddddd</td>
+                            <td class="max" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td class="min" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td width="180"><button class="modify" type="button">修改</button><button class="saveBtn" type="button">保存</button></td>
+                        </tr>
+                        <tr>
+                            <td class="popName" width="200">dddddddd</td>
+                            <td class="max" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td class="min" width="60"><input type="text" /><span>dddddddd</span></td>
+                            <td width="180"><button class="modify" type="button">修改</button><button class="saveBtn" type="button">保存</button></td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="box other"></div>
+            <div class="box otherFile"></div>
+        </div>
+    </div>
+    <div class="map_box">
+        <div class="mapQuit">&times;</div>
+        <div class="mapSearch">
+            <label style="color: white;">地点：</label>
+            <input id="where" name="where" type="text">
+            <input id="button" type="button" value="查找地点" />
+        </div>
+        
+        <div id="MAP" style="position: absolute;width: 100%;height: 100%;border-radius: 5px;"></div>
+    </div>
+    
+    <!--<button class="save" style="cursor: pointer;border-radius: 5px;width: 60px; height: 40px;color: #fff;border: 1px solid rgb(10, 78, 119);background: rgb(8,49,77);">保存</button>
+    <button class="quit" style="cursor: pointer;border-radius: 5px;width: 60px; height: 40px;color: #fff;border: 1px solid rgb(10, 78, 119);background: rgb(8,49,77);">退出</button>-->
+    <script>
+        $(function () {
+
+            function parseUrl() {
+
+                var url = window.location.href;
+                // alert(url);
+                var i = url.indexOf('?');
+                // alert(1);
+                if (i == -1) { return };
+                var queryStr = url.substr(i + 1);
+                var arr1 = queryStr.split('&');
+                var arr2 = {};
+                for (j in arr1) {
+                    var tar = arr1[j].split('=');
+
+                    arr2[tar[0]] = tar[1];
+                };
+                // alert(0);
+                // alert(arr2);
+                return arr2;
+
+
+            }
+            var v = parseUrl();
+
+
+            //滚动条
+            $('.table_box').mCustomScrollbar({
+                scrollButtons: {
+                    enable: true,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                axis: "y",
+                set_width: false,
+                scrollbarPosition: "inside"
+            }
+            );
+
+            $('.main_top').mCustomScrollbar({
+                scrollButtons: {
+                    enable: true,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                axis: "y",
+                set_width: false,
+                scrollbarPosition: "inside"
+            }
+            );
+
+
+            //加载 页面的时候 获取 客户
+
+            function getCus() {
+                $.ajax({
+                    url: '../../Service/T_CustomerService.ashx?method=search',
+                    async: false,
+                    cache:false,
+                    success: function (data) {
+                        //console.log(data);
+                       // alert('0000'+data);
+                        var data = JSON.parse(data);
+                       // $('#dataT .dropDownMenu').empty();
+                        $.each(data.data,function (i, v) {
+                            $('#dataT .dropDownMenu').append('<li id='+v.ID+'>'+v.FName+'</li>');
+                        });
+                        modifyShow();
+                    },
+                    error: function (data) {
+                        alert('error'+data.responseText);
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                getCus();
+            });
+
+            //客户 li的  代理函数
+            $('#dataT .dropDownMenu').delegate('li', 'click', function (i, v) {
+                //alert($(this).html());
+                $(this).parent().prev().prev().html($(this).html()).attr('liID', $(this).attr('id'));
+                //$(this).parent().prev().prev()
+            });
+            
+            //窗口 调整
+
+            function mainSize() {
+                var h = $(window).height();
+                $('body').height(h);
+                //alert(h);
+                // alert('body'+$('body').height());
+                $('.main').height(h - 50);//100
+               $('.main .main_top').height(h/2-38);
+               $('.main .table_box').height(h/2-73);
+                // $('.main .tableBox2').height(h - 90);
+                //$('.main .tableBox .table2').height(h - 100);
+
+
+            };
+            mainSize();
+
+            //窗口重置
+            $(window).resize(function () {
+                mainSize();
+            });
+
+
+            //默认情况下 选框
+            $('#pumpType1').prop('checked', true);
+            $('#pumpType2').prop('checked', false);
+            $('.urlBox').addClass('disabled').css('display', 'none');
+
+           /* $('input[type=radio]').change(function () {
+                if ($('#pumpType2').is(':checked')) {
+                    //alert(2);
+                    $('.urlBox').addClass('disabled').css('display', 'block');
+
+                    $('.urlBox ').removeClass('disabled');
+                }
+            });
+            
+            */
+            //地图处理函数
+            $('.latBox .map img').click(function(e){
+               // alert(111);
+                $('.map_box').fadeIn(500);
+               
+            });
+
+            $('.map_box .mapQuit').click(function () {
+                $('.map_box').fadeOut(500);
+            });
+           
+
+                var map = new BMap.Map('MAP', { mapType: BMAP_SATELLITE_MAP });
+                var point = new BMap.Point(121.617542000, 31.329839000);
+                map.setDefaultCursor("crosshair");
+                map.centerAndZoom(point, 16);
+                map.enableScrollWheelZoom();
+
+
+                map.addEventListener('click',function(e){
+                    //alert(e.point.lng + ',' + e.point.lat);
+                    $('.latBox input[type=text]').val(e.point.lng + ',' + e.point.lat);
+                   
+
+                }, false);
+               
+                function sear(result) {
+                    var local = new BMap.LocalSearch(map,{
+                        renderOptions: {map:map}
+                    });
+                    local.search(result);
+                }
+
+                $('#button').click(function () {
+                    sear($('#where').val());
+                    map.setZoom(16);
+                });
+                //var geolocation = new BMap.Geolocation();
+               // var myGeo = new BMap.Geocoder();
+           /*     geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var mk = new BMap.Marker(r.point);
+                        map.addOverlay(mk);
+                        map.panTo(r.point);
+                        myGeo.getLocation(r.point, function (result) {
+                            if (result) {
+                                var addressCom = result.addressComponents;
+
+                                $('.mapContainer').val(addressCom.province + addressCom.city + addressCom.district + addressCom.street + addressCom.streetNumber);
+                                alert(r.point.lng + ',' + r.point.lat);
+                                $('#map').fadeOut();
+                            }
+                        });
+
+                        // alert('你的位置是'+r.point.lng+','+r.point.lat);
+
+                    } else {
+                        alert('failed' + this.getStatus());
+                    }
+                }, { enableHighAccuracy: true }) */
+         
+            //map可拖动
+            //$('#MAP').draggable();
+
+
+            //下拉列表类
+            $(".triangle").each(function (i, v) {
+                var index = i;
+                $(this).click(function (e) {
+                    $(this).toggleClass("current");
+                    $(".dropDownMenu").eq(index).toggle();
+                    $('.main_top_left').addClass('min_height');
+                    e.stopPropagation();
+                });
+            });
+            $(document).click(function () {
+                $(".triangle").removeClass("current");
+                $('.main_top_left').removeClass('min_height');
+                $(".dropDownMenu").css('display', 'none');
+            });
+
+            $(".dropDownMenu li").each(function (i, v) {
+
+                var index = i;
+
+                $(this).click(function () {
+                    $(this).parent().prev().prev().html($(this).html());
+                    $(this).parent().toggle();
+                    $(".triangle").eq(index).toggleClass("current");
+                });
+
+            });
+            //下拉列表 自定义  操作
+            $('.set_self').click(function () {
+                $(this).parent().prev().prev().attr('contenteditable', true);
+                $(this).parent().prev().prev().focus();
+                $(this).parent().prev().prev().html('');
+                $(this).parent().prev().prev().css({
+                    'overflow': 'hidden',
+                    'width': '18px'
+                });
+            });
+
+          
+
+            //切换
+            $('.main_bottom ul a').each(function (i, v) {
+                var index = i;
+                $(this).click(function () {
+                    if (!$(this).hasClass('.active')) {
+                        $(this).addClass('active').parent().siblings().find('a').removeClass('active');
+                        $('.box').eq(index).css('display', 'block').siblings('.box').css('display', 'none');
+                    }
+
+                });
+
+            });
+
+            
+
+            //dataHandle
+            function dataHandle() {
+                var $fnumber = $.trim($('.pumpNoBox input').val());
+                var $fname = $.trim($('.pumpNameBox input').val());
+                var $fsort = $.trim($('.pumpSortBox input').val());
+                //var $fcreateTime = $.trim($('.pumpCreateTimeBox input').val());
+                var $custom = $.trim($('#dataT .defaultContainer').html());
+                
+                $custom = ($custom != "无") ? 1 : 0;
+                //alert($custom);
+                var $customerId = $('#dataT .defaultContainer').attr('liID');
+                //alert($customerId);
+                var $lifeMaj = $.trim($('.lifeMaj .defaultContainer').html());
+                var $lifeAux = $.trim($('.lifeAux .defaultContainer').html());
+                var $fireMaj = $.trim($('.fireMaj .defaultContainer').html());
+                var $fireAux = $.trim($('.fireAux .defaultContainer').html());
+                var $sprayMaj = $.trim($('.sprayMaj .defaultContainer').html());
+                var $sprayAux = $.trim($('.sprayAux .defaultContainer').html());
+                var $deWaterNum = $.trim($('.deWaterNum .defaultContainer').html());
+                var $lifeoutBox = $.trim($('.lifeoutBox .defaultContainer').html());
+                var $fireoutBox = $.trim($('.fireoutBox .defaultContainer').html());
+                var $sprayoutBox = $.trim($('.sprayoutBox .defaultContainer').html());
+                var $FURL = $.trim($('.urlBox input').val());
+                var $latBox = $.trim($('.latBox input').val());
+                var $mapBox = $.trim($('.mapBox input').val());
+                var $realBox = $.trim($('.realBox input').val());
+
+
+                var $fDelete = 0;
+                var $FpumpType= radioHandle()['b'];
+
+                //alert($FpumpType);
+                /*$('input[type=radio]').change(function () {
+                    $FpumpType = radioHandle()['b'];
+                    alert($FpumpType);
+                });
+                */
+                //默认的  URL 选择
+               /* $('#pumpType1').prop('checked', true);
+                $('#pumpType2').prop('checked', false);
+                $('.urlBox').addClass('disabled').css('display', 'none');
+                */
+               
+                if ($fnumber && $fname && $fsort && $latBox && $lifeoutBox && $fireoutBox && $sprayoutBox && $custom) {
+                    //&& $realBox
+                    //var json = "[{\"FNumber\": \"" + $deWaterNum + "\",\"FName\": \"F7-10号厂房喷淋泵房\"}]";
+                    //var json = "[{\"FNumber\":\"" + $fnumber + "\",\"FName\":\"" + $fname + "\",\"FSortIndex\":\"" + $fsort + "\",\"FPumpType\":\"" + $FpumpType + "\",\"FURL\":\"" + $FURL + "\",\"FLatAndLong\":\"" + $latBox + "\",\"FMapAddress\":\"" + $mapBox + "\",\"FAddress\":\"" + $realBox + "\",\"FLifeMajorPumpNum\":\"" + $lifeMaj + "\",\"FLifeAuxPumpNum\":\"" + $lifeAux + "\",\"FFireMajorPumpNum\":\"" + $fireMaj + "\",\"FFireAuxPumpNum\":\"" + $fireAux + "\",\"FSprayMajorPumpNum\":\"" + $sprayMaj + "\",\"FSprayAuxPumpNum\":\"" + $sprayAux + "\",\"FLifeOutNum\":\"" + $lifeoutBox + "\",\"FFireOutNum\":\"" + $fireoutBox + "\",\"FSprayOutNum\":\"" + $sprayoutBox + "\",\"FDewaterPumpNum\":\"" + $deWaterNum + "\"}]";
+                    
+                    var json = "[{\"id\":\"" + v['id'] + "\",\"FCustomerID\":\"" + $customerId + "\",\"FDeleted\":\"" + $fDelete + "\",\"FNumber\":\"" + $fnumber + "\",\"FName\":\"" + $fname + "\",\"FSortIndex\":\"" + $fsort + "\",\"FPumpType\":\"" + $FpumpType + "\",\"FURL\":\"" + $FURL + "\",\"FLatAndLong\":\"" + $latBox + "\",\"FMapAddress\":\"" + $mapBox + "\",\"FAddress\":\"" + $realBox + "\",\"FLifeMajorPumpNum\":\"" + $lifeMaj + "\",\"FLifeAuxPumpNum\":\"" + $lifeAux + "\",\"FFireMajorPumpNum\":\"" + $fireMaj + "\",\"FFireAuxPumpNum\":\"" + $fireAux + "\",\"FSprayMajorPumpNum\":\"" + $sprayMaj + "\",\"FSprayAuxPumpNum\":\"" + $sprayAux + "\",\"FLifeOutNum\":\"" + $lifeoutBox + "\",\"FFireOutNum\":\"" + $fireoutBox + "\",\"FSprayOutNum\":\"" + $sprayoutBox + "\",\"FDewaterPumpNum\":\"" + $deWaterNum + "\"}]";
+                    
+                    //var json = "\"[{\\\"id\\\":\\\"" + $(".newTr").attr("id") + "\\\"" + saveText + "}]\""    \\\",\"FSortIndex\":\\\"" + $fsort + "\\\",\"FCreateDate\":\\\"" + $fcreateTime + "\\\",\"FLifeMajorPumpNum\":\\\"" + $lifeMaj + "\\\",\"FLifeAuxPumpNum\":\\\"" + $lifeAux + "\\\",\"FFireMajorPumpNum\":\\\"" + $fireMaj + "\\\",\"FFireAuxPumpNum\":\\\"" + $fireAux + "\\\",\"FSprayMajorPumpNum\":\\\"" + $sprayMaj + "\\\",\"FSprayAuxPumpNum\":\\\"" + $sprayAux + "\\\",\"FLifeOutNum\":\\\"" + $lifeoutBox + "\\\",\"FFireOutNum\":\\\"" + $fireoutBox + "\\\",\"FSprayOutNum\":\\\"" + $sprayoutBox + "\\\",\"FDewaterPumpNum\":\\\"" + $deWaterNum + "\\\",\"FLatAndLong\":\\\"" + $latBox + "\\\",\"FMapAddress\":\\\"" + $mapBox + "\\\",\"FAddress\":\\\"" + $realBox + "\\\;
+                    // console.log(json);
+                    $.ajax({
+                        url: '../../Service/PumpManagerService.ashx?method=save',
+                        data: { data: json },
+                        cache:false,
+                        success: function (data) {
+                            //alert(data);
+                            // console.log(data);
+                            var data = Number(JSON.parse(data)['result']);
+                             //alert(data);
+                            if (data) {
+                                alert('保存成功！');
+                                $('.maxMinTable').css('display', 'block');
+                                $('.maxMinBox').empty();
+                                maxMinShow(data);
+                            } else {
+                                alert('保存失败！');
+                            }
+                            
+
+                        },
+                        error: function (data) {
+                            console.log("error" + data.responseText);
+                        }
+                    });
+                }
+                else {
+                    alert('必填项不能为空');
+                    if (!$fnumber) {
+                        $('.pumpNoBox span').addClass('red');
+                    }
+                    if (!$fname) {
+                        $('.pumpNameBox span').addClass('red');
+                    }
+                    if (!$fsort) {
+                        $('.pumpSortBox span').addClass('red');
+                    }
+                    if (!$latBox) {
+                        $('.latBox span').addClass('red');
+
+                    }
+                   
+                    
+                }
+            }
+
+
+            //radio 的处理
+            function radioHandle() {
+                var $radio = '';
+                var $radioType = 0;
+                if ($('#pumpType1').is(':checked')) {
+                    // alert(1);
+                    $('.urlBox').addClass('disabled').css('display', 'none');
+                    $('.urlBox ').addClass('disabled');
+                   
+                    $radio = $('.label1').html();
+                    $radioType = 0;
+                    
+                } else if ($('#pumpType2').is(':checked')) {
+                    //alert(2);
+                    $('.urlBox').addClass('disabled').css('display', 'block');
+                    $('.urlBox ').removeClass('disabled');
+                    
+                    $radio = $('.label2').html();
+                    $radioType = 1;
+                }
+
+                return {'a':$radio,'b':$radioType};
+            };
+            //alert(radioHandle());
+
+            $('input[type=radio]').change(function () {
+                radioHandle();
+            });
+            
+            //保存
+
+            $('.save button').click(function () {
+                dataHandle();
+            });
+
+            //离开
+            $('.quit').click(function () {
+                $(parent.document).find('#messagePage').css();
+            });
+
+            //点击修改事件
+            function clickChange() {
+                //alert('01122wwwwwww');
+                $('.main_bottom .table_box').delegate('.modify', 'click', function (i, v) {
+                    $(this).addClass('hide').next().removeClass('hide');
+
+                    var popContent = $(this).parent().siblings('.popName').find('span');
+                    var popInput = $(this).parent().siblings('.popName').find('input');
+                    var minContent = $(this).parent().siblings('.min').find('span');
+                    var maxContent = $(this).parent().siblings('.max').find('span');
+                    var minInput = $(this).parent().siblings('.min').find('input');
+                    var maxInput = $(this).parent().siblings('.max').find('input');
+
+                    minInput.css('display', 'block').val(minContent.html());
+                    minContent.css('display', 'none');
+
+                    maxInput.css('display', 'block').val(maxContent.html());
+                    maxContent.css('display', 'none');
+
+                    popInput.css('display', 'block').val(popContent.html());
+                    popContent.css('display', 'none');
+
+                });
+                /* $('.main_bottom .table_box  .modify').each(function(i,v){
+
+                     $(this).click(function(){
+                         var minContent =$(this).parent().siblings('.min').find('span');
+                         var maxContent =$(this).parent().siblings('.max').find('span');
+                         var minInput =$(this).parent().siblings('.min').find('input');
+                         var maxInput = $(this).parent().siblings('.max').find('input');
+
+                         minInput.css('display', 'block').val(minContent.html());
+                         minContent.css('display', 'none');
+                         maxInput.css('display', 'block').val(maxContent.html());
+                         maxContent.css('display','none');
+
+                     });
+                 });*/
+            }
+
+            //小点击保存事件
+            function clickSave() {
+                $('.main_bottom .table_box').delegate('.saveBtn', 'click', function (i, v) {
+                    $(this).addClass('hide').prev().removeClass('hide');
+
+                    var popContent = $(this).parent().siblings('.popName').find('span');
+                    var popInput = $(this).parent().siblings('.popName').find('input');
+                    var minContent = $(this).parent().siblings('.min').find('span');
+                    var maxContent = $(this).parent().siblings('.max').find('span');
+                    var minInput = $(this).parent().siblings('.min').find('input');
+                    var maxInput = $(this).parent().siblings('.max').find('input');
+                    var currentID = $(this).parent().parent().attr('id');
+                    var currentIndex = $(this).parent().parent().attr('index');
+                    var currentType = $(this).parent().parent().attr('type');
+
+                    var min = minInput.val() ? minInput.val() : minContent.html();
+                    minContent.css('display', 'block').html(minInput.val() ? minInput.val() : minContent.html());
+                    minInput.css('display', 'none');
+
+                    var max = maxInput.val() ? maxInput.val() : maxContent.html();
+                    maxContent.css('display', 'block').html(maxInput.val() ? maxInput.val() : maxContent.html());
+                    maxInput.css('display', 'none');
+
+                    var contentPo = popInput.val() ? popInput.val() : popContent.html();
+                    popContent.css('display', 'block').html(popInput.val() ? popInput.val() : popContent.html());
+                    popInput.css('display', 'none');
+                    var json = "[{\"id\":\"" + currentID + "\",\"FType\":\"" + currentType + "\",\"FIndex\":\"" + currentIndex + "\",\"FName\":\"" + contentPo + "\",\"FMax\":\"" + max + "\",\"FMin\":\"" + min + "\"}]";
+
+                    $.ajax({
+                        url: '../../Service/T_OutSetService.ashx?method=save',
+                        async: false,
+                        cache:false,
+                        data: { data: json },
+                        success: function (data) {
+                            //console.log(data);
+                            var data = JSON.parse(data);
+                            if (data['result'] == 1) {
+                                //alert('出水压力修改成功！');
+                            };
+
+
+                        },
+                        error: function (data) {
+                            console.log('error' + data.responseText);
+                        }
+                    });
+                });
+                /*$('.main_bottom .table_box  .saveBtn').each(function (i, v) {
+
+                    $(this).click(function () {
+                        var minContent = $(this).parent().siblings('.min').find('span');
+                        var maxContent = $(this).parent().siblings('.max').find('span');
+                        var minInput = $(this).parent().siblings('.min').find('input');
+                        var maxInput = $(this).parent().siblings('.max').find('input');
+
+                        minContent.css('display', 'block').html(minInput.val() ? minInput.val() : minContent.html());
+                        minInput.css('display', 'none');
+                        maxContent.css('display', 'block').html(maxInput.val() ? maxInput.val() : maxContent.html());
+                        maxInput.css('display', 'none');
+
+                    });
+                });*/
+            }
+            clickChange();
+            clickSave();
+
+
+
+            //下侧的 管道数据 获取函数
+
+            function maxMinShow(id) {
+                //管道 编号转换
+                var $lifeoutNum = Number($.trim($('.lifeoutBox .defaultContainer').html()));
+                //alert($lifeoutNum);
+                var $fireoutNum = Number($.trim($('.fireoutBox .defaultContainer').html()));
+                //alert($fireoutNum);
+                var $sprayoutNum = Number($.trim($('.sprayoutBox .defaultContainer').html()));
+                //alert($sprayoutNum);
+                
+                for (var j = 1; j <= $fireoutNum+1; j++) {
+                    maxMinAjax(id, "消防", j);
+                }
+                for (var k = 1; k <= $sprayoutNum+1; k++) {
+                    maxMinAjax(id, "喷淋", k);
+                }
+                for (var i = 1; i <= $lifeoutNum + 1; i++) {
+                    maxMinAjax(id, "生活", i);
+                }
+                $('.maxMinTable').css('display', 'block');
+                function maxMinAjax(id, str, index) {
+                    $.ajax({
+                        url: '../../Service/T_OutSetService.ashx?method=search',
+                        async: false,
+                        cache:false,
+                        data: { "FPumpID": id, "FType": str, "FIndex": index },
+                        success: function (dat) {
+                            var dat = JSON.parse(dat);
+                            dat = dat.data[0];
+                            if (dat) {
+                                var max = dat.FMax ? dat.FMax : 0;
+                                var min = dat.FMin ? dat.FMin : 0;
+                                var ID = dat.id;
+                                //console.log(dat);
+                                $('.maxMinBox').append('<tr id=' + ID + ' index=' + index + ' type=' + str + '>\
+                            <td class="popName" width="200"><input type="text" /><span>' + dat.FName + '</span></td>\
+                            <td class="max" width="60"><input type="text" /><span>' + max + '</span></td>\
+                            <td class="min" width="60"><input type="text" /><span>' + min + '</span></td>\
+                            <td width="670" style=" text-align:left;"><button class="modify" type="button">修改</button><button class="saveBtn hide" type="button">保存</button></td>\
+                        </tr>');
+                            }
+
+
+                        },
+                        error: function (data) {
+                            alert('error' + data.responseText);
+                        }
+                    });
+                }
+
+            }
+
+            //修改请求的页面显示函数
+
+            function modifyShow() {
+                $.ajax({
+                    url: '../../Service/PumpManagerService.ashx?method=get',
+                    data: { 'id': v['id'] },
+                    async: false,
+                    cache:false,
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                        // console.log(data);
+                       /// var FCreateDate = data.FCreateDate ? data.FCreateDate.replace('T', " ") : "没有数据";
+                        var $fnumber = $('.pumpNoBox input').val(data.FNumber);
+                        var $fname = $('.pumpNameBox input').val(data.FName);
+                        var $fsort = $('.pumpSortBox input').val(data.FSortIndex);
+                        var IDstr = '#' + data.FCustomerID;
+                        var $customer = $('#dataT .defaultContainer').html($(IDstr).html());
+                        var $customerID = $('#dataT .defaultContainer').attr('liID', data.FCustomerID);
+                        //alert(data.CustomerName);
+                        //var $fcreateTime = $('.pumpCreateTimeBox input').val(FCreateDate);
+                        var $lifeMaj = $('.lifeMaj .defaultContainer').html(data.FLifeMajorPumpNum);
+                        var $lifeAux = $('.lifeAux .defaultContainer').html(data.FLifeAuxPumpNum);
+                        var $fireMaj = $('.fireMaj .defaultContainer').html(data.FFireMajorPumpNum);
+                        var $fireAux = $('.fireAux .defaultContainer').html(data.FFireAuxPumpNum);
+                        var $sprayMaj = $('.sprayMaj .defaultContainer').html(data.FSprayMajorPumpNum);
+                        var $sprayAux = $('.sprayAux .defaultContainer').html(data.FSprayAuxPumpNum);
+                        var $deWaterNum = $('.deWaterNum .defaultContainer').html(data.FDewaterPumpNum);
+                        var $lifeoutBox = $('.lifeoutBox .defaultContainer').html(data.FLifeOutNum);
+                        var $fireoutBox = $('.fireoutBox .defaultContainer').html(data.FFireOutNum);
+                        var $sprayoutBox = $('.sprayoutBox .defaultContainer').html(data.FSprayOutNum);
+                        var $URL = $('.urlBox input').val(data.FURL);
+                        var $latBox = $('.latBox input').val(data.FLatAndLong);
+                        var $mapBox = $('.mapBox input').val(data.FMapAddress);
+                        var $realBox = $('.realBox input').val(data.FAddress);
+
+
+
+
+                        if (data.FPumpType == 1) {
+                            $('#pumpType2').prop('checked', true);
+                            $('#pumpType1').prop('checked', false);
+                            $('.urlBox').removeClass('disabled').css('display', 'block');
+                            //alert(data.FPumpType);
+                        } else {
+                            $('#pumpType1').prop('checked', true);
+                            $('#pumpType2').prop('checked',false);
+                            $('.urlBox').addClass('disabled').css('display','none');
+                            //alert(data.FPumpType);
+
+                        }
+
+
+
+                        maxMinShow(v['id']);
+
+                    },
+                    error: function (data) {
+                        alert("error" + data.responseText);
+                    }
+                });
+            }
+
+            
+
+        });
+    </script>
+</body>
+</html>
